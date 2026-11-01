@@ -16,13 +16,13 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     if (prefersReducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 0.85, // Snappy, responsive momentum without heavy trailing lag
+      duration: 1.4, // Luxurious, slow, cinema-grade momentum glide
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.05, // Instant response to wheel input
-      touchMultiplier: 1.0, // Natural 1:1 mobile touch physics
+      wheelMultiplier: 0.78, // Slower, calmer wheel responsiveness
+      touchMultiplier: 0.85, // Calibrated smooth touch speed
     });
 
     (window as any).__lenis = lenis;

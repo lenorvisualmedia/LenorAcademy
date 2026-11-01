@@ -20,6 +20,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const [loadProgress, setLoadProgress] = useState(0);
 
   const targetTimeRef = useRef(0);
+  const smoothedTimeRef = useRef(0);
   const isSeekingRef = useRef(false);
   const rafIdRef = useRef<number | null>(null);
   const isVisibleRef = useRef(true);
@@ -98,18 +99,26 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
     const onSeeked = () => {
       isSeekingRef.current = false;
-      // If user scrolled while the last frame was decoding, catch up immediately
-      if (Math.abs(video.currentTime - targetTimeRef.current) > 0.004) {
-        performSeek(targetTimeRef.current);
+      // If user scrolled while the last frame was decoding, catch up smoothly
+      if (Math.abs(video.currentTime - smoothedTimeRef.current) > 0.004) {
+        performSeek(smoothedTimeRef.current);
       }
     };
     video.addEventListener('seeked', onSeeked);
 
-    // RAF loop ensures continuous synchronization without stutter; pauses when off-screen
+    // RAF loop with cinematic lerp interpolation: delivers smooth, slow, and unhurried playback
     const tick = () => {
       if (isVisibleRef.current) {
+        // Smooth lerp: eases gently towards target time with 0.085 smoothing factor
+        const diff = targetTimeRef.current - smoothedTimeRef.current;
+        if (Math.abs(diff) > 0.001) {
+          smoothedTimeRef.current += diff * 0.085;
+        } else {
+          smoothedTimeRef.current = targetTimeRef.current;
+        }
+
         if (!isSeekingRef.current) {
-          performSeek(targetTimeRef.current);
+          performSeek(smoothedTimeRef.current);
         }
         rafIdRef.current = requestAnimationFrame(tick);
       } else {
@@ -149,7 +158,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         ScrollTrigger.create({
           trigger: container,
           start: 'top top',
-          end: 'top -140px',
+          end: 'top -240px',
           scrub: true,
           onUpdate: (self) => {
             if (overlayRef.current) {
@@ -279,7 +288,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     <div
       id="hero-scroll-container"
       ref={containerRef}
-      className="relative w-full h-[500vh] sm:h-[650vh] bg-black"
+      className="relative w-full h-[950vh] sm:h-[1200vh] bg-black"
     >
       {/* Sticky Fullscreen Viewport — 100vw x 100vh */}
       <div className="sticky top-0 w-full h-screen overflow-hidden bg-black">

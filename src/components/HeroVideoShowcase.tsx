@@ -17,7 +17,6 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
-  const [statusText, setStatusText] = useState('Initializing cinema reel...');
 
   const targetTimeRef = useRef(0);
   const isSeekingRef = useRef(false);
@@ -161,7 +160,6 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       }
 
       setLoadProgress(100);
-      setStatusText('Ready to Explore');
 
       setTimeout(() => {
         setIsLoaded(true);
@@ -192,9 +190,6 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         const bufferedEnd = video.buffered.end(video.buffered.length - 1);
         const percent = Math.min(99, Math.round((bufferedEnd / Math.min(video.duration, 4)) * 95));
         setLoadProgress((prev) => Math.max(prev, percent));
-        if (percent > 60) {
-          setStatusText('Buffering 60 FPS frames...');
-        }
       }
     };
 
@@ -271,42 +266,35 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
           className="w-full h-full object-cover block pointer-events-none will-change-[transform]"
         />
 
-        {/* Cinematic Preloader Overlay (Locks scroll until 60fps video is ready) */}
+        {/* Minimalist Cinema Equipment Loading Screen */}
         <div
-          className={`absolute inset-0 z-40 flex flex-col items-center justify-center bg-black transition-all duration-700 ease-out ${
+          className={`absolute inset-0 z-40 flex flex-col items-center justify-center bg-black transition-all duration-700 ease-out select-none ${
             isLoaded ? 'opacity-0 pointer-events-none scale-105' : 'opacity-100 pointer-events-auto scale-100'
           }`}
         >
-          <div className="flex flex-col items-center justify-center text-center px-4 max-w-md w-full select-none">
-            {/* Lenor Luxury Monogram */}
-            <div className="relative mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md shadow-2xl">
-                <span className="font-black text-xl tracking-tighter text-white">LR</span>
-              </div>
-              <div className="absolute inset-0 rounded-2xl bg-white/20 blur-xl animate-pulse pointer-events-none" />
+          <div className="flex flex-col items-center justify-center text-center px-4 max-w-lg w-full">
+            {/* Camera Equipments Row (Camera, Clapperboard, Film Reel, Drone) */}
+            <div className="relative w-full max-w-[320px] sm:max-w-[420px] mb-2 flex items-center justify-center">
+              <img
+                src="/assets/camera-equipments.png"
+                alt="Cinema Equipments"
+                className="w-full h-auto object-contain filter drop-shadow-[0_0_24px_rgba(255,255,255,0.2)] brightness-110 contrast-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute inset-0 bg-white/5 blur-2xl rounded-full pointer-events-none" />
             </div>
 
-            {/* Subtitle & Status */}
-            <h2 className="text-xs sm:text-sm font-bold tracking-[0.3em] uppercase text-white mb-1.5">
-              Lenor Academy
-            </h2>
-            <p className="text-[10px] sm:text-[11px] font-mono tracking-[0.2em] uppercase text-neutral-400 mb-6">
-              {statusText}
-            </p>
-
             {/* Hairline Luminous Progress Bar */}
-            <div className="w-48 sm:w-60 h-[2px] bg-white/10 rounded-full overflow-hidden relative mb-3">
+            <div className="w-32 sm:w-44 h-[1.5px] bg-white/10 rounded-full overflow-hidden relative mt-4 mb-4">
               <div
-                className="h-full bg-gradient-to-r from-neutral-400 via-white to-neutral-200 transition-all duration-300 ease-out rounded-full shadow-[0_0_12px_rgba(255,255,255,0.85)]"
+                className="h-full bg-gradient-to-r from-neutral-400 via-white to-neutral-200 transition-all duration-300 ease-out rounded-full shadow-[0_0_10px_rgba(255,255,255,0.85)]"
                 style={{ width: `${loadProgress}%` }}
               />
             </div>
 
-            {/* Monospace Indicator */}
-            <div className="flex items-center justify-between w-48 sm:w-60 text-[10px] font-mono text-neutral-500">
-              <span>60 FPS SEQUENCE</span>
-              <span className="text-white font-semibold">{Math.round(loadProgress)}%</span>
-            </div>
+            {/* Sole Text: "Preparing your Experience" */}
+            <p className="text-[11px] sm:text-xs font-sans tracking-[0.3em] uppercase text-neutral-400 font-light">
+              Preparing your Experience
+            </p>
           </div>
         </div>
 

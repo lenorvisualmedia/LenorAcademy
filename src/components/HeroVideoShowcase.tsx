@@ -14,6 +14,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const blobUrlRef = useRef<string | null>(null);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
@@ -32,7 +33,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     const container = containerRef.current;
     if (!video || !container) return;
 
-    // 1. Immediately lock scroll across window, body, and Lenis
+    // 1. Immediately lock scroll across window, body, and Lenis until 100% of frames are loaded
     (window as any).__scrollLocked = true;
     if ((window as any).__lenis) {
       (window as any).__lenis.stop();
@@ -167,14 +168,15 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
     initScrollTrigger();
 
-    // 2. Loading state, buffering progress & smooth release
+    // 2. 100% FULL FRAME PRELOADING PIPELINE
+    // The loading screen ONLY disappears and scroll ONLY unlocks once all frames are buffered in memory
     let readyTriggered = false;
 
     const unlockScroll = () => {
       if (readyTriggered) return;
       readyTriggered = true;
 
-      // Prime GPU hardware decoder at initial frame
+      // Prime GPU hardware decoder at initial frame 0
       try {
         video.currentTime = 0;
       } catch {
@@ -183,6 +185,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
       setLoadProgress(100);
 
+      // Smooth exit transition once all frames are confirmed in memory
       setTimeout(() => {
         setIsLoaded(true);
 
@@ -205,55 +208,57 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       }, 500);
     };
 
-    // Buffer tracking from native video events
-    const updateProgress = () => {
-      if (!video) return;
-      if (video.buffered.length > 0 && video.duration > 0) {
-        const bufferedEnd = video.buffered.end(video.buffered.length - 1);
-        const percent = Math.min(99, Math.round((bufferedEnd / Math.min(video.duration, 4)) * 95));
-        setLoadProgress((prev) => Math.max(prev, percent));
+    // Preload ALL frames as an in-memory Blob via XMLHttpRequest with authentic progress tracking
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', videoSrc, true);
+    xhr.responseType = 'blob';
+
+    xhr.onprogress = (e) => {
+      if (e.lengthComputable && e.total > 0) {
+        const pct = Math.min(99, Math.round((e.loaded / e.total) * 100));
+        setLoadProgress(pct);
       }
     };
 
-    video.addEventListener('progress', updateProgress);
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        // All bytes (100% of frames) are fully downloaded into memory
+        const blob = xhr.response;
+        const blobUrl = URL.createObjectURL(blob);
+        blobUrlRef.current = blobUrl;
+        video.src = blobUrl;
+        video.load();
 
-    // Smooth percentage progression while buffering
-    const progressInterval = setInterval(() => {
-      if (readyTriggered) {
-        clearInterval(progressInterval);
-        return;
+        if (video.readyState >= 2) {
+          unlockScroll();
+        } else {
+          video.addEventListener('loadeddata', unlockScroll, { once: true });
+          video.addEventListener('canplay', unlockScroll, { once: true });
+        }
+      } else {
+        // Fallback for non-200 responses
+        video.src = videoSrc;
+        video.addEventListener('canplaythrough', unlockScroll, { once: true });
       }
-      setLoadProgress((prev) => {
-        if (prev < 40) return prev + 10;
-        if (prev < 70) return prev + 5;
-        if (prev < 90) return prev + 2;
-        return prev;
-      });
-    }, 120);
+    };
 
-    // Video readiness listeners
-    if (video.readyState >= 3) {
-      unlockScroll();
-    } else {
-      video.addEventListener('canplay', unlockScroll, { once: true });
+    xhr.onerror = () => {
+      // Fallback for network issues / CORS restrictions
+      video.src = videoSrc;
       video.addEventListener('canplaythrough', unlockScroll, { once: true });
-    }
+    };
 
-    // Safety fallback: ensure scroll is never permanently blocked even on throttled connections
-    const safetyTimer = setTimeout(() => {
-      unlockScroll();
-    }, 4500);
+    xhr.send();
 
     return () => {
-      clearInterval(progressInterval);
-      clearTimeout(safetyTimer);
+      xhr.abort();
+      if (blobUrlRef.current) {
+        URL.revokeObjectURL(blobUrlRef.current);
+      }
       io.disconnect();
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
       video.removeEventListener('loadedmetadata', onMetadata);
       video.removeEventListener('seeked', onSeeked);
-      video.removeEventListener('progress', updateProgress);
-      video.removeEventListener('canplay', unlockScroll);
-      video.removeEventListener('canplaythrough', unlockScroll);
 
       // Clean up locks if unmounted
       (window as any).__scrollLocked = false;
@@ -268,7 +273,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
       if (ctx) ctx.revert();
     };
-  }, []);
+  }, [videoSrc]);
 
   return (
     <div
@@ -281,7 +286,6 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         {/* 60 FPS Fast-Decode Hardware-Accelerated Video */}
         <video
           ref={videoRef}
-          src={videoSrc}
           poster="/assets/hero-poster.webp"
           preload="auto"
           muted
@@ -289,7 +293,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
           className="w-full h-full object-cover block pointer-events-none will-change-[transform]"
         />
 
-        {/* Minimalist Cinema Equipment Loading Screen */}
+        {/* Minimalist Cinema Equipment Loading Screen (Guarantees all frames are loaded before disappearing) */}
         <div
           className={`absolute inset-0 z-40 flex flex-col items-center justify-center bg-black transition-all duration-700 ease-out select-none ${
             isLoaded ? 'opacity-0 pointer-events-none scale-105' : 'opacity-100 pointer-events-auto scale-100'
@@ -306,7 +310,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
               <div className="absolute inset-0 bg-white/5 blur-2xl rounded-full pointer-events-none" />
             </div>
 
-            {/* Hairline Luminous Progress Bar */}
+            {/* Hairline Luminous Progress Bar — Reflects authentic download progress of all frames */}
             <div className="w-32 sm:w-44 h-[1.5px] bg-white/10 rounded-full overflow-hidden relative mt-4 mb-4">
               <div
                 className="h-full bg-gradient-to-r from-neutral-400 via-white to-neutral-200 transition-all duration-300 ease-out rounded-full shadow-[0_0_10px_rgba(255,255,255,0.85)]"

@@ -1,0 +1,34 @@
+# Dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# Production build output
+dist
+dist-ssr
+*.local
+
+# Editor & OS files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Large temporary archives & scratch files
+*-html.zip
+*.zip
+*.pdf.txt
+*.tmp
+extracted/
+Lenor academy.mp4
+Contemplative Desk Beneath the Stars.png
+Lenor Academy Website*.html

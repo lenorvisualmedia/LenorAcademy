@@ -1,0 +1,60 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { ArrowUp } from 'lucide-react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+export const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if ((window as any).__lenis) {
+      (window as any).__lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const hero = document.getElementById('hero-scroll-container');
+      if (hero && pathname === '/') {
+        // Only appear after the hero scroll animation has completed
+        const rect = hero.getBoundingClientRect();
+        setVisible(rect.bottom <= window.innerHeight + 40);
+      } else {
+        setVisible(window.scrollY > 400);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [pathname]);
+
+  const scrollToTop = () => {
+    if ((window as any).__lenis) {
+      (window as any).__lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  if (!visible) return null;
+
+  return (
+    <button
+      onClick={scrollToTop}
+      className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-white text-black shadow-2xl hover:bg-neutral-200 transition-all duration-300 hover:scale-110 focus:outline-none"
+      title="Scroll to Top"
+      aria-label="Scroll to top"
+    >
+      <ArrowUp className="w-5 h-5 stroke-[2.5]" />
+    </button>
+  );
+};
+

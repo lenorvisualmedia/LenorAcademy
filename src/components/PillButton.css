@@ -1,0 +1,135 @@
+.pill-btn {
+  --pb-roll: 26px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid transparent;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease, color 0.25s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pill-btn:hover {
+  transform: translateY(-1px);
+}
+
+.pill-btn:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* SIZES */
+.pill-btn--sm {
+  height: 38px;
+  padding: 0 18px;
+  font-size: 11px;
+  --pb-roll: 22px;
+}
+
+.pill-btn--md {
+  height: 46px;
+  padding: 0 26px;
+  font-size: 12px;
+  --pb-roll: 26px;
+}
+
+.pill-btn--lg {
+  height: 54px;
+  padding: 0 34px;
+  font-size: 13px;
+  --pb-roll: 30px;
+}
+
+/* VARIANTS */
+.pill-btn--primary {
+  background: #ffffff;
+  color: #000000;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+}
+
+.pill-btn--primary:hover {
+  background: #eaeaea;
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 6px 20px 0 rgba(255, 255, 255, 0.25);
+}
+
+.pill-btn--primary .pill-btn__face,
+.pill-btn--primary:hover .pill-btn__face {
+  color: #000000;
+}
+
+.pill-btn--dark {
+  background: #000000;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.5);
+}
+
+.pill-btn--dark:hover {
+  background: #222222;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.6);
+}
+
+.pill-btn--dark .pill-btn__face,
+.pill-btn--dark:hover .pill-btn__face {
+  color: #ffffff;
+}
+
+.pill-btn--ghost {
+  background: transparent;
+  color: currentColor;
+  border-color: currentColor;
+}
+
+.pill-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pill-btn--ghost .pill-btn__face,
+.pill-btn--ghost:hover .pill-btn__face {
+  color: inherit;
+}
+
+.pill-btn__face {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  transform: none !important;
+}
+
+.pill-btn__face svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+.pill-btn__face-alt {
+  display: none !important;
+}
+
+.pill-btn__fill {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill-btn {
+    transition: none;
+  }
+}

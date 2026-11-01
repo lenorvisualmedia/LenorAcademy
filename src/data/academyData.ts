@@ -132,7 +132,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 01 · Both programmes",
     title: "Photography",
     subtitle: "Pick up the camera.",
-    image: "/assets/aea971a7-2000-4f9c-b503-af69a67cc1cd.jpg",
+    image: "/assets/aea971a7-2000-4f9c-b503-af69a67cc1cd.webp",
     imageAlt: "Photographer raising a camera",
     chips: [
       "Lighting in Photography",
@@ -157,7 +157,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 02 · Both programmes",
     title: "Videography",
     subtitle: "Learn to move.",
-    image: "/assets/92829f40-f725-4982-bb4c-b75dfa06bac4.jpg",
+    image: "/assets/92829f40-f725-4982-bb4c-b75dfa06bac4.webp",
     imageAlt: "Two people shooting with a gimbal",
     chips: [
       "Gimbal Balancing",
@@ -178,7 +178,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 03 · Both programmes",
     title: "Photo Editing",
     subtitle: "Find the look.",
-    image: "/assets/4b32a154-0d06-4137-bfbe-d8c580a9073f.jpg",
+    image: "/assets/4b32a154-0d06-4137-bfbe-d8c580a9073f.webp",
     imageAlt: "Photo prints beside an editing workstation",
     chips: [
       "Grading & Retouching",
@@ -197,7 +197,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 04 · Both programmes",
     title: "Video Editing",
     subtitle: "Cut the story.",
-    image: "/assets/4c0b7179-9592-44af-b728-d534e7d57e88.jpg",
+    image: "/assets/4c0b7179-9592-44af-b728-d534e7d57e88.webp",
     imageAlt: "Editor at a colour grading desk",
     chips: [
       "Reels & Vertical Narrative",
@@ -218,7 +218,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 05 · Media Master only",
     title: "Graphic Design & Motion",
     subtitle: "Build the brand.",
-    image: "/assets/1ce9c5f9-bfab-442c-b731-56fcfd8ce758.jpg",
+    image: "/assets/1ce9c5f9-bfab-442c-b731-56fcfd8ce758.webp",
     imageAlt: "Designer with colour swatches and tablet",
     chips: [
       "Photoshop Techniques",
@@ -237,7 +237,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 06 · Media Master only",
     title: "Soft Skills",
     subtitle: "Become the professional.",
-    image: "/assets/eeede332-45b6-4379-bf2c-7d17aaecd564.jpg",
+    image: "/assets/eeede332-45b6-4379-bf2c-7d17aaecd564.webp",
     imageAlt: "Three professionals in conversation",
     chips: [
       "Communication with High-End Clients",
@@ -325,7 +325,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     batch: "Batch 2024",
     instagram: "farhan.lens",
     quote: "Lenor taught me how to move with the camera. Within 2 months of graduation, I was tracking supercars on closed strips.",
-    cardImage: "/assets/92829f40-f725-4982-bb4c-b75dfa06bac4.jpg",
+    cardImage: "/assets/92829f40-f725-4982-bb4c-b75dfa06bac4.webp",
     cardPreset: "bursts"
   },
   {
@@ -338,7 +338,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     batch: "Batch 2024",
     instagram: "anjana_frames",
     quote: "From zero lighting knowledge to commanding 500-guest wedding ceremonies. Lenor's mentor drills made me fearless.",
-    cardImage: "/assets/aea971a7-2000-4f9c-b503-af69a67cc1cd.jpg",
+    cardImage: "/assets/aea971a7-2000-4f9c-b503-af69a67cc1cd.webp",
     cardPreset: "stars"
   },
   {
@@ -351,7 +351,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     batch: "Batch 2023",
     instagram: "rashid_cuts",
     quote: "DaVinci node structures and timeline rhythm were drilled into us daily. I stepped right into commercial post-production.",
-    cardImage: "/assets/4c0b7179-9592-44af-b728-d534e7d57e88.jpg",
+    cardImage: "/assets/4c0b7179-9592-44af-b728-d534e7d57e88.webp",
     cardPreset: "shards"
   },
   {
@@ -364,7 +364,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     batch: "Batch 2024",
     instagram: "nikhil.motion",
     quote: "The combination of graphic design and kinetic motion in the Media Master programme gave me a massive edge in Bangalore agencies.",
-    cardImage: "/assets/1ce9c5f9-bfab-442c-b731-56fcfd8ce758.jpg",
+    cardImage: "/assets/1ce9c5f9-bfab-442c-b731-56fcfd8ce758.webp",
     cardPreset: "cosmos"
   },
   {
@@ -377,7 +377,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     batch: "Batch 2023",
     instagram: "devika_retouch",
     quote: "High-end frequency separation and colour grading taught at Lenor are strictly international industry standard.",
-    cardImage: "/assets/266814ca686b58ce6fb30ca1ba66a3d5.jpg",
+    cardImage: "/assets/266814ca686b58ce6fb30ca1ba66a3d5.webp",
     cardPreset: "swirl"
   },
   {
@@ -390,7 +390,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     batch: "Batch 2024",
     instagram: "salman.aerials",
     quote: "Gimbal hoverboard movement and FPV drone workshops directly landed me international contract assignments.",
-    cardImage: "/assets/af9e05d02e3d78a034a5eda12208dccf.jpg",
+    cardImage: "/assets/af9e05d02e3d78a034a5eda12208dccf.webp",
     cardPreset: "gold"
   },
   {
@@ -403,7 +403,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     batch: "Batch 2024",
     instagram: "aiswarya.portrait",
     quote: "The lighting masterclasses at the Makkaraparamba studio changed everything I knew about shape and mood.",
-    cardImage: "/assets/8ba53ea25eca22da1f3017b76d4e1868.jpg",
+    cardImage: "/assets/8ba53ea25eca22da1f3017b76d4e1868.webp",
     cardPreset: "rainbow"
   },
   {
@@ -416,7 +416,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     batch: "Batch 2023",
     instagram: "jithin_director",
     quote: "Lenor didn't just teach software; it taught creative leadership, pitching, and client communication.",
-    cardImage: "/assets/40c26ca8e28d1ad43b398e249b22603d.jpg",
+    cardImage: "/assets/40c26ca8e28d1ad43b398e249b22603d.webp",
     cardPreset: "glitter"
   }
 ];
@@ -448,7 +448,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "10:00 AM – 4:00 PM",
     venue: "Lenor Academy Studio Floor, Makkaraparamba",
     description: "An intensive masterclass learning frictionless tracking shots, low-angle whip moves, and camera stabilization techniques using motorized self-balancing boards.",
-    image: "/assets/f9607b8e989abbaa401503b580e2dbe8.jpg",
+    image: "/assets/f9607b8e989abbaa401503b580e2dbe8.webp",
     status: "Upcoming",
     registrationOpen: true,
     spotsLeft: 8
@@ -461,7 +461,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "9:00 AM – 5:30 PM",
     venue: "Lenor Academy Auditorium, Makkaraparamba",
     description: "Two days of high-intensity communication, body language training, portfolio presentation simulations, and mock client negotiations.",
-    image: "/assets/eeede332-45b6-4379-bf2c-7d17aaecd564.jpg",
+    image: "/assets/eeede332-45b6-4379-bf2c-7d17aaecd564.webp",
     status: "Upcoming",
     registrationOpen: true,
     spotsLeft: 12
@@ -474,7 +474,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "7:00 AM – 2:00 PM",
     venue: "Scenic Ridge Outdoor Range, Malappuram",
     description: "Practical outdoor flight day mastering parallax shots, reveal flights, safety regulations, weather calculations, and cinematic framing from the sky.",
-    image: "/assets/1fb7aa06fcb8e992f56088cc1a94cdd3.jpg",
+    image: "/assets/1fb7aa06fcb8e992f56088cc1a94cdd3.webp",
     status: "Upcoming",
     registrationOpen: true,
     spotsLeft: 6
@@ -487,7 +487,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "11:00 AM – 5:00 PM",
     venue: "Lenor Academy, Makkaraparamba",
     description: "Meet faculty mentors, test drive mirrorless setups, explore the color grading suites, review student films, and receive immediate portfolio critique.",
-    image: "/assets/430e290e-ef97-4964-a65b-a23923adad3f.jpg",
+    image: "/assets/430e290e-ef97-4964-a65b-a23923adad3f.webp",
     status: "Upcoming",
     registrationOpen: true,
     spotsLeft: 25
@@ -500,7 +500,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "3:00 PM – 8:00 PM",
     venue: "Grand Convention Center, Malappuram",
     description: "Honoring our graduating Media Master and Visual Media Production batches with industry keynote speakers, student awards, and agency showcase.",
-    image: "/assets/179f0e839c946970e2d9cfc3d4064f35.jpg",
+    image: "/assets/179f0e839c946970e2d9cfc3d4064f35.webp",
     status: "Upcoming",
     registrationOpen: false
   }
@@ -518,7 +518,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "24 October 2026",
     author: "Lenor Faculty Guild",
     authorRole: "Studio Mentors",
-    image: "/assets/28b8b129bd95e6d83b42819751b4ad6b.jpg",
+    image: "/assets/28b8b129bd95e6d83b42819751b4ad6b.webp",
     imageAlt: "Mirrorless camera seen from above",
     featured: true,
     summary: "The greatest technical skills with a camera won't save a business that doesn't understand client management, pricing floors, usage rights, and contracts. Here is what creative schools rarely tell you.",
@@ -536,7 +536,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "18 October 2026",
     author: "Shahan K.",
     authorRole: "Lead Photography Instructor",
-    image: "/assets/d332320c1e882f01b6c1f0cab9e8fdd7.jpg",
+    image: "/assets/d332320c1e882f01b6c1f0cab9e8fdd7.webp",
     imageAlt: "Vintage camera with a strap",
     summary: "Hard light vs soft light, modifiers, parabolic umbrellas, and how to read the shadows on your subject's cheekbones.",
     content: [
@@ -553,7 +553,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "12 October 2026",
     author: "Nikhil Raj",
     authorRole: "Cinematography Faculty",
-    image: "/assets/d239a7ff1fed20dcbd601af8a22cc445.jpg",
+    image: "/assets/d239a7ff1fed20dcbd601af8a22cc445.webp",
     imageAlt: "Gimbal on a tabletop tripod",
     summary: "Never burn out a motor again. The 4-axis calibration ritual every professional camera operator performs before hitting Record.",
     content: [
@@ -570,7 +570,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "05 October 2026",
     author: "Arun Paul",
     authorRole: "Post-Production Supervisor",
-    image: "/assets/8ce65b342d3f8d32510b479fdae70e64.jpg",
+    image: "/assets/8ce65b342d3f8d32510b479fdae70e64.webp",
     imageAlt: "Video editing timeline",
     summary: "Constructing a clean, non-destructive node tree from camera color space transform to exposure balance and creative look curves.",
     content: [
@@ -586,7 +586,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "28 September 2026",
     author: "Fatima Noor",
     authorRole: "Design & Brand Faculty",
-    image: "/assets/40c26ca8e28d1ad43b398e249b22603d.jpg",
+    image: "/assets/40c26ca8e28d1ad43b398e249b22603d.webp",
     imageAlt: "Designer working with colour swatches",
     summary: "Visual hierarchy, negative space, and font pairing: how understanding typography makes you a radically better video editor.",
     content: [
@@ -602,7 +602,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "19 September 2026",
     author: "Suhail V.P.",
     authorRole: "Aerial Specialist",
-    image: "/assets/0cd570dbfecb6b5862083a6e2a300467.jpg",
+    image: "/assets/0cd570dbfecb6b5862083a6e2a300467.webp",
     imageAlt: "White drone against a pale sky",
     summary: "From real estate inspections to wedding aerials and automotive reveals: how to monetize your certified pilot hours.",
     content: [
@@ -628,7 +628,7 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Lead Colorist & Editor",
     currentCompany: "Horizon Visuals, Kochi",
     location: "Kochi, Kerala",
-    image: "/assets/266814ca686b58ce6fb30ca1ba66a3d5.jpg",
+    image: "/assets/266814ca686b58ce6fb30ca1ba66a3d5.webp",
     imageAlt: "Editor working at a grading desk",
     detailedStory: "Adil joined with a deep interest in cinema but zero formal training. During his 12 months in the Media Master programme, he spent hundreds of hours in Lenor's dedicated edit lab, completing 35 practical project assignments."
   },
@@ -644,7 +644,7 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Chief Cinematographer",
     currentCompany: "Monochrome Weddings & Films",
     location: "Calicut, Kerala",
-    image: "/assets/af9e05d02e3d78a034a5eda12208dccf.jpg",
+    image: "/assets/af9e05d02e3d78a034a5eda12208dccf.webp",
     imageAlt: "Camera operator in silhouette",
     detailedStory: "Rinshad wanted a fast, hyper-focused accelerator. Enrolling in the 6-month Visual Media Production course, he honed his physical movement and lighting instincts, quickly establishing himself as one of Malappuram's top wedding cinematographers."
   },
@@ -660,7 +660,7 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Founder & Creative Director",
     currentCompany: "Lumina Studios",
     location: "Malappuram, Kerala",
-    image: "/assets/8ba53ea25eca22da1f3017b76d4e1868.jpg",
+    image: "/assets/8ba53ea25eca22da1f3017b76d4e1868.webp",
     imageAlt: "Film camera on a tripod",
     detailedStory: "Starting with a modest beginner DSLR, Fathima mastered three-point studio strobes, product composition, and high-end beauty retouching. Today, her studio books commercial lookbooks and editorial portraits months in advance."
   }

@@ -21,6 +21,11 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const targetTimeRef = useRef(0);
   const isSeekingRef = useRef(false);
   const rafIdRef = useRef<number | null>(null);
+  const isVisibleRef = useRef(true);
+
+  // Responsive video source: 720p on mobile devices saves 80% payload & GPU memory
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || (navigator.maxTouchPoints > 1 && window.innerWidth < 1024));
+  const videoSrc = isMobile ? '/hero-scroll-720p.mp4' : '/hero-scroll-60fps.mp4';
 
   useEffect(() => {
     const video = videoRef.current;
@@ -99,14 +104,31 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     };
     video.addEventListener('seeked', onSeeked);
 
-    // RAF loop ensures continuous synchronization without stutter
+    // RAF loop ensures continuous synchronization without stutter; pauses when off-screen
     const tick = () => {
-      if (!isSeekingRef.current) {
-        performSeek(targetTimeRef.current);
+      if (isVisibleRef.current) {
+        if (!isSeekingRef.current) {
+          performSeek(targetTimeRef.current);
+        }
+        rafIdRef.current = requestAnimationFrame(tick);
+      } else {
+        rafIdRef.current = null;
       }
-      rafIdRef.current = requestAnimationFrame(tick);
     };
     rafIdRef.current = requestAnimationFrame(tick);
+
+    // Pause RAF when hero scrolls completely out of viewport to save GPU & battery
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const isNowVisible = entry.isIntersecting;
+        isVisibleRef.current = isNowVisible;
+        if (isNowVisible && !rafIdRef.current) {
+          rafIdRef.current = requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.01 }
+    );
+    io.observe(container);
 
     // Main scroll scrub trigger for video
     let ctx: gsap.Context | null = null;
@@ -225,6 +247,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     return () => {
       clearInterval(progressInterval);
       clearTimeout(safetyTimer);
+      io.disconnect();
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
       video.removeEventListener('loadedmetadata', onMetadata);
       video.removeEventListener('seeked', onSeeked);
@@ -258,7 +281,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         {/* 60 FPS Fast-Decode Hardware-Accelerated Video */}
         <video
           ref={videoRef}
-          src="/hero-scroll-60fps.mp4"
+          src={videoSrc}
           poster="/assets/hero-poster.webp"
           preload="auto"
           muted
@@ -276,7 +299,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
             {/* Camera Equipments Row (Camera, Clapperboard, Film Reel, Drone) */}
             <div className="relative w-full max-w-[320px] sm:max-w-[420px] mb-2 flex items-center justify-center">
               <img
-                src="/assets/camera-equipments.png"
+                src="/assets/camera-equipments.webp"
                 alt="Cinema Equipments"
                 className="w-full h-auto object-contain filter drop-shadow-[0_0_24px_rgba(255,255,255,0.2)] brightness-110 contrast-105 transition-transform duration-700 ease-out"
               />

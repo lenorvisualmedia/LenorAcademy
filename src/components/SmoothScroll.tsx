@@ -22,7 +22,7 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1.05, // Instant response to wheel input
-      touchMultiplier: 1.6,
+      touchMultiplier: 1.0, // Natural 1:1 mobile touch physics
     });
 
     (window as any).__lenis = lenis;

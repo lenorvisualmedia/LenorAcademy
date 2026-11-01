@@ -17,11 +17,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBrochure, onOpenEnrol }) =
           <div className="lg:col-span-2 flex flex-col gap-5">
             <Link to="/" className="inline-block">
               <img
-                src="/assets/30591bb4-8bcf-41d3-b47a-a1b5ad44f09b.png"
+                src="/assets/30591bb4-8bcf-41d3-b47a-a1b5ad44f09b.webp"
                 alt="Lenor Academy — Learn What You Love"
                 className="h-10 w-auto object-contain brightness-105"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/White_Lenor_OG_Logo_Master_File.png';
+                  (e.target as HTMLImageElement).src = '/assets/White_Lenor_OG_Logo_Master_File.webp';
                 }}
               />
             </Link>

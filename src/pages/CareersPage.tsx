@@ -138,9 +138,11 @@ export const CareersPage: React.FC<CareersPageProps> = ({
       >
         <section className="card relative min-h-[520px] sm:min-h-[580px] flex flex-col justify-end p-8 sm:p-14 overflow-hidden border border-[#262626]">
           <img
-            src="/assets/8ba53ea25eca22da1f3017b76d4e1868.jpg"
+            src="/assets/8ba53ea25eca22da1f3017b76d4e1868.webp"
             alt="Film camera on a tripod"
             className="absolute right-0 top-0 h-full w-full sm:w-[50%] object-cover gs brightness-75 hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none" />
 

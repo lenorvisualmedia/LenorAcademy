@@ -40,9 +40,11 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
           {/* Left Column: Clean Makkaraparamba Campus Photo */}
           <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] aspect-[4/3] sm:aspect-[16/11] bg-neutral-900 border border-white/10 shadow-2xl group">
             <img
-              src="/assets/430e290e-ef97-4964-a65b-a23923adad3f.jpg"
+              src="/assets/430e290e-ef97-4964-a65b-a23923adad3f.webp"
               alt="Lenor Academy Makkaraparamba campus building"
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -223,9 +225,11 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
         >
           <div className="card h-[380px] group">
             <img
-              src="/assets/ef6d0936278b1afc004a9899a0d9df5e.jpg"
+              src="/assets/ef6d0936278b1afc004a9899a0d9df5e.webp"
               alt="Studio shoot"
               className="cover gs group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute bottom-4 left-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-extrabold uppercase tracking-widest text-white border border-white/20">
               Studio Lighting Blitz · 2025
@@ -234,9 +238,11 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
 
           <div className="card h-[380px] group">
             <img
-              src="/assets/af9e05d02e3d78a034a5eda12208dccf.jpg"
+              src="/assets/af9e05d02e3d78a034a5eda12208dccf.webp"
               alt="Camera operator"
               className="cover gs group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute bottom-4 left-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-extrabold uppercase tracking-widest text-white border border-white/20">
               Cinematography Sprint · 2024
@@ -245,9 +251,11 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
 
           <div className="card h-[380px] group">
             <img
-              src="/assets/231839bd06faeb6ea3c540e9c3440856.jpg"
+              src="/assets/231839bd06faeb6ea3c540e9c3440856.webp"
               alt="Gimbal shoot"
               className="cover gs group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute bottom-4 left-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-extrabold uppercase tracking-widest text-white border border-white/20">
               Gimbal & Drone Boot Camp · 2024

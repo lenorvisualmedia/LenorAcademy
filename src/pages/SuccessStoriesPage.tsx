@@ -37,9 +37,11 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
             {/* Left Column: Clean Convocation Photograph (No text overlaid) */}
             <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] aspect-[4/3] sm:aspect-[16/11] bg-neutral-900 border border-white/10 shadow-2xl group">
               <img
-                src="/assets/c67df096-6056-44dd-afb6-2447b7721e4a.jpg"
+                src="/assets/c67df096-6056-44dd-afb6-2447b7721e4a.webp"
                 alt="Lenor Academy graduating batch in convocation robes"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -88,6 +90,8 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
                     src={story.image}
                     alt={story.imageAlt}
                     className="cover gs hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 rounded-full bg-black/90 text-[11px] font-black uppercase tracking-widest text-white border border-white/20">
@@ -215,7 +219,7 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
             <div className="eye text-neutral-600 mb-1">{activeStory.course} · {activeStory.batch}</div>
             <h3 className="h1 text-3xl text-black mb-4">{activeStory.studentName}</h3>
             <div className="h-56 rounded-2xl overflow-hidden mb-4 bg-neutral-100">
-              <img src={activeStory.image} alt={activeStory.imageAlt} className="cover gs" />
+              <img src={activeStory.image} alt={activeStory.imageAlt} className="cover gs" loading="lazy" decoding="async" />
             </div>
             <blockquote className="text-lg text-neutral-800 font-light italic mb-4">
               "{activeStory.quote}"

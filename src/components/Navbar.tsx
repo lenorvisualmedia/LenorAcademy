@@ -22,17 +22,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
       return;
     }
 
+    let ticking = false;
     const checkHeroScroll = () => {
-      const hero = document.getElementById('hero-scroll-container');
-      if (!hero) {
-        setShowNav(true);
-        return;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const hero = document.getElementById('hero-scroll-container');
+          if (!hero) {
+            setShowNav(true);
+          } else {
+            const rect = hero.getBoundingClientRect();
+            setShowNav(rect.bottom <= window.innerHeight + 40);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      // Check if user has scrolled past the hero scroll animation
-      const rect = hero.getBoundingClientRect();
-      const hasFinishedHero = rect.bottom <= window.innerHeight + 40;
-      setShowNav(hasFinishedHero);
     };
 
     checkHeroScroll();
@@ -70,11 +74,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
           className="flex items-center gap-2.5 font-extrabold text-[13px] tracking-[0.05em] text-white hover:opacity-90 transition-opacity shrink-0"
         >
           <img 
-            src="/assets/58a07343-9b5e-42c1-a584-51e6caee9f7c.png" 
+            src="/assets/58a07343-9b5e-42c1-a584-51e6caee9f7c.webp" 
             alt="Lenor Academy Logo" 
             className="h-6 w-auto object-contain brightness-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = '/assets/Lenor_OG_Logo_Master_File.png';
+              (e.target as HTMLImageElement).src = '/assets/Lenor_OG_Logo_Master_File.webp';
             }}
           />
           <span className="tracking-[0.06em] font-black uppercase text-sm sm:text-base text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">

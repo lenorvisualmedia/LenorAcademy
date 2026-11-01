@@ -104,6 +104,8 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                 src={featured.image}
                 alt={featured.imageAlt}
                 className="cover gs hover:scale-105"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
             </div>
@@ -165,6 +167,8 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                     src={post.image}
                     alt={post.imageAlt}
                     className="cover gs group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-full bg-black/90 text-[10px] font-black uppercase tracking-widest text-white border border-white/20">

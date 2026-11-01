@@ -138,9 +138,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
           {/* Left Column: Clean Graduate Convocation Photograph (No text overlaid) */}
           <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] aspect-[4/3] sm:aspect-[16/11] bg-neutral-900 border border-white/10 shadow-2xl group">
             <img
-              src="/assets/c67df096-6056-44dd-afb6-2447b7721e4a.jpg"
+              src="/assets/c67df096-6056-44dd-afb6-2447b7721e4a.webp"
               alt="Lenor Academy graduating batch in convocation robes"
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 

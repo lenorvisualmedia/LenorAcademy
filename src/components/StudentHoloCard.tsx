@@ -47,6 +47,9 @@ export const StudentHoloCard: React.FC<StudentHoloCardProps> = ({ student, theme
               alt={`${student.name} - ${student.role}`}
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
+              decoding="async"
+              width="250"
+              height="172"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-[10px] font-mono text-white/90">

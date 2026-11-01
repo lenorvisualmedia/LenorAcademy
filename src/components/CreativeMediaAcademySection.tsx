@@ -10,22 +10,22 @@ interface Slide {
 
 const SLIDES: Slide[] = [
   {
-    image: '/assets/430e290e-ef97-4964-a65b-a23923adad3f.jpg',
+    image: '/assets/430e290e-ef97-4964-a65b-a23923adad3f.webp',
     alt: 'Lenor Academy building at Makkaraparamba',
     caption: 'Makkaraparamba Campus'
   },
   {
-    image: '/assets/c01459e8-da36-4de6-bd3a-a062c8e3c669.jpg',
+    image: '/assets/c01459e8-da36-4de6-bd3a-a062c8e3c669.webp',
     alt: 'Lenor Academy professional studio lighting floor with commercial shoot',
     caption: 'Studio Lighting Floor'
   },
   {
-    image: '/assets/4b32a154-0d06-4137-bfbe-d8c580a9073f.jpg',
+    image: '/assets/4b32a154-0d06-4137-bfbe-d8c580a9073f.webp',
     alt: 'Lenor Academy cinematography and video lab with high-end camera rigs',
     caption: 'Cinematography & Rigging Floor'
   },
   {
-    image: '/assets/92829f40-f725-4982-bb4c-b75dfa06bac4.jpg',
+    image: '/assets/92829f40-f725-4982-bb4c-b75dfa06bac4.webp',
     alt: 'Lenor Academy digital editing suites and color grading consoles',
     caption: 'Post-Production Suites'
   }
@@ -82,6 +82,7 @@ export const CreativeMediaAcademySection: React.FC = () => {
                   : 'opacity-0 z-0 pointer-events-none scale-105'
               }`}
               loading={idx === 0 ? 'eager' : 'lazy'}
+              decoding="async"
             />
           ))}
 

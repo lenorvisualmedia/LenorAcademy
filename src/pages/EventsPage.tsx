@@ -107,9 +107,11 @@ export const EventsPage: React.FC<EventsPageProps> = ({
             {/* Featured Image */}
             <div className="h-[340px] lg:h-auto relative overflow-hidden bg-[#1a1a1a]">
               <img
-                src={featuredEvent.image || "/assets/f9607b8e989abbaa401503b580e2dbe8.jpg"}
+                src={featuredEvent.image || "/assets/f9607b8e989abbaa401503b580e2dbe8.webp"}
                 alt="Camera operator on a self-balancing board"
                 className="cover gs hover:scale-105"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
             </div>
@@ -239,9 +241,11 @@ export const EventsPage: React.FC<EventsPageProps> = ({
         >
           <figure className="card h-[380px] group">
             <img
-              src="/assets/179f0e839c946970e2d9cfc3d4064f35.jpg"
+              src="/assets/179f0e839c946970e2d9cfc3d4064f35.webp"
               alt="Graduation day group photo"
               className="cover gs group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
             />
             <figcaption className="absolute bottom-4 left-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-extrabold uppercase tracking-widest text-white border border-white/20">
               Convocation Day
@@ -250,9 +254,11 @@ export const EventsPage: React.FC<EventsPageProps> = ({
 
           <figure className="card h-[380px] group">
             <img
-              src="/assets/1fb7aa06fcb8e992f56088cc1a94cdd3.jpg"
+              src="/assets/1fb7aa06fcb8e992f56088cc1a94cdd3.webp"
               alt="Drone flying over a snowy landscape"
               className="cover gs group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
             />
             <figcaption className="absolute bottom-4 left-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-extrabold uppercase tracking-widest text-white border border-white/20">
               Aerial Drone Expedition
@@ -261,9 +267,11 @@ export const EventsPage: React.FC<EventsPageProps> = ({
 
           <figure className="card h-[380px] group">
             <img
-              src="/assets/610f9b6df212ed06c84a6f395b70946b.jpg"
+              src="/assets/610f9b6df212ed06c84a6f395b70946b.webp"
               alt="Camera operator filming on stairs"
               className="cover gs group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
             />
             <figcaption className="absolute bottom-4 left-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-extrabold uppercase tracking-widest text-white border border-white/20">
               Cinematic Stair Movement

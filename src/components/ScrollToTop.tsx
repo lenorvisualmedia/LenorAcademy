@@ -20,14 +20,21 @@ export const ScrollToTop = () => {
   }, [pathname]);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const hero = document.getElementById('hero-scroll-container');
-      if (hero && pathname === '/') {
-        // Only appear after the hero scroll animation has completed
-        const rect = hero.getBoundingClientRect();
-        setVisible(rect.bottom <= window.innerHeight + 40);
-      } else {
-        setVisible(window.scrollY > 400);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const hero = document.getElementById('hero-scroll-container');
+          if (hero && pathname === '/') {
+            // Only appear after the hero scroll animation has completed
+            const rect = hero.getBoundingClientRect();
+            setVisible(rect.bottom <= window.innerHeight + 40);
+          } else {
+            setVisible(window.scrollY > 400);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

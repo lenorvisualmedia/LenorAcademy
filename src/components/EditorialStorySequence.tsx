@@ -16,7 +16,7 @@ export const EditorialStorySequence: React.FC = () => {
           ========================================================================= */}
       <section className="relative w-full bg-black">
         <ScrollExpand
-          src="/assets/let-passion-drive-sunset.jpg"
+          src="/assets/let-passion-drive-sunset.webp"
           alt="Creative visionary in green meadow at sunset - Let passion drive your profession"
           title={
             <div className="flex flex-col items-center justify-center text-center px-4 max-w-4xl mx-auto">

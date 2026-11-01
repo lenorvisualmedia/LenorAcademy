@@ -48,6 +48,8 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({ post, onClose }) => 
             src={post.image}
             alt={post.imageAlt}
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 

@@ -25,19 +25,24 @@ export const ScrollJourney: React.FC = () => {
       // When user scrolls backwards, it shrinks back up and disappears.
       gsap.set(trackLine, { scaleY: 0, transformOrigin: 'top center' });
 
+      // Cache height to eliminate layout thrashing during scroll
+      let cachedHeight = container.clientHeight;
+
       ScrollTrigger.create({
         trigger: container,
         start: 'top 65%',
         end: 'bottom 80%',
         scrub: 0.35, // Fluid scrub that reverses naturally on backward scroll
+        onRefresh: () => {
+          cachedHeight = container.clientHeight;
+        },
         onUpdate: (self) => {
           const progress = self.progress;
           gsap.set(trackLine, { scaleY: progress });
           
           if (glowHeadRef.current) {
-            // Position the glowing tip dot at the current bottom of the line
-            const totalHeight = container.clientHeight;
-            const currentY = progress * totalHeight;
+            // Position the glowing tip dot at the current bottom of the line without DOM layout thrashing
+            const currentY = progress * cachedHeight;
             gsap.set(glowHeadRef.current, {
               y: currentY,
               opacity: progress > 0.01 && progress < 0.99 ? 1 : 0
@@ -247,6 +252,8 @@ export const ScrollJourney: React.FC = () => {
                   src={stop.image}
                   alt={stop.imageAlt}
                   className="cover gs group-hover:filter-none transition-all duration-500"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
               </div>

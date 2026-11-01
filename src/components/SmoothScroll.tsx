@@ -27,6 +27,11 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
 
     (window as any).__lenis = lenis;
 
+    // If initial animation is still loading, respect the lock
+    if ((window as any).__scrollLocked) {
+      lenis.stop();
+    }
+
     // Synchronize Lenis scroll position with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
 

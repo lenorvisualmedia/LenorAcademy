@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MaskedHeading } from './MaskedHeading';
@@ -15,6 +15,10 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [loadProgress, setLoadProgress] = useState(0);
+  const [statusText, setStatusText] = useState('Initializing cinema reel...');
+
   const targetTimeRef = useRef(0);
   const isSeekingRef = useRef(false);
   const rafIdRef = useRef<number | null>(null);
@@ -23,6 +27,31 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     const video = videoRef.current;
     const container = containerRef.current;
     if (!video || !container) return;
+
+    // 1. Immediately lock scroll across window, body, and Lenis
+    (window as any).__scrollLocked = true;
+    if ((window as any).__lenis) {
+      (window as any).__lenis.stop();
+      (window as any).__lenis.scrollTo(0, { immediate: true });
+    }
+    window.scrollTo(0, 0);
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
+    // Prevent wheel, touch, and scroll keys while loading
+    const blockScroll = (e: Event) => {
+      e.preventDefault();
+    };
+
+    const blockKeys = (e: KeyboardEvent) => {
+      if (['Space', 'PageUp', 'PageDown', 'End', 'Home', 'ArrowUp', 'ArrowDown'].includes(e.code)) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('wheel', blockScroll, { passive: false });
+    window.addEventListener('touchmove', blockScroll, { passive: false });
+    window.addEventListener('keydown', blockKeys, { passive: false });
 
     // Optimization: instruct browser to pause and prepare at frame 0
     video.pause();
@@ -80,44 +109,146 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     };
     rafIdRef.current = requestAnimationFrame(tick);
 
-    const ctx = gsap.context(() => {
-      // Main scroll scrub trigger for video
-      // scrub: true -> direct 1:1 synchronization with Lenis smooth scroll, eliminates compound inertia lag
-      ScrollTrigger.create({
-        trigger: container,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-        onUpdate: (self) => {
-          targetTimeRef.current = self.progress * (video.duration || duration);
-        }
-      });
-
-      // Smooth heading overlay exit as user begins scrolling
-      ScrollTrigger.create({
-        trigger: container,
-        start: 'top top',
-        end: 'top -140px',
-        scrub: true,
-        onUpdate: (self) => {
-          if (overlayRef.current) {
-            const p = self.progress;
-            const opacity = Math.max(0, 1 - p * 1.4);
-            const y = -p * 45;
-            const scale = 1 - p * 0.04;
-            overlayRef.current.style.opacity = opacity.toFixed(3);
-            overlayRef.current.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
-            overlayRef.current.style.pointerEvents = opacity > 0.03 ? 'auto' : 'none';
+    // Main scroll scrub trigger for video
+    let ctx: gsap.Context | null = null;
+    const initScrollTrigger = () => {
+      ctx = gsap.context(() => {
+        ScrollTrigger.create({
+          trigger: container,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: true,
+          onUpdate: (self) => {
+            targetTimeRef.current = self.progress * (video.duration || duration);
           }
+        });
+
+        // Smooth heading overlay exit as user begins scrolling
+        ScrollTrigger.create({
+          trigger: container,
+          start: 'top top',
+          end: 'top -140px',
+          scrub: true,
+          onUpdate: (self) => {
+            if (overlayRef.current) {
+              const p = self.progress;
+              const opacity = Math.max(0, 1 - p * 1.4);
+              const y = -p * 45;
+              const scale = 1 - p * 0.04;
+              overlayRef.current.style.opacity = opacity.toFixed(3);
+              overlayRef.current.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+              overlayRef.current.style.pointerEvents = opacity > 0.03 ? 'auto' : 'none';
+            }
+          }
+        });
+      }, container);
+    };
+
+    initScrollTrigger();
+
+    // 2. Loading state, buffering progress & smooth release
+    let readyTriggered = false;
+
+    const unlockScroll = () => {
+      if (readyTriggered) return;
+      readyTriggered = true;
+
+      // Prime GPU hardware decoder at initial frame
+      try {
+        video.currentTime = 0;
+      } catch {
+        // ignore
+      }
+
+      setLoadProgress(100);
+      setStatusText('Ready to Explore');
+
+      setTimeout(() => {
+        setIsLoaded(true);
+
+        // Unlock scroll on window, body, and Lenis
+        (window as any).__scrollLocked = false;
+        if ((window as any).__lenis) {
+          (window as any).__lenis.start();
         }
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+
+        window.removeEventListener('wheel', blockScroll);
+        window.removeEventListener('touchmove', blockScroll);
+        window.removeEventListener('keydown', blockKeys);
+
+        // Recalculate ScrollTrigger offsets once unlocked
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 150);
+      }, 500);
+    };
+
+    // Buffer tracking from native video events
+    const updateProgress = () => {
+      if (!video) return;
+      if (video.buffered.length > 0 && video.duration > 0) {
+        const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+        const percent = Math.min(99, Math.round((bufferedEnd / Math.min(video.duration, 4)) * 95));
+        setLoadProgress((prev) => Math.max(prev, percent));
+        if (percent > 60) {
+          setStatusText('Buffering 60 FPS frames...');
+        }
+      }
+    };
+
+    video.addEventListener('progress', updateProgress);
+
+    // Smooth percentage progression while buffering
+    const progressInterval = setInterval(() => {
+      if (readyTriggered) {
+        clearInterval(progressInterval);
+        return;
+      }
+      setLoadProgress((prev) => {
+        if (prev < 40) return prev + 10;
+        if (prev < 70) return prev + 5;
+        if (prev < 90) return prev + 2;
+        return prev;
       });
-    }, container);
+    }, 120);
+
+    // Video readiness listeners
+    if (video.readyState >= 3) {
+      unlockScroll();
+    } else {
+      video.addEventListener('canplay', unlockScroll, { once: true });
+      video.addEventListener('canplaythrough', unlockScroll, { once: true });
+    }
+
+    // Safety fallback: ensure scroll is never permanently blocked even on throttled connections
+    const safetyTimer = setTimeout(() => {
+      unlockScroll();
+    }, 4500);
 
     return () => {
+      clearInterval(progressInterval);
+      clearTimeout(safetyTimer);
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
       video.removeEventListener('loadedmetadata', onMetadata);
       video.removeEventListener('seeked', onSeeked);
-      ctx.revert();
+      video.removeEventListener('progress', updateProgress);
+      video.removeEventListener('canplay', unlockScroll);
+      video.removeEventListener('canplaythrough', unlockScroll);
+
+      // Clean up locks if unmounted
+      (window as any).__scrollLocked = false;
+      if ((window as any).__lenis) {
+        (window as any).__lenis.start();
+      }
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      window.removeEventListener('wheel', blockScroll);
+      window.removeEventListener('touchmove', blockScroll);
+      window.removeEventListener('keydown', blockKeys);
+
+      if (ctx) ctx.revert();
     };
   }, []);
 
@@ -140,11 +271,52 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
           className="w-full h-full object-cover block pointer-events-none will-change-[transform]"
         />
 
+        {/* Cinematic Preloader Overlay (Locks scroll until 60fps video is ready) */}
+        <div
+          className={`absolute inset-0 z-40 flex flex-col items-center justify-center bg-black transition-all duration-700 ease-out ${
+            isLoaded ? 'opacity-0 pointer-events-none scale-105' : 'opacity-100 pointer-events-auto scale-100'
+          }`}
+        >
+          <div className="flex flex-col items-center justify-center text-center px-4 max-w-md w-full select-none">
+            {/* Lenor Luxury Monogram */}
+            <div className="relative mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md shadow-2xl">
+                <span className="font-black text-xl tracking-tighter text-white">LR</span>
+              </div>
+              <div className="absolute inset-0 rounded-2xl bg-white/20 blur-xl animate-pulse pointer-events-none" />
+            </div>
+
+            {/* Subtitle & Status */}
+            <h2 className="text-xs sm:text-sm font-bold tracking-[0.3em] uppercase text-white mb-1.5">
+              Lenor Academy
+            </h2>
+            <p className="text-[10px] sm:text-[11px] font-mono tracking-[0.2em] uppercase text-neutral-400 mb-6">
+              {statusText}
+            </p>
+
+            {/* Hairline Luminous Progress Bar */}
+            <div className="w-48 sm:w-60 h-[2px] bg-white/10 rounded-full overflow-hidden relative mb-3">
+              <div
+                className="h-full bg-gradient-to-r from-neutral-400 via-white to-neutral-200 transition-all duration-300 ease-out rounded-full shadow-[0_0_12px_rgba(255,255,255,0.85)]"
+                style={{ width: `${loadProgress}%` }}
+              />
+            </div>
+
+            {/* Monospace Indicator */}
+            <div className="flex items-center justify-between w-48 sm:w-60 text-[10px] font-mono text-neutral-500">
+              <span>60 FPS SEQUENCE</span>
+              <span className="text-white font-semibold">{Math.round(loadProgress)}%</span>
+            </div>
+          </div>
+        </div>
+
         {/* First Frame MaskedHeading Overlay */}
         <div
           ref={overlayRef}
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 sm:px-8 select-none bg-black will-change-[opacity,transform]"
-          style={{ opacity: 1, pointerEvents: 'auto', backgroundColor: '#000000' }}
+          className={`absolute inset-0 z-20 flex flex-col items-center justify-center px-4 sm:px-8 select-none bg-black will-change-[opacity,transform] transition-opacity duration-700 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ backgroundColor: '#000000' }}
         >
           <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center text-center">
             <span className="text-[10px] sm:text-xs font-mono tracking-[0.3em] uppercase text-neutral-400 mb-3 block">

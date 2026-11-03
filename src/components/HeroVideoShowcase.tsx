@@ -29,9 +29,8 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const touchStartYRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
 
-  // Responsive video source: 720p on mobile devices saves 80% payload & GPU memory
-  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || (navigator.maxTouchPoints > 1 && window.innerWidth < 1024));
-  const videoSrc = isMobile ? '/hero-scroll-720p.mp4' : '/hero-scroll-60fps.mp4';
+  // High-quality cinema 60fps video for all viewports
+  const videoSrc = '/hero-scroll-60fps.mp4';
 
   useEffect(() => {
     const video = videoRef.current;

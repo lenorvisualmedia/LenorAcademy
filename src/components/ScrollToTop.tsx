@@ -24,11 +24,9 @@ export const ScrollToTop = () => {
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          const hero = document.getElementById('hero-scroll-container');
-          if (hero && pathname === '/') {
-            // Only appear after the hero scroll animation has completed
-            const rect = hero.getBoundingClientRect();
-            setVisible(rect.bottom <= window.innerHeight + 40);
+          // Only appear after the user has scrolled significantly down past the hero
+          if (pathname === '/') {
+            setVisible(window.scrollY > window.innerHeight * 0.8);
           } else {
             setVisible(window.scrollY > 400);
           }

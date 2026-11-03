@@ -211,15 +211,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
         </section>
       </AnimatedContent>
 
-      {/* FREQUENTLY ASKED QUESTIONS (15 OFFICIAL QUESTIONS & ANSWERS) */}
-      <FAQSection
-        onOpenEnrol={() => onOpenEnrol('media-master')}
-      />
-
       {/* STOP 09: THE INVESTMENT & ENROLMENT SECTION */}
       <InvestmentSection
         onOpenEnrol={onOpenEnrol}
         onOpenBrochure={onOpenBrochure}
+      />
+
+      {/* FREQUENTLY ASKED QUESTIONS (15 OFFICIAL QUESTIONS & ANSWERS) */}
+      <FAQSection
+        onOpenEnrol={() => onOpenEnrol('media-master')}
       />
       </div>
     </div>

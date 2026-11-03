@@ -14,24 +14,46 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const [showNav, setShowNav] = useState(!isHomePage);
+  
+  // On home page, navbar stays completely hidden until the hero video has played (or skip clicked)
+  const [heroCompleted, setHeroCompleted] = useState(() => {
+    if (!isHomePage) return true;
+    return typeof window !== 'undefined' && !!(window as any).__heroVideoCompleted;
+  });
+  const [showNav, setShowNav] = useState(() => {
+    if (!isHomePage) return true;
+    return typeof window !== 'undefined' && !!(window as any).__heroVideoCompleted;
+  });
 
   useEffect(() => {
     if (!isHomePage) {
       setShowNav(true);
+      setHeroCompleted(true);
       return;
     }
+
+    const isAlreadyDone = typeof window !== 'undefined' && !!(window as any).__heroVideoCompleted;
+    setHeroCompleted(isAlreadyDone);
+    setShowNav(isAlreadyDone);
+
+    const handleHeroDone = () => {
+      (window as any).__heroVideoCompleted = true;
+      setHeroCompleted(true);
+      setShowNav(true);
+    };
+
+    window.addEventListener('lenor-hero-completed', handleHeroDone);
 
     let ticking = false;
     const checkHeroScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          const hero = document.getElementById('hero-scroll-container');
-          if (!hero) {
-            setShowNav(true);
+          const isDone = (window as any).__heroVideoCompleted;
+          if (!isDone) {
+            setShowNav(false);
+            setHeroCompleted(false);
           } else {
-            const rect = hero.getBoundingClientRect();
-            setShowNav(rect.bottom <= 120 || window.scrollY > 150);
+            setShowNav(true);
           }
           ticking = false;
         });
@@ -39,13 +61,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
       }
     };
 
-    checkHeroScroll();
     window.addEventListener('scroll', checkHeroScroll, { passive: true });
-    window.addEventListener('resize', checkHeroScroll, { passive: true });
 
     return () => {
+      window.removeEventListener('lenor-hero-completed', handleHeroDone);
       window.removeEventListener('scroll', checkHeroScroll);
-      window.removeEventListener('resize', checkHeroScroll);
     };
   }, [isHomePage]);
 
@@ -59,12 +79,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
     { label: 'Careers', href: '/careers' },
   ];
 
+  const isNavVisible = !isHomePage || heroCompleted;
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out py-2.5 ${
-        showNav
-          ? 'bg-black/90 backdrop-blur-md shadow-2xl'
-          : 'bg-transparent shadow-none'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out py-2.5 ${
+        !isNavVisible
+          ? 'opacity-0 pointer-events-none -translate-y-full'
+          : showNav
+            ? 'opacity-100 translate-y-0 pointer-events-auto bg-black/90 backdrop-blur-md shadow-2xl'
+            : 'opacity-100 translate-y-0 pointer-events-auto bg-transparent shadow-none'
       }`}
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-1 flex items-center justify-between gap-4">

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import { HeroVideoShowcase } from '../components/HeroVideoShowcase';
@@ -10,6 +10,7 @@ import { PillButton } from '../components/PillButton';
 import { InvestmentSection } from '../components/InvestmentSection';
 import { FAQSection } from '../components/FAQSection';
 import { PROGRAMMES, PLACED_STUDENTS } from '../data/academyData';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface HomePageProps {
   onOpenEnrol: (programId?: string) => void;
@@ -18,6 +19,20 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure }) => {
   const journeyRef = useRef<HTMLDivElement>(null);
+  const [isHeroCompleted, setIsHeroCompleted] = useState(() => {
+    return typeof window !== 'undefined' && !!(window as any).__heroVideoCompleted;
+  });
+
+  useEffect(() => {
+    const onDone = () => {
+      setIsHeroCompleted(true);
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 300);
+    };
+    window.addEventListener('lenor-hero-completed', onDone);
+    return () => window.removeEventListener('lenor-hero-completed', onDone);
+  }, []);
 
   const scrollToJourney = () => {
     const el = document.getElementById('journey');
@@ -29,8 +44,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
       {/* FULL SCREEN SCROLL ANIMATED VIDEO (Auto-play on first scroll with scroll-intensity speedup) */}
       <HeroVideoShowcase />
 
-      {/* REST OF HOMEPAGE CONTENT */}
-      <div id="main-content" className="max-w-[1440px] mx-auto px-3 sm:px-6 py-12 sm:py-16 space-y-12 sm:space-y-16">
+      {/* REST OF HOMEPAGE CONTENT (Strictly accessible only after full video plays or skip is clicked) */}
+      <div
+        id="main-content"
+        className={`max-w-[1440px] mx-auto px-3 sm:px-6 py-12 sm:py-16 space-y-12 sm:space-y-16 transition-all duration-700 ${
+          isHeroCompleted
+            ? 'opacity-100 pointer-events-auto'
+            : 'opacity-0 pointer-events-none h-0 overflow-hidden'
+        }`}
+      >
         {/* LEAD MISSION STATEMENT */}
       <section className="px-4 sm:px-12 py-10 sm:py-16">
         <AnimatedContent

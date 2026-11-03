@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FastForward, ArrowDown, RotateCcw, ChevronRight } from 'lucide-react';
+import { ArrowDown, RotateCcw, ChevronRight } from 'lucide-react';
 import { MaskedHeading } from './MaskedHeading';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,8 +20,9 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
-  const [isCompleted, setIsCompleted] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(() => {
+    return typeof window !== 'undefined' && !!(window as any).__heroVideoCompleted;
+  });
 
   const isPlayingRef = useRef(false);
   const hasCompletedRef = useRef(false);
@@ -29,22 +30,24 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const touchStartYRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
 
-  // High-quality cinema 60fps video for all viewports
+  // Full high-quality 60fps video across all viewports
   const videoSrc = '/hero-scroll-60fps.mp4';
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // 1. Initially lock scroll at the top while loading and before user initiates playback
-    (window as any).__scrollLocked = true;
-    if ((window as any).__lenis) {
-      (window as any).__lenis.stop();
-      (window as any).__lenis.scrollTo(0, { immediate: true });
+    // 1. Initially lock scroll at the top while loading and before user completes the video
+    if (!hasCompletedRef.current) {
+      (window as any).__scrollLocked = true;
+      if ((window as any).__lenis) {
+        (window as any).__lenis.stop();
+        (window as any).__lenis.scrollTo(0, { immediate: true });
+      }
+      window.scrollTo(0, 0);
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
     }
-    window.scrollTo(0, 0);
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
 
     // 2. Finish Hero and Unlock Page for the rest of the site
     const finishHeroAndUnlock = () => {
@@ -52,13 +55,26 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       hasCompletedRef.current = true;
       isPlayingRef.current = false;
       setIsCompleted(true);
-      setPlaybackSpeed(1.0);
 
       const vid = videoRef.current;
       if (vid) {
         vid.playbackRate = 1.0;
         vid.pause();
+        // Show last frame of video
+        if (vid.duration && !isNaN(vid.duration)) {
+          vid.currentTime = Math.max(0, vid.duration - 0.05);
+        }
       }
+
+      // Hide overlay
+      if (overlayRef.current) {
+        overlayRef.current.style.opacity = '0';
+        overlayRef.current.style.pointerEvents = 'none';
+      }
+
+      // Signal completion so Navbar & main-content show!
+      (window as any).__heroVideoCompleted = true;
+      window.dispatchEvent(new CustomEvent('lenor-hero-completed'));
 
       // Unlock scroll across window, body, and Lenis — REST OF WEBSITE SCROLLS NORMALLY
       (window as any).__scrollLocked = false;
@@ -67,7 +83,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
       if ((window as any).__lenis) {
         (window as any).__lenis.start();
-        // Smoothly glide down to the main content section
+        // Smoothly glide down into the main content
         (window as any).__lenis.scrollTo(window.innerHeight, { duration: 1.2 });
       } else {
         window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
@@ -75,7 +91,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
       setTimeout(() => {
         ScrollTrigger.refresh();
-      }, 250);
+      }, 300);
     };
 
     // 3. Start Video Playback on First Scroll
@@ -153,7 +169,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     window.addEventListener('touchmove', onTouchMove, { passive: false });
     window.addEventListener('keydown', onKeyDown, { passive: false });
 
-    // 5. INTLLX RAF TICKER: Update playback speed based on scroll intensity
+    // 5. INTLLX RAF TICKER: Update playback speed based on scroll intensity (NO UI speed display)
     const tick = () => {
       const vid = videoRef.current;
       if (vid && isPlayingRef.current && !hasCompletedRef.current) {
@@ -165,13 +181,6 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         const targetRate = 1.0 + (scrollIntensityRef.current * 0.015);
         const clampedRate = Math.min(Math.max(1.0, targetRate), 3.5);
         vid.playbackRate = clampedRate;
-
-        // Update display indicator state
-        if (clampedRate > 1.15) {
-          setPlaybackSpeed(parseFloat(clampedRate.toFixed(1)));
-        } else {
-          setPlaybackSpeed(1.0);
-        }
 
         // Completion check near video end
         if (vid.duration && vid.currentTime >= vid.duration - 0.45) {
@@ -289,18 +298,33 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     }
   };
 
-  // Skip video function
-  const handleSkip = () => {
-    hasCompletedRef.current = true;
-    isPlayingRef.current = false;
-    setIsCompleted(true);
-    setPlaybackSpeed(1.0);
+  // Skip video function: proceeds directly to the last frame of the video and unlocks
+  const handleSkip = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
 
     const vid = videoRef.current;
     if (vid) {
       vid.pause();
       vid.playbackRate = 1.0;
+      // Seek to the last frame of the video
+      const lastTime = Math.max(0, (vid.duration || 23.76) - 0.05);
+      vid.currentTime = lastTime;
     }
+
+    if (overlayRef.current) {
+      overlayRef.current.style.opacity = '0';
+      overlayRef.current.style.pointerEvents = 'none';
+    }
+
+    hasCompletedRef.current = true;
+    isPlayingRef.current = false;
+    setIsCompleted(true);
+
+    (window as any).__heroVideoCompleted = true;
+    window.dispatchEvent(new CustomEvent('lenor-hero-completed'));
 
     (window as any).__scrollLocked = false;
     document.documentElement.style.overflow = '';
@@ -312,6 +336,10 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     } else {
       window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
     }
+
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 300);
   };
 
   return (
@@ -330,34 +358,16 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         className="w-full h-full object-cover block pointer-events-none"
       />
 
-      {/* Dynamic Scroll Speed Indicator (intllx playback feedback) */}
-      {hasStarted && !isCompleted && (
-        <div
-          className={`absolute bottom-8 right-8 z-30 flex items-center gap-2.5 px-4 py-2 rounded-full backdrop-blur-md border transition-all duration-300 ${
-            playbackSpeed > 1.15
-              ? 'bg-white/20 border-white/40 text-white shadow-[0_0_20px_rgba(255,255,255,0.4)] scale-105'
-              : 'bg-black/40 border-white/10 text-neutral-400'
-          }`}
-        >
-          <FastForward
-            className={`w-4 h-4 transition-transform duration-200 ${
-              playbackSpeed > 1.15 ? 'text-white animate-pulse' : 'text-neutral-500'
-            }`}
-          />
-          <span className="font-mono text-xs font-bold tracking-wider">
-            {playbackSpeed > 1.15 ? `${playbackSpeed}x Speed (Scroll faster to accelerate)` : 'Scroll faster to accelerate'}
-          </span>
-        </div>
-      )}
-
-      {/* Skip Intro Button */}
+      {/* Skip Intro Button — Shows last frame and unlocks website immediately */}
       {isLoaded && !isCompleted && (
         <button
+          type="button"
           onClick={handleSkip}
-          className="absolute top-8 right-8 z-30 px-4 py-1.5 rounded-full bg-black/40 hover:bg-white/10 text-neutral-300 hover:text-white border border-white/15 text-xs font-mono tracking-wider transition-all duration-200 backdrop-blur-sm flex items-center gap-1.5 cursor-pointer"
+          className="absolute top-6 right-6 sm:top-8 sm:right-8 z-50 px-4 py-2 rounded-full bg-black/60 hover:bg-white text-neutral-200 hover:text-black border border-white/20 hover:border-white text-xs font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-md flex items-center gap-1.5 cursor-pointer shadow-2xl group"
+          aria-label="Skip video intro"
         >
-          <span>Skip Intro</span>
-          <ChevronRight className="w-3.5 h-3.5" />
+          <span className="font-bold">Skip Intro</span>
+          <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </button>
       )}
 
@@ -433,14 +443,9 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
             <span className="w-8 h-[1px] bg-white/40" />
           </div>
 
-          <div className="mt-8 sm:mt-12 flex flex-col items-center gap-2 text-xs font-mono tracking-widest uppercase text-neutral-400">
-            <div className="flex items-center gap-2 animate-bounce">
-              <ArrowDown className="w-4 h-4 text-white" />
-              <span className="text-white font-bold">Scroll to Play Experience</span>
-            </div>
-            <span className="text-[10px] text-neutral-500 lowercase tracking-normal">
-              (as you scroll faster, video playback accelerates)
-            </span>
+          <div className="mt-8 sm:mt-12 flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-neutral-400">
+            <ArrowDown className="w-4 h-4 text-white animate-bounce" />
+            <span className="text-white font-bold tracking-widest">Scroll to Play Experience</span>
           </div>
         </div>
       </div>
@@ -448,6 +453,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       {/* Replay Pill when user scrolls back to top after completing */}
       {isCompleted && (
         <button
+          type="button"
           onClick={handleReplay}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-mono tracking-wider text-white flex items-center gap-2 backdrop-blur-md transition-all cursor-pointer shadow-lg"
         >

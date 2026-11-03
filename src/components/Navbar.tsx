@@ -42,7 +42,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
       setShowNav(true);
     };
 
+    const handleHeroReset = () => {
+      (window as any).__heroVideoCompleted = false;
+      setHeroCompleted(false);
+      setShowNav(false);
+    };
+
     window.addEventListener('lenor-hero-completed', handleHeroDone);
+    window.addEventListener('lenor-hero-reset', handleHeroReset);
 
     let ticking = false;
     const checkHeroScroll = () => {
@@ -65,6 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
 
     return () => {
       window.removeEventListener('lenor-hero-completed', handleHeroDone);
+      window.removeEventListener('lenor-hero-reset', handleHeroReset);
       window.removeEventListener('scroll', checkHeroScroll);
     };
   }, [isHomePage]);

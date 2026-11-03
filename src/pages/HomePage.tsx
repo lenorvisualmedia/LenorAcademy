@@ -30,8 +30,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
         ScrollTrigger.refresh();
       }, 300);
     };
+
+    const onReset = () => {
+      setIsHeroCompleted(false);
+    };
+
     window.addEventListener('lenor-hero-completed', onDone);
-    return () => window.removeEventListener('lenor-hero-completed', onDone);
+    window.addEventListener('lenor-hero-reset', onReset);
+
+    return () => {
+      window.removeEventListener('lenor-hero-completed', onDone);
+      window.removeEventListener('lenor-hero-reset', onReset);
+    };
   }, []);
 
   const scrollToJourney = () => {

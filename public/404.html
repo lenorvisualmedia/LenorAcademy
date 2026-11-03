@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lenor Academy</title>
+    <script>
+      // Universal SPA fallback redirect
+      const path = window.location.pathname;
+      const search = window.location.search;
+      const hash = window.location.hash;
+      window.location.replace('/' + (path.startsWith('/') ? path.slice(1) : path) + search + hash);
+    </script>
+  </head>
+  <body style="background-color: #000; color: #fff; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; margin: 0;">
+    <p>Loading Lenor Academy...</p>
+  </body>
+</html>

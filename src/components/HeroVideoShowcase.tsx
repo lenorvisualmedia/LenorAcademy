@@ -278,23 +278,48 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     };
   }, [videoSrc]);
 
-  // Replay hero function
-  const handleReplay = () => {
+  // Replay hero function: locks screen again, restarts from first frame, hides navbar
+  const handleReplay = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     const vid = videoRef.current;
     if (!vid) return;
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // 1. Immediately lock scroll across window, body, and Lenis
+    (window as any).__heroVideoCompleted = false;
+    (window as any).__scrollLocked = true;
+
+    if ((window as any).__lenis) {
+      (window as any).__lenis.stop();
+      (window as any).__lenis.scrollTo(0, { immediate: true });
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
+    // 2. Dispatch reset event to hide Navbar and main content
+    window.dispatchEvent(new CustomEvent('lenor-hero-reset'));
+
+    // 3. Reset internal tracking state
     hasCompletedRef.current = false;
     isPlayingRef.current = true;
+    scrollIntensityRef.current = 0;
     setIsCompleted(false);
     setHasStarted(true);
 
+    // 4. Reset and play video from the very first frame
+    vid.pause();
     vid.currentTime = 0;
     vid.playbackRate = 1.0;
     vid.play().catch(() => {});
 
+    // Ensure title overlay remains hidden so the replaying video takes center stage
     if (overlayRef.current) {
-      gsap.set(overlayRef.current, { opacity: 0 });
+      overlayRef.current.style.opacity = '0';
+      overlayRef.current.style.pointerEvents = 'none';
     }
   };
 
@@ -358,18 +383,30 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         className="w-full h-full object-cover block pointer-events-none"
       />
 
-      {/* Skip Intro Button — Shows last frame and unlocks website immediately */}
+      {/* Skip Intro Button (Top-Left) — Shows last frame and unlocks website immediately */}
       {isLoaded && !isCompleted && (
         <button
           type="button"
           onClick={handleSkip}
-          className="absolute top-6 right-6 sm:top-8 sm:right-8 z-50 px-4 py-2 rounded-full bg-black/60 hover:bg-white text-neutral-200 hover:text-black border border-white/20 hover:border-white text-xs font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-md flex items-center gap-1.5 cursor-pointer shadow-2xl group"
+          className="absolute top-6 left-6 sm:top-8 sm:left-8 z-50 px-4 py-2 rounded-full bg-black/60 hover:bg-white text-neutral-200 hover:text-black border border-white/20 hover:border-white text-xs font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-md flex items-center gap-1.5 cursor-pointer shadow-2xl group"
           aria-label="Skip video intro"
         >
           <span className="font-bold">Skip Intro</span>
           <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </button>
       )}
+
+      {/* Top-Right Lenor Academy Brand Logo — ALWAYS visible whenever video plays / hero is active */}
+      <div className="absolute top-6 right-6 sm:top-8 sm:right-8 z-40 flex items-center gap-2.5 pointer-events-auto select-none backdrop-blur-md bg-black/40 px-3.5 py-1.5 rounded-full border border-white/10 shadow-2xl">
+        <img
+          src="/assets/White_Lenor_OG_Logo_Master_File.webp"
+          alt="Lenor Academy"
+          className="h-5 sm:h-6 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+        />
+        <span className="font-extrabold text-[11px] sm:text-[12px] tracking-[0.1em] text-white uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          Lenor Academy®
+        </span>
+      </div>
 
       {/* Minimalist Cinema Equipment Loading Screen */}
       <div
@@ -455,10 +492,11 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         <button
           type="button"
           onClick={handleReplay}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-mono tracking-wider text-white flex items-center gap-2 backdrop-blur-md transition-all cursor-pointer shadow-lg"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 px-6 py-2.5 rounded-full bg-black/60 hover:bg-white text-white hover:text-black border border-white/25 hover:border-white text-xs font-mono tracking-widest uppercase flex items-center gap-2 backdrop-blur-md transition-all duration-300 cursor-pointer shadow-2xl group"
+          aria-label="Replay hero video from start"
         >
-          <RotateCcw className="w-3.5 h-3.5" />
-          <span>Replay Video</span>
+          <RotateCcw className="w-3.5 h-3.5 transition-transform duration-500 group-hover:-rotate-180" />
+          <span className="font-bold">Replay Video</span>
         </button>
       )}
     </div>

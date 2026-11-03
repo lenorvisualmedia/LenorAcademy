@@ -31,7 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
             setShowNav(true);
           } else {
             const rect = hero.getBoundingClientRect();
-            setShowNav(rect.bottom <= window.innerHeight + 40);
+            setShowNav(rect.bottom <= 120 || window.scrollY > 150);
           }
           ticking = false;
         });

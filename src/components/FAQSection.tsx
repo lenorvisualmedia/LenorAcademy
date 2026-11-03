@@ -168,3 +168,4 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenEnrol, className =
 };
 
 export default FAQSection;
+

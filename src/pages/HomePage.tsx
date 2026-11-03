@@ -26,11 +26,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
 
   return (
     <div className="w-full bg-black">
-      {/* FULL SCREEN SCROLL ANIMATED VIDEO (120 FPS Frame Scrub, no overlay text) */}
+      {/* FULL SCREEN SCROLL ANIMATED VIDEO (Auto-play on first scroll with scroll-intensity speedup) */}
       <HeroVideoShowcase />
 
       {/* REST OF HOMEPAGE CONTENT */}
-      <div className="max-w-[1440px] mx-auto px-3 sm:px-6 py-12 sm:py-16 space-y-12 sm:space-y-16">
+      <div id="main-content" className="max-w-[1440px] mx-auto px-3 sm:px-6 py-12 sm:py-16 space-y-12 sm:space-y-16">
         {/* LEAD MISSION STATEMENT */}
       <section className="px-4 sm:px-12 py-10 sm:py-16">
         <AnimatedContent

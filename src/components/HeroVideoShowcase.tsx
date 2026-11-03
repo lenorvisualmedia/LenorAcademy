@@ -383,30 +383,33 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         className="w-full h-full object-cover block pointer-events-none"
       />
 
-      {/* Skip Intro Button (Top-Left) — Shows last frame and unlocks website immediately */}
+      {/* Brand Logo in Top-Left — Exact design from screenshot, ALWAYS visible when video is active */}
+      <div className="absolute top-5 left-5 sm:top-6 sm:left-8 z-40 flex items-center gap-2.5 pointer-events-auto select-none">
+        <img
+          src="/assets/58a07343-9b5e-42c1-a584-51e6caee9f7c.webp"
+          alt="Lenor Academy"
+          className="h-6 sm:h-7 w-auto object-contain brightness-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/assets/White_Lenor_OG_Logo_Master_File.webp';
+          }}
+        />
+        <span className="tracking-[0.06em] font-black uppercase text-sm sm:text-base text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+          LENOR ACADEMY®
+        </span>
+      </div>
+
+      {/* Skip Intro Button (Top-Right) — Shows last frame and unlocks website immediately */}
       {isLoaded && !isCompleted && (
         <button
           type="button"
           onClick={handleSkip}
-          className="absolute top-6 left-6 sm:top-8 sm:left-8 z-50 px-4 py-2 rounded-full bg-black/60 hover:bg-white text-neutral-200 hover:text-black border border-white/20 hover:border-white text-xs font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-md flex items-center gap-1.5 cursor-pointer shadow-2xl group"
+          className="absolute top-5 right-5 sm:top-6 sm:right-8 z-50 px-4 py-2 rounded-full bg-black/60 hover:bg-white text-neutral-200 hover:text-black border border-white/20 hover:border-white text-xs font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-md flex items-center gap-1.5 cursor-pointer shadow-2xl group"
           aria-label="Skip video intro"
         >
           <span className="font-bold">Skip Intro</span>
           <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </button>
       )}
-
-      {/* Top-Right Lenor Academy Brand Logo — ALWAYS visible whenever video plays / hero is active */}
-      <div className="absolute top-6 right-6 sm:top-8 sm:right-8 z-40 flex items-center gap-2.5 pointer-events-auto select-none backdrop-blur-md bg-black/40 px-3.5 py-1.5 rounded-full border border-white/10 shadow-2xl">
-        <img
-          src="/assets/White_Lenor_OG_Logo_Master_File.webp"
-          alt="Lenor Academy"
-          className="h-5 sm:h-6 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
-        />
-        <span className="font-extrabold text-[11px] sm:text-[12px] tracking-[0.1em] text-white uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-          Lenor Academy®
-        </span>
-      </div>
 
       {/* Minimalist Cinema Equipment Loading Screen */}
       <div

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Briefcase, ShieldCheck, Globe, Award, TrendingUp, CheckCircle2, Laptop } from 'lucide-react';
 import { PLACED_STUDENTS, HIRING_PARTNERS, ACADEMY_INFO } from '../data/academyData';
 import { AnimatedContent } from '../components/AnimatedContent';
 import { StudentHoloCard } from '../components/StudentHoloCard';
@@ -77,31 +78,100 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
         className="grid grid-cols-1 md:grid-cols-3 gap-4"
       >
         <div className="card p-8 !bg-white !text-black border border-neutral-200 flex flex-col justify-between shadow-md">
-          <div className="text-6xl sm:text-7xl font-black text-black tracking-tighter leading-none">
+          <div className="text-5xl sm:text-6xl font-black text-black tracking-tighter leading-none">
             {ACADEMY_INFO.stats.studentsPlaced}
           </div>
           <div className="eye text-neutral-600 mt-4">
-            Students Placed in Industry
+            Alumni Working in Media & Cinema
           </div>
         </div>
 
         <div className="card p-8 !bg-white !text-black border border-neutral-200 flex flex-col justify-between shadow-md">
-          <div className="text-6xl sm:text-7xl font-black text-black tracking-tighter leading-none">
+          <div className="text-5xl sm:text-6xl font-black text-black tracking-tighter leading-none">
             {ACADEMY_INFO.stats.hiringPartners}
           </div>
           <div className="eye text-neutral-600 mt-4">
-            Studio & Production Partners
+            Studio, Agency & Post Partners
           </div>
         </div>
 
         <div className="card p-8 !bg-white !text-black border border-neutral-200 flex flex-col justify-between shadow-md">
-          <div className="text-6xl sm:text-7xl font-black text-black tracking-tighter leading-none">
-            {ACADEMY_INFO.stats.placementRate}
+          <div className="text-4xl sm:text-5xl font-black text-black tracking-tighter leading-tight">
+            100% Assurance
           </div>
           <div className="eye text-neutral-600 mt-4">
-            Direct Career Placement Rate
+            For 1-Year Media Master (Plus Two)
           </div>
         </div>
+      </AnimatedContent>
+
+      {/* PLACEMENT ASSURANCE VS ASSISTANCE ARCHITECTURE */}
+      <AnimatedContent distance={40} duration={0.8} threshold={0.1}>
+        <section className="bg-neutral-950 border border-neutral-800 rounded-3xl p-6 sm:p-10 lg:p-12 text-white">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-neutral-800">
+            <div>
+              <div className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#a39c94]">
+                The Lenor Career Framework
+              </div>
+              <h2 className="h1 text-3xl sm:text-5xl text-white font-black tracking-tight mt-2">
+                Placement Assurance & Alumni Network
+              </h2>
+            </div>
+            <p className="text-sm text-neutral-400 font-light max-w-md leading-relaxed">
+              Transparent career pathways with daily hiring inquiries, Gulf placements, and compensation built on real portfolio quality.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            {/* Box 1: 100% Placement Assurance */}
+            <div className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">100% Placement Assurance</h3>
+                <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+                  Students graduating from the 1-Year Media Master Programme with a Plus Two qualification receive guaranteed placement support to secure a professional role within 6 months of course completion.
+                </p>
+              </div>
+              <div className="mt-4 pt-4 border-t border-neutral-800 text-[11px] font-mono text-emerald-400">
+                ✓ Plus Two Graduates · 1-Year MMP
+              </div>
+            </div>
+
+            {/* Box 2: Active WhatsApp Hiring Network */}
+            <div className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-4">
+                  <Globe className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">5–6 Daily Hiring Inquiries</h3>
+                <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+                  Our private Lenor Alumni WhatsApp Group receives 5 to 6 verified job vacancies every single day from ad agencies, wedding studios, and production houses across Kerala, Dubai, Saudi Arabia, and UAE.
+                </p>
+              </div>
+              <div className="mt-4 pt-4 border-t border-neutral-800 text-[11px] font-mono text-blue-400">
+                ✓ Direct Employer Vacancies & CV Forwarding
+              </div>
+            </div>
+
+            {/* Box 3: Starting Salary Reality */}
+            <div className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-4">
+                  <TrendingUp className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">₹15,000 to ₹80,000+ / mo</h3>
+                <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+                  Salaries are dictated by output quality and portfolio strength. While baseline starters begin at ₹15,000, exceptional students with standout commercial portfolios have achieved first salaries of ₹80,000/month.
+                </p>
+              </div>
+              <div className="mt-4 pt-4 border-t border-neutral-800 text-[11px] font-mono text-amber-400">
+                ✓ Portfolio-Driven Industry Valuations
+              </div>
+            </div>
+          </div>
+        </section>
       </AnimatedContent>
 
       {/* ANIMATED HIRING PARTNERS TICKER */}
@@ -169,6 +239,84 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
           ))}
         </AnimatedContent>
       </section>
+
+      {/* STUDENT KIT & ZERO GEAR EXPENSE CHECKLIST */}
+      <AnimatedContent distance={40} duration={0.8} threshold={0.1}>
+        <section className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-10 text-white">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-neutral-800">
+            <div>
+              <div className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-emerald-400">
+                Equipment Policy · 100% Provided by Academy
+              </div>
+              <h2 className="h1 text-2xl sm:text-4xl text-white font-black tracking-tight mt-1">
+                What you need to bring vs what we provide
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm text-neutral-400 font-light max-w-md leading-relaxed">
+              You do not need to buy expensive cameras, cinema rigs, or computers to study here.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            {/* Left: What Academy Provides */}
+            <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800">
+              <div className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold mb-3 flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4" />
+                <span>Fully Provided by Lenor Academy (Zero Fee)</span>
+              </div>
+              <ul className="space-y-2.5 text-xs sm:text-sm text-neutral-300">
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400">✓</span>
+                  <span><strong>Cinema & Mirrorless:</strong> RED Epic, Sony M3/M4/M5/S3, Sony A6400, ZV-E10, Nikon ZR, Z6 III, Z5 II.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400">✓</span>
+                  <span><strong>Gimbals & Stabilization:</strong> DJI RS5, RS4, RS4 Mini, RS3, Zhiyun Crane 2, and Hoverboard rigs.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400">✓</span>
+                  <span><strong>Drones & Aerial:</strong> DJI Mini 5 Pro, DJI Neo 2, plus dedicated Drone Simulator Lab.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400">✓</span>
+                  <span><strong>Post-Production:</strong> Dedicated high-end editing workstations (1 PC per student during edit sessions).</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Right: The 3 Personal Essentials to Bring */}
+            <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800">
+              <div className="text-xs font-mono uppercase tracking-widest text-blue-400 font-bold mb-3 flex items-center gap-1.5">
+                <Laptop className="w-4 h-4" />
+                <span>Only 3 Personal Items You Need to Bring</span>
+              </div>
+              <div className="space-y-3.5 text-xs sm:text-sm">
+                <div className="flex items-start gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 font-mono text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <strong className="text-white">High-Speed SSD or External Hard Drive:</strong>
+                    <div className="text-neutral-400 text-xs mt-0.5">To store, back up, and take home raw camera footage and project files.</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 font-mono text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <strong className="text-white">Reusable Handling Gloves:</strong>
+                    <div className="text-neutral-400 text-xs mt-0.5">To protect high-end camera bodies and lenses from hand sweat during long shoots.</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 font-mono text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <strong className="text-white">Personal Wired Headset:</strong>
+                    <div className="text-neutral-400 text-xs mt-0.5">For personal hygiene and accurate sound design during 2–3 hour editing lab sessions.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedContent>
 
       {/* CTA FOR STUDIOS / AGENCIES */}
       <AnimatedContent

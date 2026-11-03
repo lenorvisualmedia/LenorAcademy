@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, Sparkles, Phone, Mail, User, MapPin } from 'lucide-react';
+import { X, CheckCircle2, Sparkles, Phone, Mail, User, MapPin, Building, Home, CreditCard } from 'lucide-react';
 import { PROGRAMMES, ACADEMY_INFO } from '../data/academyData';
 
 interface EnrolModalProps {
@@ -10,11 +10,14 @@ interface EnrolModalProps {
 
 export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, defaultProgramId }) => {
   const [selectedProgram, setSelectedProgram] = useState(defaultProgramId || 'media-master');
+  const [campus, setCampus] = useState<'makkaraparamba' | 'ernakulam'>('makkaraparamba');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [location, setLocation] = useState('');
   const [experience, setExperience] = useState('Beginner (Fresh starting)');
+  const [needHostel, setNeedHostel] = useState(false);
+  const [needEMI, setNeedEMI] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   if (!isOpen) return null;
@@ -30,8 +33,12 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
     setPhone('');
     setEmail('');
     setLocation('');
+    setNeedHostel(false);
+    setNeedEMI(false);
     onClose();
   };
+
+  const currentProg = PROGRAMMES.find(p => p.id === selectedProgram) || PROGRAMMES[0];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
@@ -57,13 +64,15 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
               Application Received!
             </h3>
             <p className="text-neutral-700 text-sm max-w-sm mb-6 leading-relaxed">
-              Thank you, <strong className="text-black">{name || 'Creator'}</strong>. Our Senior Admissions Counsellor from Lenor Academy Makkaraparamba will connect with you via WhatsApp & Call at <strong className="text-black">{phone}</strong> within 24 hours.
+              Thank you, <strong className="text-black">{name || 'Creator'}</strong>. Our Senior Admissions Counsellor will connect with you via WhatsApp & Call at <strong className="text-black">{phone}</strong> within 24 hours.
             </p>
-            <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-neutral-700 text-left w-full mb-6">
-              <div className="font-bold text-black mb-1">Enrolment Summary:</div>
-              <div>Programme: {PROGRAMMES.find(p => p.id === selectedProgram)?.name}</div>
-              <div>Campus: {ACADEMY_INFO.address}</div>
-              <div>Direct Admissions Line: {ACADEMY_INFO.phone}</div>
+            <div className="p-5 rounded-2xl bg-neutral-50 border border-neutral-200 text-xs text-neutral-700 text-left w-full mb-6 space-y-1.5">
+              <div className="font-bold text-black mb-2 text-sm">Enrolment Summary:</div>
+              <div><strong>Programme:</strong> {currentProg.name} ({currentProg.duration})</div>
+              <div><strong>Campus:</strong> {campus === 'makkaraparamba' ? 'Makkaraparamba, Malappuram (South, North & Studio Campus)' : 'Madavanna, Ernakulam (Kochi)'}</div>
+              <div><strong>Hostel Assistance:</strong> {needHostel ? 'Requested (Hostel details will be shared)' : 'Not requested'}</div>
+              <div><strong>Bajaj Finance EMI:</strong> {needEMI ? 'Requested (Bajaj team will coordinate)' : 'Standard fee schedule'}</div>
+              <div><strong>Admissions Desk:</strong> {ACADEMY_INFO.phone}</div>
             </div>
             <button
               onClick={handleReset}
@@ -75,38 +84,84 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
         ) : (
           <div>
             <div className="mb-6">
-              <div className="eye text-neutral-600">Admissions & Enrolment</div>
+              <div className="eye text-neutral-600">Admissions & Enrolment · 2026 Batch</div>
               <h2 className="h1 text-3xl sm:text-4xl text-black mt-1">
                 Begin Your Journey
               </h2>
               <p className="text-xs sm:text-sm text-neutral-600 mt-2 font-light">
-                Secure your seat at Lenor Academy, CP Building, Makkaraparamba. Limited seats per batch for personalized gear mentorship.
+                Zero equipment fee. Practise with our RED Epic cinema rig, Sony & Nikon cameras, DJI gimbals & drones. Max 28–30 students per batch.
               </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Program Picker */}
+              {/* Program Picker Dropdown */}
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-2">
-                  Select Programme
+                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
+                  Select Programme *
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {PROGRAMMES.map((prog) => (
-                    <button
-                      type="button"
-                      key={prog.id}
-                      onClick={() => setSelectedProgram(prog.id)}
-                      className={`p-3.5 rounded-xl text-left border transition-all ${
-                        selectedProgram === prog.id
-                          ? 'border-black bg-neutral-100 text-black shadow-sm ring-1 ring-black'
-                          : 'border-neutral-200 bg-neutral-50 text-neutral-700 hover:border-black'
-                      }`}
-                    >
-                      <div className="font-bold text-sm text-black">{prog.name}</div>
-                      <div className="text-xs text-neutral-600 mt-1">{prog.duration} · {prog.modulesCount}</div>
-                      <div className="text-xs font-bold text-emerald-700 mt-2">{prog.price}</div>
-                    </button>
-                  ))}
+                <select
+                  value={selectedProgram}
+                  onChange={(e) => setSelectedProgram(e.target.value)}
+                  className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-3.5 py-3 text-sm text-black font-semibold focus:outline-none focus:border-black transition-colors"
+                >
+                  <optgroup label="Flagship & Long-Term Programmes">
+                    <option value="media-master">Media Master Programme (MMP) — 1 Year (₹ 1,45,000 · 100% Placement Assurance)</option>
+                    <option value="visual-media-production">Visual Media Production (VMP) — 6 Months (₹ 85,000)</option>
+                    <option value="media-designing-editing">Media Designing & Editing Professional — 6 Months (₹ 85,000)</option>
+                  </optgroup>
+                  <optgroup label="Professional 3-Month Diplomas">
+                    <option value="diploma-graphic-designing">Diploma in Graphic Designing — 3 Months (₹ 45,000 · Skill India HRDS)</option>
+                    <option value="professional-editing-course">Professional Editing Course — 3 Months (₹ 45,000 · Skill India HRDS)</option>
+                  </optgroup>
+                  <optgroup label="Fast-Track & Crash Courses">
+                    <option value="photography-videography-course">Photography & Videography Course — 2 Months (₹ 35,000 · ISO Certified)</option>
+                    <option value="videography-crash-course">Videography Crash Course — 6 Days (₹ 18,000 · 2-3 Students/Batch)</option>
+                    <option value="drone-course">Drone Operations & Aerial Cinematography — 5 Days (₹ 15,000)</option>
+                  </optgroup>
+                </select>
+                <div className="mt-1.5 flex items-center justify-between text-[11px] text-neutral-500 px-1">
+                  <span>Selected: <strong className="text-black">{currentProg.duration}</strong> · {currentProg.badge}</span>
+                  <span className="font-bold text-emerald-700">{currentProg.price}</span>
+                </div>
+              </div>
+
+              {/* Campus Selection */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
+                  Preferred Campus Branch *
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setCampus('makkaraparamba')}
+                    className={`p-3 rounded-xl text-left border text-xs transition-all flex items-start gap-2.5 ${
+                      campus === 'makkaraparamba'
+                        ? 'border-black bg-neutral-100 text-black shadow-sm ring-1 ring-black'
+                        : 'border-neutral-200 bg-neutral-50 text-neutral-700 hover:border-black'
+                    }`}
+                  >
+                    <Building className="w-4 h-4 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="font-bold">Makkaraparamba, Malappuram</div>
+                      <div className="text-[10px] text-neutral-500 mt-0.5">South, North, Studio Campuses & Theatre</div>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setCampus('ernakulam')}
+                    className={`p-3 rounded-xl text-left border text-xs transition-all flex items-start gap-2.5 ${
+                      campus === 'ernakulam'
+                        ? 'border-black bg-neutral-100 text-black shadow-sm ring-1 ring-black'
+                        : 'border-neutral-200 bg-neutral-50 text-neutral-700 hover:border-black'
+                    }`}
+                  >
+                    <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="font-bold">Madavanna, Ernakulam (Kochi)</div>
+                      <div className="text-[10px] text-neutral-500 mt-0.5">Town branch with transit & PG links</div>
+                    </div>
+                  </button>
                 </div>
               </div>
 
@@ -166,7 +221,7 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
-                    City / Town *
+                    Current City / Town *
                   </label>
                   <div className="relative">
                     <MapPin className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -198,6 +253,31 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
                 </select>
               </div>
 
+              {/* Facilities check */}
+              <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200 space-y-2">
+                <label className="flex items-center gap-2.5 text-xs text-neutral-800 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={needHostel}
+                    onChange={(e) => setNeedHostel(e.target.checked)}
+                    className="w-4 h-4 rounded border-neutral-300 text-black focus:ring-black"
+                  />
+                  <Home className="w-3.5 h-3.5 text-neutral-500" />
+                  <span>I require Hostel / Accommodation assistance in Malappuram or Ernakulam</span>
+                </label>
+
+                <label className="flex items-center gap-2.5 text-xs text-neutral-800 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={needEMI}
+                    onChange={(e) => setNeedEMI(e.target.checked)}
+                    className="w-4 h-4 rounded border-neutral-300 text-black focus:ring-black"
+                  />
+                  <CreditCard className="w-3.5 h-3.5 text-neutral-500" />
+                  <span>I would like to explore the <strong>Bajaj Finance Easy EMI</strong> payment option</span>
+                </label>
+              </div>
+
               <div className="pt-2">
                 <button
                   type="submit"
@@ -207,7 +287,7 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
                   Submit Application For 2026 Batch
                 </button>
                 <div className="text-center text-[11px] text-neutral-500 mt-2">
-                  🔒 No spam. We only contact regarding your course syllabus and campus visit.
+                  🔒 No spam. We only contact regarding your course syllabus, hostel options, and campus visit.
                 </div>
               </div>
             </form>
@@ -217,3 +297,5 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
     </div>
   );
 };
+
+export default EnrolModal;

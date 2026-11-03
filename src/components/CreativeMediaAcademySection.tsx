@@ -11,23 +11,23 @@ interface Slide {
 const SLIDES: Slide[] = [
   {
     image: '/assets/430e290e-ef97-4964-a65b-a23923adad3f.webp',
-    alt: 'Lenor Academy building at Makkaraparamba',
-    caption: 'Makkaraparamba Campus'
+    alt: 'Lenor Academy building at Makkaraparamba, Malappuram',
+    caption: 'Makkaraparamba Main Branch · 3 Specialized Campuses'
   },
   {
     image: '/assets/c01459e8-da36-4de6-bd3a-a062c8e3c669.webp',
-    alt: 'Lenor Academy professional studio lighting floor with commercial shoot',
-    caption: 'Studio Lighting Floor'
+    alt: 'Lenor Academy Studio Campus with commercial lighting, dedicated Theatre and Drone Simulator Lab',
+    caption: 'Studio Campus · Product Lighting, Film Review Theatre & Drone Simulator Lab'
   },
   {
     image: '/assets/4b32a154-0d06-4137-bfbe-d8c580a9073f.webp',
-    alt: 'Lenor Academy cinematography and video lab with high-end camera rigs',
-    caption: 'Cinematography & Rigging Floor'
+    alt: 'Lenor Academy cinematography rigs and gimbal training floor',
+    caption: 'Cinematography Floor · RED Epic, Sony & Nikon Cinema Rigs'
   },
   {
     image: '/assets/92829f40-f725-4982-bb4c-b75dfa06bac4.webp',
-    alt: 'Lenor Academy digital editing suites and color grading consoles',
-    caption: 'Post-Production Suites'
+    alt: 'Lenor Academy North & South post-production editing labs',
+    caption: 'North & South Post-Production Labs · Dedicated High-End PCs'
   }
 ];
 
@@ -101,23 +101,25 @@ export const CreativeMediaAcademySection: React.FC = () => {
           </div>
         </div>
 
-        {/* Two-Column Info: Our Mission & Visit Us */}
+        {/* Two-Column Info: Our Campuses & Visit Us */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 pt-10 sm:pt-14">
           <div>
             <div className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-              Our Mission
+              Makkaraparamba Main Branch · 3 Specialized Campuses
             </div>
-            <p className="mt-3 text-base sm:text-lg lg:text-xl font-light text-[#e6e6e6] leading-relaxed max-w-lg">
-              To empower individuals with the knowledge, skills, and confidence to thrive in the dynamic world of visual storytelling.
+            <p className="mt-3 text-sm sm:text-base font-light text-[#e6e6e6] leading-relaxed max-w-lg space-y-1">
+              <span><strong>South Campus:</strong> Air-conditioned classrooms, editing labs & Product Lab.</span><br />
+              <span><strong>North Campus:</strong> Dedicated labs for video editing & graphic design.</span><br />
+              <span><strong>Studio Campus:</strong> Commercial lighting stage, dedicated <strong>Film Review Theatre</strong> & <strong>Drone Simulator Lab</strong> + nearby outdoor property/hut.</span>
             </p>
           </div>
 
           <div>
             <div className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-              Visit Us
+              Ernakulam Branch & Admissions
             </div>
-            <p className="mt-3 text-base sm:text-lg lg:text-xl font-light text-[#e6e6e6] leading-relaxed max-w-lg">
-              Lenor Academy, CP Building, Makkaraparamba, Malappuram<br />
+            <p className="mt-3 text-sm sm:text-base font-light text-[#e6e6e6] leading-relaxed max-w-lg">
+              <strong>Madavanna, Ernakulam (Kochi):</strong> Town campus with direct transport & verified PG links.<br />
               <span className="text-white font-medium">+91 91883 74232</span> ·{' '}
               <a
                 href="https://www.lenoracademy.com"
@@ -126,7 +128,10 @@ export const CreativeMediaAcademySection: React.FC = () => {
                 className="text-neutral-300 hover:text-white underline decoration-white/30 hover:decoration-white transition-colors"
               >
                 www.lenoracademy.com
-              </a>
+              </a><br />
+              <span className="text-xs text-neutral-400 mt-1 block">
+                🚆 Rail: Angadippuram Station (10–15 km) · Tirur Railway Hub
+              </span>
             </p>
           </div>
         </div>

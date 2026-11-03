@@ -8,6 +8,7 @@ import { ScrollJourney } from '../components/ScrollJourney';
 import { EditorialStorySequence } from '../components/EditorialStorySequence';
 import { PillButton } from '../components/PillButton';
 import { InvestmentSection } from '../components/InvestmentSection';
+import { FAQSection } from '../components/FAQSection';
 import { PROGRAMMES, PLACED_STUDENTS } from '../data/academyData';
 
 interface HomePageProps {
@@ -40,19 +41,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
           once={false}
         >
           <div className="max-w-5xl">
-            <div className="eye text-[#8a8a8a] mb-4">About us · Makkaraparamba, Malappuram</div>
+            <div className="eye text-[#8a8a8a] mb-4">About us · Makkaraparamba & Ernakulam</div>
             <p className="lead font-light text-neutral-100 leading-tight">
               We cultivate the next generation of creative visionaries and skilled multimedia professionals. A beacon of excellence in visual arts education, for aspiring photographers, videographers and editors.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4 text-xs font-semibold text-neutral-400">
+            <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-semibold text-neutral-400">
               <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-neutral-200">
-                📍 CP Building, Makkaraparamba, Malappuram
+                📍 Makkaraparamba, Malappuram (North, South & Studio Campuses)
               </span>
               <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-neutral-200">
-                📞 +91 91883 74232
+                📍 Madavanna, Ernakulam Branch
               </span>
               <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-neutral-200">
-                ✨ 85% Live Studio & Outdoor Practical Drills
+                🎬 Film Review Theatre & Drone Simulator Lab
+              </span>
+              <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-neutral-200">
+                ✨ 80% Live Practical Drills (Zero Equipment Fee)
               </span>
             </div>
           </div>
@@ -174,6 +178,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
           </div>
         </section>
       </AnimatedContent>
+
+      {/* FREQUENTLY ASKED QUESTIONS (15 OFFICIAL QUESTIONS & ANSWERS) */}
+      <FAQSection
+        onOpenEnrol={() => onOpenEnrol('media-master')}
+      />
 
       {/* STOP 09: THE INVESTMENT & ENROLMENT SECTION */}
       <InvestmentSection

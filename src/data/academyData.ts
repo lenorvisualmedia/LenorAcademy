@@ -15,6 +15,19 @@ export interface Program {
   installments: string;
   modules: string[];
   highlights: string[];
+  category?: 'Flagship' | 'Diploma' | 'Fast-Track' | 'Crash Course';
+  track?: 'flagship' | 'diploma' | 'short';
+  certification?: string;
+  eligibility?: string;
+  batchSize?: string;
+  softwareCount?: string;
+}
+
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+  category: 'Campuses & Travel' | 'Equipment & Labs' | 'Courses & Eligibility' | 'Placement & Career' | 'Fees & EMI' | 'Hostel & Food';
 }
 
 export interface JourneyStop {
@@ -106,20 +119,123 @@ export const ACADEMY_INFO = {
   name: "LENOR ACADEMY®",
   tagline: "Learn what you love®",
   subTagline: "Let passion drive your profession",
-  eyebrow: "Lenor Academy® · Photography · Videography · Editing",
+  eyebrow: "Lenor Academy® · Photography · Videography · Editing · Cinematography · Drone · Graphic Design",
   address: "CP Building, Makkaraparamba, Malappuram, Kerala",
+  mainBranch: "Makkaraparamba, Malappuram (3 Campuses + Outdoor Hut)",
+  kochiBranch: "Madavanna, Ernakulam (Kochi)",
+  branches: [
+    {
+      id: "makkaraparamba",
+      name: "Makkaraparamba Main Branch",
+      location: "Makkaraparamba, Malappuram, Kerala",
+      address: "CP Building, Makkaraparamba, Malappuram, Kerala - 676507",
+      campuses: [
+        {
+          name: "South Campus",
+          role: "Main air-conditioned lecture classrooms, high-end post-production editing labs, and dedicated Product Lab."
+        },
+        {
+          name: "North Campus",
+          role: "Dedicated computer suites and specialized creative labs for Video Editing & Graphic Designing."
+        },
+        {
+          name: "Studio Campus",
+          role: "Commercial studio stage for product lighting & indoor photography, dedicated Film Review Screening Theatre for student projects, and Drone Simulator Lab."
+        },
+        {
+          name: "Outdoor Property & Hut",
+          role: "Nearby natural lush green outdoor setting for natural-light photography and creative outdoor cinematography."
+        }
+      ]
+    },
+    {
+      id: "ernakulam",
+      name: "Ernakulam Branch",
+      location: "Madavanna, Ernakulam (Kochi), Kerala",
+      address: "Madavanna, Ernakulam, Kochi, Kerala",
+      role: "City branch connected directly to transit hubs with verified PG and hostel facilities."
+    }
+  ],
   phone: "+91 91883 74232",
-  email: "info@lenoracademy.com",
+  email: "lenorvisualmedia@gmail.com",
   admissionsEmail: "admissions@lenoracademy.com",
   careersEmail: "careers@lenoracademy.com",
   brochurePath: "/Lenor_Academy_Brochure_2026.pdf",
   instagram: "https://instagram.com/lenoracademy",
   youtube: "https://youtube.com/@lenoracademy",
+  accreditations: [
+    "Media & Entertainment Skills Council (MESC) under NSDC",
+    "HRDS under Skill India",
+    "ISO 9001:2015 Qualified Media Academy"
+  ],
+  gearArsenal: {
+    cinema: ["RED Epic Cinema Rig"],
+    cameras: [
+      "Sony A7 IV (M4)",
+      "Sony A7 V (M5)",
+      "Sony A7S III (S3)",
+      "Sony A7 III (M3)",
+      "Sony A6400",
+      "Sony ZV-E10 (Vlog)",
+      "Nikon ZR",
+      "Nikon Z6 III",
+      "Nikon Z5 II"
+    ],
+    gimbals: [
+      "DJI RS5",
+      "DJI RS4",
+      "DJI RS4 Mini",
+      "DJI RS3",
+      "Zhiyun Crane 2",
+      "Hoverboard-Based Dynamic Balancing Systems"
+    ],
+    drones: [
+      "DJI Mini 5 Pro",
+      "DJI Neo 2",
+      "Dedicated Drone Simulator Lab"
+    ],
+    editingRigs: "High-end editing workstations with 1 dedicated PC per student during editing sessions",
+    batchRatio: "Max 28–30 students per batch · 1 Camera per 3–4 students · 1 PC per student"
+  },
+  studentKit: {
+    providedByAcademy: "All Cameras, Cinema Rigs, Gimbals, Drones, Lighting, Modifiers, and High-End Editing PCs are fully provided by the Academy at zero equipment fee.",
+    studentBrings: [
+      {
+        item: "High-Speed SSD or External Hard Drive",
+        desc: "To store, back up, and take home raw footage, project timelines, and portfolio exports."
+      },
+      {
+        item: "Reusable Handling Gloves",
+        desc: "To safeguard precision cinema cameras, lenses, and gimbals from hand sweat during prolonged production shoots."
+      },
+      {
+        item: "Personal Wired Headset",
+        desc: "For personal hygiene and precise audio monitoring / sound design during 2–3 hour editing lab sessions."
+      }
+    ]
+  },
+  travelConnectivity: {
+    nearestStation: "Angadippuram Railway Station (10–15 km by bus directly to Makkaraparamba)",
+    longDistanceHub: "Tirur Railway Station (Mainline railway hub with frequent trains across India + direct bus to Makkaraparamba)"
+  },
+  stayAndFood: {
+    facilities: "10 Academy-managed stay facilities in Malappuram (~9 for boys, 1 dedicated ladies' hostel with resident warden within walking distance).",
+    amenities: "Wi-Fi, 24/7 water, and fully equipped kitchens in every stay.",
+    capacity: "Accommodating 200+ students from across India and abroad.",
+    food: "Reasonable dining within walking distance: Kudumbashree hotels from ₹40, local eateries serving authentic Kerala meals, biriyani, and mandi.",
+    refundPolicy: "Flexible 1-week refund policy if shifting to an outside private room.",
+    ernakulamStay: "Academy provides verified PG & hostel contacts within Ernakulam town."
+  },
+  financing: {
+    provider: "Bajaj Finance Easy EMI Facility Available",
+    details: "Zero-stress monthly installments arranged through Bajaj Finance representatives."
+  },
   stats: {
     studentsPlaced: "500+",
     hiringPartners: "45+",
-    placementRate: "98%",
-    practicalRatio: "85%",
+    placementRate: "100%",
+    practicalRatio: "80%",
+    dailyEnquiries: "5–6 daily hiring calls in Alumni Network"
   }
 };
 
@@ -260,53 +376,255 @@ export const JOURNEY_STOPS: JourneyStop[] = [
 export const PROGRAMMES: Program[] = [
   {
     id: "media-master",
-    name: "Media Master Programme",
+    name: "Media Master Programme (MMP)",
     duration: "1 Year",
-    badge: "Flagship Comprehensive",
-    modulesCount: "6 Full Modules",
-    description: "Our signature professional diploma designed to build end-to-end creative directors capable of shooting, editing, designing, and leading visual campaigns.",
+    badge: "Flagship Comprehensive · 100% Placement Assurance",
+    modulesCount: "8+ Softwares · 6 Core Modules",
+    description: "Our signature professional diploma designed to build complete media directors capable of shooting cinema, cutting commercials, designing brands, and leading productions.",
     featured: true,
     price: "₹ 1,45,000",
-    installments: "Flexible 3-stage installment options & zero-cost EMI assistance available",
+    installments: "Flexible installment options & Bajaj Finance EMI assistance available",
+    category: "Flagship",
+    track: "flagship",
+    certification: "MESC under NSDC + Lenor Academy Certificate + Internship & Experience Certificate",
+    eligibility: "Plus Two (for 100% Placement Assurance within 6 months) / 10th Pass (with Placement Assistance)",
+    batchSize: "Max 28–30 students · 1 camera per 3–4 students · 1 PC per student",
+    softwareCount: "8+ Softwares: Premiere Pro, DaVinci Resolve, After Effects, Photoshop, Lightroom, Illustrator, InDesign, Canva",
     modules: [
-      "Module 01: Photography (Lighting, Studio, Outdoor, Drone, Automotive, Commercial)",
-      "Module 02: Videography (Cinematography, Gimbals, Hoverboard Movement, Short Films)",
-      "Module 03: Photo Editing (Adobe Photoshop, Lightroom, Skin Retouching, Editorial Grading)",
-      "Module 04: Video Editing (Adobe Premiere Pro, DaVinci Resolve, Color Science, Audio Design)",
-      "Module 05: Graphic Design & Motion (Adobe Illustrator, InDesign, After Effects Kinetic Motion)",
-      "Module 06: Soft Skills & Business (Client Pitching, Personality Camp, Portfolio Mentorship)"
+      "Module 01: Advanced Photography (Lighting, Studio, Product, Portrait, Candid, Automotive, Street, Wildlife, Food)",
+      "Module 02: Cinematic Videography (RED Epic cinema handling, Gimbals, Hoverboard balancing, Lighting, Shot planning)",
+      "Module 03: Photo Editing & Color Science (Photoshop Camera Raw, High Pass, Masking, Lightroom batch grading)",
+      "Module 04: Video Post-Production (Premiere Pro, DaVinci Resolve log color grading, After Effects motion graphics)",
+      "Module 05: Graphic Design & Brand Identity (Illustrator, InDesign, Canva, Vector illustration, Social media systems)",
+      "Module 06: Soft Skills, Personality Camp & AI (4-5 Day Off-Grid camp, Client pitching, AI generative workflows)"
     ],
     highlights: [
-      "All 6 modules covered in full depth",
-      "100% Placement assistance & hiring partner interviews",
-      "Dedicated studio floor access with high-end lighting rigs",
-      "Personality Building Camp included",
-      "Official Lenor Media Master Diploma Certificate",
-      "Lifetime creative alumni guild membership"
+      "100% Placement Assurance within 6 months (for Plus Two graduates)",
+      "Hands-on cinema camera training on RED Epic & Sony cinema setups",
+      "4–5 Day Off-Grid Personality Camp (stay together away from phones & social media)",
+      "8+ Industry-standard software applications mastered from basic to advanced",
+      "Dedicated Drone Simulator Lab + Live outdoor flight training with DJI Mini 5 Pro & Neo 2",
+      "Hoverboard-based gimbal balancing & dynamic tracking shots",
+      "AI-integrated workflows: Auto transcription, text-based edit, scene gen & Generative Fill",
+      "Curated commercial LUTs, presets, and asset packs provided for lifetime use"
     ]
   },
   {
     id: "visual-media-production",
-    name: "Visual Media Production",
+    name: "Visual Media Production (VMP)",
     duration: "6 Months",
-    badge: "Intensive Accelerator",
-    modulesCount: "4 Core Modules",
-    description: "An intensive sprint for creators who want to master camera craft and post-production without brand design theory. Ideal for aspiring wedding and commercial cinematographers.",
+    badge: "Intensive Camera & Post Accelerator",
+    modulesCount: "5 Core Modules + Short Film Project",
+    description: "An intensive sprint for creators who want to master camera craft, gimbal movements, drone piloting, and post-production. Ideal for aspiring wedding and commercial cinematographers.",
     featured: false,
     price: "₹ 85,000",
-    installments: "Convenient 2-stage installment plan available",
+    installments: "Convenient installment plan & Bajaj Finance EMI available",
+    category: "Flagship",
+    track: "flagship",
+    certification: "MESC under NSDC + Lenor Academy Certificate",
+    eligibility: "10th Standard (SSLC)",
+    batchSize: "Max 28–30 students · 1 camera per 3–4 students · 1 PC per student",
+    softwareCount: "Premiere Pro, DaVinci Resolve, After Effects, Photoshop, Lightroom",
     modules: [
-      "Module 01: Photography (Camera Settings, Framing, Lighting, Studio & Outdoor)",
-      "Module 02: Videography (Camera Movement, Drone, Gimbals, Cinematography)",
-      "Module 03: Photo Editing (Photoshop Retouching, Lightroom Color Processing)",
-      "Module 04: Video Editing (Premiere Pro, DaVinci Resolve, Reels, Story Cutting)"
+      "Module 01: Photography (Studio Lighting, Product, Automotive, Portrait, Candid, Landscape)",
+      "Module 02: Videography (Gimbal balancing & movement, Automotive & Model shoots, Dynamic lighting)",
+      "Module 03: Photo Editing (Photoshop retouching, Camera Raw, Lightroom color processing)",
+      "Module 04: Video Editing (Premiere Pro timeline, DaVinci Resolve log color grading, After Effects essentials)",
+      "Module 05: Drone & Business (Theory, Simulator Lab, Flight practice, Photography Business & Freelance)"
     ],
     highlights: [
-      "4 core craft modules focused on camera & editing",
-      "85% hands-on live studio and location shooting",
-      "Portfolio development of 10+ polished client-ready projects",
-      "Placement interview referrals across studio network",
-      "Official Lenor Visual Media Production Certificate"
+      "80% hands-on practical training in live studio and outdoor environments",
+      "Independent Short Film graduation project shot & edited independently",
+      "Comprehensive Drone Training: Theory, Simulator Lab, and live flying practice",
+      "DaVinci Resolve log footage color grading and Premiere Pro commercial timeline assembly",
+      "Photography Business & Freelancing client acquisition strategies",
+      "Placement Assistance with active referrals across our studio network",
+      "Free pack of professional LUTs and presets included"
+    ]
+  },
+  {
+    id: "media-designing-editing",
+    name: "Media Designing & Editing Professional",
+    duration: "6 Months",
+    badge: "Post-Production & Graphic Design Master",
+    modulesCount: "Combined Design & Video Suite",
+    description: "A comprehensive dual-discipline programme teaching graphic design, photo retouching, and professional video editing together for creators who want total post-production mastery.",
+    featured: false,
+    price: "₹ 85,000",
+    installments: "Installment options & Bajaj Finance EMI available",
+    category: "Flagship",
+    track: "flagship",
+    certification: "MESC under NSDC + Lenor Academy Certificate",
+    eligibility: "10th Standard (SSLC)",
+    batchSize: "Max 28–30 students · 1 dedicated high-end PC per student",
+    softwareCount: "Photoshop, Illustrator, InDesign, Canva, Premiere Pro, DaVinci Resolve, After Effects, Lightroom",
+    modules: [
+      "Module 01: Graphic Designing (Thumbnails, Vector graphics, Illustration, Branding & Visual identity)",
+      "Module 02: Social Media & Ad Assets (Content creation, Reels graphics, Banners, Promotional videos)",
+      "Module 03: Advanced Video Editing (Viral reels, Wedding highlights, Multicamera, Podcasts)",
+      "Module 04: Color Grading & Motion (DaVinci Resolve log color nodes, After Effects motion graphics)",
+      "Module 05: AI Integration (Generative Fill, Auto captions, Text-based editing, 3D mockups)"
+    ],
+    highlights: [
+      "Graphic Design + Photo Editing + Video Editing combined in one course",
+      "High-end editing workstations with 1 dedicated PC per student during edit classes",
+      "Master Premiere Pro, DaVinci Resolve Studio, After Effects, Photoshop, Illustrator, InDesign & Canva",
+      "Real-world projects: Multicam podcast editing, commercial reels, and branding systems",
+      "AI-powered workflows: Generative fill, scene generation, and auto captions",
+      "Placement Assistance & lifetime access to curated LUTs and design presets",
+      "MESC under NSDC recognized certification"
+    ]
+  },
+  {
+    id: "diploma-graphic-designing",
+    name: "Diploma in Graphic Designing",
+    duration: "3 Months",
+    badge: "Visual Identity & Social Media Design",
+    modulesCount: "4 Core Design Applications + AI",
+    description: "Master modern brand design, social media visuals, high-converting thumbnails, and advertising campaigns with AI integration on high-end creative workstations.",
+    featured: false,
+    price: "₹ 45,000",
+    installments: "Convenient installments & Bajaj Finance EMI available",
+    category: "Diploma",
+    track: "diploma",
+    certification: "HRDS Certificate under Skill India + Lenor Academy Certificate",
+    eligibility: "10th Standard (SSLC)",
+    batchSize: "Dedicated high-end PC per student",
+    softwareCount: "Adobe Photoshop, Adobe Illustrator, Adobe InDesign, Canva",
+    modules: [
+      "Module 01: Vector Graphics & Brand Identity (Illustrator logos, typography, visual hierarchy)",
+      "Module 02: High-Converting Digital Media (YouTube thumbnails, social media reels graphics, ad banners)",
+      "Module 03: Editorial & Publishing Design (InDesign magazine layouts, brochures, marketing collaterals)",
+      "Module 04: AI Design Integration (Generative Fill, mood boards, brand story development, 3D mockups)"
+    ],
+    highlights: [
+      "HRDS Certificate under Skill India + Lenor Academy Certificate",
+      "Practical project-driven learning across Photoshop, Illustrator, InDesign & Canva",
+      "Deep integration of AI generative tools for rapid concepting and 3D mockups",
+      "Build a polished commercial portfolio ready for design agencies and freelance clients",
+      "Conducted on high-end editing PCs with 1-on-1 mentor guidance",
+      "Placement Assistance with active alumni network job leads"
+    ]
+  },
+  {
+    id: "professional-editing-course",
+    name: "Professional Editing Course",
+    duration: "3 Months",
+    badge: "Photo Retouching & Cinematic Video Post",
+    modulesCount: "Complete Post-Production Suite",
+    description: "From Camera Raw retouching and frequency separation to DaVinci Resolve log color grading, Premiere Pro pacing, and After Effects 3D tracking.",
+    featured: false,
+    price: "₹ 45,000",
+    installments: "Flexible installments & Bajaj Finance EMI available",
+    category: "Diploma",
+    track: "diploma",
+    certification: "HRDS Certificate under Skill India + Lenor Academy Certificate",
+    eligibility: "10th Standard (SSLC)",
+    batchSize: "Dedicated high-end PC per student",
+    softwareCount: "Photoshop, Lightroom, Premiere Pro, DaVinci Resolve, After Effects",
+    modules: [
+      "Module 01: Photo Editing (Photoshop Camera Raw, High Pass, Frequency separation, Lightroom batch tones)",
+      "Module 02: Premiere Pro Editing (Modelling reels, Automotive reels, Commercials, Wedding highlights)",
+      "Module 03: DaVinci Resolve Color Science (Working with log footage, node trees, CST, creative LUTs)",
+      "Module 04: After Effects FX (Speed ramping, trending mask animations, 3D camera & object tracking)",
+      "Module 05: AI Editing Tools (Auto transcription, auto captions, text-based edit, object removal)"
+    ],
+    highlights: [
+      "HRDS Certificate under Skill India + Lenor Academy Certificate",
+      "Not just basic splicing: full professional color grading and 3D tracking motion graphics",
+      "Hands-on training on dedicated high-end editing PCs",
+      "AI-integrated editing tools (automatic captioning, object removal, text-based edit)",
+      "Includes free professional LUTs, presets, and sound assets for personal and commercial work",
+      "Placement Assistance with studio and post-house referrals"
+    ]
+  },
+  {
+    id: "photography-videography-course",
+    name: "Photography & Videography Course",
+    duration: "2 Months",
+    badge: "Foundation & Intermediate Practical",
+    modulesCount: "2 Practical Disciplines",
+    description: "The ideal hands-on sprint for beginners, vacation learners, and creators exploring the field before purchasing cameras. 100% equipment provided by Lenor.",
+    featured: false,
+    price: "₹ 35,000",
+    installments: "Convenient payment options available",
+    category: "Fast-Track",
+    track: "short",
+    certification: "ISO-Qualified Lenor Academy Certificate",
+    eligibility: "8th Standard Pass (No upper age limit)",
+    batchSize: "Small batches · 1 camera per 3–4 students",
+    softwareCount: "Camera handling, Lighting rigs & Gimbal calibration",
+    modules: [
+      "Module 01: Practical Photography (Camera settings, exposure triangle, studio & natural lighting, portraits, product, automotive)",
+      "Module 02: Dynamic Videography (Gimbal mechanical balancing, 4-axis calibration, tracking movements, candid lighting)"
+    ],
+    highlights: [
+      "ISO-Qualified Lenor Academy Certificate with industry credibility",
+      "Zero equipment needed: Practise with Lenor's Sony M3/M4/M5, Nikon Z series, and DJI gimbals",
+      "Build a starter portfolio with real model shoots and automotive sessions",
+      "Explore both photography and videography to determine your ideal creative specialization",
+      "Open to students from 8th standard upwards with no upper age limit",
+      "Seamless foundation to upgrade into 6-month or 1-year programmes"
+    ]
+  },
+  {
+    id: "videography-crash-course",
+    name: "Videography Crash Course",
+    duration: "6 Days",
+    badge: "Exclusive 2–3 Students / Batch",
+    modulesCount: "Hyper-Focused Camera & Gimbal Sprint",
+    description: "Tailored for photographers who already understand exposure and want to master cinematic videography, gimbal balancing, dynamic movement, and audio recording in 6 days.",
+    featured: false,
+    price: "₹ 18,000",
+    installments: "Direct course registration fee",
+    category: "Crash Course",
+    track: "short",
+    certification: "Lenor Academy Certificate",
+    eligibility: "Photographers and creators with basic camera knowledge",
+    batchSize: "Strictly 2–3 students per batch for individual attention",
+    softwareCount: "Camera settings, DJI RS gimbals & Audio rigs",
+    modules: [
+      "Day 1–2: Gimbal Mechanical Balancing, Motor Calibration & Parameter Settings",
+      "Day 3–4: Camera Settings for Video (Frame rates, shutter rule, profiles) & Dynamic Lighting",
+      "Day 5: Clean Audio Recording & Lavalier/Shotgun mic setups",
+      "Day 6: Full-Day Practical Production Shoot with mentor feedback"
+    ],
+    highlights: [
+      "Ultra-exclusive micro batch of only 2 to 3 students for maximum hands-on time",
+      "Designed specifically for photographers looking to immediately offer video services",
+      "Gimbal calibration, whip pans, parallax tracking, and forward push movements",
+      "Schedule: Monday to Friday 2:30 PM – 5:30 PM + Saturday Full-Day shoot",
+      "Gain real confidence conducting professional commercial and wedding video shoots"
+    ]
+  },
+  {
+    id: "drone-course",
+    name: "Drone Operations & Aerial Cinematography",
+    duration: "5 Days",
+    badge: "Theory · Simulator Lab · Live Flight",
+    modulesCount: "3-Stage Flight Training",
+    description: "A complete 5-day aerial program progressing from flight mechanics and safety regulations to dedicated simulator drills and live flight with DJI Mini 5 Pro & DJI Neo 2.",
+    featured: false,
+    price: "₹ 15,000",
+    installments: "Direct course registration fee",
+    category: "Crash Course",
+    track: "short",
+    certification: "Lenor Academy Certificate (DGCA licensing curriculum in progress)",
+    eligibility: "Open to all aspiring drone pilots and visual creators",
+    batchSize: "Small batch flight groups",
+    softwareCount: "Drone Simulator Lab + DJI Mini 5 Pro & DJI Neo 2",
+    modules: [
+      "Stage 01: Drone Theory (Airspace safety, aerodynamics, DGCA regulations, weather calculations)",
+      "Stage 02: Dedicated Drone Simulator Lab (Virtual flight maneuvers, obstacle handling, muscle memory)",
+      "Stage 03: Live Outdoor Flying (DJI Mini 5 Pro & DJI Neo 2 hands-on flight practice)",
+      "Stage 04: Aerial Cinematography (Parallax orbits, top-down reveals, cinematic gimbal tilts)"
+    ],
+    highlights: [
+      "Dedicated Drone Simulator Lab to master controls before touching real aircraft",
+      "Hands-on flying experience on modern DJI Mini 5 Pro and DJI Neo 2 drones",
+      "Learn commercial aerial composition, reveal shots, and subject tracking",
+      "Preparation for high-paying real estate, wedding, and commercial aerial jobs",
+      "Licensing roadmap: DGCA license integration currently in progress over next 5–6 months"
     ]
   }
 ];
@@ -723,5 +1041,101 @@ export const JOB_OPENINGS: JobOpening[] = [
       "Warm, empathetic counselling manner with genuine interest in media careers",
       "Basic understanding of creative industries and media workflows"
     ]
+  }
+];
+
+// --------------------------------------------------------------------
+// FREQUENTLY ASKED QUESTIONS (OFFICIAL LENOR ACADEMY FAQ)
+// --------------------------------------------------------------------
+export const FAQS: FAQItem[] = [
+  {
+    id: "faq-location",
+    category: "Campuses & Travel",
+    question: "Where is Lenor Academy located?",
+    answer: "Lenor Academy has two main branches: Makkaraparamba, Malappuram, and Madavanna, Ernakulam (Kochi). At our Makkaraparamba branch, training takes place across three specialized campuses: South Campus (air-conditioned lecture classrooms, high-end editing labs, and Product Lab), North Campus (dedicated creative labs for video editing and graphic designing), and Studio Campus (commercial lighting stage, dedicated Film Screening Theatre for student project reviews, and Drone Simulator Lab). In addition, we have a natural outdoor property/hut setup nearby for natural-light photography and outdoor shoots. All classrooms are air-conditioned with Wi-Fi."
+  },
+  {
+    id: "faq-equipment",
+    category: "Equipment & Labs",
+    question: "Do we have to bring our own equipment when we come to study?",
+    answer: "No. The Academy provides all the cameras, cinema rigs, gimbals, editing PCs, drones, and studio equipment required for training. You do not need to buy expensive cameras or computers. You only need to bring three personal essentials: 1) A high-speed SSD or external hard drive (to back up and store your project files and raw footage), 2) Reusable handling gloves (to protect precision camera bodies and lenses from hand sweat during long shoots), and 3) A personal wired headset (for personal hygiene during 2–3 hour editing lab sessions)."
+  },
+  {
+    id: "faq-companies",
+    category: "Placement & Career",
+    question: "Which companies offer placement opportunities?",
+    answer: "Opportunities exist across multiple industries, including advertising agencies, film and media production houses, digital marketing firms, wedding and event cinema companies, and e-commerce brands. In our 6-month and 1-year programmes, students learn end-to-end skills (shooting, editing, drone, and design), making them uniquely valuable to employers. We connect students with job opportunities within Kerala and across Gulf regions such as Dubai and Saudi Arabia."
+  },
+  {
+    id: "faq-online",
+    category: "Courses & Eligibility",
+    question: "Are online classes available?",
+    answer: "All our courses are strictly conducted offline with an 80% practical hands-on approach. Photography, videography, and post-production cannot be learned through theory alone. Students need to hold cameras, experiment with lighting, fly drones, balance gimbals, and edit on professional workstations under the live guidance of experienced mentors. This practical rigor ensures students graduate with real industry confidence."
+  },
+  {
+    id: "faq-railway",
+    category: "Campuses & Travel",
+    question: "Which is the nearest railway station, and how can I reach the Academy?",
+    answer: "Angadippuram Railway Station is the nearest station (approximately 10–15 km away; direct buses are readily available from Angadippuram to Makkaraparamba). Alternatively, students travelling long distances often prefer Tirur Railway Station, which has frequent express train connectivity from across India; from Tirur, you can take a direct bus to Makkaraparamba."
+  },
+  {
+    id: "faq-fee-emi",
+    category: "Fees & EMI",
+    question: "Can I pay the course fee in installments, and is EMI available?",
+    answer: "Yes. We maintain a structured installment schedule for our courses. In addition, we offer a dedicated Bajaj Finance Easy EMI facility. When you express interest in EMI, our team connects you directly with the Bajaj Finance representatives who guide you through convenient monthly payment options."
+  },
+  {
+    id: "faq-certificates",
+    category: "Courses & Eligibility",
+    question: "What certificate will I receive, and what is its value?",
+    answer: "Certification depends on your chosen course: Students completing the 1-Year Media Master Programme or 6-Month programmes receive a Media & Entertainment Skills Council (MESC) Certificate under NSDC, along with the official Lenor Academy Certificate, plus an Internship & Experience Certificate. Students completing 3-Month courses (Graphic Designing or Editing) receive an HRDS Certificate under Skill India along with the Academy Certificate. Students completing the 2-Month course receive an ISO-Qualified Lenor Academy Certificate. Beyond certificates, our core focus is ensuring every student builds an undeniable, industry-grade portfolio."
+  },
+  {
+    id: "faq-salary",
+    category: "Placement & Career",
+    question: "How much salary can I expect after completing the course?",
+    answer: "In visual media, salaries are directly tied to your skill set, output quality, and portfolio. Generally, starter salaries in this field range from ₹15,000 to ₹80,000+ per month. Some students start in the ₹10,000–₹15,000 bracket, while exceptional graduates with standout portfolios have started at ₹80,000 per month right after graduation. In job interviews, recruiters prioritize actual work, photos, video reels, and practical execution over certificates alone."
+  },
+  {
+    id: "faq-stay-food",
+    category: "Hostel & Food",
+    question: "What are the accommodation and food facilities?",
+    answer: "At our Malappuram branch, we manage around 10 stay facilities (~9 for boys and 1 dedicated ladies' hostel with resident warden within walking distance). Over 200 students currently stay in these accommodations, which feature Wi-Fi, 24/7 water, and fully equipped kitchens. Affordable dining is available nearby, including Kudumbashree hotels from ₹40, local Kerala meals, biriyani, and mandi. We also provide a 1-week refund policy if you choose to move to an outside private room. For our Ernakulam branch, we provide verified contacts for nearby PGs and hostels in town."
+  },
+  {
+    id: "faq-placement-assistance",
+    category: "Placement & Career",
+    question: "What exactly is Placement Assistance?",
+    answer: "We run an active Lenor Alumni WhatsApp Group connecting past and current batches. We receive 5 to 6 verified hiring enquiries daily from production houses, ad agencies, and studios across Kerala, Bangalore, Dubai, and Saudi Arabia. We share hiring posters, vacancy requirements, and direct company contact details so students can send their CVs and portfolios directly to employers. For our 1-Year Media Master Programme (Plus Two holders), we provide 100% Placement Assurance within 6 months of graduation."
+  },
+  {
+    id: "faq-eligibility",
+    category: "Courses & Eligibility",
+    question: "What are the educational qualification requirements?",
+    answer: "For the 2-Month Course, students who have passed 8th standard are eligible. For the 3-Month and 6-Month courses, 10th standard (SSLC) is required. For the 1-Year Media Master Programme, Plus Two is required for 100% Placement Assurance. However, 10th-pass students can also join the 1-Year Programme and receive complete practical training, graduating with Placement Assistance rather than Placement Assurance."
+  },
+  {
+    id: "faq-age-limit",
+    category: "Courses & Eligibility",
+    question: "Is there an age limit to join?",
+    answer: "There is no upper age limit. We value passion, curiosity, and willingness to learn above age. We have had students aged 14–16 join our 2-Month foundation courses, as well as professionals above 40 complete our 6-Month programmes. Anyone with an interest in visual storytelling is welcome."
+  },
+  {
+    id: "faq-ai-integration",
+    category: "Equipment & Labs",
+    question: "What does AI Integration in the curriculum mean?",
+    answer: "AI Integration does not mean isolated theory; it teaches students how to practically harness modern AI tools in their daily creative workflow. In video editing, students learn automatic transcription, AI captions, text-based editing, scene generation, and object removal. In graphic design and Photoshop, students learn Generative Fill, AI mood boarding, brand concepting, and 3D mockups. This makes our graduates faster, more agile, and future-proof."
+  },
+  {
+    id: "faq-drone-licence",
+    category: "Equipment & Labs",
+    question: "Will I get a drone flying licence after completing the Drone Course?",
+    answer: "Currently, our Drone Course focuses on Drone Theory, Simulator Training, Live Flight Practice, and Aerial Cinematography. We are actively working on official DGCA remote pilot licensing integration, expected within the next 5–6 months. We will announce licensing certification once official procedures are finalized."
+  },
+  {
+    id: "faq-seat-booking",
+    category: "Courses & Eligibility",
+    question: "How does seat booking work, and why are seats limited?",
+    answer: "We strictly cap batch sizes to approximately 28–30 students. This ensures optimal equipment access: roughly 1 camera for every 3–4 students during shoots, and 1 dedicated high-end PC per student during editing sessions. Because equipment ratios are strictly maintained, seats fill up quickly. Advance seat booking guarantees your slot in the upcoming batch."
   }
 ];

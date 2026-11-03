@@ -30,16 +30,29 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBrochure, onOpenEnrol }) =
               We cultivate the next generation of creative visionaries and skilled multimedia professionals in visual arts, cinematography, and post-production.
             </p>
 
-            <div className="flex flex-col gap-2 text-xs text-[#b5b5b5] pt-1">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-white shrink-0" />
-                <span>{ACADEMY_INFO.address}</span>
+            <div className="flex flex-col gap-2.5 text-xs text-[#b5b5b5] pt-1">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-white shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-white block">Makkaraparamba Branch:</strong>
+                  <span>CP Building, Makkaraparamba, Malappuram (North, South, Studio Campuses & Theatre)</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-white shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-white block">Ernakulam Branch:</strong>
+                  <span>Madavanna, Ernakulam (Kochi), Kerala</span>
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-white shrink-0" />
                 <a href={`tel:${ACADEMY_INFO.phone}`} className="hover:text-white transition-colors">
                   {ACADEMY_INFO.phone}
                 </a>
+              </div>
+              <div className="text-[11px] text-[#8a8a8a] pt-1">
+                🚆 Nearest Stations: Angadippuram (10-15 km) · Tirur Railway Hub
               </div>
             </div>
 
@@ -75,18 +88,23 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBrochure, onOpenEnrol }) =
                 </Link>
               </li>
               <li>
-                <Link to="/#journey" className="text-[#a9a9a9] hover:text-white transition-colors block">
-                  Photography Masterclass
+                <Link to="/#programmes" className="text-[#a9a9a9] hover:text-white transition-colors block">
+                  Design & Editing (6 Months)
                 </Link>
               </li>
               <li>
-                <Link to="/#journey" className="text-[#a9a9a9] hover:text-white transition-colors block">
-                  Cinematography & Gimbals
+                <Link to="/#programmes" className="text-[#a9a9a9] hover:text-white transition-colors block">
+                  Graphic Designing (3 Months)
                 </Link>
               </li>
               <li>
-                <Link to="/#journey" className="text-[#a9a9a9] hover:text-white transition-colors block">
-                  DaVinci Resolve & Premiere
+                <Link to="/#programmes" className="text-[#a9a9a9] hover:text-white transition-colors block">
+                  Professional Editing (3 Months)
+                </Link>
+              </li>
+              <li>
+                <Link to="/#programmes" className="text-[#a9a9a9] hover:text-white transition-colors block">
+                  Drone Course (5 Days)
                 </Link>
               </li>
             </ul>
@@ -98,7 +116,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBrochure, onOpenEnrol }) =
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link to="/placement" className="text-[#a9a9a9] hover:text-white transition-colors block">
-                  Placement Records
+                  Placement & Career
+                </Link>
+              </li>
+              <li>
+                <Link to="/#faqs" className="text-[#a9a9a9] hover:text-white transition-colors block">
+                  Frequently Asked Questions
                 </Link>
               </li>
               <li>
@@ -162,7 +185,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBrochure, onOpenEnrol }) =
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#707070]">
           <div>
-            © {new Date().getFullYear()} {ACADEMY_INFO.name}. All rights reserved. Registered Educational Institute.
+            © {new Date().getFullYear()} {ACADEMY_INFO.name}. All rights reserved. MESC (NSDC) & Skill India HRDS Affiliated · ISO Qualified.
           </div>
           <div className="flex items-center gap-6">
             <span className="text-[#999] tracking-wider uppercase font-semibold">

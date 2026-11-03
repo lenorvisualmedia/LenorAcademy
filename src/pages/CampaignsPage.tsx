@@ -63,7 +63,7 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
             </h2>
 
             <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed mb-8 max-w-md">
-              Two programmes, one academy. Choose the one-year Media Master or the six-month Visual Media Production.
+              8 specialized programmes, one academy. From our flagship 1-year Media Master to intensive 6-month, 3-month diplomas and 5-day crash courses.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -94,8 +94,12 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
             {[
               'Media Master Programme · 1 Year',
               'Visual Media Production · 6 Months',
-              'Media Master Programme · 1 Year',
-              'Visual Media Production · 6 Months'
+              'Media Designing & Editing · 6 Months',
+              'Diploma in Graphic Designing · 3 Months',
+              'Professional Editing Course · 3 Months',
+              'Photography & Videography · 2 Months',
+              'Videography Crash Course · 6 Days',
+              'Drone Course · 5 Days'
             ].map((item, idx) => (
               <React.Fragment key={idx}>
                 <span className="text-xs font-extrabold tracking-widest uppercase text-neutral-400">

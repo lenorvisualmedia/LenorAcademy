@@ -30,8 +30,8 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const touchStartYRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
 
-  // Full high-quality 60fps video across all viewports
-  const videoSrc = '/hero-scroll-60fps.mp4';
+  // Full high-quality video provided by client
+  const videoSrc = '/Hero-scroll.mp4';
 
   useEffect(() => {
     const video = videoRef.current;

@@ -29,3 +29,4 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 };
 
 export default AboutPage;
+

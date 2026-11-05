@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import { HeroVideoShowcase } from '../components/HeroVideoShowcase';
+import { AboutUsSection } from '../components/AboutUsSection';
 import { AnimatedContent } from '../components/AnimatedContent';
 import { StudentHoloCard } from '../components/StudentHoloCard';
 import { ScrollJourney } from '../components/ScrollJourney';
@@ -63,37 +64,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
             : 'opacity-0 pointer-events-none h-0 overflow-hidden'
         }`}
       >
-        {/* LEAD MISSION STATEMENT */}
-      <section className="px-4 sm:px-12 py-10 sm:py-16">
-        <AnimatedContent
-          distance={50}
-          duration={0.8}
-          blur={4}
-          threshold={0.15}
-          once={false}
-        >
-          <div className="max-w-5xl">
-            <div className="eye text-[#8a8a8a] mb-4">About us · Makkaraparamba & Ernakulam</div>
-            <p className="lead font-light text-neutral-100 leading-tight">
-              We cultivate the next generation of creative visionaries and skilled multimedia professionals. A beacon of excellence in visual arts education, for aspiring photographers, videographers and editors.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-semibold text-neutral-400">
-              <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-neutral-200">
-                📍 Makkaraparamba, Malappuram (North, South & Studio Campuses)
-              </span>
-              <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-neutral-200">
-                📍 Madavanna, Ernakulam Branch
-              </span>
-              <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-neutral-200">
-                🎬 Film Review Theatre & Drone Simulator Lab
-              </span>
-              <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-neutral-200">
-                ✨ 80% Live Practical Drills (Zero Equipment Fee)
-              </span>
-            </div>
-          </div>
-        </AnimatedContent>
-      </section>
+        {/* ABOUT LENOR ACADEMY (FULL OFFICIAL OVERVIEW, FOUNDERS, WHY CHOOSE US, FACILITIES & COURSES) */}
+        <AboutUsSection
+          onOpenEnrol={onOpenEnrol}
+          onOpenBrochure={onOpenBrochure}
+        />
 
       {/* IMMERSIVE SCROLL-DRIVEN STORYTELLING & ACADEMY SHOWCASE
           1. Center Image Reveal (React Bits ScrollExpand Component) with "LET PASSION DRIVE YOUR PROFESSION"

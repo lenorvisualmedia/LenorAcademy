@@ -28,6 +28,7 @@ pnpm-debug.log*
 *.zip
 *.pdf.txt
 *.tmp
+*.jpeg
 extracted/
 Lenor academy.mp4
 Contemplative Desk Beneath the Stars.png

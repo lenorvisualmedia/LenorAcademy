@@ -232,11 +232,46 @@ export const ACADEMY_INFO = {
   },
   stats: {
     studentsPlaced: "500+",
+    studentsTrained: "3,000+",
+    activeStudents: "525+",
+    facultyCount: "50+",
+    computersCount: "180+",
+    mirrorlessCamerasCount: "70+",
+    establishedYear: "2018",
+    keralaRankTitle: "Kerala’s Only Institute with 525+ Active Photography Students",
     hiringPartners: "45+",
     placementRate: "100%",
     practicalRatio: "80%",
     dailyEnquiries: "5–6 daily hiring calls in Alumni Network"
-  }
+  },
+  vision: "To become a leading institution in visual media education by empowering aspiring creators with professional knowledge, creative skills, modern technology and industry experience.",
+  mission: "To transform creative passion into professional careers through quality education, practical training and modern infrastructure.",
+  founders: [
+    {
+      name: "Faisal Babu K.",
+      role: "Founder, Managing Director & CEO",
+      badge: "Indian Army Veteran & Entrepreneur",
+      bio: "An Indian Army veteran and entrepreneur, Faisal Babu K. is the driving force behind Lenor Academy's strategic vision and institutional development. With a strong commitment to excellence in creative media education, he oversees the academy's operations, academic development, and long-term expansion.",
+      focus: "His leadership is focused on bridging the gap between education and industry through practical, career-oriented training, while building Lenor Academy into a recognized institution for creative media education across India."
+    },
+    {
+      name: "Farshan K.",
+      role: "Co-Founder & Director – Marketing & Growth",
+      badge: "BMMC Graduate · Digital Content Creator",
+      bio: "Farshan K. holds a Bachelor's degree in Multimedia Communication (BMMC) and brings a strong creative background in digital media, content production, and brand development.",
+      experience: "As a digital content creator associated with Lenor Weddings and Lenor Entertainment, he has gained valuable experience in digital storytelling, audience engagement, and creative media production.",
+      focus: "At Lenor Academy, he spearheads marketing, brand development, student outreach, and growth initiatives. His combination of creative expertise and business insight contributes to strengthening the academy's presence and connecting aspiring media professionals with industry-focused education."
+    }
+  ],
+  officialCourses: [
+    { id: "mmp", name: "MMP – Media Master Programme", duration: "12 Months" },
+    { id: "vmp", name: "VMP – Visual Media Production", duration: "6 Months" },
+    { id: "mdep", name: "Media Design & Editing Professional", duration: "6 Months" },
+    { id: "egdc", name: "Editing & Graphic Designing Course", duration: "3 Months" },
+    { id: "photo", name: "Photography Course", duration: "2 Months" },
+    { id: "video", name: "Videography Course", duration: "6 Days" },
+    { id: "drone", name: "Drone Course", duration: "5 Days" }
+  ]
 };
 
 // --------------------------------------------------------------------

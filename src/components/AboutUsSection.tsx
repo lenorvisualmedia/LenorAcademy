@@ -35,7 +35,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   const [selectedImage, setSelectedImage] = useState<ImageLightboxData | null>(null);
 
   return (
-    <div id="about" className="relative w-full bg-[#0d0d0d] text-white selection:bg-white selection:text-black">
+    <div id="about" className="relative w-full bg-black text-white selection:bg-white selection:text-black">
       {/* =========================================================================
           SECTION 1: HERO OVERVIEW CARD
           ========================================================================= */}

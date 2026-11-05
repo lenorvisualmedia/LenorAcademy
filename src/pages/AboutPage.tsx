@@ -12,7 +12,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onOpenBrochure 
 }) => {
   return (
-    <div className="space-y-16 sm:space-y-24">
+    <div className="w-full bg-black space-y-16 sm:space-y-24">
       {/* Full Dedicated About Us Implementation from Design Mockup */}
       <AboutUsSection 
         onOpenEnrol={onOpenEnrol} 

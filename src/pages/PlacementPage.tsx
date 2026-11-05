@@ -1,10 +1,30 @@
 import React, { useState } from 'react';
-import { Briefcase, ShieldCheck, Globe, Award, TrendingUp, CheckCircle2, Laptop } from 'lucide-react';
+import { Briefcase, ShieldCheck, Globe, Award, TrendingUp, CheckCircle2, Laptop, Maximize2 } from 'lucide-react';
 import { PLACED_STUDENTS, HIRING_PARTNERS, ACADEMY_INFO } from '../data/academyData';
 import { AnimatedContent } from '../components/AnimatedContent';
 import { StudentHoloCard } from '../components/StudentHoloCard';
 import { PillButton } from '../components/PillButton';
 import { InvestmentSection } from '../components/InvestmentSection';
+import { CertificateModal, CertificateData } from '../components/CertificateModal';
+
+const CERTIFICATES: CertificateData[] = [
+  {
+    title: 'MESC & NSDC Skill India Accredited Certificate',
+    subtitle: 'Media & Entertainment Skills Council under National Skill Development Corporation',
+    issuer: 'Media & Entertainment Skills Council (MESC) · Skill India · NSDC',
+    signatory: 'Dr. Shankar Mahadevan (Chairman, MESC)',
+    badge: 'Government Accredited',
+    image: '/assets/mesc-nsdc-certificate.jpg'
+  },
+  {
+    title: 'ISO 9001:2015 & HRDS Skill India Certificate',
+    subtitle: 'Human Resources Development Society & ISO 9001:2015 Certified Institute',
+    issuer: 'Lenor Academy · HRDS · Skill India',
+    signatory: 'Sisir Ghosh P (Academic Director, Lenor Academy)',
+    badge: 'ISO 9001:2015 Certified',
+    image: '/assets/iso-hrds-certificate.jpg'
+  }
+];
 
 interface PlacementPageProps {
   onOpenEnrol: () => void;
@@ -13,6 +33,7 @@ interface PlacementPageProps {
 
 export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpenBrochure }) => {
   const [activeFilter, setActiveFilter] = useState<'All' | 'Photography' | 'Videography' | 'Editing' | 'Design'>('All');
+  const [selectedCert, setSelectedCert] = useState<CertificateData | null>(null);
 
   const filteredStudents = activeFilter === 'All'
     ? PLACED_STUDENTS
@@ -318,6 +339,67 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
         </section>
       </AnimatedContent>
 
+      {/* GOVERNMENT ACCREDITATION & CERTIFICATION SHOWCASE */}
+      <AnimatedContent distance={40} duration={0.8} threshold={0.1}>
+        <section className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-10 text-white">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-neutral-800">
+            <div>
+              <div className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-amber-300">
+                Official Accreditations &amp; Credentials
+              </div>
+              <h2 className="h1 text-2xl sm:text-4xl text-white font-black tracking-tight mt-1">
+                Government Recognized Certifications
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm text-neutral-400 font-light max-w-md leading-relaxed">
+              Lenor graduates receive nationally recognized qualifications accredited under MESC, NSDC, Skill India, and ISO 9001:2015 standards.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            {CERTIFICATES.map((cert, i) => (
+              <div
+                key={i}
+                onClick={() => setSelectedCert(cert)}
+                className="group p-5 rounded-2xl bg-neutral-950 border border-neutral-800 hover:border-amber-400/50 transition-all cursor-pointer flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-[11px] font-mono font-bold uppercase">
+                      {cert.badge}
+                    </span>
+                    <span className="text-xs text-neutral-400 font-mono flex items-center gap-1 group-hover:text-amber-300 transition-colors">
+                      <Maximize2 className="w-3.5 h-3.5" />
+                      <span>Click to view</span>
+                    </span>
+                  </div>
+                  <h3 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors">
+                    {cert.title}
+                  </h3>
+                  <p className="text-xs text-neutral-400 mt-1 line-clamp-2">
+                    {cert.subtitle}
+                  </p>
+                </div>
+
+                <div className="mt-4 rounded-xl overflow-hidden aspect-[16/11] bg-black border border-white/5 relative">
+                  <img
+                    src={cert.image}
+                    alt={cert.title}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                    <span className="text-[11px] font-mono text-neutral-300">
+                      Signed by: {cert.signatory}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </AnimatedContent>
+
       {/* CTA FOR STUDIOS / AGENCIES */}
       <AnimatedContent
         distance={50}
@@ -362,6 +444,12 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
       <InvestmentSection
         onOpenEnrol={onOpenEnrol}
         onOpenBrochure={onOpenBrochure}
+      />
+
+      {/* Lightbox Modal for Certificate Zoom Inspection */}
+      <CertificateModal
+        certificate={selectedCert}
+        onClose={() => setSelectedCert(null)}
       />
     </div>
   );

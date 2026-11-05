@@ -1,491 +1,480 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
+  ArrowLeft, 
+  ArrowRight, 
   Award, 
-  CheckCircle2, 
-  Users, 
-  Monitor, 
-  Camera, 
-  Building2, 
-  BookOpen, 
-  Sparkles, 
   ShieldCheck, 
-  Briefcase, 
   Compass, 
   Target, 
-  Film, 
-  Wind, 
-  Airplay, 
-  MapPin, 
-  ArrowRight,
-  UserCheck
+  Users, 
+  Maximize2,
+  FileCheck
 } from 'lucide-react';
 import { AnimatedContent } from './AnimatedContent';
-import { PillButton } from './PillButton';
+import { CertificateModal, CertificateData } from './CertificateModal';
 
 interface AboutUsSectionProps {
   onOpenEnrol?: (programId?: string) => void;
   onOpenBrochure?: () => void;
 }
 
+const CERTIFICATES: CertificateData[] = [
+  {
+    title: 'MESC & NSDC Skill India Accredited Certificate',
+    subtitle: 'Media & Entertainment Skills Council under National Skill Development Corporation',
+    issuer: 'Media & Entertainment Skills Council (MESC) · Skill India · NSDC',
+    signatory: 'Dr. Shankar Mahadevan (Chairman, MESC)',
+    badge: 'Government Accredited',
+    image: '/assets/mesc-nsdc-certificate.jpg'
+  },
+  {
+    title: 'ISO 9001:2015 & HRDS Skill India Certificate',
+    subtitle: 'Human Resources Development Society & ISO 9001:2015 Certified Institute',
+    issuer: 'Lenor Academy · HRDS · Skill India',
+    signatory: 'Sisir Ghosh P (Academic Director, Lenor Academy)',
+    badge: 'ISO 9001:2015 Certified',
+    image: '/assets/iso-hrds-certificate.jpg'
+  }
+];
+
 export const AboutUsSection: React.FC<AboutUsSectionProps> = ({ 
   onOpenEnrol, 
   onOpenBrochure 
 }) => {
-  return (
-    <section id="about-us" className="relative w-full bg-black text-white px-4 sm:px-8 lg:px-12 py-12 sm:py-20">
-      <AnimatedContent distance={40} duration={0.8} threshold={0.1} once={false}>
-        {/* =========================================================================
-            HEADER & KERALA RECORD BADGE
-            ========================================================================= */}
-        <div className="max-w-5xl mx-auto text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-semibold tracking-wide shadow-[0_0_20px_rgba(245,158,11,0.15)]">
-            <span className="text-base sm:text-lg">🏆</span>
-            <span>Kerala’s Only Institute with 525+ Active Photography Students</span>
-          </div>
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [selectedCert, setSelectedCert] = useState<CertificateData | null>(null);
 
-          <div className="space-y-2">
-            <span className="text-xs font-mono font-bold tracking-[0.25em] uppercase text-neutral-400 block">
-              About Lenor Academy · Est. 2018
+  const slides = [
+    {
+      id: 'story',
+      num: '01/05',
+      tabLabel: 'Story & Legacy',
+      category: 'ABOUT LENOR ACADEMY · EST. 2018',
+      badge: '🏆 Kerala’s Only Institute with 525+ Active Students',
+      title: 'Turning Creative Passion Into Careers',
+      renderContent: () => (
+        <div className="space-y-4 text-neutral-300 font-light text-sm sm:text-base leading-relaxed">
+          <p>
+            <strong className="text-white font-medium">Lenor Academy</strong> is a professional Visual Media Training Institute established in 2018, located in <span className="text-white">Makkaraparamba, Malappuram, Kerala</span>, with an additional branch in <span className="text-white">Kochi</span>.
+          </p>
+          <p className="text-neutral-400 text-xs sm:text-sm">
+            We offer professional education and hands-on training in Photography, Videography, Cinematography, Video Editing, Photo Editing, Graphic Designing, Drone Operations and other creative media disciplines.
+          </p>
+          <p className="text-neutral-300 text-xs sm:text-sm">
+            With <span className="text-white font-bold">3,000+ students trained</span> and <span className="text-white font-bold">525+ students currently enrolled</span>, Lenor Academy has grown into one of Kerala’s leading institutions for visual media education. Our goal is to turn creative passion into professional skills and successful careers.
+          </p>
+
+          <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
+            <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-200">
+              Est. 2018
             </span>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-[1.05]">
-              Turning Creative Passion Into Professional Careers
-            </h2>
-          </div>
-
-          <div className="space-y-4 max-w-4xl mx-auto text-neutral-300 font-light text-base sm:text-lg leading-relaxed pt-2">
-            <p>
-              <strong className="text-white font-medium">Lenor Academy</strong> is a professional Visual Media Training Institute established in 2018, located in <span className="text-white">Makkaraparamba, Malappuram, Kerala</span>, with an additional branch in <span className="text-white">Kochi</span>.
-            </p>
-            <p className="text-neutral-400 text-sm sm:text-base">
-              We offer professional education and hands-on training in Photography, Videography, Cinematography, Video Editing, Photo Editing, Graphic Designing, Drone Operations and other creative media disciplines.
-            </p>
-            <p className="text-neutral-300 text-sm sm:text-base">
-              With <span className="text-white font-bold">3,000+ students trained</span> and <span className="text-white font-bold">525+ students currently enrolled</span>, Lenor Academy has grown into one of Kerala’s leading institutions for visual media education. Our goal is to turn creative passion into professional skills and successful careers.
-            </p>
+            <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-200">
+              3,000+ Alumni
+            </span>
+            <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300">
+              525+ Active Students
+            </span>
+            <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-200">
+              Malappuram &amp; Kochi
+            </span>
           </div>
         </div>
-
-        {/* =========================================================================
-            WHY CHOOSE LENOR ACADEMY? (KEY FAST FACTS GRID)
-            ========================================================================= */}
-        <div className="mt-14 sm:mt-20">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-white/10">
-            <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-                Excellence In Numbers
+      ),
+      image: '/assets/430e290e-ef97-4964-a65b-a23923adad3f.webp',
+      imageAlt: 'Lenor Academy Makkaraparamba Campus',
+      caption: 'Makkaraparamba Campus · 3 Specialized Branches + Kochi'
+    },
+    {
+      id: 'founders',
+      num: '02/05',
+      tabLabel: 'Founders',
+      category: 'LEADERSHIP & VISION',
+      title: 'Meet The Founders',
+      renderContent: () => (
+        <div className="space-y-4 text-xs sm:text-sm font-light">
+          {/* Faisal Babu K. */}
+          <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1.5">
+            <div className="flex items-center justify-between gap-2">
+              <h4 className="text-sm sm:text-base font-bold text-white uppercase">
+                Faisal Babu K.
+              </h4>
+              <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 text-[10px] font-mono">
+                Army Veteran
               </span>
-              <h3 className="text-2xl sm:text-3xl font-black uppercase text-white mt-1">
-                Why Choose Lenor Academy?
-              </h3>
             </div>
-            <div className="text-xs text-neutral-400 font-mono">
-              Makkaraparamba &amp; Kochi
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-            {[
-              { label: 'Established', value: '2018', sub: '6+ Years Experience' },
-              { label: 'Students Trained', value: '3,000+', sub: 'Graduated Alumni' },
-              { label: 'Active Students', value: '525+', sub: "Kerala's #1 Cohort" },
-              { label: 'Faculty Members', value: '50+', sub: 'Industry Professionals' },
-              { label: 'Computer Lab', value: '180+', sub: 'Dedicated Workstations' },
-              { label: 'Mirrorless Cameras', value: '70+', sub: 'Sony & Nikon Rigs' },
-              { label: 'Placement Support', value: '100%', sub: 'Guaranteed on 1-Yr MMP' },
-              { label: 'Campus Locations', value: '2 Hubs', sub: 'Malappuram & Kochi' },
-            ].map((fact, i) => (
-              <div 
-                key={i} 
-                className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/30 transition-all duration-300 group"
-              >
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white group-hover:scale-105 transition-transform duration-300 origin-left">
-                  {fact.value}
-                </div>
-                <div className="text-xs sm:text-sm font-semibold text-neutral-200 mt-1">
-                  {fact.label}
-                </div>
-                <div className="text-[11px] text-neutral-500 font-mono mt-0.5">
-                  {fact.sub}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* =========================================================================
-            FOUNDERS SHOWCASE
-            ========================================================================= */}
-        <div className="mt-16 sm:mt-24">
-          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-              Leadership
-            </span>
-            <h3 className="text-3xl sm:text-4xl font-black uppercase text-white mt-1">
-              Meet The Founders
-            </h3>
-            <p className="text-sm text-neutral-400 mt-2 font-light">
-              Guiding Lenor Academy’s strategic vision, academic rigor, and creative excellence.
+            <p className="text-[11px] font-mono text-neutral-400">
+              Founder, Managing Director &amp; CEO
+            </p>
+            <p className="text-neutral-300 leading-relaxed text-xs">
+              An Indian Army veteran and entrepreneur, Faisal Babu K. is the driving force behind Lenor Academy&apos;s strategic vision and institutional development. He oversees operations, academic rigor, and nationwide expansion with a focus on bridging education with industry.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
-            {/* Faisal Babu K. */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/15 relative overflow-hidden group hover:border-white/30 transition-all duration-300 shadow-xl">
-              <div className="flex items-start justify-between gap-4 mb-4">
-                <div>
-                  <h4 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
-                    Faisal Babu K.
-                  </h4>
-                  <p className="text-xs sm:text-sm font-mono font-medium text-amber-300 mt-0.5">
-                    Founder, Managing Director &amp; CEO
-                  </p>
-                </div>
-                <span className="px-3 py-1 rounded-full bg-white/10 text-[11px] font-mono text-neutral-300 shrink-0">
-                  Indian Army Veteran
-                </span>
-              </div>
-
-              <div className="space-y-3 text-neutral-300 text-xs sm:text-sm font-light leading-relaxed">
-                <p>
-                  An Indian Army veteran and entrepreneur, Faisal Babu K. is the driving force behind Lenor Academy&apos;s strategic vision and institutional development. With a strong commitment to excellence in creative media education, he oversees the academy&apos;s operations, academic development, and long-term expansion.
-                </p>
-                <p className="text-neutral-400 pt-1 border-t border-white/10">
-                  His leadership is focused on bridging the gap between education and industry through practical, career-oriented training, while building Lenor Academy into a recognized institution for creative media education across India.
-                </p>
-              </div>
+          {/* Farshan K. */}
+          <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1.5">
+            <div className="flex items-center justify-between gap-2">
+              <h4 className="text-sm sm:text-base font-bold text-white uppercase">
+                Farshan K.
+              </h4>
+              <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-neutral-300 text-[10px] font-mono">
+                BMMC Graduate
+              </span>
             </div>
-
-            {/* Farshan K. */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/15 relative overflow-hidden group hover:border-white/30 transition-all duration-300 shadow-xl">
-              <div className="flex items-start justify-between gap-4 mb-4">
-                <div>
-                  <h4 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
-                    Farshan K.
-                  </h4>
-                  <p className="text-xs sm:text-sm font-mono font-medium text-amber-300 mt-0.5">
-                    Co-Founder &amp; Director – Marketing &amp; Growth
-                  </p>
-                </div>
-                <span className="px-3 py-1 rounded-full bg-white/10 text-[11px] font-mono text-neutral-300 shrink-0">
-                  BMMC Graduate
-                </span>
-              </div>
-
-              <div className="space-y-3 text-neutral-300 text-xs sm:text-sm font-light leading-relaxed">
-                <p>
-                  Farshan K. holds a Bachelor&apos;s degree in Multimedia Communication (BMMC) and brings a strong creative background in digital media, content production, and brand development.
-                </p>
-                <p>
-                  As a digital content creator associated with Lenor Weddings and Lenor Entertainment, he has gained valuable experience in digital storytelling, audience engagement, and creative media production.
-                </p>
-                <p className="text-neutral-400 pt-1 border-t border-white/10">
-                  At Lenor Academy, he spearheads marketing, brand development, student outreach, and growth initiatives, connecting aspiring media professionals with industry-focused education.
-                </p>
-              </div>
-            </div>
+            <p className="text-[11px] font-mono text-neutral-400">
+              Co-Founder &amp; Director – Marketing &amp; Growth
+            </p>
+            <p className="text-neutral-300 leading-relaxed text-xs">
+              With a background in multimedia and digital content creation (Lenor Weddings &amp; Lenor Entertainment), Farshan spearheads marketing, brand development, student outreach, and industry engagement across India.
+            </p>
           </div>
         </div>
-
-        {/* =========================================================================
-            VISION & MISSION DUAL CARDS
-            ========================================================================= */}
-        <div className="mt-14 sm:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {/* Vision */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
-            <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center text-white mb-4">
-              <Compass className="w-5 h-5 text-amber-300" />
+      ),
+      image: '/assets/c67df096-6056-44dd-afb6-2447b7721e4a.webp',
+      imageAlt: 'Lenor Academy Leadership & Convocation',
+      caption: 'Leadership & Academic Convocation Guild'
+    },
+    {
+      id: 'purpose',
+      num: '03/05',
+      tabLabel: 'Vision & Mission',
+      category: 'CORE PURPOSE',
+      title: 'Our Vision & Mission',
+      renderContent: () => (
+        <div className="space-y-4 text-xs sm:text-sm font-light">
+          <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10">
+            <div className="flex items-center gap-2 text-amber-300 text-xs font-mono font-bold uppercase mb-1.5">
+              <Compass className="w-4 h-4" />
+              <span>Our Vision</span>
             </div>
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-              Guiding Principle
-            </span>
-            <h4 className="text-xl sm:text-2xl font-black uppercase text-white mt-1 mb-3">
-              Our Vision
-            </h4>
-            <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+            <p className="text-neutral-200 leading-relaxed text-xs sm:text-sm">
               To become a leading institution in visual media education by empowering aspiring creators with professional knowledge, creative skills, modern technology and industry experience.
             </p>
           </div>
 
-          {/* Mission */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
-            <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center text-white mb-4">
-              <Target className="w-5 h-5 text-emerald-400" />
+          <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10">
+            <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono font-bold uppercase mb-1.5">
+              <Target className="w-4 h-4" />
+              <span>Our Mission</span>
             </div>
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-              Core Purpose
-            </span>
-            <h4 className="text-xl sm:text-2xl font-black uppercase text-white mt-1 mb-3">
-              Our Mission
-            </h4>
-            <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+            <p className="text-neutral-200 leading-relaxed text-xs sm:text-sm">
               To transform creative passion into professional careers through quality education, practical training and modern infrastructure.
             </p>
           </div>
-        </div>
 
-        {/* =========================================================================
-            CAMPUS, FACILITIES & FACULTY HIGHLIGHTS
-            ========================================================================= */}
-        <div className="mt-16 sm:mt-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-white/10">
-            <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-                Infrastructure
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-black uppercase text-white mt-1">
-                Campus &amp; Facilities
-              </h3>
-            </div>
-            <div className="text-xs text-neutral-400 font-mono">
-              Equipped For Industry Standards
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { icon: Monitor, title: 'Advanced Computer Lab', desc: '180+ high-performance editing workstations' },
-              { icon: Camera, title: '70+ Mirrorless Cameras', desc: 'Sony & Nikon cinema & photo rigs for hands-on drills' },
-              { icon: Film, title: 'Pro Production Studio', desc: 'Commercial photography & videography lighting floor' },
-              { icon: Building2, title: 'Student Hostel Facility', desc: 'Safe accommodations for boys & dedicated girls hostel' },
-              { icon: BookOpen, title: 'Creative Media Library', desc: 'Curated references, art books & visual magazines' },
-              { icon: Airplay, title: 'Smart Classrooms', desc: 'Audio-visual enabled interactive presentation suites' },
-              { icon: Wind, title: 'Air-Conditioned Suites', desc: 'Full-comfort climate controlled practical labs' },
-              { icon: Sparkles, title: 'Pro Equipment Arsenal', desc: 'Cinema lenses, gimbals, drones, and studio strobes' },
-            ].map((fac, idx) => {
-              const IconComp = fac.icon;
-              return (
-                <div 
-                  key={idx}
-                  className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/25 transition-all flex items-start gap-3.5 group"
-                >
-                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-white shrink-0 group-hover:bg-white group-hover:text-black transition-colors">
-                    <IconComp className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h5 className="text-sm font-bold text-white leading-snug">
-                      {fac.title}
-                    </h5>
-                    <p className="text-xs text-neutral-400 mt-1 font-light leading-relaxed">
-                      {fac.desc}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Our Faculty Callout Banner */}
-          <div className="mt-6 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-neutral-900 to-neutral-950 border border-white/15 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-white shrink-0">
-                <Users className="w-6 h-6 text-amber-300" />
-              </div>
-              <div>
-                <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-                  Mentorship
-                </span>
-                <h4 className="text-lg sm:text-xl font-black uppercase text-white">
-                  Our Faculty Guild · 50+ Professionals
-                </h4>
-                <p className="text-xs sm:text-sm text-neutral-300 font-light mt-1">
-                  A team of 50+ faculty members and active industry professionals guides students in building technical expertise, creative instincts, and real-world commercial knowledge.
-                </p>
-              </div>
-            </div>
-            <div className="shrink-0 flex items-center gap-2">
-              <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-mono text-neutral-200">
-                1-on-1 Mentorship
-              </span>
-              <span className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-mono text-neutral-200">
-                Live Field Shoots
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* =========================================================================
-            CERTIFICATIONS & PLACEMENT SUPPORT
-            ========================================================================= */}
-        <div className="mt-14 sm:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Certifications & Affiliations */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-white/[0.03] border border-white/10 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>Government &amp; Global Standards</span>
-              </div>
-              <h4 className="text-2xl font-black uppercase text-white mt-2 mb-4">
-                Certifications &amp; Affiliations
-              </h4>
-              <p className="text-sm text-neutral-300 font-light mb-6">
-                Accredited qualifications providing national and international credential recognition for career mobility and overseas opportunities.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 text-center">
-                  <div className="text-base font-black text-white">NSDC</div>
-                  <div className="text-[11px] text-neutral-400 mt-1 font-mono">National Skill Dev. Corp.</div>
-                </div>
-                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 text-center">
-                  <div className="text-base font-black text-white">Skill India</div>
-                  <div className="text-[11px] text-neutral-400 mt-1 font-mono">Government of India</div>
-                </div>
-                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 text-center">
-                  <div className="text-base font-black text-white">ISO Certified</div>
-                  <div className="text-[11px] text-neutral-400 mt-1 font-mono">Quality Management</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Career Development & Placement Support */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-white/[0.03] border border-white/10 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-                <Briefcase className="w-4 h-4 text-amber-300" />
-                <span>Career Assurance</span>
-              </div>
-              <h4 className="text-2xl font-black uppercase text-white mt-2 mb-4">
-                Placement &amp; Career Development
-              </h4>
-
-              <ul className="space-y-2.5 text-xs sm:text-sm text-neutral-300 font-light">
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong className="text-white font-medium">100% Placement Guarantee</strong> for the 1-Year Professional Course (Media Master Programme).</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong className="text-white font-medium">100% Placement Assistance</strong> for all other diploma &amp; certificate courses.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Practical, hands-on commercial project drills from Day 1.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Career guidance, resume building, and professional skill development.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Internship placements and real-world commercial client project exposure.</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* =========================================================================
-            OUR COURSES QUICK ROSTER
-            ========================================================================= */}
-        <div className="mt-16 sm:mt-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-white/10">
-            <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#a39c94]">
-                Curriculum
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-black uppercase text-white mt-1">
-                Our Courses
-              </h3>
-            </div>
-            <div className="text-xs text-neutral-400 font-mono">
-              7 Industry-Calibrated Programmes
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-            {[
-              { num: '01', code: 'MMP', title: 'MMP – Media Master Programme', duration: '12 Months', fee: '₹ 1,49,000', tag: 'Flagship · 100% Placement Guarantee' },
-              { num: '02', code: 'VMP', title: 'VMP – Visual Media Production', duration: '6 Months', fee: '₹ 65,220', tag: 'Diploma · Camera & Post Accelerator' },
-              { num: '03', code: 'MDEP', title: 'Media Design and Editing Professional', duration: '6 Months', fee: '₹ 64,000', tag: 'Combined Design & Video Suite' },
-              { num: '04', code: 'EGDC', title: 'Editing Course / Graphic Designing Course', duration: '3 Months', fee: '₹ 34,000', tag: 'Fast-Track Professional Diploma' },
-              { num: '05', code: 'PHOTO', title: '2-Month Course (Photography)', duration: '2 Months', fee: '₹ 22,420', tag: 'Hands-On Studio & Commercial' },
-              { num: '06', code: 'VIDEO', title: '6-Day Videography Course', duration: '6 Days', fee: '₹ 8,600', tag: 'Intensive Camera & Gimbal Sprint' },
-              { num: '07', code: 'DRONE', title: '5-Day Drone Course', duration: '5 Days', fee: '₹ 5,990', tag: 'Simulator Lab & Live Outdoor DGCA' },
-            ].map((course) => (
-              <div 
-                key={course.num}
-                className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/30 transition-all group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-xs font-mono font-bold text-neutral-500">
-                      {course.num}
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-[11px] font-mono font-bold text-amber-300">
-                        {course.fee}
-                      </span>
-                      <span className="px-2 py-0.5 rounded-full bg-white/10 text-[10px] font-mono text-neutral-300">
-                        {course.duration}
-                      </span>
-                    </div>
-                  </div>
-                  <h4 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors">
-                    {course.title}
-                  </h4>
-                  <p className="text-xs text-neutral-400 mt-1 font-mono">
-                    {course.tag}
-                  </p>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-emerald-400">
-                    Fee: {course.fee}/-
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => onOpenEnrol?.(course.code.toLowerCase())}
-                    className="text-xs text-white hover:text-amber-300 font-semibold flex items-center gap-1 transition-colors"
-                  >
-                    <span>Enrol</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* =========================================================================
-            BOTTOM MOTTO BANNER: "LENOR ACADEMY – LEARN WHAT YOU LOVE"
-            ========================================================================= */}
-        <div className="mt-16 sm:mt-24 p-8 sm:p-12 rounded-3xl bg-neutral-950 border border-white/15 text-center space-y-6 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-transparent to-amber-500/5 pointer-events-none" />
-          
-          <div className="space-y-2 relative z-10">
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.3em] text-[#a39c94]">
+          <div className="p-3.5 rounded-xl bg-neutral-900 border border-white/10 text-center">
+            <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-widest block mb-0.5">
               Official Motto
             </span>
-            <h3 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white">
+            <span className="text-xs sm:text-sm font-extrabold text-white tracking-wide">
               LENOR ACADEMY – LEARN WHAT YOU LOVE®
-            </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 font-light max-w-xl mx-auto">
-              Makkaraparamba Main Branch (North, South &amp; Studio Campuses) · Kochi Branch
+            </span>
+          </div>
+        </div>
+      ),
+      image: '/assets/let-passion-drive-sunset.webp',
+      imageAlt: 'Let passion drive your profession',
+      caption: 'Let passion drive your profession · Learn what you love'
+    },
+    {
+      id: 'facilities',
+      num: '04/05',
+      tabLabel: 'Facilities & Faculty',
+      category: 'CAMPUS & INFRASTRUCTURE',
+      title: 'Equipped For Industry',
+      renderContent: () => (
+        <div className="space-y-3 text-xs sm:text-sm font-light">
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
+              <div className="font-bold text-white">180+ Computers</div>
+              <div className="text-[11px] text-neutral-400">High-end PC editing lab</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
+              <div className="font-bold text-white">70+ Mirrorless</div>
+              <div className="text-[11px] text-neutral-400">Sony &amp; Nikon cinema rigs</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
+              <div className="font-bold text-white">Studio Floor</div>
+              <div className="text-[11px] text-neutral-400">Pro lighting &amp; video stage</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
+              <div className="font-bold text-white">Student Hostel</div>
+              <div className="text-[11px] text-neutral-400">Boys &amp; dedicated girls stay</div>
+            </div>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-300 flex items-center justify-center shrink-0">
+              <Users className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-xs font-bold text-white uppercase">50+ Faculty Members &amp; Mentors</div>
+              <div className="text-[11px] text-neutral-400">1-on-1 industry mentorship &amp; live practical field drills</div>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-1.5 text-[11px] font-mono text-neutral-400">
+            <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">📚 Library</span>
+            <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">❄️ Air-Conditioned</span>
+            <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">✨ Smart Classrooms</span>
+            <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">🚁 Drone Simulator Lab</span>
+          </div>
+        </div>
+      ),
+      image: '/assets/c01459e8-da36-4de6-bd3a-a062c8e3c669.webp',
+      imageAlt: 'Lenor Academy Studio Lighting Floor',
+      caption: 'Commercial Studio Lighting Stage & Practical Floors'
+    },
+    {
+      id: 'certifications',
+      num: '05/05',
+      tabLabel: 'Certifications',
+      category: 'GOVERNMENT RECOGNITION & PLACEMENT',
+      badge: '100% Placement Guarantee on 1-Year MMP',
+      title: 'Accredited Qualifications',
+      renderContent: () => (
+        <div className="space-y-3.5 text-xs sm:text-sm font-light">
+          <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            Lenor Academy provides accredited credentials recognized across India and abroad for overseas creative and media opportunities.
+          </p>
+
+          <div className="grid grid-cols-3 gap-2 text-center text-xs">
+            <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
+              <div className="font-bold text-white">NSDC</div>
+              <div className="text-[10px] text-neutral-400 font-mono">National Skill Dev.</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
+              <div className="font-bold text-white">Skill India</div>
+              <div className="text-[10px] text-neutral-400 font-mono">Govt. of India</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
+              <div className="font-bold text-white">ISO 9001:2015</div>
+              <div className="text-[10px] text-neutral-400 font-mono">Quality Certified</div>
+            </div>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-1.5 text-xs text-neutral-200">
+            <div className="flex items-center gap-1.5 text-emerald-400 font-bold">
+              <ShieldCheck className="w-4 h-4" />
+              <span>Career Assurance</span>
+            </div>
+            <p className="text-[11px] leading-relaxed text-neutral-300">
+              • <strong className="text-white">100% Placement Guarantee</strong> for the 1-Year Professional MMP.<br />
+              • <strong className="text-white">100% Placement Assistance</strong> for all other diploma &amp; certificate courses.<br />
+              • Real-world commercial client project drills from Day 1.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2 relative z-10">
-            <PillButton
-              variant="primary"
-              size="md"
-              onClick={() => onOpenEnrol?.('media-master')}
-            >
-              Enrol Now
-            </PillButton>
-            {onOpenBrochure && (
-              <PillButton
-                variant="ghost"
-                size="md"
-                onClick={onOpenBrochure}
-              >
-                Download Official Brochure
-              </PillButton>
-            )}
-          </div>
+          <p className="text-[11px] text-amber-300 font-mono flex items-center gap-1">
+            <FileCheck className="w-3.5 h-3.5" />
+            <span>Click either certificate on the right to view full official document</span>
+          </p>
         </div>
-      </AnimatedContent>
-    </section>
+      ),
+      image: '/assets/mesc-nsdc-certificate.jpg',
+      imageAlt: 'Official MESC NSDC Skill India Certificate',
+      caption: 'Official Accredited Certificate Formats'
+    }
+  ];
+
+  const current = slides[activeSlide];
+
+  const prevSlide = () => {
+    setActiveSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setActiveSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <>
+      <section id="about-us" className="relative w-full bg-black text-white px-4 sm:px-8 lg:px-12 py-10 sm:py-16">
+        <AnimatedContent distance={30} duration={0.8} threshold={0.1} once={false}>
+          {/* Main Storyboard Container */}
+          <div className="max-w-6xl mx-auto rounded-3xl bg-neutral-950/70 border border-white/15 p-5 sm:p-8 lg:p-10 shadow-2xl backdrop-blur-md">
+            
+            {/* Top Bar: Storyboard Tabs & Navigation Controls */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+              {/* Storyboard Tab Pills */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+                {slides.map((s, idx) => (
+                  <button
+                    key={s.id}
+                    onClick={() => setActiveSlide(idx)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-mono transition-all duration-200 shrink-0 ${
+                      idx === activeSlide
+                        ? 'bg-white text-black font-bold shadow-md'
+                        : 'bg-white/5 text-neutral-400 hover:text-white hover:bg-white/10 border border-white/5'
+                    }`}
+                  >
+                    <span>{s.num.split('/')[0]} · {s.tabLabel}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Slider Controls (← / → and slide indicator) */}
+              <div className="flex items-center gap-3 self-end md:self-auto shrink-0">
+                <span className="text-xs font-mono text-neutral-400 tracking-widest">
+                  {current.num}
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={prevSlide}
+                    aria-label="Previous story slide"
+                    className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    aria-label="Next story slide"
+                    className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors"
+                  >
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Split Storyboard Grid (Left: Slider Story Text · Right: Dynamic Visual & Certificates) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 pt-6 sm:pt-8 items-center">
+              
+              {/* LEFT COLUMN: STORYBOARD CONTENT SLIDER (7 cols) */}
+              <div className="lg:col-span-7 flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#a39c94]">
+                      {current.category}
+                    </span>
+                  </div>
+
+                  {current.badge && (
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-300 text-xs font-semibold mb-3">
+                      <span>{current.badge}</span>
+                    </div>
+                  )}
+
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-white leading-tight mb-4">
+                    {current.title}
+                  </h3>
+
+                  {/* Dynamic Slide Content */}
+                  <div className="min-h-[220px]">
+                    {current.renderContent()}
+                  </div>
+                </div>
+
+                {/* Bottom Storyboard CTAs */}
+                <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => onOpenEnrol?.('media-master')}
+                    className="px-5 py-2 rounded-full bg-white text-black hover:bg-neutral-200 text-xs font-mono font-bold tracking-wider uppercase transition-colors shadow-md"
+                  >
+                    Enrol Now
+                  </button>
+                  {onOpenBrochure && (
+                    <button
+                      type="button"
+                      onClick={onOpenBrochure}
+                      className="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-xs font-mono text-neutral-300 hover:text-white transition-colors"
+                    >
+                      Download Brochure
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* RIGHT COLUMN: VISUAL COMPANION & CERTIFICATES SHOWCASE (5 cols) */}
+              <div className="lg:col-span-5 flex flex-col gap-4">
+                {/* When on Slide 5 (Certifications) OR always accessible: Display Both Official Certificates */}
+                {activeSlide === 4 ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between text-xs font-mono text-neutral-400 px-1">
+                      <span>Official Accredited Certificates</span>
+                      <span className="text-amber-300">Click to Inspect</span>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      {CERTIFICATES.map((cert, i) => (
+                        <div
+                          key={i}
+                          onClick={() => setSelectedCert(cert)}
+                          className="group relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/15 hover:border-amber-400/60 transition-all duration-300 cursor-pointer shadow-xl aspect-[3/4] flex flex-col"
+                        >
+                          <img
+                            src={cert.image}
+                            alt={cert.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-2.5">
+                            <span className="text-[10px] font-mono text-amber-300 font-bold uppercase block leading-tight">
+                              {cert.badge}
+                            </span>
+                            <span className="text-[11px] text-white font-medium line-clamp-1 mt-0.5">
+                              {cert.title}
+                            </span>
+                            <div className="mt-1 flex items-center gap-1 text-[10px] text-neutral-300 font-mono">
+                              <Maximize2 className="w-2.5 h-2.5 text-amber-300" />
+                              <span>View Full Size</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  /* Standard Story Slide Visual with Floating Certificate Quick Access Badge */
+                  <div className="space-y-3">
+                    <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 border border-white/10 shadow-2xl group">
+                      <img
+                        src={current.image}
+                        alt={current.imageAlt}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                        <span className="text-[11px] text-neutral-300 font-mono">
+                          {current.caption}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Quick Access Strip: Official Certificates Preview Pill */}
+                    <div 
+                      onClick={() => setActiveSlide(4)}
+                      className="p-3 rounded-xl bg-white/[0.04] border border-white/10 hover:border-amber-400/40 transition-all flex items-center justify-between gap-3 cursor-pointer group"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-300 flex items-center justify-center shrink-0">
+                          <Award className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold text-white group-hover:text-amber-300 transition-colors">
+                            Official Accreditations &amp; Certificates
+                          </div>
+                          <div className="text-[10px] text-neutral-400 font-mono">
+                            MESC (NSDC) · Skill India · ISO 9001:2015
+                          </div>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-mono font-bold text-amber-300 shrink-0">
+                        View ↗
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </AnimatedContent>
+      </section>
+
+      {/* Lightbox Modal for Certificate Zoom Inspection */}
+      <CertificateModal
+        certificate={selectedCert}
+        onClose={() => setSelectedCert(null)}
+      />
+    </>
   );
 };
 

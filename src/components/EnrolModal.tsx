@@ -105,18 +105,18 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
                   className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-3.5 py-3 text-sm text-black font-semibold focus:outline-none focus:border-black transition-colors"
                 >
                   <optgroup label="Flagship & Long-Term Programmes">
-                    <option value="media-master">Media Master Programme (MMP) — 1 Year (₹ 1,45,000 · 100% Placement Assurance)</option>
-                    <option value="visual-media-production">Visual Media Production (VMP) — 6 Months (₹ 85,000)</option>
-                    <option value="media-designing-editing">Media Designing & Editing Professional — 6 Months (₹ 85,000)</option>
+                    <option value="media-master">MMP – Media Master Programme — 1 Year (₹ 1,49,000 · 100% Placement Guarantee)</option>
+                    <option value="visual-media-production">VMP – Visual Media Production — 6 Months (₹ 65,220)</option>
+                    <option value="media-designing-editing">Media Design and Editing Professional — 6 Months (₹ 64,000)</option>
                   </optgroup>
-                  <optgroup label="Professional 3-Month Diplomas">
-                    <option value="diploma-graphic-designing">Diploma in Graphic Designing — 3 Months (₹ 45,000 · Skill India HRDS)</option>
-                    <option value="professional-editing-course">Professional Editing Course — 3 Months (₹ 45,000 · Skill India HRDS)</option>
+                  <optgroup label="Professional 3-Month Courses">
+                    <option value="diploma-graphic-designing">Graphic Designing Course — 3 Months (₹ 34,000)</option>
+                    <option value="professional-editing-course">Editing Course — 3 Months (₹ 34,000)</option>
                   </optgroup>
-                  <optgroup label="Fast-Track & Crash Courses">
-                    <option value="photography-videography-course">Photography & Videography Course — 2 Months (₹ 35,000 · ISO Certified)</option>
-                    <option value="videography-crash-course">Videography Crash Course — 6 Days (₹ 18,000 · 2-3 Students/Batch)</option>
-                    <option value="drone-course">Drone Operations & Aerial Cinematography — 5 Days (₹ 15,000)</option>
+                  <optgroup label="Fast-Track & Practical Courses">
+                    <option value="photography-videography-course">2-Month Course (Photography) — 2 Months (₹ 22,420)</option>
+                    <option value="videography-crash-course">6-Day Videography Course — 6 Days (₹ 8,600)</option>
+                    <option value="drone-course">5-Day Drone Course — 5 Days (₹ 5,990)</option>
                   </optgroup>
                 </select>
                 <div className="mt-1.5 flex items-center justify-between text-[11px] text-neutral-500 px-1">

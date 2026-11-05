@@ -395,13 +395,13 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
             {[
-              { num: '01', code: 'MMP', title: 'Media Master Programme', duration: '12 Months', tag: 'Flagship · 100% Guarantee' },
-              { num: '02', code: 'VMP', title: 'Visual Media Production', duration: '6 Months', tag: 'Diploma · Camera & Post' },
-              { num: '03', code: 'MDEP', title: 'Media Design & Editing Professional', duration: '6 Months', tag: 'Design & Editing Focus' },
-              { num: '04', code: 'EGDC', title: 'Editing & Graphic Designing Course', duration: '3 Months', tag: 'Fast-Track Practical' },
-              { num: '05', code: 'PHOTO', title: 'Photography Course', duration: '2 Months', tag: 'Studio & Commercial' },
-              { num: '06', code: 'VIDEO', title: 'Videography Course', duration: '6 Days', tag: 'Intensive Practical Drill' },
-              { num: '07', code: 'DRONE', title: 'Drone Course', duration: '5 Days', tag: 'Flight Simulator & Live DGCA' },
+              { num: '01', code: 'MMP', title: 'MMP – Media Master Programme', duration: '12 Months', fee: '₹ 1,49,000', tag: 'Flagship · 100% Placement Guarantee' },
+              { num: '02', code: 'VMP', title: 'VMP – Visual Media Production', duration: '6 Months', fee: '₹ 65,220', tag: 'Diploma · Camera & Post Accelerator' },
+              { num: '03', code: 'MDEP', title: 'Media Design and Editing Professional', duration: '6 Months', fee: '₹ 64,000', tag: 'Combined Design & Video Suite' },
+              { num: '04', code: 'EGDC', title: 'Editing Course / Graphic Designing Course', duration: '3 Months', fee: '₹ 34,000', tag: 'Fast-Track Professional Diploma' },
+              { num: '05', code: 'PHOTO', title: '2-Month Course (Photography)', duration: '2 Months', fee: '₹ 22,420', tag: 'Hands-On Studio & Commercial' },
+              { num: '06', code: 'VIDEO', title: '6-Day Videography Course', duration: '6 Days', fee: '₹ 8,600', tag: 'Intensive Camera & Gimbal Sprint' },
+              { num: '07', code: 'DRONE', title: '5-Day Drone Course', duration: '5 Days', fee: '₹ 5,990', tag: 'Simulator Lab & Live Outdoor DGCA' },
             ].map((course) => (
               <div 
                 key={course.num}
@@ -412,9 +412,14 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                     <span className="text-xs font-mono font-bold text-neutral-500">
                       {course.num}
                     </span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-[10px] font-mono text-neutral-300">
-                      {course.duration}
-                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-[11px] font-mono font-bold text-amber-300">
+                        {course.fee}
+                      </span>
+                      <span className="px-2 py-0.5 rounded-full bg-white/10 text-[10px] font-mono text-neutral-300">
+                        {course.duration}
+                      </span>
+                    </div>
                   </div>
                   <h4 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors">
                     {course.title}
@@ -425,15 +430,15 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-neutral-400">
-                    {course.code}
+                  <span className="text-xs font-mono font-bold text-emerald-400">
+                    Fee: {course.fee}/-
                   </span>
                   <button
                     type="button"
                     onClick={() => onOpenEnrol?.(course.code.toLowerCase())}
                     className="text-xs text-white hover:text-amber-300 font-semibold flex items-center gap-1 transition-colors"
                   >
-                    <span>Enquire</span>
+                    <span>Enrol</span>
                     <ArrowRight className="w-3 h-3" />
                   </button>
                 </div>

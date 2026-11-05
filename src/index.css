@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-  body {
+  html, body {
     margin: 0;
-    background-color: #000000;
+    background-color: #000000 !important;
     color: #ffffff;
     font-family: 'Urbanist', 'Helvetica Neue', Arial, sans-serif;
     overflow-x: clip;
@@ -426,7 +426,7 @@ figure:hover .gs {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0d0d0d;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {

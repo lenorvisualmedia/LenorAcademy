@@ -91,7 +91,7 @@ export function App() {
                   <Route
                     path="/about"
                     element={
-                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8">
+                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8 bg-black">
                         <AboutPage
                           onOpenEnrol={handleOpenEnrol}
                           onOpenBrochure={handleOpenBrochure}
@@ -102,7 +102,7 @@ export function App() {
                   <Route
                     path="/placement"
                     element={
-                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8">
+                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8 bg-black">
                         <PlacementPage
                           onOpenEnrol={() => handleOpenEnrol('media-master')}
                           onOpenBrochure={handleOpenBrochure}
@@ -113,7 +113,7 @@ export function App() {
                   <Route
                     path="/events"
                     element={
-                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8">
+                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8 bg-black">
                         <EventsPage
                           onOpenEnrol={() => handleOpenEnrol('media-master')}
                           onOpenBrochure={handleOpenBrochure}
@@ -124,7 +124,7 @@ export function App() {
                   <Route
                     path="/blog"
                     element={
-                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8">
+                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8 bg-black">
                         <BlogPage
                           onOpenEnrol={() => handleOpenEnrol('media-master')}
                           onOpenBrochure={handleOpenBrochure}
@@ -135,7 +135,7 @@ export function App() {
                   <Route
                     path="/campaigns"
                     element={
-                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8">
+                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8 bg-black">
                         <CampaignsPage
                           onOpenEnrol={handleOpenEnrol}
                           onOpenBrochure={handleOpenBrochure}
@@ -146,7 +146,7 @@ export function App() {
                   <Route
                     path="/success-stories"
                     element={
-                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8">
+                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8 bg-black">
                         <SuccessStoriesPage
                           onOpenEnrol={() => handleOpenEnrol('media-master')}
                           onOpenBrochure={handleOpenBrochure}
@@ -157,7 +157,7 @@ export function App() {
                   <Route
                     path="/careers"
                     element={
-                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8">
+                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8 bg-black">
                         <CareersPage
                           onOpenEnrol={() => handleOpenEnrol('media-master')}
                           onOpenBrochure={handleOpenBrochure}

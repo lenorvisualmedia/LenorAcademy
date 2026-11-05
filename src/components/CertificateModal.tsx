@@ -91,3 +91,4 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ certificate,
 };
 
 export default CertificateModal;
+

@@ -64,17 +64,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
             : 'opacity-0 pointer-events-none h-0 overflow-hidden'
         }`}
       >
-        {/* ABOUT LENOR ACADEMY (FULL OFFICIAL OVERVIEW, FOUNDERS, WHY CHOOSE US, FACILITIES & COURSES) */}
-        <AboutUsSection
-          onOpenEnrol={onOpenEnrol}
-          onOpenBrochure={onOpenBrochure}
-        />
-
       {/* IMMERSIVE SCROLL-DRIVEN STORYTELLING & ACADEMY SHOWCASE
           1. Center Image Reveal (React Bits ScrollExpand Component) with "LET PASSION DRIVE YOUR PROFESSION"
           2. A Creative Media Academy (Makkaraparamba Campus architecture, interactive slider, Mission & Visit Us)
       */}
       <EditorialStorySequence />
+
+      {/* ABOUT LENOR ACADEMY (EDITORIAL STORYBOARD SLIDER, FOUNDERS, VISION, FACILITIES & CERTIFICATES) */}
+      <AboutUsSection
+        onOpenEnrol={onOpenEnrol}
+        onOpenBrochure={onOpenBrochure}
+      />
 
       {/* DISCIPLINES CRAFTS BAR */}
       <section className="px-4 sm:px-10 py-6 border-b border-[#222]">

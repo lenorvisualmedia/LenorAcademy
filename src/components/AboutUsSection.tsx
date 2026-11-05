@@ -288,7 +288,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
 
   return (
     <>
-      <section id="about-us" className="relative w-full bg-black text-white px-4 sm:px-8 lg:px-12 py-10 sm:py-16">
+      <section id="about" className="relative w-full bg-black text-white px-4 sm:px-8 lg:px-12 py-10 sm:py-16 scroll-mt-24">
         <AnimatedContent distance={30} duration={0.8} threshold={0.1} once={false}>
           {/* Main Storyboard Container */}
           <div className="max-w-6xl mx-auto rounded-3xl bg-neutral-950/70 border border-white/15 p-5 sm:p-8 lg:p-10 shadow-2xl backdrop-blur-md">

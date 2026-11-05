@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import { HeroVideoShowcase } from '../components/HeroVideoShowcase';
-import { AboutUsSection } from '../components/AboutUsSection';
 import { AnimatedContent } from '../components/AnimatedContent';
 import { StudentHoloCard } from '../components/StudentHoloCard';
 import { ScrollJourney } from '../components/ScrollJourney';
@@ -69,12 +68,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
           2. A Creative Media Academy (Makkaraparamba Campus architecture, interactive slider, Mission & Visit Us)
       */}
       <EditorialStorySequence />
-
-      {/* ABOUT LENOR ACADEMY (EDITORIAL STORYBOARD SLIDER, FOUNDERS, VISION, FACILITIES & CERTIFICATES) */}
-      <AboutUsSection
-        onOpenEnrol={onOpenEnrol}
-        onOpenBrochure={onOpenBrochure}
-      />
 
       {/* DISCIPLINES CRAFTS BAR */}
       <section className="px-4 sm:px-10 py-6 border-b border-[#222]">

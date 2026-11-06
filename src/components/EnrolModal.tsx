@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, CheckCircle2, Sparkles, Phone, Mail, User, MapPin, Building, Home, CreditCard } from 'lucide-react';
 import { PROGRAMMES, ACADEMY_INFO } from '../data/academyData';
+import { useModalScrollLock } from '../utils/modalScrollLock';
 
 interface EnrolModalProps {
   isOpen: boolean;
@@ -20,12 +22,25 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
   const [needEMI, setNeedEMI] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  if (!isOpen) return null;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  // Sync selectedProgram whenever defaultProgramId prop changes or modal opens
+  useEffect(() => {
+    if (defaultProgramId) {
+      const direct = PROGRAMMES.find(p => p.id.toLowerCase() === defaultProgramId.toLowerCase());
+      if (direct) {
+        setSelectedProgram(direct.id);
+        return;
+      }
+      const idClean = defaultProgramId.toLowerCase();
+      const match = PROGRAMMES.find(p => 
+        p.id.toLowerCase().includes(idClean) || 
+        idClean.includes(p.id.toLowerCase()) ||
+        p.name.toLowerCase().includes(idClean)
+      );
+      if (match) {
+        setSelectedProgram(match.id);
+      }
+    }
+  }, [defaultProgramId, isOpen]);
 
   const handleReset = () => {
     setSubmitted(false);
@@ -38,74 +53,99 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
     onClose();
   };
 
+  // Lock background scroll and pause Lenis while modal is open
+  useModalScrollLock(isOpen, handleReset);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
   const currentProg = PROGRAMMES.find(p => p.id === selectedProgram) || PROGRAMMES[0];
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+  const modalContent = (
+    <div 
+      data-lenor-modal="true"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-fade-in"
+      onClick={handleReset}
+      onWheel={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+    >
       <div 
-        className="relative w-full max-w-xl !bg-white !text-black border border-neutral-200 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-lg !bg-white !text-black border border-neutral-200 rounded-[24px] p-5 sm:p-6 shadow-2xl overflow-hidden max-h-[88vh] overflow-y-auto overscroll-contain"
         onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={handleReset}
-          className="absolute top-5 right-5 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-colors"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
         {submitted ? (
-          <div className="py-8 text-center flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4 border border-emerald-300">
-              <CheckCircle2 className="w-8 h-8" />
+          <div className="py-6 text-center flex flex-col items-center">
+            <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3 border border-emerald-300">
+              <CheckCircle2 className="w-7 h-7" />
             </div>
-            <h3 className="h1 text-3xl font-extrabold text-black mb-2">
+            <h3 className="h1 text-2xl font-black text-black mb-1.5">
               Application Received!
             </h3>
-            <p className="text-neutral-700 text-sm max-w-sm mb-6 leading-relaxed">
-              Thank you, <strong className="text-black">{name || 'Creator'}</strong>. Our Senior Admissions Counsellor will connect with you via WhatsApp & Call at <strong className="text-black">{phone}</strong> within 24 hours.
+            <p className="text-neutral-700 text-xs sm:text-sm max-w-sm mb-4 leading-relaxed">
+              Thank you, <strong className="text-black">{name || 'Creator'}</strong>. Our Admissions Team will connect with you via WhatsApp &amp; Call at <strong className="text-black">{phone}</strong> within 24 hours.
             </p>
-            <div className="p-5 rounded-2xl bg-neutral-50 border border-neutral-200 text-xs text-neutral-700 text-left w-full mb-6 space-y-1.5">
-              <div className="font-bold text-black mb-2 text-sm">Enrolment Summary:</div>
+            <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-neutral-700 text-left w-full mb-4 space-y-1">
+              <div className="font-bold text-black text-xs uppercase tracking-wider mb-1.5">Enrolment Summary:</div>
               <div><strong>Programme:</strong> {currentProg.name} ({currentProg.duration})</div>
-              <div><strong>Campus:</strong> {campus === 'makkaraparamba' ? 'Makkaraparamba, Malappuram (South, North & Studio Campus)' : 'Madavanna, Ernakulam (Kochi)'}</div>
-              <div><strong>Hostel Assistance:</strong> {needHostel ? 'Requested (Hostel details will be shared)' : 'Not requested'}</div>
-              <div><strong>Bajaj Finance EMI:</strong> {needEMI ? 'Requested (Bajaj team will coordinate)' : 'Standard fee schedule'}</div>
+              <div><strong>Campus:</strong> {campus === 'makkaraparamba' ? 'Makkaraparamba, Malappuram' : 'Madavanna, Ernakulam (Kochi)'}</div>
+              <div><strong>Hostel Assistance:</strong> {needHostel ? 'Requested' : 'Not needed'}</div>
+              <div><strong>Bajaj Finance EMI:</strong> {needEMI ? 'Requested' : 'Standard'}</div>
               <div><strong>Admissions Desk:</strong> {ACADEMY_INFO.phone}</div>
             </div>
             <button
               onClick={handleReset}
-              className="btn w-full !h-11 bg-black text-white hover:bg-neutral-800"
+              className="btn w-full !h-10 text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-neutral-800"
             >
-              Done & Explore Academy
+              Done &amp; Explore Academy
             </button>
           </div>
         ) : (
           <div>
-            <div className="mb-6">
-              <div className="eye text-neutral-600">Admissions & Enrolment · 2026 Batch</div>
-              <h2 className="h1 text-3xl sm:text-4xl text-black mt-1">
+            <div className="mb-4 pr-6">
+              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-neutral-500">
+                Admissions &amp; Enrolment · 2026 Batch
+              </div>
+              <h2 className="h1 text-2xl sm:text-3xl text-black font-black tracking-tight mt-0.5">
                 Begin Your Journey
               </h2>
-              <p className="text-xs sm:text-sm text-neutral-600 mt-2 font-light">
-                Zero equipment fee. Practise with our RED Epic cinema rig, Sony & Nikon cameras, DJI gimbals & drones. Max 28–30 students per batch.
+              <p className="text-xs text-neutral-600 mt-1 font-light">
+                Zero equipment fee. 1 Camera per 3–4 students, 1 PC per student. Max 28–30 per batch.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3">
               {/* Program Picker Dropdown */}
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
-                  Select Programme *
-                </label>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-neutral-700">
+                    Select Programme *
+                  </label>
+                  <span className="text-[11px] font-bold text-emerald-700 font-mono">
+                    {currentProg.price}
+                  </span>
+                </div>
                 <select
                   value={selectedProgram}
                   onChange={(e) => setSelectedProgram(e.target.value)}
-                  className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-3.5 py-3 text-sm text-black font-semibold focus:outline-none focus:border-black transition-colors"
+                  className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-3 py-2 text-xs sm:text-sm text-black font-semibold focus:outline-none focus:border-black transition-colors"
                 >
                   <optgroup label="Flagship & Long-Term Programmes">
-                    <option value="media-master">MMP – Media Master Programme — 1 Year (₹ 1,49,000 · 100% Placement Guarantee)</option>
+                    <option value="media-master">MMP – Media Master Programme — 1 Year (₹ 1,49,000 · 100% Placement)</option>
                     <option value="visual-media-production">VMP – Visual Media Production — 6 Months (₹ 65,220)</option>
                     <option value="media-designing-editing">Media Design and Editing Professional — 6 Months (₹ 64,000)</option>
                   </optgroup>
@@ -119,119 +159,116 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
                     <option value="drone-course">5-Day Drone Course — 5 Days (₹ 5,990)</option>
                   </optgroup>
                 </select>
-                <div className="mt-1.5 flex items-center justify-between text-[11px] text-neutral-500 px-1">
-                  <span>Selected: <strong className="text-black">{currentProg.duration}</strong> · {currentProg.badge}</span>
-                  <span className="font-bold text-emerald-700">{currentProg.price}</span>
-                </div>
               </div>
 
-              {/* Campus Selection */}
+              {/* Campus Selection - Compact Segmented Control */}
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1">
                   Preferred Campus Branch *
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
                     onClick={() => setCampus('makkaraparamba')}
-                    className={`p-3 rounded-xl text-left border text-xs transition-all flex items-start gap-2.5 ${
+                    className={`py-2 px-3 rounded-xl text-left border text-xs transition-all flex items-center gap-2 ${
                       campus === 'makkaraparamba'
-                        ? 'border-black bg-neutral-100 text-black shadow-sm ring-1 ring-black'
+                        ? 'border-black bg-black text-white shadow-sm'
                         : 'border-neutral-200 bg-neutral-50 text-neutral-700 hover:border-black'
                     }`}
                   >
-                    <Building className="w-4 h-4 shrink-0 mt-0.5" />
-                    <div>
-                      <div className="font-bold">Makkaraparamba, Malappuram</div>
-                      <div className="text-[10px] text-neutral-500 mt-0.5">South, North, Studio Campuses & Theatre</div>
+                    <Building className="w-3.5 h-3.5 shrink-0" />
+                    <div className="truncate">
+                      <div className="font-bold truncate text-[11px]">Makkaraparamba</div>
+                      <div className="text-[9px] opacity-75 truncate">Main Branch · 3 Campuses</div>
                     </div>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => setCampus('ernakulam')}
-                    className={`p-3 rounded-xl text-left border text-xs transition-all flex items-start gap-2.5 ${
+                    className={`py-2 px-3 rounded-xl text-left border text-xs transition-all flex items-center gap-2 ${
                       campus === 'ernakulam'
-                        ? 'border-black bg-neutral-100 text-black shadow-sm ring-1 ring-black'
+                        ? 'border-black bg-black text-white shadow-sm'
                         : 'border-neutral-200 bg-neutral-50 text-neutral-700 hover:border-black'
                     }`}
                   >
-                    <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
-                    <div>
-                      <div className="font-bold">Madavanna, Ernakulam (Kochi)</div>
-                      <div className="text-[10px] text-neutral-500 mt-0.5">Town branch with transit & PG links</div>
+                    <MapPin className="w-3.5 h-3.5 shrink-0" />
+                    <div className="truncate">
+                      <div className="font-bold truncate text-[11px]">Kochi (Madavanna)</div>
+                      <div className="text-[9px] opacity-75 truncate">Town Branch &amp; Transit</div>
                     </div>
                   </button>
                 </div>
               </div>
 
-              {/* Full Name */}
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
-                  Full Name *
-                </label>
-                <div className="relative">
-                  <User className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. Rahul Menon"
-                    className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-10 py-2.5 text-sm text-black placeholder-neutral-500 focus:outline-none focus:border-black transition-colors"
-                  />
-                </div>
-              </div>
-
-              {/* WhatsApp Phone */}
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
-                  WhatsApp Phone Number *
-                </label>
-                <div className="relative">
-                  <Phone className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="tel"
-                    required
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+91 98765 43210"
-                    className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-10 py-2.5 text-sm text-black placeholder-neutral-500 focus:outline-none focus:border-black transition-colors"
-                  />
-                </div>
-              </div>
-
-              {/* Email & Location Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Full Name & WhatsApp Phone - 2 Column Row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
-                    Email Address
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1">
+                    Full Name *
                   </label>
                   <div className="relative">
-                    <Mail className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <User className="w-3.5 h-3.5 text-neutral-500 absolute left-3 top-1/2 -translate-y-1/2" />
                     <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="you@email.com"
-                      className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-10 py-2.5 text-sm text-black placeholder-neutral-500 focus:outline-none focus:border-black transition-colors"
+                      type="text"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="e.g. Rahul Menon"
+                      className="w-full bg-neutral-50 border border-neutral-300 rounded-xl pl-8 pr-3 py-2 text-xs sm:text-sm text-black placeholder-neutral-400 focus:outline-none focus:border-black transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
-                    Current City / Town *
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1">
+                    WhatsApp Phone *
                   </label>
                   <div className="relative">
-                    <MapPin className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <Phone className="w-3.5 h-3.5 text-neutral-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="tel"
+                      required
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+91 98765 43210"
+                      className="w-full bg-neutral-50 border border-neutral-300 rounded-xl pl-8 pr-3 py-2 text-xs sm:text-sm text-black placeholder-neutral-400 focus:outline-none focus:border-black transition-colors"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Email & City - 2 Column Row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1">
+                    Email Address
+                  </label>
+                  <div className="relative">
+                    <Mail className="w-3.5 h-3.5 text-neutral-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@email.com"
+                      className="w-full bg-neutral-50 border border-neutral-300 rounded-xl pl-8 pr-3 py-2 text-xs sm:text-sm text-black placeholder-neutral-400 focus:outline-none focus:border-black transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1">
+                    City / Town *
+                  </label>
+                  <div className="relative">
+                    <MapPin className="w-3.5 h-3.5 text-neutral-500 absolute left-3 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       required
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
                       placeholder="e.g. Malappuram / Calicut"
-                      className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-10 py-2.5 text-sm text-black placeholder-neutral-500 focus:outline-none focus:border-black transition-colors"
+                      className="w-full bg-neutral-50 border border-neutral-300 rounded-xl pl-8 pr-3 py-2 text-xs sm:text-sm text-black placeholder-neutral-400 focus:outline-none focus:border-black transition-colors"
                     />
                   </div>
                 </div>
@@ -239,13 +276,13 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
 
               {/* Experience */}
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
-                  Current Level with Cameras / Software
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1">
+                  Current Level with Cameras / Editing
                 </label>
                 <select
                   value={experience}
                   onChange={(e) => setExperience(e.target.value)}
-                  className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-4 py-2.5 text-sm text-black focus:outline-none focus:border-black transition-colors"
+                  className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-3 py-2 text-xs text-black focus:outline-none focus:border-black transition-colors"
                 >
                   <option value="Beginner (Fresh starting)">Beginner (Zero prior knowledge / fresh enthusiast)</option>
                   <option value="Hobbyist (Basic camera handling)">Hobbyist (Shoots casually / basic phone edits)</option>
@@ -253,41 +290,41 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
                 </select>
               </div>
 
-              {/* Facilities check */}
-              <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200 space-y-2">
-                <label className="flex items-center gap-2.5 text-xs text-neutral-800 cursor-pointer select-none">
+              {/* Checkboxes */}
+              <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-200 space-y-1.5">
+                <label className="flex items-center gap-2 text-xs text-neutral-800 cursor-pointer select-none">
                   <input
                     type="checkbox"
                     checked={needHostel}
                     onChange={(e) => setNeedHostel(e.target.checked)}
-                    className="w-4 h-4 rounded border-neutral-300 text-black focus:ring-black"
+                    className="w-3.5 h-3.5 rounded border-neutral-300 text-black focus:ring-black"
                   />
-                  <Home className="w-3.5 h-3.5 text-neutral-500" />
-                  <span>I require Hostel / Accommodation assistance in Malappuram or Ernakulam</span>
+                  <Home className="w-3.5 h-3.5 text-neutral-500 shrink-0" />
+                  <span>Hostel / Accommodation assistance in Malappuram or Kochi</span>
                 </label>
 
-                <label className="flex items-center gap-2.5 text-xs text-neutral-800 cursor-pointer select-none">
+                <label className="flex items-center gap-2 text-xs text-neutral-800 cursor-pointer select-none">
                   <input
                     type="checkbox"
                     checked={needEMI}
                     onChange={(e) => setNeedEMI(e.target.checked)}
-                    className="w-4 h-4 rounded border-neutral-300 text-black focus:ring-black"
+                    className="w-3.5 h-3.5 rounded border-neutral-300 text-black focus:ring-black"
                   />
-                  <CreditCard className="w-3.5 h-3.5 text-neutral-500" />
-                  <span>I would like to explore the <strong>Bajaj Finance Easy EMI</strong> payment option</span>
+                  <CreditCard className="w-3.5 h-3.5 text-neutral-500 shrink-0" />
+                  <span>Bajaj Finance <strong>Easy EMI</strong> monthly installment assistance</span>
                 </label>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <button
                   type="submit"
-                  className="btn w-full !h-12 text-sm font-extrabold tracking-wider bg-black text-white hover:bg-neutral-800"
+                  className="btn w-full !h-10 text-xs font-black uppercase tracking-wider bg-black text-white hover:bg-neutral-800 rounded-xl shadow-lg"
                 >
-                  <Sparkles className="w-4 h-4 mr-1 text-white" />
+                  <Sparkles className="w-3.5 h-3.5 mr-1.5 text-white" />
                   Submit Application For 2026 Batch
                 </button>
-                <div className="text-center text-[11px] text-neutral-500 mt-2">
-                  🔒 No spam. We only contact regarding your course syllabus, hostel options, and campus visit.
+                <div className="text-center text-[10px] text-neutral-500 mt-1.5">
+                  🔒 No spam. We only contact regarding your course syllabus, hostel, and campus visit.
                 </div>
               </div>
             </form>
@@ -296,6 +333,8 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : null;
 };
 
 export default EnrolModal;

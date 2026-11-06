@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   Trophy, 
   ArrowUpRight, 
@@ -12,6 +13,7 @@ import {
 } from 'lucide-react';
 import { AnimatedContent } from './AnimatedContent';
 import { PillButton } from './PillButton';
+import { useModalScrollLock } from '../utils/modalScrollLock';
 
 interface AboutUsSectionProps {
   onOpenEnrol?: (programId?: string) => void;
@@ -30,6 +32,9 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   onOpenBrochure 
 }) => {
   const [selectedImage, setSelectedImage] = useState<ImageLightboxData | null>(null);
+
+  // Lock background scroll and pause Lenis when inspecting an image/certificate
+  useModalScrollLock(!!selectedImage, () => setSelectedImage(null));
 
   return (
     <div id="about" className="relative w-full bg-black text-white selection:bg-black selection:text-white space-y-12 sm:space-y-16">
@@ -308,10 +313,10 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             {[
               { num: '01', title: 'MMP – Media Master Programme', duration: '12 Months', id: 'media-master' },
               { num: '02', title: 'VMP – Visual Media Production', duration: '6 Months', id: 'visual-media-production' },
-              { num: '03', title: 'Media Design & Editing Professional', duration: '6 Months', id: 'media-design-editing-pro' },
-              { num: '04', title: 'Editing & Graphic Designing Course', duration: '3 Months', id: 'editing-graphic-design' },
-              { num: '05', title: 'Photography Course', duration: '2 Months', id: 'photography-course' },
-              { num: '06', title: 'Videography Course', duration: '6 Days', id: 'videography-course' },
+              { num: '03', title: 'Media Design & Editing Professional', duration: '6 Months', id: 'media-designing-editing' },
+              { num: '04', title: 'Editing & Graphic Designing Course', duration: '3 Months', id: 'diploma-graphic-designing' },
+              { num: '05', title: 'Photography Course', duration: '2 Months', id: 'photography-videography-course' },
+              { num: '06', title: 'Videography Course', duration: '6 Days', id: 'videography-crash-course' },
               { num: '07', title: 'Drone Course', duration: '5 Days', id: 'drone-course' },
             ].map((course) => (
               <div 
@@ -692,16 +697,21 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
       </AnimatedContent>
 
       {/* =========================================================================
-          IMAGE & CERTIFICATE LIGHTBOX MODAL
+          IMAGE & CERTIFICATE LIGHTBOX MODAL (PORTALED TO BODY)
           ========================================================================= */}
-      {selectedImage && (
+      {selectedImage && typeof document !== 'undefined' && createPortal(
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-md animate-fade-in"
+          data-lenor-modal="true"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-md animate-fade-in"
           onClick={() => setSelectedImage(null)}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
         >
           <div 
-            className="relative w-full max-w-5xl bg-[#121212] border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl overflow-hidden flex flex-col max-h-[94vh]"
+            className="relative w-full max-w-5xl bg-[#121212] border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl overflow-hidden flex flex-col max-h-[94vh] overscroll-contain"
             onClick={(e) => e.stopPropagation()}
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
           >
             {/* Lightbox Header */}
             <div className="flex items-center justify-between gap-4 pb-4 border-b border-white/10 shrink-0">
@@ -735,7 +745,8 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               />
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

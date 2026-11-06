@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
-import { X, ShieldCheck, Award, ExternalLink } from 'lucide-react';
+import React from 'react';
+import { createPortal } from 'react-dom';
+import { X, ShieldCheck, Award } from 'lucide-react';
+import { useModalScrollLock } from '../utils/modalScrollLock';
 
 export interface CertificateData {
   title: string;
@@ -16,30 +18,23 @@ interface CertificateModalProps {
 }
 
 export const CertificateModal: React.FC<CertificateModalProps> = ({ certificate, onClose }) => {
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    if (certificate) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [certificate, onClose]);
+  useModalScrollLock(!!certificate, onClose);
 
   if (!certificate) return null;
 
-  return (
+  const modalContent = (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in"
+      data-lenor-modal="true"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-md animate-fade-in"
       onClick={onClose}
+      onWheel={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
     >
       <div 
-        className="relative w-full max-w-4xl bg-neutral-900 border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
+        className="relative w-full max-w-4xl bg-neutral-900 border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl overflow-hidden flex flex-col max-h-[92vh] overscroll-contain"
         onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
         <div className="flex items-center justify-between gap-4 pb-4 border-b border-white/10 shrink-0">
@@ -88,7 +83,8 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ certificate,
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : null;
 };
 
 export default CertificateModal;
-

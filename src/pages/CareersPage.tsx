@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { CheckCircle2, Mail, Send } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { CheckCircle2, Mail, Send, X } from 'lucide-react';
 import { JOB_OPENINGS, JobOpening, ACADEMY_INFO } from '../data/academyData';
 import { AnimatedContent } from '../components/AnimatedContent';
 import { InvestmentSection } from '../components/InvestmentSection';
+import { useModalScrollLock } from '../utils/modalScrollLock';
 
 interface CareersPageProps {
   onOpenEnrol?: (programId?: string) => void;
@@ -19,11 +21,6 @@ export const CareersPage: React.FC<CareersPageProps> = ({
   const [portfolioLink, setPortfolioLink] = useState('');
   const [appliedSuccess, setAppliedSuccess] = useState(false);
 
-  const handleApply = (e: React.FormEvent) => {
-    e.preventDefault();
-    setAppliedSuccess(true);
-  };
-
   const handleReset = () => {
     setAppliedSuccess(false);
     setSelectedJob(null);
@@ -32,17 +29,36 @@ export const CareersPage: React.FC<CareersPageProps> = ({
     setPortfolioLink('');
   };
 
+  useModalScrollLock(!!selectedJob, handleReset);
+
+  const handleApply = (e: React.FormEvent) => {
+    e.preventDefault();
+    setAppliedSuccess(true);
+  };
+
   return (
     <div className="space-y-12">
       {/* Application Modal */}
-      {selectedJob && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-lg !bg-white !text-black border border-neutral-200 rounded-3xl p-6 sm:p-8 shadow-2xl">
+      {selectedJob && typeof document !== 'undefined' && createPortal(
+        <div 
+          data-lenor-modal="true"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in"
+          onClick={handleReset}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
+        >
+          <div 
+            className="relative w-full max-w-lg !bg-white !text-black border border-neutral-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto overscroll-contain"
+            onClick={(e) => e.stopPropagation()}
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+          >
             <button
               onClick={handleReset}
-              className="absolute top-5 right-5 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-colors"
+              className="absolute top-4 right-4 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-colors"
+              aria-label="Close"
             >
-              ✕
+              <X className="w-4 h-4" />
             </button>
 
             {appliedSuccess ? (
@@ -61,10 +77,10 @@ export const CareersPage: React.FC<CareersPageProps> = ({
             ) : (
               <div>
                 <div className="eye text-neutral-600 mb-1">Apply for Position</div>
-                <h3 className="h1 text-2xl text-black mb-2">{selectedJob.title}</h3>
+                <h3 className="h1 text-2xl text-black mb-1">{selectedJob.title}</h3>
                 <div className="text-xs text-neutral-600 mb-4">{selectedJob.type} · {selectedJob.location}</div>
 
-                <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-neutral-800 mb-6 space-y-1.5">
+                <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-neutral-800 mb-5 space-y-1.5">
                   <div className="font-bold text-black mb-1">Requirements:</div>
                   {selectedJob.requirements.map((r, i) => (
                     <div key={i} className="flex items-start gap-1.5 text-neutral-700">
@@ -118,7 +134,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({
                   </div>
 
                   <div className="pt-2">
-                    <button type="submit" className="btn w-full !h-11 text-xs font-bold bg-black text-white hover:bg-neutral-800">
+                    <button type="submit" className="btn w-full !h-10 text-xs font-bold bg-black text-white hover:bg-neutral-800">
                       <Send className="w-3.5 h-3.5 mr-1" />
                       Send Faculty Application
                     </button>
@@ -127,7 +143,8 @@ export const CareersPage: React.FC<CareersPageProps> = ({
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* HEADER HERO SECTION */}

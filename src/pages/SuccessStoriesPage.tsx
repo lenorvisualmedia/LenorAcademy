@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
+import { X } from 'lucide-react';
 import { SUCCESS_STORIES, SuccessStory } from '../data/academyData';
 import { AnimatedContent } from '../components/AnimatedContent';
 import { PillButton } from '../components/PillButton';
 import { InvestmentSection } from '../components/InvestmentSection';
+import { useModalScrollLock } from '../utils/modalScrollLock';
 
 interface SuccessStoriesPageProps {
   onOpenEnrol: () => void;
@@ -11,6 +14,8 @@ interface SuccessStoriesPageProps {
 
 export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEnrol, onOpenBrochure }) => {
   const [activeStory, setActiveStory] = useState<SuccessStory | null>(null);
+
+  useModalScrollLock(!!activeStory, () => setActiveStory(null));
 
   return (
     <div className="space-y-12">
@@ -207,31 +212,44 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
       />
 
       {/* DETAIL MODAL IF CLICKED */}
-      {activeStory && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-          <div className="relative w-full max-w-lg !bg-white !text-black border border-neutral-200 rounded-3xl p-6 sm:p-8 shadow-2xl">
+      {activeStory && typeof document !== 'undefined' && createPortal(
+        <div 
+          data-lenor-modal="true"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in"
+          onClick={() => setActiveStory(null)}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
+        >
+          <div 
+            className="relative w-full max-w-lg !bg-white !text-black border border-neutral-200 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-2xl max-h-[90vh] overflow-y-auto overscroll-contain"
+            onClick={(e) => e.stopPropagation()}
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+          >
             <button
               onClick={() => setActiveStory(null)}
-              className="absolute top-5 right-5 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-colors"
+              className="absolute top-4 right-4 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-colors"
+              aria-label="Close"
             >
-              ✕
+              <X className="w-4 h-4" />
             </button>
             <div className="eye text-neutral-600 mb-1">{activeStory.course} · {activeStory.batch}</div>
-            <h3 className="h1 text-3xl text-black mb-4">{activeStory.studentName}</h3>
-            <div className="h-56 rounded-2xl overflow-hidden mb-4 bg-neutral-100">
+            <h3 className="h1 text-2xl sm:text-3xl text-black mb-3">{activeStory.studentName}</h3>
+            <div className="h-48 sm:h-56 rounded-2xl overflow-hidden mb-4 bg-neutral-100">
               <img src={activeStory.image} alt={activeStory.imageAlt} className="cover gs" loading="lazy" decoding="async" />
             </div>
-            <blockquote className="text-lg text-neutral-800 font-light italic mb-4">
+            <blockquote className="text-base sm:text-lg text-neutral-800 font-light italic mb-3">
               "{activeStory.quote}"
             </blockquote>
-            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-light mb-6">
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-light mb-5">
               {activeStory.detailedStory}
             </p>
             <button onClick={() => setActiveStory(null)} className="btn w-full !h-10 text-xs bg-black text-white hover:bg-neutral-800">
               Close Profile
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

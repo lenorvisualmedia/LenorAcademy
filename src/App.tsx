@@ -10,6 +10,7 @@ import { PageTransition } from './components/PageTransition';
 // Route-level code splitting: pages load on demand, dramatically reducing initial JS bundle
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
 const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const FacilitiesPage = lazy(() => import('./pages/FacilitiesPage').then(m => ({ default: m.FacilitiesPage })));
 const PlacementPage = lazy(() => import('./pages/PlacementPage').then(m => ({ default: m.PlacementPage })));
 const EventsPage = lazy(() => import('./pages/EventsPage').then(m => ({ default: m.EventsPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
@@ -93,6 +94,17 @@ export function App() {
                     element={
                       <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8 bg-black">
                         <AboutPage
+                          onOpenEnrol={handleOpenEnrol}
+                          onOpenBrochure={handleOpenBrochure}
+                        />
+                      </div>
+                    }
+                  />
+                  <Route
+                    path="/facilities"
+                    element={
+                      <div className="max-w-[1440px] w-full mx-auto px-3 sm:px-6 pt-24 pb-8 bg-black">
+                        <FacilitiesPage
                           onOpenEnrol={handleOpenEnrol}
                           onOpenBrochure={handleOpenBrochure}
                         />

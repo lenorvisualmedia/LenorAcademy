@@ -80,6 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
+    { label: 'Facilities', href: '/facilities' },
     { label: 'Placement', href: '/placement' },
     { label: 'Events', href: '/events' },
     { label: 'Blog', href: '/blog' },

@@ -115,8 +115,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBrochure, onOpenEnrol }) =
             <div className="eye mb-4 text-[#8a8a8a]">Explore</div>
             <ul className="space-y-2.5 text-sm">
               <li>
+                <Link to="/facilities" className="text-[#a9a9a9] hover:text-white transition-colors block">
+                  Campus &amp; Facilities
+                </Link>
+              </li>
+              <li>
                 <Link to="/placement" className="text-[#a9a9a9] hover:text-white transition-colors block">
-                  Placement & Career
+                  Placement &amp; Career
                 </Link>
               </li>
               <li>

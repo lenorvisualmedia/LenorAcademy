@@ -46,3 +46,4 @@ export function useModalScrollLock(isOpen: boolean, onClose?: () => void) {
     };
   }, [isOpen, onClose]);
 }
+

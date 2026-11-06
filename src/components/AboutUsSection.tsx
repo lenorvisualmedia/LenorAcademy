@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
+import { Link } from 'react-router-dom';
 import { 
   Trophy, 
   ArrowUpRight, 
@@ -293,6 +294,19 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                 <Check className="w-5 h-5 text-emerald-600 shrink-0 ml-3" />
               </li>
             </ul>
+
+            <div className="pt-6 mt-2 border-t border-neutral-200 flex items-center justify-between">
+              <Link
+                to="/facilities"
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-black hover:text-amber-600 transition-colors group"
+              >
+                <span>Tour Full Campus &amp; Gear Fleet</span>
+                <ArrowUpRight className="w-4 h-4 text-neutral-500 group-hover:text-amber-600 transition-colors" />
+              </Link>
+              <span className="text-[11px] font-mono text-neutral-500 uppercase tracking-widest hidden sm:inline-block">
+                Makkaraparamba &amp; Kochi
+              </span>
+            </div>
           </div>
         </div>
       </AnimatedContent>

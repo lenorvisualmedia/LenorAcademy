@@ -74,7 +74,7 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
       onTouchMove={(e) => e.stopPropagation()}
     >
       <div 
-        className="relative w-full max-w-lg !bg-white !text-black border border-neutral-200 rounded-[24px] p-5 sm:p-6 shadow-2xl overflow-hidden max-h-[88vh] overflow-y-auto overscroll-contain"
+        className="relative w-full max-w-lg !bg-white !text-black border border-neutral-200 rounded-[24px] p-5 sm:p-6 shadow-2xl max-h-[88vh] overflow-y-auto overscroll-contain minimal-scrollbar"
         onClick={(e) => e.stopPropagation()}
         onWheel={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}
@@ -315,15 +315,16 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
                 </label>
               </div>
 
-              <div className="pt-1">
+              <div className="pt-2">
                 <button
                   type="submit"
-                  className="btn w-full !h-10 text-xs font-black uppercase tracking-wider bg-black text-white hover:bg-neutral-800 rounded-xl shadow-lg"
+                  className="w-full h-11 text-xs font-black uppercase tracking-wider bg-black !text-white hover:bg-neutral-800 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded-xl shadow-xl flex items-center justify-center gap-2 transition-all cursor-pointer select-none"
+                  style={{ color: '#ffffff', backgroundColor: '#000000' }}
                 >
-                  <Sparkles className="w-3.5 h-3.5 mr-1.5 text-white" />
-                  Submit Application For 2026 Batch
+                  <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />
+                  <span className="!text-white">Enrol Now · Submit Application (2026 Batch)</span>
                 </button>
-                <div className="text-center text-[10px] text-neutral-500 mt-1.5">
+                <div className="text-center text-[10px] text-neutral-500 mt-2">
                   🔒 No spam. We only contact regarding your course syllabus, hostel, and campus visit.
                 </div>
               </div>

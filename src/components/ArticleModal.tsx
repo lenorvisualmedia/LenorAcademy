@@ -23,7 +23,7 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({ post, onClose }) => 
       onTouchMove={(e) => e.stopPropagation()}
     >
       <div 
-        className="relative w-full max-w-2xl !bg-white !text-black border border-neutral-200 rounded-[24px] p-6 sm:p-8 shadow-2xl overflow-hidden max-h-[88vh] overflow-y-auto overscroll-contain"
+        className="relative w-full max-w-2xl !bg-white !text-black border border-neutral-200 rounded-[24px] p-6 sm:p-8 shadow-2xl max-h-[88vh] overflow-y-auto overscroll-contain minimal-scrollbar"
         onClick={(e) => e.stopPropagation()}
         onWheel={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}

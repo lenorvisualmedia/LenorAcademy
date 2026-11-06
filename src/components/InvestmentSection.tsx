@@ -236,7 +236,9 @@ export const InvestmentSection: React.FC<InvestmentSectionProps> = ({
                     icon={
                       <Sparkles className="w-4 h-4 text-current" />
                     }
-                    className="w-full sm:flex-1"
+                    className={`w-full sm:flex-1 font-extrabold transition-all ${
+                      isSelected ? '!bg-white !text-black shadow-[0_4px_20px_rgba(255,255,255,0.35)] scale-[1.02]' : ''
+                    }`}
                   >
                     Enrol Now · 2026 Batch
                   </PillButton>

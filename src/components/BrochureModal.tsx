@@ -31,7 +31,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
       onTouchMove={(e) => e.stopPropagation()}
     >
       <div 
-        className="relative w-full max-w-md !bg-white !text-black border border-neutral-200 rounded-[24px] p-5 sm:p-7 shadow-2xl overflow-hidden max-h-[88vh] overflow-y-auto overscroll-contain"
+        className="relative w-full max-w-md !bg-white !text-black border border-neutral-200 rounded-[24px] p-5 sm:p-7 shadow-2xl max-h-[88vh] overflow-y-auto overscroll-contain minimal-scrollbar"
         onClick={(e) => e.stopPropagation()}
         onWheel={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}

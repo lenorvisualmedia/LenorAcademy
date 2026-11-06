@@ -722,7 +722,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
           onTouchMove={(e) => e.stopPropagation()}
         >
           <div 
-            className="relative w-full max-w-5xl bg-[#121212] border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl overflow-hidden flex flex-col max-h-[94vh] overscroll-contain"
+            className="relative w-full max-w-5xl bg-[#121212] border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl overflow-hidden flex flex-col max-h-[94vh] overscroll-contain minimal-scrollbar-dark"
             onClick={(e) => e.stopPropagation()}
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}

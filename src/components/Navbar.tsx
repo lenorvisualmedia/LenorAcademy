@@ -16,14 +16,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
   const isHomePage = location.pathname === '/';
   
   // On home page, navbar stays completely hidden until the hero video has played (or skip clicked)
-  const [heroCompleted, setHeroCompleted] = useState(() => {
-    if (!isHomePage) return true;
-    return typeof window !== 'undefined' && !!(window as any).__heroVideoCompleted;
-  });
-  const [showNav, setShowNav] = useState(() => {
-    if (!isHomePage) return true;
-    return typeof window !== 'undefined' && !!(window as any).__heroVideoCompleted;
-  });
+  const [heroCompleted, setHeroCompleted] = useState(() => !isHomePage);
+  const [showNav, setShowNav] = useState(() => !isHomePage);
 
   useEffect(() => {
     if (!isHomePage) {
@@ -32,9 +26,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
       return;
     }
 
-    const isAlreadyDone = typeof window !== 'undefined' && !!(window as any).__heroVideoCompleted;
-    setHeroCompleted(isAlreadyDone);
-    setShowNav(isAlreadyDone);
+    // Always reset on Home page mount or navigation back to Home
+    (window as any).__heroVideoCompleted = false;
+    setHeroCompleted(false);
+    setShowNav(false);
 
     const handleHeroDone = () => {
       (window as any).__heroVideoCompleted = true;
@@ -56,7 +51,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
       if (!ticking) {
         requestAnimationFrame(() => {
           const isDone = (window as any).__heroVideoCompleted;
-          if (!isDone) {
+          // Only show nav on home page if video completed or scrolled down past the hero viewport
+          if (!isDone && window.scrollY < window.innerHeight * 0.7) {
             setShowNav(false);
             setHeroCompleted(false);
           } else {
@@ -75,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
       window.removeEventListener('lenor-hero-reset', handleHeroReset);
       window.removeEventListener('scroll', checkHeroScroll);
     };
-  }, [isHomePage]);
+  }, [isHomePage, location.key]);
 
   const navLinks = [
     { label: 'Home', href: '/' },

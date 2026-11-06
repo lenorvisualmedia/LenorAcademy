@@ -497,54 +497,54 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             </p>
           </div>
 
-          {/* Side-by-Side Equipment Breakdowns (Cards matching Reference) */}
+          {/* Side-by-Side Equipment Breakdowns (Distinct White Boxes with Black Text) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
             
             {/* Box 1: Nikon Cameras */}
-            <article className="rounded-[24px] bg-neutral-900 border border-neutral-800 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
+            <article className="rounded-[24px] bg-white text-black border border-neutral-100 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
               <div>
                 {/* Header with Title & English Subtitle + Huge Count */}
-                <div className="flex items-start justify-between gap-4 pb-6 border-b border-neutral-800">
+                <div className="flex items-start justify-between gap-4 pb-6 border-b border-neutral-200">
                   <div>
-                    <div className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
+                    <div className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
                       01 · Nikon cameras
                     </div>
-                    <div className="text-xl sm:text-2xl font-black uppercase text-white tracking-tight mt-1">
+                    <div className="text-xl sm:text-2xl font-black uppercase text-black tracking-tight mt-1">
                       Mirrorless Bodies
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-6xl sm:text-7xl font-black text-white tracking-tighter leading-none">
+                    <div className="text-6xl sm:text-7xl font-black text-black tracking-tighter leading-none">
                       30
                     </div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mt-1">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mt-1">
                       Total cameras
                     </div>
                   </div>
                 </div>
 
                 {/* Camera List with Animated Meter Bars */}
-                <div className="divide-y divide-neutral-800/80 pt-2">
+                <div className="divide-y divide-neutral-200 pt-2">
                   {cameraFleet.map((cam, i) => (
                     <div key={i} className="py-4 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-4 items-center">
                       <div>
-                        <div className="text-base sm:text-lg font-bold text-white tracking-tight">
+                        <div className="text-base sm:text-lg font-bold text-black tracking-tight">
                           {cam.model}
                         </div>
-                        <div className="text-[11px] text-neutral-400 font-mono">
+                        <div className="text-[11px] text-neutral-500 font-mono font-semibold">
                           {cam.badge}
                         </div>
                       </div>
                       
                       {/* Bar (hidden on very small screens, visible sm+) */}
-                      <div className="hidden sm:block h-2 rounded-full bg-neutral-800 overflow-hidden">
+                      <div className="hidden sm:block h-2 rounded-full bg-neutral-100 overflow-hidden">
                         <div 
-                          className="h-full bg-white rounded-full transition-all duration-1000"
+                          className="h-full bg-black rounded-full transition-all duration-1000"
                           style={{ width: `${cam.pct}%` }}
                         />
                       </div>
 
-                      <div className="text-2xl sm:text-3xl font-extrabold text-white text-right font-mono">
+                      <div className="text-2xl sm:text-3xl font-extrabold text-black text-right font-mono">
                         {cam.count}
                       </div>
                     </div>
@@ -553,30 +553,30 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               </div>
 
               {/* Extra Support Rigs Note */}
-              <div className="mt-8 pt-4 border-t border-neutral-800 text-xs text-neutral-400 flex items-center justify-between">
+              <div className="mt-8 pt-4 border-t border-neutral-200 text-xs text-neutral-600 flex items-center justify-between font-medium">
                 <span>1 Camera provided per 3–4 students</span>
-                <span className="text-amber-400 font-bold">100% Offline Access</span>
+                <span className="text-amber-700 font-bold">100% Offline Access</span>
               </div>
             </article>
 
             {/* Box 2: Nikkor Z Lenses */}
-            <article className="rounded-[24px] bg-neutral-900 border border-neutral-800 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
+            <article className="rounded-[24px] bg-white text-black border border-neutral-100 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
               <div>
                 {/* Header with Title & English Subtitle + Huge Count */}
-                <div className="flex items-start justify-between gap-4 pb-6 border-b border-neutral-800">
+                <div className="flex items-start justify-between gap-4 pb-6 border-b border-neutral-200">
                   <div>
-                    <div className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
+                    <div className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
                       02 · Nikkor lenses
                     </div>
-                    <div className="text-xl sm:text-2xl font-black uppercase text-white tracking-tight mt-1">
+                    <div className="text-xl sm:text-2xl font-black uppercase text-black tracking-tight mt-1">
                       Z-Mount Optics
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-6xl sm:text-7xl font-black text-white tracking-tighter leading-none">
+                    <div className="text-6xl sm:text-7xl font-black text-black tracking-tighter leading-none">
                       36
                     </div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mt-1">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mt-1">
                       Total lenses
                     </div>
                   </div>
@@ -584,22 +584,22 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 
                 {/* Prime Lenses Subsection */}
                 <div className="pt-4">
-                  <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-amber-400 mb-2">
+                  <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-amber-700 mb-2">
                     Prime Lenses
                   </div>
-                  <div className="divide-y divide-neutral-800/80">
+                  <div className="divide-y divide-neutral-200">
                     {primeLenses.map((lens, i) => (
                       <div key={i} className="py-2.5 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-4 items-center">
-                        <div className="text-xs sm:text-sm font-semibold text-white truncate">
+                        <div className="text-xs sm:text-sm font-bold text-neutral-900 truncate">
                           {lens.name}
                         </div>
-                        <div className="hidden sm:block h-1.5 rounded-full bg-neutral-800 overflow-hidden">
+                        <div className="hidden sm:block h-1.5 rounded-full bg-neutral-100 overflow-hidden">
                           <div 
-                            className="h-full bg-white rounded-full transition-all duration-1000"
+                            className="h-full bg-black rounded-full transition-all duration-1000"
                             style={{ width: `${lens.pct}%` }}
                           />
                         </div>
-                        <div className="text-base sm:text-lg font-bold text-white text-right font-mono">
+                        <div className="text-base sm:text-lg font-bold text-black text-right font-mono">
                           {lens.count}
                         </div>
                       </div>
@@ -609,22 +609,22 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 
                 {/* Zoom Lenses Subsection */}
                 <div className="pt-6">
-                  <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-amber-400 mb-2">
+                  <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-amber-700 mb-2">
                     Zoom Lenses
                   </div>
-                  <div className="divide-y divide-neutral-800/80">
+                  <div className="divide-y divide-neutral-200">
                     {zoomLenses.map((lens, i) => (
                       <div key={i} className="py-2.5 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-4 items-center">
-                        <div className="text-xs sm:text-sm font-semibold text-white truncate">
+                        <div className="text-xs sm:text-sm font-bold text-neutral-900 truncate">
                           {lens.name}
                         </div>
-                        <div className="hidden sm:block h-1.5 rounded-full bg-neutral-800 overflow-hidden">
+                        <div className="hidden sm:block h-1.5 rounded-full bg-neutral-100 overflow-hidden">
                           <div 
-                            className="h-full bg-white rounded-full transition-all duration-1000"
+                            className="h-full bg-black rounded-full transition-all duration-1000"
                             style={{ width: `${lens.pct}%` }}
                           />
                         </div>
-                        <div className="text-base sm:text-lg font-bold text-white text-right font-mono">
+                        <div className="text-base sm:text-lg font-bold text-black text-right font-mono">
                           {lens.count}
                         </div>
                       </div>
@@ -634,31 +634,31 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               </div>
 
               {/* Extra Support Rigs Note */}
-              <div className="mt-8 pt-4 border-t border-neutral-800 text-xs text-neutral-400 flex items-center justify-between">
+              <div className="mt-8 pt-4 border-t border-neutral-200 text-xs text-neutral-600 flex items-center justify-between font-medium">
                 <span>Fast primes (f/1.2 &amp; f/1.4) + Telephoto zooms</span>
-                <span className="text-emerald-400 font-bold">S-Line Quality</span>
+                <span className="text-emerald-700 font-bold">S-Line Quality</span>
               </div>
             </article>
           </div>
 
-          {/* Support Cinema Equipment Strip */}
-          <div className="rounded-[22px] bg-neutral-950 border border-neutral-800 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Support Cinema Equipment Strip (White Box with Black Text) */}
+          <div className="rounded-[22px] bg-white text-black border border-neutral-100 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white shrink-0">
-                <Film className="w-6 h-6" />
+              <div className="w-12 h-12 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-black shrink-0 shadow-sm">
+                <Film className="w-6 h-6 text-black" />
               </div>
               <div>
-                <h4 className="text-base sm:text-lg font-bold text-white">
+                <h4 className="text-base sm:text-lg font-bold text-black">
                   Cinema Rigs &amp; Production Gear
                 </h4>
-                <p className="text-xs sm:text-sm text-neutral-400 font-light mt-0.5">
+                <p className="text-xs sm:text-sm text-neutral-600 font-light mt-0.5">
                   RED Epic Cinema Rig · DJI Ronin Gimbals · DJI Drones · Godox Strobe Studio Lighting · Wireless Audio Systems
                 </p>
               </div>
             </div>
             <button
               onClick={onOpenBrochure}
-              className="btn !h-10 text-xs tracking-wider bg-white text-black hover:bg-neutral-200 shrink-0 font-bold uppercase"
+              className="btn !h-10 text-xs tracking-wider bg-black text-white hover:bg-neutral-800 shrink-0 font-bold uppercase shadow-md"
             >
               View Full Gear Sheet
             </button>

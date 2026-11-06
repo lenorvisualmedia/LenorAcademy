@@ -19,11 +19,13 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure }) => {
   const journeyRef = useRef<HTMLDivElement>(null);
-  const [isHeroCompleted, setIsHeroCompleted] = useState(() => {
-    return typeof window !== 'undefined' && !!(window as any).__heroVideoCompleted;
-  });
+  const [isHeroCompleted, setIsHeroCompleted] = useState(false);
 
   useEffect(() => {
+    // When HomePage mounts, always reset hero completion state
+    (window as any).__heroVideoCompleted = false;
+    setIsHeroCompleted(false);
+
     const onDone = () => {
       setIsHeroCompleted(true);
       setTimeout(() => {
@@ -41,6 +43,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
     return () => {
       window.removeEventListener('lenor-hero-completed', onDone);
       window.removeEventListener('lenor-hero-reset', onReset);
+      (window as any).__heroVideoCompleted = false;
     };
   }, []);
 

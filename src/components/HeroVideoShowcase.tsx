@@ -20,9 +20,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(() => {
-    return typeof window !== 'undefined' && !!(window as any).__heroVideoCompleted;
-  });
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const isPlayingRef = useRef(false);
   const hasCompletedRef = useRef(false);
@@ -37,17 +35,35 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // 1. Initially lock scroll at the top while loading and before user completes the video
-    if (!hasCompletedRef.current) {
-      (window as any).__scrollLocked = true;
-      if ((window as any).__lenis) {
-        (window as any).__lenis.stop();
-        (window as any).__lenis.scrollTo(0, { immediate: true });
-      }
-      window.scrollTo(0, 0);
-      document.documentElement.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
+    // 1. Always start completely fresh on mount (whether initial load or returning from another page)
+    (window as any).__heroVideoCompleted = false;
+    hasCompletedRef.current = false;
+    isPlayingRef.current = false;
+    scrollIntensityRef.current = 0;
+    setIsCompleted(false);
+    setHasStarted(false);
+
+    video.pause();
+    video.currentTime = 0;
+    video.playbackRate = 1.0;
+
+    if (overlayRef.current) {
+      overlayRef.current.style.opacity = '1';
+      overlayRef.current.style.pointerEvents = 'auto';
+      overlayRef.current.style.transform = 'none';
     }
+
+    (window as any).__scrollLocked = true;
+    if ((window as any).__lenis) {
+      (window as any).__lenis.stop();
+      (window as any).__lenis.scrollTo(0, { immediate: true });
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
+    // Broadcast reset event so Navbar and main-content are initially hidden
+    window.dispatchEvent(new CustomEvent('lenor-hero-reset'));
 
     // 2. Finish Hero and Unlock Page for the rest of the site
     const finishHeroAndUnlock = () => {
@@ -269,6 +285,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       window.removeEventListener('keydown', onKeyDown);
 
       // Restore scroll if unmounted
+      (window as any).__heroVideoCompleted = false;
       (window as any).__scrollLocked = false;
       if ((window as any).__lenis) {
         (window as any).__lenis.start();

@@ -25,6 +25,7 @@ pnpm-debug.log*
 
 # Large temporary archives & scratch files
 About Us-html/
+Facilities-html/
 *-html.zip
 *.zip
 *.pdf.txt
@@ -33,6 +34,8 @@ About Us-html/
 extracted/
 Lenor academy.mp4
 Contemplative Desk Beneath the Stars.png
+Lenor Academy Modern Tropical Campus.png
+Modern *.png
 Lenor Academy Website*.html
 *.docx
 extracted_doc_text.txt

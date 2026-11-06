@@ -29,3 +29,4 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({
 };
 
 export default FacilitiesPage;
+

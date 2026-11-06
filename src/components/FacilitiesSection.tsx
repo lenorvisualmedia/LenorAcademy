@@ -503,14 +503,14 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             {/* Box 1: Nikon Cameras */}
             <article className="rounded-[24px] bg-neutral-900 border border-neutral-800 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
               <div>
-                {/* Header with Title & Malayalam Subtitle + Huge Count */}
+                {/* Header with Title & English Subtitle + Huge Count */}
                 <div className="flex items-start justify-between gap-4 pb-6 border-b border-neutral-800">
                   <div>
                     <div className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
                       01 · Nikon cameras
                     </div>
-                    <div className="text-lg text-neutral-300 font-medium mt-1 font-sans">
-                      നികോൺ ക്യാമറകൾ
+                    <div className="text-xl sm:text-2xl font-black uppercase text-white tracking-tight mt-1">
+                      Mirrorless Bodies
                     </div>
                   </div>
                   <div className="text-right">
@@ -562,14 +562,14 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             {/* Box 2: Nikkor Z Lenses */}
             <article className="rounded-[24px] bg-neutral-900 border border-neutral-800 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
               <div>
-                {/* Header with Title & Malayalam Subtitle + Huge Count */}
+                {/* Header with Title & English Subtitle + Huge Count */}
                 <div className="flex items-start justify-between gap-4 pb-6 border-b border-neutral-800">
                   <div>
                     <div className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
                       02 · Nikkor lenses
                     </div>
-                    <div className="text-lg text-neutral-300 font-medium mt-1 font-sans">
-                      നിക്കോർ ലെൻസുകൾ
+                    <div className="text-xl sm:text-2xl font-black uppercase text-white tracking-tight mt-1">
+                      Z-Mount Optics
                     </div>
                   </div>
                   <div className="text-right">
@@ -771,3 +771,4 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 };
 
 export default FacilitiesSection;
+

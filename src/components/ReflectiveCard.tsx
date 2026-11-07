@@ -651,10 +651,9 @@ export const ReflectiveCard: React.FC<ReflectiveCardProps> = ({
 
   useLayoutEffect(() => {
     const root = rootRef.current;
-    if (!root || !settingsRef.current.intro) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    root.style.setProperty('--rc-presence', '0');
-    root.style.setProperty('--rc-lift', '14px');
+    if (!root) return;
+    root.style.setProperty('--rc-presence', '1');
+    root.style.setProperty('--rc-lift', '0px');
   }, []);
 
   useEffect(() => {
@@ -666,7 +665,25 @@ export const ReflectiveCard: React.FC<ReflectiveCardProps> = ({
     if (!root || !body || !canvas || !videoElement || !camElement) return;
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const renderer = createRenderer(canvas);
+    let renderer: ReturnType<typeof createRenderer> = null;
+
+    const acquireRenderer = () => {
+      if (renderer || lost) return;
+      try {
+        renderer = createRenderer(canvas);
+        envFresh = true;
+      } catch (err) {
+        // Fall back gracefully to CSS metallic plate
+      }
+    };
+
+    const releaseRenderer = () => {
+      if (!renderer) return;
+      try {
+        renderer.dispose();
+      } catch (err) {}
+      renderer = null;
+    };
     const x = { p: 0, v: 0, target: 0 };
     const y = { p: 0, v: 0, target: 0 };
     const light = { p: 0, target: 0 };
@@ -896,8 +913,13 @@ export const ReflectiveCard: React.FC<ReflectiveCardProps> = ({
       lost = true;
       cancelAnimationFrame(raf);
       raf = 0;
+      root.style.setProperty('--rc-presence', '1');
+      root.style.setProperty('--rc-lift', '0px');
     };
-    const onRestored = () => setGeneration(value => value + 1);
+    const onRestored = () => {
+      lost = false;
+      setGeneration(value => value + 1);
+    };
     canvas.addEventListener('webglcontextlost', onLost);
     canvas.addEventListener('webglcontextrestored', onRestored);
 
@@ -909,14 +931,26 @@ export const ReflectiveCard: React.FC<ReflectiveCardProps> = ({
     resize();
 
     const intersection = new IntersectionObserver(entries => {
-      visible = entries.some(entry => entry.isIntersecting);
-      if (!reduced) {
-        for (const element of [videoElement, camElement]) {
-          if (visible && (element.currentSrc || element.srcObject)) element.play().catch(() => {});
-          else if (!visible && element.currentSrc && !element.srcObject) element.pause();
+      const isIntersecting = entries.some(entry => entry.isIntersecting);
+      visible = isIntersecting;
+      if (isIntersecting) {
+        acquireRenderer();
+        if (!reduced) {
+          for (const element of [videoElement, camElement]) {
+            if (element.currentSrc || element.srcObject) element.play().catch(() => {});
+          }
+        }
+      } else {
+        releaseRenderer();
+        if (!reduced) {
+          for (const element of [videoElement, camElement]) {
+            if (element.currentSrc && !element.srcObject) element.pause();
+          }
         }
       }
       wake();
+    }, {
+      rootMargin: '150px 0px'
     });
     intersection.observe(root);
 

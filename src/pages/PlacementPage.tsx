@@ -248,17 +248,11 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
         </AnimatedContent>
 
         {/* Holographic Cards Grid */}
-        <AnimatedContent
-          distance={50}
-          duration={0.75}
-          stagger={0.08}
-          threshold={0.1}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
           {filteredStudents.map((student) => (
             <StudentHoloCard key={student.id} student={student} />
           ))}
-        </AnimatedContent>
+        </div>
       </section>
 
       {/* STUDENT KIT & ZERO GEAR EXPENSE CHECKLIST */}

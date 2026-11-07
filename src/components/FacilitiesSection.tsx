@@ -16,7 +16,13 @@ import {
   Maximize2, 
   X,
   Compass,
-  Tv
+  Tv,
+  Zap,
+  Box,
+  List as ListIcon,
+  Table as TableIcon,
+  Sun,
+  Droplets
 } from 'lucide-react';
 import { AnimatedContent } from './AnimatedContent';
 import { PillButton } from './PillButton';
@@ -70,6 +76,68 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
     { name: 'Nikkor Z 100-400mm f/4.5-5.6 VR S', count: 1, pct: 6.7, tag: 'Super-Telephoto' },
     { name: 'Nikkor Z 180-600mm f/5.6-6.3 VR', count: 3, pct: 20.0, tag: 'Wildlife & Action' },
   ];
+
+  // Studio categories & state
+  const studioCategories = ['All', 'Strobes & Flash', 'Continuous Light', 'Modifiers & Shapers', 'Grip & Support', 'Backdrops & Surfaces'] as const;
+  const [studioCategory, setStudioCategory] = useState<string>('All');
+  const [studioViewMode, setStudioViewMode] = useState<'list' | 'table'>('list');
+
+  // Product Lab categories & state
+  const productLabCategories = ['All', 'Tripods & Support', 'Modifiers & Diffusers', 'Tabletop Backdrops', 'Staging, Grip & FX'] as const;
+  const [productLabCategory, setProductLabCategory] = useState<string>('All');
+  const [productLabViewMode, setProductLabViewMode] = useState<'list' | 'table'>('list');
+
+  // Studio Inventory (33 Total Units)
+  const studioInventory = [
+    { name: 'Light - Strobe', brand: 'Godox', model: 'SK400 II', qty: 2, category: 'Strobes & Flash', pct: 50 },
+    { name: 'Light - Strobe', brand: 'Godox', model: 'DP 600 III', qty: 2, category: 'Strobes & Flash', pct: 50 },
+    { name: 'Trigger - DP 600', brand: 'Godox', model: 'Wireless Studio Trigger', qty: 1, category: 'Strobes & Flash', pct: 25 },
+    { name: 'Light - Continuous Light', brand: 'Digitek', model: 'DCL 60w', qty: 1, category: 'Continuous Light', pct: 25 },
+    { name: 'Light - Continuous Light', brand: 'Kodak', model: 'V225', qty: 2, category: 'Continuous Light', pct: 50 },
+    { name: 'Tripod', brand: 'Manfrotto', model: 'MT055 XPRO3 Pro Tripod', qty: 1, category: 'Grip & Support', pct: 25 },
+    { name: 'Modifier - Gobo', brand: 'Godox', model: 'BLP Gobo Projector', qty: 1, category: 'Modifiers & Shapers', pct: 25 },
+    { name: 'Modifier - Soft Box', brand: 'Godox', model: 'P 120 L Parabolic', qty: 4, category: 'Modifiers & Shapers', pct: 100 },
+    { name: 'Modifier - Strip Soft Box', brand: 'Jenie', model: 'Beauty Box BX 35 x 150', qty: 1, category: 'Modifiers & Shapers', pct: 25 },
+    { name: 'Modifier - Soft Box', brand: 'Godox', model: 'S120 W', qty: 1, category: 'Modifiers & Shapers', pct: 25 },
+    { name: 'Modifier - Umbrella Soft box', brand: 'Godox', model: 'CB 85D', qty: 1, category: 'Modifiers & Shapers', pct: 25 },
+    { name: 'Modifier - Snooter', brand: '', model: 'Directional Conical Snoot', qty: 1, category: 'Modifiers & Shapers', pct: 25 },
+    { name: 'Modifier - Reflector', brand: '', model: 'Multi-Disc Spill Reflector', qty: 1, category: 'Modifiers & Shapers', pct: 25 },
+    { name: 'Stand', brand: '', model: 'C-Stand with Boom Arm', qty: 2, category: 'Grip & Support', pct: 50 },
+    { name: 'Stand (Heavy Duty)', brand: '', model: 'Heavy Duty Stand', qty: 3, category: 'Grip & Support', pct: 75 },
+    { name: 'Stand (Mini Duty)', brand: '', model: 'Mini Duty Stand', qty: 4, category: 'Grip & Support', pct: 100 },
+    { name: 'Backdrop - Wall Backdrop', brand: '', model: 'Chroma Green', qty: 1, category: 'Backdrops & Surfaces', pct: 25 },
+    { name: 'Backdrop - Wall Backdrop', brand: '', model: 'Muted Brown', qty: 1, category: 'Backdrops & Surfaces', pct: 25 },
+    { name: 'Backdrop - Wall Backdrop', brand: '', model: 'Seamless Black', qty: 1, category: 'Backdrops & Surfaces', pct: 25 },
+    { name: 'Backdrop - Wall Backdrop', brand: '', model: '1 Extra Studio Wall', qty: 1, category: 'Backdrops & Surfaces', pct: 25 },
+    { name: 'Clear Sheet', brand: '', model: 'Reflection Table Acrylic', qty: 1, category: 'Backdrops & Surfaces', pct: 25 }
+  ];
+
+  // Product Lab Inventory (23 Total Units)
+  const productLabInventory = [
+    { name: 'Tripod', brand: 'Digitek', model: 'DTR-620 BH Ballhead', qty: 1, category: 'Tripods & Support', pct: 10 },
+    { name: 'Tripod', brand: 'Digitek', model: 'DTR-520 BH Ballhead', qty: 1, category: 'Tripods & Support', pct: 10 },
+    { name: 'Modifier - Softbox', brand: 'Digitek', model: '30CM Diffuser', qty: 10, category: 'Modifiers & Diffusers', pct: 100 },
+    { name: 'Modifier - Snooter', brand: '', model: 'Macro Tabletop Snoot', qty: 1, category: 'Modifiers & Diffusers', pct: 10 },
+    { name: 'Light Box', brand: '', model: 'Product Box - Tent Booth', qty: 1, category: 'Modifiers & Diffusers', pct: 10 },
+    { name: 'Backdrop', brand: '', model: 'PVC Plain Black (Waterproof)', qty: 1, category: 'Tabletop Backdrops', pct: 10 },
+    { name: 'Backdrop', brand: '', model: 'PVC Plain White (Waterproof)', qty: 1, category: 'Tabletop Backdrops', pct: 10 },
+    { name: 'Backdrop - Wall Backdrop', brand: '', model: 'Seamless White', qty: 1, category: 'Tabletop Backdrops', pct: 10 },
+    { name: 'Backdrop - Wall Backdrop', brand: '', model: 'Seamless Black', qty: 1, category: 'Tabletop Backdrops', pct: 10 },
+    { name: 'Backdrop - Wall Backdrop', brand: '', model: 'Seamless Red', qty: 1, category: 'Tabletop Backdrops', pct: 10 },
+    { name: 'Stand', brand: '', model: 'Tabletop T-Stand', qty: 1, category: 'Staging, Grip & FX', pct: 10 },
+    { name: 'Hard Foam', brand: '', model: 'Black Bounce / Flag Board', qty: 1, category: 'Staging, Grip & FX', pct: 10 },
+    { name: 'Hard Foam', brand: '', model: 'White Bounce Board', qty: 1, category: 'Staging, Grip & FX', pct: 10 },
+    { name: 'Clips / Clamps', brand: '', model: 'Backdrop Clamps Grip', qty: 1, category: 'Staging, Grip & FX', pct: 10 },
+    { name: 'Aquarium', brand: '', model: 'High-Speed Water Splash Tank', qty: 1, category: 'Staging, Grip & FX', pct: 10 }
+  ];
+
+  const filteredStudioItems = studioCategory === 'All'
+    ? studioInventory
+    : studioInventory.filter(item => item.category === studioCategory);
+
+  const filteredProductLabItems = productLabCategory === 'All'
+    ? productLabInventory
+    : productLabInventory.filter(item => item.category === productLabCategory);
 
   // Campus spaces grid
   const campusSpaces = [
@@ -481,23 +549,23 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
       </AnimatedContent>
 
       {/* =========================================================================
-          5. EQUIPMENT FLEET: NIKON CAMERAS & NIKKOR Z LENSES
+          5. EQUIPMENT FLEET: NIKON CAMERAS, NIKKOR Z LENSES, STUDIO & PRODUCT LAB
           ========================================================================= */}
       <AnimatedContent distance={40} duration={0.8} threshold={0.1}>
         <div className="space-y-6">
           <div className="px-2">
             <div className="text-[12px] font-extrabold tracking-[0.16em] uppercase text-neutral-400">
-              Fleet &amp; Optics Breakdown
+              Fleet, Optics &amp; Studio Breakdown
             </div>
             <h2 className="h1 text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white tracking-tight leading-[0.95] mt-2">
               Gear you’ll shoot with
             </h2>
             <p className="mt-3 text-neutral-300 font-light text-base sm:text-lg max-w-3xl leading-relaxed">
-              Students train on professional Nikon mirrorless bodies and Nikkor Z lenses, from fast primes to long telephoto zooms. Zero equipment deposit or camera fee required.
+              Students train on professional Nikon mirrorless bodies, Nikkor Z optics, high-output Godox strobes, and commercial tabletop product rigs. 120+ specialized production assets with zero equipment deposit or camera fee required.
             </p>
           </div>
 
-          {/* Side-by-Side Equipment Breakdowns (Distinct White Boxes with Black Text) */}
+          {/* Row 1: Camera Fleet & Optics (Distinct White Boxes with Black Text) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
             
             {/* Box 1: Nikon Cameras */}
@@ -637,6 +705,386 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               <div className="mt-8 pt-4 border-t border-neutral-200 text-xs text-neutral-600 flex items-center justify-between font-medium">
                 <span>Fast primes (f/1.2 &amp; f/1.4) + Telephoto zooms</span>
                 <span className="text-emerald-700 font-bold">S-Line Quality</span>
+              </div>
+            </article>
+          </div>
+
+          {/* Row 2: Studio Production Stage & Product Lab Stages (Distinct White Boxes with Black Text) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
+            
+            {/* Box 3: Commercial Studio Stage */}
+            <article className="rounded-[24px] bg-white text-black border border-neutral-100 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
+              <div>
+                {/* Header with Title, View Switcher & Total Count */}
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-6 border-b border-neutral-200">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
+                        03 · Studio equipment
+                      </span>
+                      <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-mono font-bold uppercase tracking-wider">
+                        Godox &amp; Manfrotto
+                      </span>
+                    </div>
+                    <div className="text-xl sm:text-2xl font-black uppercase text-black tracking-tight mt-1">
+                      Studio Lighting &amp; Grip
+                    </div>
+                  </div>
+
+                  <div className="flex items-center sm:items-end justify-between sm:justify-start gap-4">
+                    {/* View Switcher: List vs Table */}
+                    <div className="flex items-center gap-1 p-1 bg-neutral-100 rounded-lg border border-neutral-200">
+                      <button
+                        type="button"
+                        onClick={() => setStudioViewMode('list')}
+                        className={`px-2.5 py-1 rounded text-xs flex items-center gap-1.5 transition-all ${
+                          studioViewMode === 'list'
+                            ? 'bg-black text-white font-bold shadow-sm'
+                            : 'text-neutral-600 hover:text-black'
+                        }`}
+                        title="List View"
+                      >
+                        <ListIcon className="w-3.5 h-3.5" />
+                        <span className="text-[11px] font-bold">List</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setStudioViewMode('table')}
+                        className={`px-2.5 py-1 rounded text-xs flex items-center gap-1.5 transition-all ${
+                          studioViewMode === 'table'
+                            ? 'bg-black text-white font-bold shadow-sm'
+                            : 'text-neutral-600 hover:text-black'
+                        }`}
+                        title="Table View"
+                      >
+                        <TableIcon className="w-3.5 h-3.5" />
+                        <span className="text-[11px] font-bold">Table</span>
+                      </button>
+                    </div>
+
+                    <div className="text-right">
+                      <div className="text-5xl sm:text-7xl font-black text-black tracking-tighter leading-none">
+                        33
+                      </div>
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mt-1">
+                        Total assets
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Category Filter Pills */}
+                <div className="flex flex-wrap gap-1.5 py-3 border-b border-neutral-200">
+                  {studioCategories.map((cat) => (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setStudioCategory(cat)}
+                      className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all ${
+                        studioCategory === cat
+                          ? 'bg-black text-white'
+                          : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-black'
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Content Container (Scrollable minimal-scrollbar) */}
+                <div className="max-h-[500px] overflow-y-auto minimal-scrollbar pr-2 overscroll-contain">
+                  {studioViewMode === 'list' ? (
+                    <div>
+                      {studioCategories
+                        .filter(cat => cat !== 'All' && (studioCategory === 'All' || studioCategory === cat))
+                        .map(cat => {
+                          const items = studioInventory.filter(i => i.category === cat);
+                          if (items.length === 0) return null;
+                          return (
+                            <div key={cat} className="pt-4 first:pt-2">
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-amber-700">
+                                  {cat}
+                                </span>
+                                <span className="text-[10px] font-mono text-neutral-400 font-semibold">
+                                  {items.reduce((sum, item) => sum + item.qty, 0)} units
+                                </span>
+                              </div>
+                              <div className="divide-y divide-neutral-200">
+                                {items.map((item, i) => (
+                                  <div key={i} className="py-2.5 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-3 items-center">
+                                    <div className="min-w-0 pr-2">
+                                      <div className="flex items-center gap-2 flex-wrap">
+                                        <span className="text-xs sm:text-sm font-bold text-neutral-900">
+                                          {item.name}
+                                        </span>
+                                        {item.brand && (
+                                          <span className="sm:hidden px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-700 font-mono text-[9px] font-bold uppercase border border-neutral-200">
+                                            {item.brand}
+                                          </span>
+                                        )}
+                                      </div>
+                                      <div className="text-[11px] text-neutral-500 font-mono truncate">
+                                        {item.model}
+                                      </div>
+                                    </div>
+                                    
+                                    <div className="hidden sm:flex items-center justify-start gap-2">
+                                      {item.brand ? (
+                                        <span className="px-2 py-0.5 rounded bg-neutral-100 text-neutral-800 font-mono text-[10px] font-bold uppercase tracking-wider border border-neutral-200">
+                                          {item.brand}
+                                        </span>
+                                      ) : (
+                                        <span className="text-neutral-400 font-mono text-[10px] uppercase">
+                                          Studio Spec
+                                        </span>
+                                      )}
+                                    </div>
+
+                                    <div className="text-base sm:text-lg font-bold text-black text-right font-mono">
+                                      {item.qty}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  ) : (
+                    /* Table View */
+                    <div className="overflow-x-auto pt-2">
+                      <table className="w-full text-left border-collapse text-xs">
+                        <thead>
+                          <tr className="border-b-2 border-neutral-300 text-neutral-500 uppercase tracking-wider font-mono text-[10px]">
+                            <th className="py-2.5 pr-3 font-bold">Asset Name</th>
+                            <th className="py-2.5 px-3 font-bold">Brand</th>
+                            <th className="py-2.5 px-3 font-bold">Model</th>
+                            <th className="py-2.5 pl-3 font-bold text-right">Qty</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-neutral-200">
+                          {filteredStudioItems.map((item, idx) => (
+                            <tr key={idx} className="hover:bg-neutral-50 transition-colors">
+                              <td className="py-2.5 pr-3 font-bold text-neutral-900">
+                                {item.name}
+                              </td>
+                              <td className="py-2.5 px-3">
+                                {item.brand ? (
+                                  <span className="px-2 py-0.5 rounded bg-neutral-100 text-neutral-800 font-mono text-[10px] font-bold uppercase tracking-wider border border-neutral-200">
+                                    {item.brand}
+                                  </span>
+                                ) : (
+                                  <span className="text-neutral-400 font-mono text-[11px]">—</span>
+                                )}
+                              </td>
+                              <td className="py-2.5 px-3 font-mono text-neutral-600 text-[11px]">
+                                {item.model || '—'}
+                              </td>
+                              <td className="py-2.5 pl-3 font-mono font-black text-black text-right text-sm">
+                                {item.qty}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Extra Support Rigs Note */}
+              <div className="mt-8 pt-4 border-t border-neutral-200 text-xs text-neutral-600 flex items-center justify-between font-medium">
+                <span>Godox Strobes · Softboxes · C-Stands &amp; Chroma Backdrops</span>
+                <span className="text-amber-700 font-bold">Commercial Studio Ready</span>
+              </div>
+            </article>
+
+            {/* Box 4: Product Lab Inventory */}
+            <article className="rounded-[24px] bg-white text-black border border-neutral-100 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
+              <div>
+                {/* Header with Title, View Switcher & Total Count */}
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-6 border-b border-neutral-200">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
+                        04 · Product lab inventory
+                      </span>
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold uppercase tracking-wider">
+                        Macro &amp; Tabletop
+                      </span>
+                    </div>
+                    <div className="text-xl sm:text-2xl font-black uppercase text-black tracking-tight mt-1">
+                      Product Lab &amp; FX Staging
+                    </div>
+                  </div>
+
+                  <div className="flex items-center sm:items-end justify-between sm:justify-start gap-4">
+                    {/* View Switcher: List vs Table */}
+                    <div className="flex items-center gap-1 p-1 bg-neutral-100 rounded-lg border border-neutral-200">
+                      <button
+                        type="button"
+                        onClick={() => setProductLabViewMode('list')}
+                        className={`px-2.5 py-1 rounded text-xs flex items-center gap-1.5 transition-all ${
+                          productLabViewMode === 'list'
+                            ? 'bg-black text-white font-bold shadow-sm'
+                            : 'text-neutral-600 hover:text-black'
+                        }`}
+                        title="List View"
+                      >
+                        <ListIcon className="w-3.5 h-3.5" />
+                        <span className="text-[11px] font-bold">List</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setProductLabViewMode('table')}
+                        className={`px-2.5 py-1 rounded text-xs flex items-center gap-1.5 transition-all ${
+                          productLabViewMode === 'table'
+                            ? 'bg-black text-white font-bold shadow-sm'
+                            : 'text-neutral-600 hover:text-black'
+                        }`}
+                        title="Table View"
+                      >
+                        <TableIcon className="w-3.5 h-3.5" />
+                        <span className="text-[11px] font-bold">Table</span>
+                      </button>
+                    </div>
+
+                    <div className="text-right">
+                      <div className="text-5xl sm:text-7xl font-black text-black tracking-tighter leading-none">
+                        23
+                      </div>
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mt-1">
+                        Total assets
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Category Filter Pills */}
+                <div className="flex flex-wrap gap-1.5 py-3 border-b border-neutral-200">
+                  {productLabCategories.map((cat) => (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setProductLabCategory(cat)}
+                      className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all ${
+                        productLabCategory === cat
+                          ? 'bg-black text-white'
+                          : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-black'
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Content Container (Scrollable minimal-scrollbar) */}
+                <div className="max-h-[500px] overflow-y-auto minimal-scrollbar pr-2 overscroll-contain">
+                  {productLabViewMode === 'list' ? (
+                    <div>
+                      {productLabCategories
+                        .filter(cat => cat !== 'All' && (productLabCategory === 'All' || productLabCategory === cat))
+                        .map(cat => {
+                          const items = productLabInventory.filter(i => i.category === cat);
+                          if (items.length === 0) return null;
+                          return (
+                            <div key={cat} className="pt-4 first:pt-2">
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-amber-700">
+                                  {cat}
+                                </span>
+                                <span className="text-[10px] font-mono text-neutral-400 font-semibold">
+                                  {items.reduce((sum, item) => sum + item.qty, 0)} units
+                                </span>
+                              </div>
+                              <div className="divide-y divide-neutral-200">
+                                {items.map((item, i) => (
+                                  <div key={i} className="py-2.5 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-3 items-center">
+                                    <div className="min-w-0 pr-2">
+                                      <div className="flex items-center gap-2 flex-wrap">
+                                        <span className="text-xs sm:text-sm font-bold text-neutral-900">
+                                          {item.name}
+                                        </span>
+                                        {item.brand && (
+                                          <span className="sm:hidden px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-700 font-mono text-[9px] font-bold uppercase border border-neutral-200">
+                                            {item.brand}
+                                          </span>
+                                        )}
+                                      </div>
+                                      <div className="text-[11px] text-neutral-500 font-mono truncate">
+                                        {item.model}
+                                      </div>
+                                    </div>
+                                    
+                                    <div className="hidden sm:flex items-center justify-start gap-2">
+                                      {item.brand ? (
+                                        <span className="px-2 py-0.5 rounded bg-neutral-100 text-neutral-800 font-mono text-[10px] font-bold uppercase tracking-wider border border-neutral-200">
+                                          {item.brand}
+                                        </span>
+                                      ) : (
+                                        <span className="text-neutral-400 font-mono text-[10px] uppercase">
+                                          Lab Gear
+                                        </span>
+                                      )}
+                                    </div>
+
+                                    <div className="text-base sm:text-lg font-bold text-black text-right font-mono">
+                                      {item.qty}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  ) : (
+                    /* Table View */
+                    <div className="overflow-x-auto pt-2">
+                      <table className="w-full text-left border-collapse text-xs">
+                        <thead>
+                          <tr className="border-b-2 border-neutral-300 text-neutral-500 uppercase tracking-wider font-mono text-[10px]">
+                            <th className="py-2.5 pr-3 font-bold">Asset Name</th>
+                            <th className="py-2.5 px-3 font-bold">Brand</th>
+                            <th className="py-2.5 px-3 font-bold">Model</th>
+                            <th className="py-2.5 pl-3 font-bold text-right">Qty</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-neutral-200">
+                          {filteredProductLabItems.map((item, idx) => (
+                            <tr key={idx} className="hover:bg-neutral-50 transition-colors">
+                              <td className="py-2.5 pr-3 font-bold text-neutral-900">
+                                {item.name}
+                              </td>
+                              <td className="py-2.5 px-3">
+                                {item.brand ? (
+                                  <span className="px-2 py-0.5 rounded bg-neutral-100 text-neutral-800 font-mono text-[10px] font-bold uppercase tracking-wider border border-neutral-200">
+                                    {item.brand}
+                                  </span>
+                                ) : (
+                                  <span className="text-neutral-400 font-mono text-[11px]">—</span>
+                                )}
+                              </td>
+                              <td className="py-2.5 px-3 font-mono text-neutral-600 text-[11px]">
+                                {item.model || '—'}
+                              </td>
+                              <td className="py-2.5 pl-3 font-mono font-black text-black text-right text-sm">
+                                {item.qty}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Extra Support Rigs Note */}
+              <div className="mt-8 pt-4 border-t border-neutral-200 text-xs text-neutral-600 flex items-center justify-between font-medium">
+                <span>10 Softboxes · Tent Booth · PVC Backdrops &amp; Water Splash Tank</span>
+                <span className="text-emerald-700 font-bold">Macro &amp; Commercial Lab</span>
               </div>
             </article>
           </div>

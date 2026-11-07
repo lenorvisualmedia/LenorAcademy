@@ -18,7 +18,8 @@
   height: 100%;
   overflow: hidden;
   border-radius: var(--rc-radius);
-  background: var(--rc-base);
+  background: linear-gradient(155deg, #242429 0%, #161619 35%, #0e0e10 70%, #070708 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: var(--rc-shadow);
   transform: translate3d(0, var(--rc-lift, 0px), 0) rotateX(var(--rc-rotate-x, 0deg)) rotateY(var(--rc-rotate-y, 0deg));
   opacity: var(--rc-presence, 1);

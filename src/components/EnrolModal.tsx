@@ -145,8 +145,8 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
                   className="w-full bg-neutral-50 border border-neutral-300 rounded-xl px-3 py-2 text-xs sm:text-sm text-black font-semibold focus:outline-none focus:border-black transition-colors"
                 >
                   <optgroup label="Flagship & Long-Term Programmes">
-                    <option value="media-master">MMP – Media Master Programme — 1 Year (₹ 1,49,000 · 100% Placement)</option>
-                    <option value="visual-media-production">VMP – Visual Media Production — 6 Months (₹ 65,220)</option>
+                    <option value="media-master">MMP – Media Master Programme — 1 Year (₹ 1,49,825/- · 100% Placement)</option>
+                    <option value="visual-media-production">VMP – Visual Media Production — 6 Months (₹ 68,825/-)</option>
                     <option value="media-designing-editing">Media Design and Editing Professional — 6 Months (₹ 64,000)</option>
                   </optgroup>
                   <optgroup label="Professional 3-Month Courses">

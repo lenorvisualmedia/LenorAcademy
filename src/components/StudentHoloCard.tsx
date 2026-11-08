@@ -44,19 +44,13 @@ export const StudentHoloCard: React.FC<StudentHoloCardProps> = ({ student, theme
         <div className="my-auto py-2 flex items-center justify-center">
           <div className="relative w-full max-w-[250px] aspect-[16/11] rounded-2xl overflow-hidden border border-white/15 shadow-2xl group bg-neutral-900">
             <img
-              src={student.drivePhotoId ? `https://lh3.googleusercontent.com/d/${student.drivePhotoId}` : student.cardImage}
+              src={student.cardImage}
               alt={`${student.name} - ${student.role}`}
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
               decoding="async"
               width="250"
               height="172"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                if (!target.src.endsWith(student.cardImage)) {
-                  target.src = student.cardImage;
-                }
-              }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-[10px] font-mono text-white/95 drop-shadow">

@@ -10,11 +10,14 @@ import {
   Maximize2, 
   X,
   Compass,
-  Target
+  Target,
+  Quote,
+  Sparkles
 } from 'lucide-react';
 import { AnimatedContent } from './AnimatedContent';
 import { PillButton } from './PillButton';
 import { useModalScrollLock } from '../utils/modalScrollLock';
+import { FACULTY_MENTORS } from '../data/academyData';
 
 interface AboutUsSectionProps {
   onOpenEnrol?: (programId?: string) => void;
@@ -401,6 +404,126 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             </div>
           </div>
         </div>
+      </AnimatedContent>
+
+      {/* =========================================================================
+          6B. OUR MENTORS: CORE INSTRUCTIONAL LEADERSHIP (WHITE BOXES WITH BLACK TEXT)
+          ========================================================================= */}
+      <AnimatedContent distance={40} duration={0.8} threshold={0.1}>
+        <section className="space-y-6">
+          <div>
+            <div className="text-[12px] font-bold tracking-[0.16em] uppercase text-neutral-400">
+              Our Mentors
+            </div>
+            <h2 className="h1 text-4xl sm:text-6xl font-black uppercase text-white tracking-tight leading-[0.95] mt-2">
+              Learn from industry leaders
+            </h2>
+            <p className="text-base sm:text-lg text-neutral-400 font-light mt-2 max-w-2xl">
+              Experienced practitioners and department heads guiding your hands-on drills, camera operations, creative lighting, and post-production workflows.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+            {FACULTY_MENTORS.map((mentor) => (
+              <article 
+                key={mentor.id}
+                className="rounded-[24px] bg-white text-black p-6 sm:p-10 shadow-2xl border border-neutral-100 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-300 space-y-6"
+              >
+                <div>
+                  {/* Photo & Identity Header */}
+                  <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center pb-6 border-b border-neutral-200">
+                    <div 
+                      className="sm:col-span-5 relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[3/4] shadow-md group/img cursor-pointer border border-neutral-200"
+                      onClick={() => setSelectedImage({
+                        title: mentor.name,
+                        subtitle: `${mentor.designation} · Lenor Academy`,
+                        image: mentor.image,
+                        category: "campus"
+                      })}
+                    >
+                      <img 
+                        src={mentor.image} 
+                        alt={mentor.name}
+                        className="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center p-2">
+                        <span className="px-3 py-1.5 rounded-full bg-black/80 text-white text-[11px] font-mono font-bold flex items-center gap-1.5 shadow-lg">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                          <span>Expand</span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="sm:col-span-7 flex flex-col justify-center space-y-2">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="px-3 py-1 rounded-full bg-amber-500/15 text-amber-900 text-[10px] font-mono font-extrabold uppercase border border-amber-500/30">
+                          {mentor.experience}
+                        </span>
+                        <span className="px-3 py-1 rounded-full bg-neutral-100 text-neutral-800 text-[10px] font-mono font-bold uppercase border border-neutral-200">
+                          {mentor.id === 'shahin-kr' ? 'HOD' : 'Senior Instructor'}
+                        </span>
+                      </div>
+
+                      <h3 className="h1 text-2xl sm:text-3xl font-black uppercase text-black tracking-tight mt-1">
+                        {mentor.name}
+                      </h3>
+
+                      <div className="text-xs sm:text-sm font-bold text-neutral-600 uppercase tracking-wider">
+                        {mentor.designation}
+                      </div>
+
+                      {/* Mentor Quote */}
+                      <blockquote className="mt-3 p-3.5 rounded-xl bg-neutral-50 border-l-2 border-black text-xs sm:text-sm italic text-neutral-800 leading-relaxed font-serif">
+                        &ldquo;{mentor.quote}&rdquo;
+                      </blockquote>
+                    </div>
+                  </div>
+
+                  {/* Specialisation Section */}
+                  <div className="mt-6 space-y-3">
+                    <div className="text-[11px] font-extrabold tracking-[0.16em] uppercase text-neutral-500">
+                      Specialisation &amp; Focus Areas
+                    </div>
+                    {mentor.specialisationText && (
+                      <p className="text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+                        {mentor.specialisationText}
+                      </p>
+                    )}
+
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {mentor.specialisations.map((spec, idx) => (
+                        <span 
+                          key={idx}
+                          className="px-2.5 py-1 rounded-lg bg-neutral-100 text-neutral-900 text-[11px] sm:text-xs font-medium border border-neutral-200"
+                        >
+                          {spec}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Software & Tools Expertise Footer */}
+                <div className="pt-6 border-t border-neutral-200">
+                  <div className="text-[10px] font-extrabold tracking-[0.16em] uppercase text-neutral-500 mb-2.5">
+                    Software &amp; Tools Expertise
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {mentor.tools.map((tool, idx) => (
+                      <span 
+                        key={idx}
+                        className="px-3 py-1.5 rounded-full bg-black text-white text-[11px] font-mono font-bold uppercase tracking-wider"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </AnimatedContent>
 
       {/* =========================================================================

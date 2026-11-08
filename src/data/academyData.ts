@@ -117,6 +117,19 @@ export interface JobOpening {
   requirements: string[];
 }
 
+export interface FacultyMentor {
+  id: string;
+  name: string;
+  designation: string;
+  experience: string;
+  badge: string;
+  specialisations: string[];
+  specialisationText?: string;
+  tools: string[];
+  quote: string;
+  image: string;
+}
+
 // --------------------------------------------------------------------
 // ACADEMY GENERAL INFO
 // --------------------------------------------------------------------
@@ -306,6 +319,62 @@ export const ACADEMY_INFO = {
     { id: "drone", name: "5-Day Drone Course", duration: "5 Days", fee: "₹ 5,990" }
   ]
 };
+
+// --------------------------------------------------------------------
+// FACULTY MENTORS (CORE INSTRUCTORS)
+// --------------------------------------------------------------------
+export const FACULTY_MENTORS: FacultyMentor[] = [
+  {
+    id: "shahin-kr",
+    name: "Shahin Kr",
+    designation: "HOD - Photography, Videography & Cinematography",
+    experience: "6 Years Experience",
+    badge: "Head of Department · 6 Yrs Exp",
+    specialisationText: "Leading photography and cinematography training with a focus on advanced exposure control, studio lighting architecture, and creative visual composition across commercial and film genres.",
+    specialisations: [
+      "Advanced Camera Operations & Techniques",
+      "Professional Studio & Location Lighting",
+      "Portrait, Fashion & Commercial Photography",
+      "Commercial & Event Videography",
+      "Creative Composition & Visual Storytelling",
+      "Advanced Exposure Control & Camera Technologies",
+      "Practical Photography & Cinematography Training"
+    ],
+    tools: [
+      "Adobe Photoshop",
+      "Adobe Lightroom",
+      "Adobe Premiere Pro"
+    ],
+    quote: "I believe photography and cinematography are more than just operating a camera; they are about understanding light, perspective, and the art of visual storytelling. My teaching approach combines strong technical fundamentals with hands-on practical experience, encouraging students to explore their creativity and develop their own unique visual style. I strive to simplify complex concepts and bridge the gap between classroom learning and real-world industry practices. My goal is to inspire and guide aspiring photographers and filmmakers to build confidence, think creatively, and transform their vision into compelling visuals.",
+    image: "/assets/mentor-shahin-kr.jpg"
+  },
+  {
+    id: "sarandas-m",
+    name: "Sarandas M",
+    designation: "Senior Editing Instructor",
+    experience: "3 Years Experience",
+    badge: "Senior Instructor · 3 Yrs Exp",
+    specialisationText: "Specialized in high-impact video post-production across diverse genres, including emotive wedding films, dynamic automotive showcases, and rhythm-driven fast-cut edits. Proficient in Adobe Premiere Pro, After Effects, and DaVinci Resolve, combining precision color grading and sound design with hands-on camera operation. His editing-first foundation ensures every shot captured on-location is purposeful, cut-ready, and built for seamless narrative flow.",
+    specialisations: [
+      "Video Editing & Videography",
+      "High-Impact Post-Production",
+      "Emotive Wedding Films & Automotive Showcases",
+      "Rhythm-Driven Fast-Cut Edits",
+      "Precision Color Grading & Sound Design",
+      "Hands-On Camera Operation & Cut-Ready Shoots",
+      "Seamless Narrative Flow"
+    ],
+    tools: [
+      "After Effects",
+      "Premier Pro",
+      "DaVinci Resolve",
+      "Photoshop",
+      "Lightroom"
+    ],
+    quote: "Trust the story only you can tell",
+    image: "/assets/mentor-sarandas-m.jpg"
+  }
+];
 
 // --------------------------------------------------------------------
 // 9 STOPS JOURNEY
@@ -715,7 +784,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1kwJegkBfjya1Numexrhm0jIHo3BbKt-S",
     driveLogoId: "1SnZowytlHVDmq8dgG93zFENb8_eg021J",
-    cardImage: "/assets/92829f40-f725-4982-bb4c-b75dfa06bac4.webp",
+    cardImage: "/assets/students/st-1.webp",
     cardPreset: "bursts"
   },
   {
@@ -732,7 +801,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "1gejfaFPtCB-R9EMwqfGWlbUNH_QnBpUq",
     driveLogoId: "19-bHvVPicm5PYk40ufL2FWx-dZD8-Dq1",
-    cardImage: "/assets/aea971a7-2000-4f9c-b503-af69a67cc1cd.webp",
+    cardImage: "/assets/students/st-2.webp",
     cardPreset: "stars"
   },
   {
@@ -749,7 +818,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "email",
     drivePhotoId: "1olE_w5I-PSj3892EhFOjHVsNj5ENWnQG",
     driveLogoId: "1HLmkg-1zja4zydYzmXr35_CeZWJuluUp",
-    cardImage: "/assets/4c0b7179-9592-44af-b728-d534e7d57e88.webp",
+    cardImage: "/assets/students/st-3.webp",
     cardPreset: "shards"
   },
   {
@@ -766,7 +835,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "portfolio",
     drivePhotoId: "1xH718Q-17Tm0Oz-bKyGe6h19wETHCKps",
     driveLogoId: "1jveI0wAHPYe_fok8Y8VSXaWXiN6uPD3Q",
-    cardImage: "/assets/1ce9c5f9-bfab-442c-b731-56fcfd8ce758.webp",
+    cardImage: "/assets/students/st-4.webp",
     cardPreset: "cosmos"
   },
   {
@@ -783,7 +852,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "10Lm1JzPbRAvFBcRoaxRgv3EHrOb0FQOX",
     driveLogoId: "1-RXXi7usY7F4wXzl8O9uGaX2bVe1EwGM",
-    cardImage: "/assets/266814ca686b58ce6fb30ca1ba66a3d5.webp",
+    cardImage: "/assets/students/st-5.webp",
     cardPreset: "rainbow"
   },
   {
@@ -800,7 +869,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "behance",
     drivePhotoId: "19M7oeP0WO6F39R5W7OZRkaK1Jy3nN2tU",
     driveLogoId: "1G1iZKzr8AyX4aP1cDGZINxkwTSYHCMA2",
-    cardImage: "/assets/af9e05d02e3d78a034a5eda12208dccf.webp",
+    cardImage: "/assets/students/st-6.webp",
     cardPreset: "swirl"
   },
   {
@@ -817,7 +886,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1wEYPWJ96MQ9R7Pv3oddk6DrsQoBsc5xQ",
     driveLogoId: "15IaEJjVMJVRIRucF0_rtKZ0BACP3XuQv",
-    cardImage: "/assets/8ba53ea25eca22da1f3017b76d4e1868.webp",
+    cardImage: "/assets/students/st-7.webp",
     cardPreset: "glitter"
   },
   {
@@ -834,7 +903,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1aTpu4Jzgbpt2I-5yNHaflHow3NTBpxob",
     driveLogoId: "19GIq7Y4U38RxRueWlaEjni7GYk8xxiK1",
-    cardImage: "/assets/40c26ca8e28d1ad43b398e249b22603d.webp",
+    cardImage: "/assets/students/st-8.webp",
     cardPreset: "gold"
   },
   {
@@ -851,7 +920,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1RXajM6IowgEkpVol-WpeePkmhdQP_m9Y",
     driveLogoId: "1S-IYr6DNjzs2hTwZS99A4gGfWlEW1M97",
-    cardImage: "/assets/179f0e839c946970e2d9cfc3d4064f35.webp",
+    cardImage: "/assets/students/st-9.webp",
     cardPreset: "bursts"
   },
   {
@@ -868,7 +937,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1GpXw4fcOoig7DeyF5gHwUrom3tnygqwE",
     driveLogoId: "18ZT5TjGFhwunor7Q2Eu8XoNaIODpEdKF",
-    cardImage: "/assets/1fb7aa06fcb8e992f56088cc1a94cdd3.webp",
+    cardImage: "/assets/students/st-10.webp",
     cardPreset: "stars"
   },
   {
@@ -885,7 +954,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "11EM8EDjX5-63R111wVhy_7jBlWShaRWP",
     driveLogoId: "1idmhxZqAP1CWQy8rB2vzZi91viArzmbk",
-    cardImage: "/assets/231839bd06faeb6ea3c540e9c3440856.webp",
+    cardImage: "/assets/students/st-11.webp",
     cardPreset: "shards"
   },
   {
@@ -902,7 +971,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1JDUrdyOHojXQ_zfxq9CIi_RmYTlRrBld",
     driveLogoId: "1Vwh-zzwl90EQysaaD-dDHyY0aRrnracj",
-    cardImage: "/assets/28b8b129bd95e6d83b42819751b4ad6b.webp",
+    cardImage: "/assets/students/st-12.webp",
     cardPreset: "cosmos"
   },
   {
@@ -919,7 +988,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1nLBN4hXORCGvXLGsHlkVACIrgC_tEkQ6",
     driveLogoId: "11FaSpIewnl60aY7ijyzkg8Bwi5cfj_Z6",
-    cardImage: "/assets/38850a07aac898bfbe2489c9e82250af.webp",
+    cardImage: "/assets/students/st-13.webp",
     cardPreset: "rainbow"
   },
   {
@@ -936,7 +1005,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1v1l0PenlwSgXxeL8X007IW4VSHSTNv31",
     driveLogoId: "1gmbb146_y1PSrLs_BwzDF-aq08CbbNbA",
-    cardImage: "/assets/430e290e-ef97-4964-a65b-a23923adad3f.webp",
+    cardImage: "/assets/students/st-14.webp",
     cardPreset: "swirl"
   },
   {
@@ -953,7 +1022,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1Mmi96jXPdzRqH0VWLN6U40BmLxXwfgBc",
     driveLogoId: "1gYFBz-rjIzok9OOOAb5lBAC9yBxYxzMH",
-    cardImage: "/assets/4b32a154-0d06-4137-bfbe-d8c580a9073f.webp",
+    cardImage: "/assets/students/st-15.webp",
     cardPreset: "glitter"
   },
   {
@@ -970,7 +1039,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1FpMV_DuE3miUUt0705PevaiZqV2QtDic",
     driveLogoId: "1D-lSX5sBaBwu4UFuAwYOYk0_Fvcnk2WH",
-    cardImage: "/assets/610f9b6df212ed06c84a6f395b70946b.webp",
+    cardImage: "/assets/students/st-16.webp",
     cardPreset: "gold"
   },
   {
@@ -987,7 +1056,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "1rhn2qkyNWKRh677zhMVp8wIdhndZTG1Z",
     driveLogoId: "14VeMgsE14uFrwLj_-exIopOCK6IFA_LM",
-    cardImage: "/assets/8ce65b342d3f8d32510b479fdae70e64.webp",
+    cardImage: "/assets/students/st-17.webp",
     cardPreset: "bursts"
   },
   {
@@ -1004,7 +1073,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "1GGHtcb1LyrdrlZDmuQY-FW8J4LcRDCqr",
     driveLogoId: "1uPfE0dBD3Hlzn_kK7tu2t-Ojxxdl4uzy",
-    cardImage: "/assets/9c507783-ae7c-4142-8613-7daff3fe92a1.webp",
+    cardImage: "/assets/students/st-18.webp",
     cardPreset: "stars"
   },
   {
@@ -1021,7 +1090,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "1bMxHKYsTnlW8wmTxNCAHxygNDlHXfrSe",
     driveLogoId: "1a3RcBV5Q4XPsQNFrZI4bXj4wgSx5SFvE",
-    cardImage: "/assets/c01459e8-da36-4de6-bd3a-a062c8e3c669.webp",
+    cardImage: "/assets/students/st-19.webp",
     cardPreset: "shards"
   },
   {
@@ -1038,7 +1107,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "11LLBMqjEaRnUmrf-3lzppy24eh1G7IN5",
     driveLogoId: "112G4kJMJJPsm8Db3AdmfYCplyqEJAqQe",
-    cardImage: "/assets/c67df096-6056-44dd-afb6-2447b7721e4a.webp",
+    cardImage: "/assets/students/st-20.webp",
     cardPreset: "cosmos"
   },
   {
@@ -1055,7 +1124,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1ed7B4pSOr2f6k6yabSVA9nrLsBAtmEQn",
     driveLogoId: "1gSH3cYAShGa3pqx_FOMboFzwwQkQzWe6",
-    cardImage: "/assets/d239a7ff1fed20dcbd601af8a22cc445.webp",
+    cardImage: "/assets/students/st-21.webp",
     cardPreset: "rainbow"
   },
   {
@@ -1072,7 +1141,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1n2DbCoUjtBJpAYn9nYypEdZ71TwAtV8V",
     driveLogoId: "1eXnjuAjk1bK1ypj-djCIJcR_xtOw1Vy6",
-    cardImage: "/assets/d332320c1e882f01b6c1f0cab9e8fdd7.webp",
+    cardImage: "/assets/students/st-22.webp",
     cardPreset: "swirl"
   },
   {
@@ -1089,7 +1158,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "11TBwRFf9_J9zi2CoHfRalQkuWYHw1SmU",
     driveLogoId: "1F0NSYc71ElKjP9jAY2iazVwmE-Y8XnLx",
-    cardImage: "/assets/eba9cf56e27c98d72e2176cc98dbff4e.webp",
+    cardImage: "/assets/students/st-23.webp",
     cardPreset: "glitter"
   },
   {
@@ -1106,7 +1175,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1uzqbkcypSNyOZaDashd2oXiiYBW0oLbo",
     driveLogoId: "1BIHMbGFQbw8eNSAgqTaBDDKhCd66uDX2",
-    cardImage: "/assets/eeede332-45b6-4379-bf2c-7d17aaecd564.webp",
+    cardImage: "/assets/students/st-24.webp",
     cardPreset: "gold"
   },
   {
@@ -1123,7 +1192,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "1Aolod-kZXb-NyQpYh2NXhXlLkTkSv5cf",
     driveLogoId: "1z3xt_zZHUBS5YPjPqPNNchoBkhd2c7nc",
-    cardImage: "/assets/ef6d0936278b1afc004a9899a0d9df5e.webp",
+    cardImage: "/assets/students/st-25.webp",
     cardPreset: "bursts"
   },
   {
@@ -1140,7 +1209,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1xNOq3oab_emdbvVwPtIbxZ0RBZe1TAoC",
     driveLogoId: "1_YBT6KYlRKCzVxEx62A3HDVTn-SZNUlW",
-    cardImage: "/assets/f9607b8e989abbaa401503b580e2dbe8.webp",
+    cardImage: "/assets/students/st-26.webp",
     cardPreset: "stars"
   },
   {
@@ -1157,7 +1226,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1eEH6avR6PjcAngWHZ1pw96D85ymJEsc9",
     driveLogoId: "1xbOHy72R9dwUCyaIdsrisKEvmwWr7F2P",
-    cardImage: "/assets/let-passion-drive-sunset.webp",
+    cardImage: "/assets/students/st-27.webp",
     cardPreset: "shards"
   },
   {
@@ -1174,7 +1243,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1q51ISU5fN08vpSj1AHtQABFlM705Tl1Z",
     driveLogoId: "1a0wC6MYuSsWP-YwoLnMCoxbkqe7ph8RY",
-    cardImage: "/assets/camera-equipments.webp",
+    cardImage: "/assets/students/st-28.webp",
     cardPreset: "cosmos"
   },
 ];

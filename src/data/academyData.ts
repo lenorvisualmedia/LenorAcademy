@@ -384,6 +384,29 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     image: "/assets/mentor-shahin-kr.jpg"
   },
   {
+    id: "abhinand-p-saji",
+    name: "Abhinand P Saji",
+    designation: "HOD - Editing & Design",
+    experience: "3 Years Experience",
+    badge: "Head of Department · 3 Yrs Exp",
+    specialisationText: "Head of Editing & Design directing high-end post-production, advanced timeline workflows, commercial storytelling, and creative mentoring. Specialized in advanced video editing across modeling, commercial, and travel genres, advanced node-based color grading in DaVinci Resolve, dynamic masking, and optimized Adobe Premiere Pro pipelines.",
+    specialisations: [
+      "Advanced Video Editing (Modeling, Commercial, Travel)",
+      "Masking & Colour Grading",
+      "DaVinci Resolve Nodes & Graphs",
+      "Premiere Pro Workflow Optimization",
+      "Creative Mentoring",
+      "Rhythm & Narrative Pacing"
+    ],
+    tools: [
+      "Adobe Premiere Pro",
+      "DaVinci Resolve",
+      "Adobe Lightroom"
+    ],
+    quote: "For me, video editing is more than just arranging clips and adding transitions. It's about finding the right rhythm, shaping emotions, and turning raw footage into meaningful stories. Every frame has a purpose, and every cut is an opportunity to make a story more powerful. Editing is not just about what you show, it's about how you make people feel through what they see.",
+    image: "/assets/mentor-abhinand-p-saji.jpg"
+  },
+  {
     id: "sarandas-m",
     name: "Sarandas M",
     designation: "Senior Editing Instructor",

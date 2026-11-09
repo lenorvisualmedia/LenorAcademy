@@ -407,6 +407,31 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     image: "/assets/mentor-abhinand-p-saji.jpg"
   },
   {
+    id: "navas-p",
+    name: "Navas P",
+    designation: "Instructor – Photography",
+    experience: "13 Years Experience",
+    badge: "Senior Instructor · 13 Yrs Exp",
+    specialisationText: "Veteran photography instructor and industry professional with over 13 years of practical experience across fashion, architectural, sports, studio, and commercial photography. Expert in advanced lighting architectures, studio strobe control, and multi-brand camera systems (Sony, Nikon, Canon), with a strong dedication to hands-on, practical-based student training.",
+    specialisations: [
+      "Fashion, Architectural & Sports Photography",
+      "Advanced Camera Operations & Techniques",
+      "Professional Studio & Location Lighting",
+      "Portrait, Events & Commercial Shoots",
+      "Creative Composition & Visual Storytelling",
+      "Advanced Exposure Control & Technologies",
+      "Practical Hands-On Field Training"
+    ],
+    tools: [
+      "Adobe Photoshop",
+      "Adobe Lightroom",
+      "Adobe Premiere Pro",
+      "Sony, Nikon & Canon Systems"
+    ],
+    quote: "As an instructor, I focus on practical-based learning—helping students develop deep technical expertise, creative vision, and professional photography confidence across studio and real-world environments.",
+    image: "/assets/mentor-navas-p.jpg"
+  },
+  {
     id: "nisham-muhammed",
     name: "Nisham Muhammed",
     designation: "Cinematography Lecturer",

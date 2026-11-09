@@ -408,6 +408,31 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     ],
     quote: "Trust the story only you can tell",
     image: "/assets/mentor-sarandas-m.jpg"
+  },
+  {
+    id: "nahlas-e-k",
+    name: "Nahlas E K",
+    designation: "Senior Editing Instructor",
+    experience: "3 Years Experience",
+    badge: "Senior Instructor · 3 Yrs Exp",
+    specialisationText: "Creative video editor and videographer with expertise in crafting engaging visual stories across multiple genres, including cinematic wedding films and dynamic automotive productions. Skilled in Adobe Premiere Pro and DaVinci Resolve, with a strong focus on professional color grading, sound design, and practical camera operation. Backed by a solid post-production foundation, approaching every on-location shoot with an editor’s perspective, ensuring each frame is thoughtfully captured, purposeful, and ready to contribute to a smooth and compelling storytelling experience.",
+    specialisations: [
+      "Creative Video Editing & Videography",
+      "Cinematic Wedding Films",
+      "Dynamic Automotive Productions",
+      "Professional Color Grading & Sound Design",
+      "Practical Camera Operation",
+      "Editor's Perspective On-Location Shoots",
+      "Smooth & Compelling Visual Storytelling"
+    ],
+    tools: [
+      "Premiere Pro",
+      "DaVinci Resolve",
+      "Photoshop",
+      "Lightroom"
+    ],
+    quote: "Turning creativity into visuals and knowledge into skills",
+    image: "/assets/mentor-nahlas-ek.jpg"
   }
 ];
 

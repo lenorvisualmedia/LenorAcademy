@@ -423,17 +423,17 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
-            {FACULTY_MENTORS.map((mentor) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+            {FACULTY_MENTORS.map((mentor, idx) => (
               <article 
                 key={mentor.id}
-                className="rounded-[24px] bg-white text-black p-6 sm:p-10 shadow-2xl border border-neutral-100 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-300 space-y-6"
+                className={`rounded-[24px] bg-white text-black p-6 sm:p-8 shadow-2xl border border-neutral-100 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-300 space-y-6 ${idx === 2 ? 'md:col-span-2 lg:col-span-1' : ''}`}
               >
                 <div>
                   {/* Photo & Identity Header */}
-                  <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center pb-6 border-b border-neutral-200">
+                  <div className="flex flex-col gap-5 pb-6 border-b border-neutral-200">
                     <div 
-                      className="sm:col-span-5 relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[3/4] shadow-md group/img cursor-pointer border border-neutral-200"
+                      className="relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[4/5] max-h-[380px] shadow-md group/img cursor-pointer border border-neutral-200 w-full"
                       onClick={() => setSelectedImage({
                         title: mentor.name,
                         subtitle: `${mentor.designation} · Lenor Academy`,
@@ -455,13 +455,13 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                       </div>
                     </div>
 
-                    <div className="sm:col-span-7 flex flex-col justify-center space-y-2">
+                    <div className="flex flex-col justify-center space-y-2">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="px-3 py-1 rounded-full bg-amber-500/15 text-amber-900 text-[10px] font-mono font-extrabold uppercase border border-amber-500/30">
                           {mentor.experience}
                         </span>
                         <span className="px-3 py-1 rounded-full bg-neutral-100 text-neutral-800 text-[10px] font-mono font-bold uppercase border border-neutral-200">
-                          {mentor.id === 'shahin-kr' ? 'HOD' : 'Senior Instructor'}
+                          {mentor.designation.includes('HOD') ? 'HOD' : 'Senior Instructor'}
                         </span>
                       </div>
 
@@ -474,7 +474,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                       </div>
 
                       {/* Mentor Quote */}
-                      <blockquote className="mt-3 p-3.5 rounded-xl bg-neutral-50 border-l-2 border-black text-xs sm:text-sm italic text-neutral-800 leading-relaxed font-serif">
+                      <blockquote className="mt-2 p-3.5 rounded-xl bg-neutral-50 border-l-2 border-black text-xs sm:text-sm italic text-neutral-800 leading-relaxed font-serif">
                         &ldquo;{mentor.quote}&rdquo;
                       </blockquote>
                     </div>

@@ -458,6 +458,29 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     image: "/assets/mentor-nisham-muhammed.jpg"
   },
   {
+    id: "shiva-shankar",
+    name: "Shiva Shankar",
+    designation: "Instructor – Photography",
+    experience: "10 Years Experience",
+    badge: "Senior Instructor · 10 Yrs Exp",
+    specialisationText: "Experienced photography instructor with 10 years of expertise across diverse photographic genres, specializing in wildlife tracking and field documentation in natural habitats. Broad creative mastery extending to street photography, astrophotography, portraiture, and landscape compositions, exploring light, natural patterns, and compelling visual narrative.",
+    specialisations: [
+      "Wildlife Photography & Habitat Tracking",
+      "Street Photography & Visual Culture",
+      "Astrophotography & Night Sky Capture",
+      "Portrait & Studio Photography",
+      "Landscape Photography & Natural Patterns",
+      "Multi-Brand Camera Systems Expertise",
+      "Visual Composition & Storytelling"
+    ],
+    tools: [
+      "Adobe Lightroom",
+      "Adobe Photoshop"
+    ],
+    quote: "I love seeing the world a little better than I did the previous day. I believe the same applies to photography. It is a journey of constant observation, experimentation and learning. My goal is to become a better photographer every day, not by chasing better equipment, but through relentless practice, curiosity and a willingness to see things differently.",
+    image: "/assets/mentor-shiva-shankar.jpg"
+  },
+  {
     id: "muhammed-binshad",
     name: "Muhammed Binshad",
     designation: "Instructor – Photography, Videography & Cinematography",

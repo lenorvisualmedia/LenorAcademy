@@ -461,7 +461,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                           {mentor.experience}
                         </span>
                         <span className="px-3 py-1 rounded-full bg-neutral-100 text-neutral-800 text-[10px] font-mono font-bold uppercase border border-neutral-200">
-                          {mentor.designation.includes('HOD') ? 'HOD' : 'Senior Instructor'}
+                          {mentor.designation.includes('HOD') ? 'HOD' : mentor.designation.includes('Lecturer') ? 'Lecturer' : 'Senior Instructor'}
                         </span>
                       </div>
 

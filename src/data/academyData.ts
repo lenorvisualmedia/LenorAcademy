@@ -407,6 +407,32 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     image: "/assets/mentor-abhinand-p-saji.jpg"
   },
   {
+    id: "nisham-muhammed",
+    name: "Nisham Muhammed",
+    designation: "Cinematography Lecturer",
+    experience: "10 Years Experience",
+    badge: "Cinematography Lecturer · 10 Yrs Exp",
+    specialisationText: "Cinematographer and media professional with 15 years of industry experience in visual storytelling, cinematography, and media production. Specialised in camera operation, lighting techniques, visual composition, and creative filmmaking. Combining industry experience with academic knowledge to help students develop technical skills, creative vision, and a professional approach to filmmaking.",
+    specialisations: [
+      "Cinematography & Visual Language",
+      "Camera Operations & Sensor Control",
+      "Lighting Techniques & Visual Composition",
+      "Creative Filmmaking & Storytelling",
+      "Professional Camera Systems & Rigs",
+      "Helicam & Drone Cinematography Tools",
+      "Practical Filmmaking Training"
+    ],
+    tools: [
+      "Adobe Premiere Pro",
+      "Final Cut Pro (FCP)",
+      "Professional Camera Systems",
+      "Cinema Lighting & Grip",
+      "Helicam & Drone Tools"
+    ],
+    quote: "Transforming stories into visuals and creativity into cinematic experiences.",
+    image: "/assets/mentor-nisham-muhammed.jpg"
+  },
+  {
     id: "muhammed-binshad",
     name: "Muhammed Binshad",
     designation: "Instructor – Photography, Videography & Cinematography",

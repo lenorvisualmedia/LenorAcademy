@@ -407,6 +407,29 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     image: "/assets/mentor-abhinand-p-saji.jpg"
   },
   {
+    id: "muhammed-binshad",
+    name: "Muhammed Binshad",
+    designation: "Instructor – Photography, Videography & Cinematography",
+    experience: "7 Years Experience",
+    badge: "Senior Instructor · 7 Yrs Exp",
+    specialisationText: "Accomplished visual instructor with 7 years of on-set and studio experience in commercial cinematography, advanced lighting design, and creative visual storytelling. Dedicated to bridging the gap between classroom theory and real-world production hustle, empowering students with the practical confidence to command light, frame emotion, and author compelling visuals.",
+    specialisations: [
+      "Photography & Cinematography",
+      "Advanced Camera Operations & Techniques",
+      "Professional Studio & Location Lighting",
+      "Portrait, Fashion & Commercial Photography",
+      "Commercial & Event Videography",
+      "Creative Composition & Visual Storytelling",
+      "Practical On-Set & Studio Training"
+    ],
+    tools: [
+      "Adobe Premiere Pro",
+      "Adobe Photoshop"
+    ],
+    quote: "A camera is merely a tool of translation; the true artistry lies in how you command light, frame emotion, and sculpt a perspective that makes the viewer feel alive. Teaching this craft isn't about rote button settings or mechanical perfection—it is about unlocking a student's inner eye, stripping away the intimidation of technical jargon, and grounding them in the raw, messy reality of real-world sets. When you bridge the gap between classroom theory and industry hustle, you don't just teach someone how to record a scene; you empower them to author a vision that demands to be seen.",
+    image: "/assets/mentor-muhammed-binshad.jpg"
+  },
+  {
     id: "jidhin-raj-mk",
     name: "Jidhin raj M K",
     designation: "Instructor – Photography",

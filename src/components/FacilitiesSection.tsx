@@ -651,28 +651,31 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                   })}
                 </div>
 
-                {/* Camera List with Animated Meter Bars */}
-                <div className="divide-y divide-neutral-200 pt-2 max-h-[440px] overflow-y-auto pr-1">
+                {/* Camera List */}
+                <div className="divide-y divide-neutral-200 pt-2 max-h-[440px] overflow-y-auto minimal-scrollbar pr-1">
                   {filteredCameraFleet.map((cam, i) => (
-                    <div key={i} className="py-3 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-4 items-center">
-                      <div>
-                        <div className="text-base sm:text-lg font-bold text-black tracking-tight">
-                          {cam.model}
+                    <div key={i} className="py-3 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-3 items-center">
+                      <div className="min-w-0 pr-2">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-xs sm:text-sm font-bold text-neutral-900">
+                            {cam.model}
+                          </span>
+                          <span className="sm:hidden px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-700 font-mono text-[9px] font-bold uppercase border border-neutral-200">
+                            {cam.brand}
+                          </span>
                         </div>
-                        <div className="text-[11px] text-neutral-500 font-mono font-semibold">
-                          {cam.badge} · {cam.brand}
+                        <div className="text-[11px] text-neutral-500 font-mono truncate">
+                          {cam.badge}
                         </div>
                       </div>
                       
-                      {/* Bar (hidden on very small screens, visible sm+) */}
-                      <div className="hidden sm:block h-2 rounded-full bg-neutral-100 overflow-hidden">
-                        <div 
-                          className="h-full bg-black rounded-full transition-all duration-1000"
-                          style={{ width: `${cam.pct}%` }}
-                        />
+                      <div className="hidden sm:flex items-center justify-start gap-2">
+                        <span className="px-2 py-0.5 rounded bg-neutral-100 text-neutral-800 font-mono text-[10px] font-bold uppercase tracking-wider border border-neutral-200">
+                          {cam.brand}
+                        </span>
                       </div>
 
-                      <div className="text-2xl sm:text-3xl font-extrabold text-black text-right font-mono">
+                      <div className="text-base sm:text-lg font-bold text-black text-right font-mono">
                         {cam.count}
                       </div>
                     </div>
@@ -731,24 +734,30 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                   })}
                 </div>
 
-                {/* Lens List with Animated Meter Bars */}
-                <div className="divide-y divide-neutral-200 pt-2 max-h-[440px] overflow-y-auto pr-1">
+                {/* Lens List */}
+                <div className="divide-y divide-neutral-200 pt-2 max-h-[440px] overflow-y-auto minimal-scrollbar pr-1">
                   {filteredLensFleet.map((lens, i) => (
-                    <div key={i} className="py-2.5 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-4 items-center">
-                      <div>
-                        <div className="text-xs sm:text-sm font-bold text-neutral-900 truncate">
-                          {lens.name}
+                    <div key={i} className="py-2.5 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-3 items-center">
+                      <div className="min-w-0 pr-2">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-xs sm:text-sm font-bold text-neutral-900 truncate">
+                            {lens.name}
+                          </span>
+                          <span className="sm:hidden px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-700 font-mono text-[9px] font-bold uppercase border border-neutral-200">
+                            {lens.brand}
+                          </span>
                         </div>
-                        <div className="text-[10px] text-neutral-500 font-mono">
-                          {lens.tag} · {lens.brand}
+                        <div className="text-[11px] text-neutral-500 font-mono truncate">
+                          {lens.tag}
                         </div>
                       </div>
-                      <div className="hidden sm:block h-1.5 rounded-full bg-neutral-100 overflow-hidden">
-                        <div 
-                          className="h-full bg-black rounded-full transition-all duration-1000"
-                          style={{ width: `${lens.pct}%` }}
-                        />
+
+                      <div className="hidden sm:flex items-center justify-start gap-2">
+                        <span className="px-2 py-0.5 rounded bg-neutral-100 text-neutral-800 font-mono text-[10px] font-bold uppercase tracking-wider border border-neutral-200">
+                          {lens.brand}
+                        </span>
                       </div>
+
                       <div className="text-base sm:text-lg font-bold text-black text-right font-mono">
                         {lens.count}
                       </div>

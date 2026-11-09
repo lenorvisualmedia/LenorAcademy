@@ -52,30 +52,60 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
   // Lock background scroll and pause Lenis smooth scroll while lightbox is open
   useModalScrollLock(!!selectedImage, () => setSelectedImage(null));
 
-  // Nikon cameras data from Facilities reference
+  // Multi-brand camera fleet data: Sony (40) + Nikon (30) + Canon (3) = 73 Total
+  const [cameraBrandFilter, setCameraBrandFilter] = useState<'All' | 'Sony' | 'Nikon' | 'Canon'>('All');
   const cameraFleet = [
-    { model: 'Nikon Z5 II', count: 10, pct: 66.7, badge: 'Full-Frame Hybrid' },
-    { model: 'Nikon Z6 III', count: 5, pct: 33.3, badge: 'High-Speed 6K Raw' },
-    { model: 'Nikon Z R', count: 15, pct: 100.0, badge: 'Primary Practice Rig' }
+    // Sony Cameras (40 Units)
+    { model: 'Sony A7 III (M3)', brand: 'Sony', count: 10, pct: 100.0, badge: 'Full-Frame Industry Standard' },
+    { model: 'Sony A6400', brand: 'Sony', count: 10, pct: 100.0, badge: 'High-Speed APS-C Video Rig' },
+    { model: 'Sony ZV-E10', brand: 'Sony', count: 10, pct: 100.0, badge: 'Compact Vlog & Creator Rig' },
+    { model: 'Sony A7 IV (M4)', brand: 'Sony', count: 5, pct: 50.0, badge: 'Next-Gen 4K 10-Bit Hybrid' },
+    { model: 'Sony A7R V (M5)', brand: 'Sony', count: 3, pct: 30.0, badge: '61MP Flagship High-Res' },
+    { model: 'Sony A7S III (S3)', brand: 'Sony', count: 2, pct: 20.0, badge: 'Low-Light 4K 120p Cinema' },
+    // Nikon Cameras (30 Units)
+    { model: 'Nikon Z R', brand: 'Nikon', count: 15, pct: 100.0, badge: 'Primary Practice Rig' },
+    { model: 'Nikon Z5 II', brand: 'Nikon', count: 10, pct: 66.7, badge: 'Full-Frame Hybrid' },
+    { model: 'Nikon Z6 III', brand: 'Nikon', count: 5, pct: 33.3, badge: 'High-Speed 6K Raw' },
+    // Canon Cameras (3 Units)
+    { model: 'Canon EOS 70D', brand: 'Canon', count: 1, pct: 10.0, badge: 'Dual Pixel DSLR Rig' },
+    { model: 'Canon EOS 1100D', brand: 'Canon', count: 1, pct: 10.0, badge: 'Beginner Practice DSLR' },
+    { model: 'Canon EOS 1300D', brand: 'Canon', count: 1, pct: 10.0, badge: 'Foundation Training DSLR' }
   ];
 
-  // Prime lenses from Facilities reference
-  const primeLenses = [
-    { name: 'Nikkor Z 24mm f/1.8 S', count: 2, pct: 13.3, tag: 'Wide Prime' },
-    { name: 'Nikkor Z 35mm f/1.4', count: 1, pct: 6.7, tag: 'Street & Doc' },
-    { name: 'Nikkor Z 35mm f/1.8 S', count: 2, pct: 13.3, tag: 'S-Line Cine' },
-    { name: 'Nikkor Z 50mm f/1.4', count: 15, pct: 100.0, tag: 'Standard Prime' },
-    { name: 'Nikkor Z 50mm f/1.8 S', count: 2, pct: 13.3, tag: 'Low-Light Master' },
-    { name: 'Nikkor Z 85mm f/1.2', count: 1, pct: 6.7, tag: 'Flagship Portrait' },
-    { name: 'Nikkor Z 85mm f/1.8 S', count: 8, pct: 53.3, tag: 'Portrait & Bokeh' },
+  const filteredCameraFleet = cameraBrandFilter === 'All'
+    ? cameraFleet
+    : cameraFleet.filter(cam => cam.brand === cameraBrandFilter);
+
+  // Multi-brand optics fleet data: Nikkor Z (36) + Sony & Sigma (29) = 65 Total
+  const [lensBrandFilter, setLensBrandFilter] = useState<'All' | 'Nikkor Z' | 'Sony & Sigma'>('All');
+  const lensFleet = [
+    // Nikkor Z (36 Units)
+    { name: 'Nikkor Z 50mm f/1.4', brand: 'Nikkor Z', count: 15, pct: 100.0, tag: 'Standard Prime' },
+    { name: 'Nikkor Z 85mm f/1.8 S', brand: 'Nikkor Z', count: 8, pct: 53.3, tag: 'Portrait & Bokeh' },
+    { name: 'Nikkor Z 180-600mm f/5.6-6.3 VR', brand: 'Nikkor Z', count: 3, pct: 20.0, tag: 'Wildlife & Action' },
+    { name: 'Nikkor Z 24mm f/1.8 S', brand: 'Nikkor Z', count: 2, pct: 13.3, tag: 'Wide Prime' },
+    { name: 'Nikkor Z 35mm f/1.8 S', brand: 'Nikkor Z', count: 2, pct: 13.3, tag: 'S-Line Cine' },
+    { name: 'Nikkor Z 50mm f/1.8 S', brand: 'Nikkor Z', count: 2, pct: 13.3, tag: 'Low-Light Master' },
+    { name: 'Nikkor Z 35mm f/1.4', brand: 'Nikkor Z', count: 1, pct: 6.7, tag: 'Street & Doc' },
+    { name: 'Nikkor Z 85mm f/1.2', brand: 'Nikkor Z', count: 1, pct: 6.7, tag: 'Flagship Portrait' },
+    { name: 'Nikkor Z 70-200mm f/2.8 VR S', brand: 'Nikkor Z', count: 1, pct: 6.7, tag: 'Pro Telephoto' },
+    { name: 'Nikkor Z 100-400mm f/4.5-5.6 VR S', brand: 'Nikkor Z', count: 1, pct: 6.7, tag: 'Super-Telephoto' },
+    // Sony & Sigma (29 Units)
+    { name: 'Sony FE 50mm f/1.8', brand: 'Sony & Sigma', count: 10, pct: 66.7, tag: 'Full-Frame Prime' },
+    { name: '85mm f/1.8 Portrait Prime', brand: 'Sony & Sigma', count: 7, pct: 46.7, tag: 'Bokeh Portrait' },
+    { name: '85mm f/1.4 Fast Prime', brand: 'Sony & Sigma', count: 4, pct: 26.7, tag: 'Pro Portrait & Low Light' },
+    { name: 'Sigma 50mm Art / Prime', brand: 'Sony & Sigma', count: 2, pct: 13.3, tag: 'High-Res Prime' },
+    { name: '85mm Studio Prime', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'Portrait Lens' },
+    { name: '50mm f/1.88 Standard', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'Standard Prime' },
+    { name: '50mm Prime Lens', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'Standard Prime' },
+    { name: '24-70mm Standard Zoom', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'All-Round Zoom' },
+    { name: '24mm Wide Prime', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'Wide-Angle Prime' },
+    { name: 'Sony E 18mm Wide', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'Ultra-Wide Prime' }
   ];
 
-  // Zoom lenses from Facilities reference
-  const zoomLenses = [
-    { name: 'Nikkor Z 70-200mm f/2.8 VR S', count: 1, pct: 6.7, tag: 'Pro Telephoto' },
-    { name: 'Nikkor Z 100-400mm f/4.5-5.6 VR S', count: 1, pct: 6.7, tag: 'Super-Telephoto' },
-    { name: 'Nikkor Z 180-600mm f/5.6-6.3 VR', count: 3, pct: 20.0, tag: 'Wildlife & Action' },
-  ];
+  const filteredLensFleet = lensBrandFilter === 'All'
+    ? lensFleet
+    : lensFleet.filter(lens => lens.brand === lensBrandFilter);
 
   // Studio categories & state
   const studioCategories = ['All', 'Strobes & Flash', 'Continuous Light', 'Modifiers & Shapers', 'Grip & Support', 'Backdrops & Surfaces'] as const;
@@ -87,8 +117,17 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
   const [productLabCategory, setProductLabCategory] = useState<string>('All');
   const [productLabViewMode, setProductLabViewMode] = useState<'list' | 'table'>('list');
 
-  // Studio Inventory (33 Total Units)
+  // Studio & Lighting Inventory (68 Total Units including 35 Portable/Location Flash & Video Light Units)
   const studioInventory = [
+    // Portable & On-Location Flash & Light Units (35 Units)
+    { name: 'Pocket Location Strobe', brand: 'Godox', model: 'AD 200 PRO', qty: 16, category: 'Strobes & Flash', pct: 100 },
+    { name: 'Handheld Light Stick', brand: 'Godox', model: 'LC 500 LED Wand', qty: 5, category: 'Continuous Light', pct: 50 },
+    { name: 'Studio Strobe System', brand: 'Godox', model: 'Studio Flash Units', qty: 4, category: 'Strobes & Flash', pct: 40 },
+    { name: 'Continuous Video Light', brand: 'Godox / Studio', model: 'High-Output Video Lights', qty: 4, category: 'Continuous Light', pct: 40 },
+    { name: 'Round-Head On-Camera Flash', brand: 'Godox', model: 'V1 Flash', qty: 3, category: 'Strobes & Flash', pct: 30 },
+    { name: 'Pocket Location Strobe', brand: 'Godox', model: 'AD 200 PRO II', qty: 2, category: 'Strobes & Flash', pct: 25 },
+    { name: 'Video Light LED Panel', brand: 'Studio', model: 'High-CRI Video LED', qty: 1, category: 'Continuous Light', pct: 20 },
+    // Studio Fixed Equipment (33 Units)
     { name: 'Light - Strobe', brand: 'Godox', model: 'SK400 II', qty: 2, category: 'Strobes & Flash', pct: 50 },
     { name: 'Light - Strobe', brand: 'Godox', model: 'DP 600 III', qty: 2, category: 'Strobes & Flash', pct: 50 },
     { name: 'Trigger - DP 600', brand: 'Godox', model: 'Wireless Studio Trigger', qty: 1, category: 'Strobes & Flash', pct: 25 },
@@ -255,7 +294,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 
             <div className="rounded-[22px] bg-white text-black p-6 sm:p-8 shadow-xl border border-neutral-100 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
               <span className="block text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-amber-600 leading-none">
-                30
+                73
               </span>
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 mt-3 block">
                 Total cameras
@@ -264,7 +303,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 
             <div className="rounded-[22px] bg-white text-black p-6 sm:p-8 shadow-xl border border-neutral-100 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
               <span className="block text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-black leading-none">
-                36
+                65
               </span>
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 mt-3 block">
                 Total lenses
@@ -561,7 +600,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               Gear you’ll shoot with
             </h2>
             <p className="mt-3 text-neutral-300 font-light text-base sm:text-lg max-w-3xl leading-relaxed">
-              Students train on professional mirrorless bodies, cinema and prime optics, high-output Godox strobes, and commercial tabletop product rigs. 120+ specialized production assets with zero equipment deposit or camera fee required.
+              Students train on professional Sony, Nikon and Canon camera bodies, prime and zoom optics, high-output Godox strobes, and commercial tabletop product rigs. 200+ specialized production assets with zero equipment deposit or camera fee required.
             </p>
           </div>
 
@@ -571,11 +610,11 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             {/* Box 1: Cameras */}
             <article className="rounded-[24px] bg-white text-black border border-neutral-100 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
               <div>
-                {/* Header with Title & English Subtitle + Huge Count */}
+                {/* Header with Title & Subtitle + Total Count */}
                 <div className="flex items-start justify-between gap-4 pb-6 border-b border-neutral-200">
                   <div>
                     <div className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
-                      01 · Mirrorless cameras
+                      01 · Multi-Brand Fleet
                     </div>
                     <div className="text-xl sm:text-2xl font-black uppercase text-black tracking-tight mt-1">
                       Camera Bodies
@@ -583,7 +622,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                   </div>
                   <div className="text-right">
                     <div className="text-6xl sm:text-7xl font-black text-black tracking-tighter leading-none">
-                      30
+                      73
                     </div>
                     <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mt-1">
                       Total cameras
@@ -591,16 +630,37 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                   </div>
                 </div>
 
+                {/* Brand Filter Pills */}
+                <div className="flex flex-wrap gap-1.5 py-3 border-b border-neutral-200">
+                  {(['All', 'Sony', 'Nikon', 'Canon'] as const).map((brand) => {
+                    const count = brand === 'All' ? 73 : brand === 'Sony' ? 40 : brand === 'Nikon' ? 30 : 3;
+                    return (
+                      <button
+                        key={brand}
+                        type="button"
+                        onClick={() => setCameraBrandFilter(brand)}
+                        className={`px-3 py-1.5 rounded-full text-xs font-mono transition-all ${
+                          cameraBrandFilter === brand
+                            ? 'bg-black text-white font-bold shadow-sm'
+                            : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                        }`}
+                      >
+                        {brand} ({count})
+                      </button>
+                    );
+                  })}
+                </div>
+
                 {/* Camera List with Animated Meter Bars */}
-                <div className="divide-y divide-neutral-200 pt-2">
-                  {cameraFleet.map((cam, i) => (
-                    <div key={i} className="py-4 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-4 items-center">
+                <div className="divide-y divide-neutral-200 pt-2 max-h-[440px] overflow-y-auto pr-1">
+                  {filteredCameraFleet.map((cam, i) => (
+                    <div key={i} className="py-3 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-4 items-center">
                       <div>
                         <div className="text-base sm:text-lg font-bold text-black tracking-tight">
                           {cam.model}
                         </div>
                         <div className="text-[11px] text-neutral-500 font-mono font-semibold">
-                          {cam.badge}
+                          {cam.badge} · {cam.brand}
                         </div>
                       </div>
                       
@@ -622,15 +682,15 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 
               {/* Extra Support Rigs Note */}
               <div className="mt-8 pt-4 border-t border-neutral-200 text-xs text-neutral-600 flex items-center justify-between font-medium">
-                <span>1 Camera provided per 3–4 students</span>
-                <span className="text-amber-700 font-bold">100% Offline Access</span>
+                <span>Sony (40) · Nikon (30) · Canon (3)</span>
+                <span className="text-amber-700 font-bold">1 Camera per 3–4 students</span>
               </div>
             </article>
 
             {/* Box 2: Lenses & Optics */}
             <article className="rounded-[24px] bg-white text-black border border-neutral-100 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
               <div>
-                {/* Header with Title & English Subtitle + Huge Count */}
+                {/* Header with Title & Subtitle + Total Count */}
                 <div className="flex items-start justify-between gap-4 pb-6 border-b border-neutral-200">
                   <div>
                     <div className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
@@ -642,7 +702,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                   </div>
                   <div className="text-right">
                     <div className="text-6xl sm:text-7xl font-black text-black tracking-tighter leading-none">
-                      36
+                      65
                     </div>
                     <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mt-1">
                       Total lenses
@@ -650,61 +710,57 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                   </div>
                 </div>
 
-                {/* Prime Lenses Subsection */}
-                <div className="pt-4">
-                  <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-amber-700 mb-2">
-                    Prime Lenses
-                  </div>
-                  <div className="divide-y divide-neutral-200">
-                    {primeLenses.map((lens, i) => (
-                      <div key={i} className="py-2.5 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-4 items-center">
-                        <div className="text-xs sm:text-sm font-bold text-neutral-900 truncate">
-                          {lens.name}
-                        </div>
-                        <div className="hidden sm:block h-1.5 rounded-full bg-neutral-100 overflow-hidden">
-                          <div 
-                            className="h-full bg-black rounded-full transition-all duration-1000"
-                            style={{ width: `${lens.pct}%` }}
-                          />
-                        </div>
-                        <div className="text-base sm:text-lg font-bold text-black text-right font-mono">
-                          {lens.count}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                {/* Brand Filter Pills */}
+                <div className="flex flex-wrap gap-1.5 py-3 border-b border-neutral-200">
+                  {(['All', 'Nikkor Z', 'Sony & Sigma'] as const).map((brand) => {
+                    const count = brand === 'All' ? 65 : brand === 'Nikkor Z' ? 36 : 29;
+                    return (
+                      <button
+                        key={brand}
+                        type="button"
+                        onClick={() => setLensBrandFilter(brand)}
+                        className={`px-3 py-1.5 rounded-full text-xs font-mono transition-all ${
+                          lensBrandFilter === brand
+                            ? 'bg-black text-white font-bold shadow-sm'
+                            : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                        }`}
+                      >
+                        {brand} ({count})
+                      </button>
+                    );
+                  })}
                 </div>
 
-                {/* Zoom Lenses Subsection */}
-                <div className="pt-6">
-                  <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-amber-700 mb-2">
-                    Zoom Lenses
-                  </div>
-                  <div className="divide-y divide-neutral-200">
-                    {zoomLenses.map((lens, i) => (
-                      <div key={i} className="py-2.5 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-4 items-center">
+                {/* Lens List with Animated Meter Bars */}
+                <div className="divide-y divide-neutral-200 pt-2 max-h-[440px] overflow-y-auto pr-1">
+                  {filteredLensFleet.map((lens, i) => (
+                    <div key={i} className="py-2.5 grid grid-cols-[1fr_auto] sm:grid-cols-[1.5fr_1fr_48px] gap-4 items-center">
+                      <div>
                         <div className="text-xs sm:text-sm font-bold text-neutral-900 truncate">
                           {lens.name}
                         </div>
-                        <div className="hidden sm:block h-1.5 rounded-full bg-neutral-100 overflow-hidden">
-                          <div 
-                            className="h-full bg-black rounded-full transition-all duration-1000"
-                            style={{ width: `${lens.pct}%` }}
-                          />
-                        </div>
-                        <div className="text-base sm:text-lg font-bold text-black text-right font-mono">
-                          {lens.count}
+                        <div className="text-[10px] text-neutral-500 font-mono">
+                          {lens.tag} · {lens.brand}
                         </div>
                       </div>
-                    ))}
-                  </div>
+                      <div className="hidden sm:block h-1.5 rounded-full bg-neutral-100 overflow-hidden">
+                        <div 
+                          className="h-full bg-black rounded-full transition-all duration-1000"
+                          style={{ width: `${lens.pct}%` }}
+                        />
+                      </div>
+                      <div className="text-base sm:text-lg font-bold text-black text-right font-mono">
+                        {lens.count}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
               {/* Extra Support Rigs Note */}
               <div className="mt-8 pt-4 border-t border-neutral-200 text-xs text-neutral-600 flex items-center justify-between font-medium">
-                <span>Fast primes (f/1.2 &amp; f/1.4) + Telephoto zooms</span>
-                <span className="text-emerald-700 font-bold">S-Line Quality</span>
+                <span>Nikkor Z (36) · Sony &amp; Sigma (29)</span>
+                <span className="text-emerald-700 font-bold">Fast Primes &amp; Zooms</span>
               </div>
             </article>
           </div>
@@ -764,7 +820,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 
                     <div className="text-right">
                       <div className="text-5xl sm:text-7xl font-black text-black tracking-tighter leading-none">
-                        33
+                        68
                       </div>
                       <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mt-1">
                         Total assets

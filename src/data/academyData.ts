@@ -407,6 +407,31 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     image: "/assets/mentor-abhinand-p-saji.jpg"
   },
   {
+    id: "jidhin-raj-mk",
+    name: "Jidhin raj M K",
+    designation: "Instructor – Photography",
+    experience: "7 Years Experience",
+    badge: "Senior Instructor · 7 Yrs Exp",
+    specialisationText: "Creative photographer and visual communicator with over 7 years of professional experience across commercial, corporate, advertising, and fashion productions. Expert in advanced camera operations, commercial studio and location lighting, high-end photo retouching, and practical cinematography training.",
+    specialisations: [
+      "Commercial Photography & Photo Retouching",
+      "Advanced Camera Operations & Techniques",
+      "Professional Studio & Location Lighting",
+      "Portrait, Fashion & Commercial Photography",
+      "Commercial & Event Videography",
+      "Creative Composition & Visual Storytelling",
+      "Advanced Exposure Control & Camera Tech",
+      "Practical Photography & Cinematography Training"
+    ],
+    tools: [
+      "Adobe Photoshop",
+      "Adobe Lightroom",
+      "Adobe Premiere Pro"
+    ],
+    quote: "I am a creative Photographer and Graphic Designer with over 6 years of experience in commercial, corporate, and advertising projects. Passionate about visual storytelling, I believe every image has the power to communicate ideas, evoke emotions, and create lasting impressions. With expertise in photography, advanced lighting, graphic design, digital illustration, and Adobe Creative Suite, I combine technical precision with creative vision to produce meaningful visual experiences. I enjoy exploring new creative approaches, transforming ideas into compelling visuals, and bringing concepts to life through the art of visual communication.",
+    image: "/assets/mentor-jidhin-raj-mk.jpg"
+  },
+  {
     id: "sarandas-m",
     name: "Sarandas M",
     designation: "Senior Editing Instructor",

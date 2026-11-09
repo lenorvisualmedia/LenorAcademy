@@ -203,7 +203,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             </div>
 
             <p className="mt-8 max-w-4xl text-xl sm:text-2xl lg:text-[28px] font-light leading-snug text-neutral-800">
-              Computer labs, a professional photography and videography studio, smart classrooms, and a comprehensive fleet of Nikon mirrorless gear — all built under one roof.
+              Computer labs, a professional photography and videography studio, smart classrooms, and a comprehensive fleet of professional mirrorless gear — all built under one roof.
             </p>
           </section>
 
@@ -258,7 +258,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 30
               </span>
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 mt-3 block">
-                Nikon mirrorless cameras
+                Total cameras
               </span>
             </div>
 
@@ -267,7 +267,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 36
               </span>
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 mt-3 block">
-                Nikkor Z lenses
+                Total lenses
               </span>
             </div>
 
@@ -561,24 +561,24 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               Gear you’ll shoot with
             </h2>
             <p className="mt-3 text-neutral-300 font-light text-base sm:text-lg max-w-3xl leading-relaxed">
-              Students train on professional Nikon mirrorless bodies, Nikkor Z optics, high-output Godox strobes, and commercial tabletop product rigs. 120+ specialized production assets with zero equipment deposit or camera fee required.
+              Students train on professional mirrorless bodies, cinema and prime optics, high-output Godox strobes, and commercial tabletop product rigs. 120+ specialized production assets with zero equipment deposit or camera fee required.
             </p>
           </div>
 
           {/* Row 1: Camera Fleet & Optics (Distinct White Boxes with Black Text) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
             
-            {/* Box 1: Nikon Cameras */}
+            {/* Box 1: Cameras */}
             <article className="rounded-[24px] bg-white text-black border border-neutral-100 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
               <div>
                 {/* Header with Title & English Subtitle + Huge Count */}
                 <div className="flex items-start justify-between gap-4 pb-6 border-b border-neutral-200">
                   <div>
                     <div className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
-                      01 · Nikon cameras
+                      01 · Mirrorless cameras
                     </div>
                     <div className="text-xl sm:text-2xl font-black uppercase text-black tracking-tight mt-1">
-                      Mirrorless Bodies
+                      Camera Bodies
                     </div>
                   </div>
                   <div className="text-right">
@@ -627,17 +627,17 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               </div>
             </article>
 
-            {/* Box 2: Nikkor Z Lenses */}
+            {/* Box 2: Lenses & Optics */}
             <article className="rounded-[24px] bg-white text-black border border-neutral-100 p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
               <div>
                 {/* Header with Title & English Subtitle + Huge Count */}
                 <div className="flex items-start justify-between gap-4 pb-6 border-b border-neutral-200">
                   <div>
                     <div className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
-                      02 · Nikkor lenses
+                      02 · Camera optics
                     </div>
                     <div className="text-xl sm:text-2xl font-black uppercase text-black tracking-tight mt-1">
-                      Z-Mount Optics
+                      Prime &amp; Zoom Lenses
                     </div>
                   </div>
                   <div className="text-right">

@@ -357,21 +357,21 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 
           {/* Two Lab Images in Stack / Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-            {/* Image 1: Wide Lab Perspective */}
+            {/* Image 1: Authentic 180+ Editing Lab */}
             <div 
               className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[260px] sm:h-[360px] shadow-lg group cursor-pointer"
               onClick={() => setSelectedImage({
-                title: "180+ Computer Editing Bay",
-                subtitle: "Individual High-Performance Workstations",
+                title: "180+ Workstations Editing Bay",
+                subtitle: "Dedicated High-Performance Editing & Grading Stations",
                 category: "Computer Lab",
-                caption: "Wide view of the Lenor computer lab with students practicing video editing and motion design",
-                image: "/assets/ca858b534f9bde82252c65c8a58512c8.jpg",
-                fallbackImage: "/assets/Modern Symmetrical Tech Workspace.png"
+                caption: "Lenor Academy 180+ computer lab with dual-display setups, ergonomic seating, and central presentation display",
+                image: "/assets/facility-editing-workstation-lab.jpg",
+                fallbackImage: "/assets/facility-editing-workstation-lab.jpg"
               })}
             >
               <img 
-                src="/assets/ca858b534f9bde82252c65c8a58512c8.jpg" 
-                alt="Wide view of the Lenor computer lab with students at workstations"
+                src="/assets/facility-editing-workstation-lab.jpg" 
+                alt="180+ high performance workstations at Lenor Academy editing lab"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = '/assets/Modern Symmetrical Tech Workspace.png';
@@ -382,25 +382,25 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 <Maximize2 className="w-3.5 h-3.5" />
               </div>
               <div className="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-wider text-white">
-                Workstation Lab · Symmetrical Editing Suite
+                Workstation Lab · Dual-Display Editing Bay
               </div>
             </div>
 
-            {/* Image 2: Instructor Teaching Session */}
+            {/* Image 2: Authentic Multimedia Classroom & Design Lab */}
             <div 
               className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[260px] sm:h-[360px] shadow-lg group cursor-pointer"
               onClick={() => setSelectedImage({
-                title: "Live Mentorship & Demonstration",
-                subtitle: "Hands-On Practical Lab Guidance",
+                title: "Multimedia Classroom & Design Lab",
+                subtitle: "Air-Conditioned Creative Lab with 'Learn What You Love' Mural",
                 category: "Interactive Teaching",
-                caption: "Mentor demonstrating advanced video color grading & timeline editing directly to students",
-                image: "/assets/9a6cc97f6dbd0f6fc17d8471afc3d8fa.jpg",
-                fallbackImage: "/assets/Modern Media Editing Classroom.png"
+                caption: "Panoramic view of the multimedia lab featuring motivational murals, air conditioning, and individual design suites",
+                image: "/assets/facility-multimedia-classroom-mural.jpg",
+                fallbackImage: "/assets/facility-multimedia-classroom-mural.jpg"
               })}
             >
               <img 
-                src="/assets/9a6cc97f6dbd0f6fc17d8471afc3d8fa.jpg" 
-                alt="Instructor teaching video editing in front of students"
+                src="/assets/facility-multimedia-classroom-mural.jpg" 
+                alt="Lenor Academy multimedia classroom with wall mural and editing workstations"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = '/assets/Modern Media Editing Classroom.png';
@@ -411,7 +411,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 <Maximize2 className="w-3.5 h-3.5" />
               </div>
               <div className="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-wider text-white">
-                Live Mentorship · Timeline &amp; Color Grading
+                Creative Media Lab · Learn What You Love
               </div>
             </div>
           </div>
@@ -512,6 +512,105 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             </div>
           </div>
         </div>
+      </AnimatedContent>
+
+      {/* =========================================================================
+          3B. COMMERCIAL PHOTOGRAPHY & VIDEOGRAPHY STUDIO STAGE
+          ========================================================================= */}
+      <AnimatedContent distance={40} duration={0.8} threshold={0.1}>
+        <section className="rounded-[24px] bg-white text-black p-8 sm:p-12 lg:p-14 shadow-2xl border border-neutral-100 space-y-8">
+          <div>
+            <div className="text-[12px] font-extrabold tracking-[0.16em] uppercase text-neutral-500">
+              On-Campus Production Stage
+            </div>
+            <h2 className="h1 text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-black leading-[0.96] mt-2">
+              Commercial Photography &amp; Videography Studio
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-neutral-700 font-light max-w-3xl leading-relaxed">
+              Step inside our fully rigged professional shooting stage. Designed for live commercial shoots, fashion editorials, and cinematic filmmaking with high-end Godox strobes, continuous lights, motorized backdrops, and hands-on mentor coaching.
+            </p>
+
+            {/* Spec Pills */}
+            <div className="flex flex-wrap gap-2.5 mt-6">
+              <span className="px-4 py-2 bg-neutral-100 text-neutral-900 border border-neutral-300 rounded-full text-xs font-bold uppercase tracking-wider">
+                Ceiling Pantograph Light Grid
+              </span>
+              <span className="px-4 py-2 bg-neutral-100 text-neutral-900 border border-neutral-300 rounded-full text-xs font-bold uppercase tracking-wider">
+                Godox Parabolic Softboxes &amp; Strip Lights
+              </span>
+              <span className="px-4 py-2 bg-neutral-100 text-neutral-900 border border-neutral-300 rounded-full text-xs font-bold uppercase tracking-wider">
+                Motorized Seamless Backdrops
+              </span>
+              <span className="px-4 py-2 bg-neutral-100 text-neutral-900 border border-neutral-300 rounded-full text-xs font-bold uppercase tracking-wider">
+                Live Model Commercial Shoots
+              </span>
+              <span className="px-4 py-2 bg-neutral-100 text-neutral-900 border border-neutral-300 rounded-full text-xs font-bold uppercase tracking-wider">
+                1 Camera Per 3–4 Students
+              </span>
+            </div>
+          </div>
+
+          {/* Two Studio Images Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            {/* Studio Image 1: Live Commercial Shoot */}
+            <div 
+              className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[280px] sm:h-[380px] shadow-lg group cursor-pointer"
+              onClick={() => setSelectedImage({
+                title: "Live Fashion & Commercial Shoot Session",
+                subtitle: "Practical Studio Lighting & Direction Under Mentors",
+                category: "Studio Stage",
+                caption: "Lenor Academy students actively directing and capturing a live fashion model shoot with Godox parabolic softboxes and ceiling lighting grid",
+                image: "/assets/facility-studio-commercial-shoot.jpg",
+                fallbackImage: "/assets/facility-studio-commercial-shoot.jpg"
+              })}
+            >
+              <img 
+                src="/assets/facility-studio-commercial-shoot.jpg" 
+                alt="Lenor Academy students in uniform shooting live fashion model with Godox parabolic softbox and ceiling grid"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/assets/Modern LR LENOR Storefront Facade.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                <Maximize2 className="w-3.5 h-3.5" />
+              </div>
+              <div className="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-wider text-white">
+                Commercial Studio · Live Model &amp; Mentor Session
+              </div>
+            </div>
+
+            {/* Studio Image 2: Lighting Setup & Camera Calibration */}
+            <div 
+              className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[280px] sm:h-[380px] shadow-lg group cursor-pointer"
+              onClick={() => setSelectedImage({
+                title: "Studio Lighting Calibration & Modifiers",
+                subtitle: "Mastering Key, Fill, and Rim Lighting Setups",
+                category: "Studio Stage",
+                caption: "Students configuring camera exposure and light ratios with large Godox modifiers, strip boxes, and seamless black backdrop",
+                image: "/assets/facility-studio-lighting-setup.jpg",
+                fallbackImage: "/assets/facility-studio-lighting-setup.jpg"
+              })}
+            >
+              <img 
+                src="/assets/facility-studio-lighting-setup.jpg" 
+                alt="Students calibrating camera settings beside large Godox studio softbox modifier"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/assets/Modern LR LENOR Storefront Facade.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                <Maximize2 className="w-3.5 h-3.5" />
+              </div>
+              <div className="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-wider text-white">
+                Lighting Rig · Modifiers, Strips &amp; Calibration
+              </div>
+            </div>
+          </div>
+        </section>
       </AnimatedContent>
 
       {/* =========================================================================

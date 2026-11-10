@@ -10,6 +10,7 @@ import { PillButton } from '../components/PillButton';
 import { InvestmentSection } from '../components/InvestmentSection';
 import { FAQSection } from '../components/FAQSection';
 import { PROGRAMMES, PLACED_STUDENTS } from '../data/academyData';
+import { PlacementGallery } from '../components/PlacementGallery';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface HomePageProps {
@@ -105,30 +106,48 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
       {/* SCROLL-DRIVEN JOURNEY TIMELINE WITH DYNAMIC DRAWING LINE & BIDIRECTIONAL REVEAL */}
       <ScrollJourney />
 
-      {/* STOP 07: PLACEMENT SHOWCASE TEASER WITH HOLOGRAPHIC CARDS */}
+      {/* STOP 07: PLACEMENT SHOWCASE TEASER WITH PLACED STUDENTS POSTERS & HOLOGRAPHIC CARDS */}
       <AnimatedContent distance={50} duration={0.8} threshold={0.1}>
-        <section className="card p-6 sm:p-12 !bg-white !text-black mt-16 border border-neutral-200 shadow-xl">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-neutral-200">
-            <div>
-              <div className="eye text-neutral-600">Stop 07 · Get placed</div>
-              <h2 className="h1 text-4xl sm:text-6xl text-black mt-2">
-                Where our<br />students work
-              </h2>
+        <section className="space-y-10 mt-16">
+          {/* Main White Bento Overview Card */}
+          <div className="card p-6 sm:p-12 !bg-white !text-black border border-neutral-200 shadow-xl">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-neutral-200">
+              <div>
+                <div className="eye text-neutral-600">Stop 07 · Get placed</div>
+                <h2 className="h1 text-4xl sm:text-6xl text-black mt-2">
+                  Where our<br />students work
+                </h2>
+                <p className="mt-2 text-sm text-neutral-600 max-w-lg">
+                  Over 54+ verified student placements across wedding studios, commercial production houses, advertising agencies, and Gulf media networks.
+                </p>
+              </div>
+              <Link
+                to="/placement"
+                className="btn ghost !h-11 !px-5 text-xs flex items-center gap-2 self-start md:self-auto !border-black/30 !text-black hover:!bg-black/5"
+              >
+                <span>View All 54 Placements</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
             </div>
-            <Link
-              to="/placement"
-              className="btn ghost !h-11 !px-5 text-xs flex items-center gap-2 self-start md:self-auto !border-black/30 !text-black hover:!bg-black/5"
-            >
-              <span>View All Placements</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
+
+            {/* Student placement cards preview with HoloCard */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              {PLACED_STUDENTS.slice(0, 3).map((st) => (
+                <StudentHoloCard key={st.id} student={st} />
+              ))}
+            </div>
           </div>
 
-          {/* Student placement cards preview with HoloCard */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {PLACED_STUDENTS.slice(0, 3).map((st) => (
-              <StudentHoloCard key={st.id} student={st} />
-            ))}
+          {/* Authentic Placed Student Posters Featured Showcase */}
+          <div className="px-2">
+            <PlacementGallery
+              limit={8}
+              showFilters={false}
+              showSearch={false}
+              showViewAllLink={true}
+              title="Recent Placed Students & Announcements"
+              subtitle="Authentic placement offer flyers celebrating Lenor Academy graduates landing top industry roles in Kerala, Qatar, and Oman."
+            />
           </div>
         </section>
       </AnimatedContent>

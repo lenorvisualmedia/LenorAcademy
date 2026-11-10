@@ -6,6 +6,7 @@ import { StudentHoloCard } from '../components/StudentHoloCard';
 import { PillButton } from '../components/PillButton';
 import { InvestmentSection } from '../components/InvestmentSection';
 import { CertificateModal, CertificateData } from '../components/CertificateModal';
+import { PlacementGallery } from '../components/PlacementGallery';
 
 const CERTIFICATES: CertificateData[] = [
   {
@@ -216,6 +217,18 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
             ))}
           </div>
         </div>
+      </AnimatedContent>
+
+      {/* 54+ VERIFIED PLACEMENT ANNOUNCEMENTS GALLERY */}
+      <AnimatedContent distance={40} duration={0.8} threshold={0.1}>
+        <section className="px-4 sm:px-8 pt-4">
+          <PlacementGallery 
+            title="Placed Students · Official Offers & Announcements"
+            subtitle="Explore all 54+ verified placement flyers, hiring offers, and creative studio launches achieved by Lenor Academy students across India, Qatar, and Oman."
+            showFilters={true}
+            showSearch={true}
+          />
+        </section>
       </AnimatedContent>
 
       {/* PLACED STUDENTS DIRECTORY WITH HOLOGRAPHIC CARDS */}

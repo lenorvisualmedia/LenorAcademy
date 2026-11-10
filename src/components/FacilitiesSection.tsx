@@ -76,8 +76,8 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
     ? cameraFleet
     : cameraFleet.filter(cam => cam.brand === cameraBrandFilter);
 
-  // Multi-brand optics fleet data: Nikkor Z (36) + Sony & Sigma (29) = 65 Total
-  const [lensBrandFilter, setLensBrandFilter] = useState<'All' | 'Nikkor Z' | 'Sony & Sigma'>('All');
+  // Multi-brand optics fleet data: Nikkor Z (36) + Sony & E-Mount (42) = 78 Total
+  const [lensBrandFilter, setLensBrandFilter] = useState<'All' | 'Nikkor Z' | 'Sony & E-Mount'>('All');
   const lensFleet = [
     // Nikkor Z (36 Units)
     { name: 'Nikkor Z 50mm f/1.4', brand: 'Nikkor Z', count: 15, pct: 100.0, tag: 'Standard Prime' },
@@ -90,22 +90,22 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
     { name: 'Nikkor Z 85mm f/1.2', brand: 'Nikkor Z', count: 1, pct: 6.7, tag: 'Flagship Portrait' },
     { name: 'Nikkor Z 70-200mm f/2.8 VR S', brand: 'Nikkor Z', count: 1, pct: 6.7, tag: 'Pro Telephoto' },
     { name: 'Nikkor Z 100-400mm f/4.5-5.6 VR S', brand: 'Nikkor Z', count: 1, pct: 6.7, tag: 'Super-Telephoto' },
-    // Sony & Sigma (29 Units)
-    { name: 'Sony FE 50mm f/1.8', brand: 'Sony & Sigma', count: 10, pct: 66.7, tag: 'Full-Frame Prime' },
-    { name: '85mm f/1.8 Portrait Prime', brand: 'Sony & Sigma', count: 7, pct: 46.7, tag: 'Bokeh Portrait' },
-    { name: '85mm f/1.4 Fast Prime', brand: 'Sony & Sigma', count: 4, pct: 26.7, tag: 'Pro Portrait & Low Light' },
-    { name: 'Sigma 50mm Art / Prime', brand: 'Sony & Sigma', count: 2, pct: 13.3, tag: 'High-Res Prime' },
-    { name: '85mm Studio Prime', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'Portrait Lens' },
-    { name: '50mm f/1.88 Standard', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'Standard Prime' },
-    { name: '50mm Prime Lens', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'Standard Prime' },
-    { name: '24-70mm Standard Zoom', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'All-Round Zoom' },
-    { name: '24mm Wide Prime', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'Wide-Angle Prime' },
-    { name: 'Sony E 18mm Wide', brand: 'Sony & Sigma', count: 1, pct: 6.7, tag: 'Ultra-Wide Prime' }
+    // Sony & E-Mount (42 Units)
+    { name: 'Sony FE 50mm f/1.8', brand: 'Sony', count: 10, pct: 66.7, tag: 'Full-Frame Standard Prime' },
+    { name: '35mm f/1.4 Fast Prime', brand: 'Sony / E-Mount', count: 8, pct: 53.3, tag: 'Street & Cinematic Prime' },
+    { name: '85mm f/1.4 Pro Portrait Prime', brand: 'Sony / E-Mount', count: 8, pct: 53.3, tag: 'Flagship Bokeh & Low Light' },
+    { name: '85mm f/1.8 Portrait Prime', brand: 'Sony / E-Mount', count: 8, pct: 53.3, tag: 'Studio & Location Bokeh' },
+    { name: 'Sony E 16mm Wide Prime', brand: 'Sony', count: 5, pct: 33.3, tag: 'Ultra-Wide Compact Prime' },
+    { name: '24-70mm Standard Zoom', brand: 'E-Mount', count: 1, pct: 6.7, tag: 'Commercial Zoom' },
+    { name: '24mm Wide Prime', brand: 'E-Mount', count: 1, pct: 6.7, tag: 'Architecture & Landscape' },
+    { name: 'Sony E 18mm Wide', brand: 'Sony', count: 1, pct: 6.7, tag: 'Wide-Angle Cine' }
   ];
 
   const filteredLensFleet = lensBrandFilter === 'All'
     ? lensFleet
-    : lensFleet.filter(lens => lens.brand === lensBrandFilter);
+    : lensBrandFilter === 'Nikkor Z'
+      ? lensFleet.filter(lens => lens.brand === 'Nikkor Z')
+      : lensFleet.filter(lens => lens.brand !== 'Nikkor Z');
 
   // Studio categories & state
   const studioCategories = ['All', 'Strobes & Flash', 'Continuous Light', 'Modifiers & Shapers', 'Grip & Support', 'Backdrops & Surfaces'] as const;
@@ -303,7 +303,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 
             <div className="rounded-[22px] bg-white text-black p-6 sm:p-8 shadow-xl border border-neutral-100 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
               <span className="block text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-black leading-none">
-                65
+                78
               </span>
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 mt-3 block">
                 Total lenses
@@ -705,7 +705,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                   </div>
                   <div className="text-right">
                     <div className="text-6xl sm:text-7xl font-black text-black tracking-tighter leading-none">
-                      65
+                      78
                     </div>
                     <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mt-1">
                       Total lenses
@@ -715,8 +715,8 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 
                 {/* Brand Filter Pills */}
                 <div className="flex flex-wrap gap-1.5 py-3 border-b border-neutral-200">
-                  {(['All', 'Nikkor Z', 'Sony & Sigma'] as const).map((brand) => {
-                    const count = brand === 'All' ? 65 : brand === 'Nikkor Z' ? 36 : 29;
+                  {(['All', 'Nikkor Z', 'Sony & E-Mount'] as const).map((brand) => {
+                    const count = brand === 'All' ? 78 : brand === 'Nikkor Z' ? 36 : 42;
                     return (
                       <button
                         key={brand}
@@ -768,7 +768,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
 
               {/* Extra Support Rigs Note */}
               <div className="mt-8 pt-4 border-t border-neutral-200 text-xs text-neutral-600 flex items-center justify-between font-medium">
-                <span>Nikkor Z (36) · Sony &amp; Sigma (29)</span>
+                <span>Nikkor Z (36) · Sony &amp; E-Mount (42)</span>
                 <span className="text-emerald-700 font-bold">Fast Primes &amp; Zooms</span>
               </div>
             </article>

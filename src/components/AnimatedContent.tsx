@@ -58,7 +58,7 @@ export const AnimatedContent: React.FC<AnimatedContentProps> = ({
   initialOpacity = 0,
   animateOpacity = true,
   scale = 1,
-  blur = 4,
+  blur = 0,
   rotate = 0,
   tilt = 0,
   wipe = 'none',
@@ -67,7 +67,7 @@ export const AnimatedContent: React.FC<AnimatedContentProps> = ({
   stagger = 0,
   staggerFrom = 'start',
   trigger = 'scroll',
-  once = false, // Bidirectional by default: appears on scroll down, disappears on scroll up!
+  once = true, // Default to true for silky smooth performance; once revealed, avoids scroll jank
   scrub = false,
   onStart,
   onComplete,
@@ -125,12 +125,12 @@ export const AnimatedContent: React.FC<AnimatedContentProps> = ({
         [axis]: 0,
         opacity: 1,
         scale: 1,
-        filter: 'blur(0px)',
         rotation: 0,
         duration,
         ease,
         overwrite: 'auto'
       };
+      if (blur > 0) visible.filter = 'blur(0px)';
       if (mask) {
         visible['--ac-wipe'] = 1;
       }

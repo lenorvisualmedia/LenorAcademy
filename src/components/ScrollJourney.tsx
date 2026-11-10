@@ -56,12 +56,12 @@ export const ScrollJourney: React.FC = () => {
         if (!stopEl) return;
         const dotEl = dotsRef.current[idx];
 
-        // Initially hide each stop and set initial offset
+        // Initially hide each stop and set initial offset with GPU acceleration
         gsap.set(stopEl, {
           opacity: 0,
-          y: 60,
-          filter: 'blur(6px)',
-          visibility: 'visible'
+          y: 40,
+          visibility: 'visible',
+          willChange: 'opacity, transform'
         });
 
         if (dotEl) {
@@ -75,17 +75,19 @@ export const ScrollJourney: React.FC = () => {
 
         ScrollTrigger.create({
           trigger: stopEl,
-          start: 'top 78%',
-          end: 'bottom 5%',
+          start: 'top 82%',
+          once: true, // Smooth one-time reveal eliminates scroll recalculation and jank
           onEnter: () => {
-            // Forward scroll: content appears
+            // Forward scroll: content appears smoothly
             gsap.to(stopEl, {
               opacity: 1,
               y: 0,
-              filter: 'blur(0px)',
-              duration: 0.85,
+              duration: 0.7,
               ease: 'power3.out',
-              overwrite: 'auto'
+              overwrite: 'auto',
+              onComplete: () => {
+                gsap.set(stopEl, { willChange: 'auto' });
+              }
             });
 
             if (dotEl) {
@@ -96,62 +98,6 @@ export const ScrollJourney: React.FC = () => {
                 boxShadow: '0 0 0 6px #000000, 0 0 16px rgba(255, 255, 255, 0.9)',
                 duration: 0.5,
                 ease: 'back.out(2)',
-                overwrite: 'auto'
-              });
-            }
-          },
-          onLeave: () => {
-            // Forward scroll past top: disappears towards top
-            gsap.to(stopEl, {
-              opacity: 0,
-              y: -40,
-              filter: 'blur(4px)',
-              duration: 0.5,
-              ease: 'power2.in',
-              overwrite: 'auto'
-            });
-          },
-          onEnterBack: () => {
-            // Backward scroll into view: re-appears
-            gsap.to(stopEl, {
-              opacity: 1,
-              y: 0,
-              filter: 'blur(0px)',
-              duration: 0.75,
-              ease: 'power3.out',
-              overwrite: 'auto'
-            });
-
-            if (dotEl) {
-              gsap.to(dotEl, {
-                scale: 1.35,
-                backgroundColor: '#ffffff',
-                borderColor: '#ffffff',
-                boxShadow: '0 0 0 6px #000000, 0 0 16px rgba(255, 255, 255, 0.9)',
-                duration: 0.4,
-                overwrite: 'auto'
-              });
-            }
-          },
-          onLeaveBack: () => {
-            // Backward scroll out of view: disappears cleanly
-            gsap.to(stopEl, {
-              opacity: 0,
-              y: 60,
-              filter: 'blur(6px)',
-              duration: 0.6,
-              ease: 'power2.in',
-              overwrite: 'auto'
-            });
-
-            if (dotEl) {
-              gsap.to(dotEl, {
-                scale: 0.8,
-                backgroundColor: '#1a1a1a',
-                borderColor: '#3a3a3a',
-                boxShadow: '0 0 0 4px #000000',
-                duration: 0.4,
-                ease: 'power2.in',
                 overwrite: 'auto'
               });
             }

@@ -43,9 +43,20 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedPoster, setSelectedPoster] = useState<PlacementPoster | null>(null);
+  const [visibleCount, setVisibleCount] = useState<number>(() => limit || 16);
 
   // Lock scroll when lightbox is active
   useModalScrollLock(!!selectedPoster, () => setSelectedPoster(null));
+
+  const handleFilterChange = (key: string) => {
+    setActiveFilter(key);
+    setVisibleCount(16);
+  };
+
+  const handleSearchChange = (val: string) => {
+    setSearchQuery(val);
+    setVisibleCount(24);
+  };
 
   // Filter Categories
   const categories = useMemo(() => {
@@ -89,6 +100,11 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
 
     return result;
   }, [activeFilter, searchQuery, limit]);
+
+  const displayedPosters = useMemo(() => {
+    if (limit && limit > 0) return filteredPosters.slice(0, limit);
+    return filteredPosters.slice(0, visibleCount);
+  }, [filteredPosters, limit, visibleCount]);
 
   // Navigate next / prev in lightbox
   const navigateLightbox = (direction: 'next' | 'prev') => {
@@ -145,7 +161,7 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
                 {categories.map((cat) => (
                   <button
                     key={cat.key}
-                    onClick={() => setActiveFilter(cat.key)}
+                    onClick={() => handleFilterChange(cat.key)}
                     className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                       activeFilter === cat.key
                         ? 'bg-white text-black shadow-lg scale-105'
@@ -166,13 +182,13 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
                 <input
                   type="text"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => handleSearchChange(e.target.value)}
                   placeholder="Search student, company, role..."
                   className="w-full pl-9 pr-8 py-2 bg-neutral-900 border border-neutral-800 rounded-full text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-500/60 transition-colors"
                 />
                 {searchQuery && (
                   <button
-                    onClick={() => setSearchQuery('')}
+                    onClick={() => handleSearchChange('')}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white"
                   >
                     <X className="w-3.5 h-3.5" />
@@ -193,7 +209,7 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
 
       {/* Grid of Placement Poster Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
-        {filteredPosters.map((poster) => (
+        {displayedPosters.map((poster) => (
           <div
             key={poster.id}
             onClick={() => setSelectedPoster(poster)}
@@ -275,6 +291,19 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
           </div>
         ))}
       </div>
+
+      {/* Progressive Load Button for Silky Smooth Rendering */}
+      {!limit && filteredPosters.length > visibleCount && (
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={() => setVisibleCount((prev) => Math.min(prev + 16, filteredPosters.length))}
+            className="px-8 py-3.5 bg-neutral-900 hover:bg-neutral-800 text-white border border-neutral-700 hover:border-emerald-500/50 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-lg hover:scale-105 cursor-pointer flex items-center gap-2"
+          >
+            <span>Show More Placements</span>
+            <span className="text-emerald-400 font-mono">({visibleCount} of {filteredPosters.length})</span>
+          </button>
+        </div>
+      )}
 
       {filteredPosters.length === 0 && (
         <div className="p-12 text-center rounded-2xl bg-neutral-950 border border-neutral-800 text-neutral-400 mt-8">
@@ -401,3 +430,4 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
 };
 
 export default PlacementGallery;
+

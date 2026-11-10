@@ -16,13 +16,13 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     if (prefersReducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.4, // Luxurious, slow, cinema-grade momentum glide
+      duration: 1.0, // Natural, responsive, high-framerate momentum glide
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.78, // Slower, calmer wheel responsiveness
-      touchMultiplier: 0.85, // Calibrated smooth touch speed
+      wheelMultiplier: 1.0, // 1:1 responsive wheel responsiveness
+      touchMultiplier: 1.0, // Responsive touch scroll
     });
 
     (window as any).__lenis = lenis;
@@ -40,7 +40,8 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     };
 
     gsap.ticker.add(updateLenis);
-    gsap.ticker.lagSmoothing(0);
+    // Smooth out any momentary frame drops without visual jumping
+    gsap.ticker.lagSmoothing(500, 33);
 
     return () => {
       delete (window as any).__lenis;

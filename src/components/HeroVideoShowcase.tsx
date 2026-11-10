@@ -72,6 +72,18 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       isPlayingRef.current = false;
       setIsCompleted(true);
 
+      // Stop RAF ticker immediately to free CPU/GPU cycles
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
+
+      // Detach non-passive scroll interceptors so rest of site scrolls natively
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('keydown', onKeyDown);
+
       const vid = videoRef.current;
       if (vid) {
         vid.playbackRate = 1.0;
@@ -201,10 +213,13 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         // Completion check near video end
         if (vid.duration && vid.currentTime >= vid.duration - 0.45) {
           finishHeroAndUnlock();
+          return;
         }
       }
 
-      rafIdRef.current = requestAnimationFrame(tick);
+      if (!hasCompletedRef.current) {
+        rafIdRef.current = requestAnimationFrame(tick);
+      }
     };
     rafIdRef.current = requestAnimationFrame(tick);
 

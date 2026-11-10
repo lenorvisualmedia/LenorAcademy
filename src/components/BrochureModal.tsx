@@ -65,11 +65,8 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
             <div className="text-[10px] text-neutral-500 mt-0.5">Updated with 2026 course fees</div>
           </div>
           <a
-            href="/assets/lenor-brochure.pdf"
-            download="Lenor-Academy-Prospectus-2026.pdf"
-            onClick={() => {
-              alert("Lenor Academy Prospectus 2026 download started!");
-            }}
+            href={ACADEMY_INFO.brochurePath || "/Lenor_Academy_Brochure_2026.pdf"}
+            download="Lenor_Academy_Brochure_2026.pdf"
             className="btn !h-9 !px-4 text-xs font-bold bg-black text-white hover:bg-neutral-800 shrink-0 flex items-center gap-1.5"
           >
             <Download className="w-3.5 h-3.5" />

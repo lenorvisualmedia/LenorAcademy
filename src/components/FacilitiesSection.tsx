@@ -186,7 +186,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
       category: 'Exterior Architecture',
       caption: 'Illuminated LR Lenor sign on the academy front facade',
       image: '/assets/0ef2aab79facfc772f2abf0b48668909.jpg',
-      fallback: '/assets/Modern LR LENOR Storefront Facade.png',
+      fallback: '/assets/facility-studio-1-exterior.jpg',
       span: 'lg:col-span-2'
     },
     {
@@ -591,6 +591,9 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             {/* Spec Pills */}
             <div className="flex flex-wrap gap-2.5 mt-6">
               <span className="px-4 py-2 bg-neutral-100 text-neutral-900 border border-neutral-300 rounded-full text-xs font-bold uppercase tracking-wider">
+                Studio-1 Dedicated Facility
+              </span>
+              <span className="px-4 py-2 bg-neutral-100 text-neutral-900 border border-neutral-300 rounded-full text-xs font-bold uppercase tracking-wider">
                 Ceiling Pantograph Light Grid
               </span>
               <span className="px-4 py-2 bg-neutral-100 text-neutral-900 border border-neutral-300 rounded-full text-xs font-bold uppercase tracking-wider">
@@ -608,11 +611,41 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             </div>
           </div>
 
-          {/* Two Studio Images Grid */}
+          {/* Studio-1 Dedicated Building Facade (Hero Card) */}
+          <div 
+            className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[280px] sm:h-[400px] lg:h-[460px] shadow-lg group cursor-pointer"
+            onClick={() => setSelectedImage({
+              title: "Lenor Academy Studio-1 Building",
+              subtitle: "Dedicated Commercial Photography & Film Production Stage",
+              category: "Studio Facility",
+              caption: "Modern architectural exterior of Lenor Academy Studio-1 featuring contemporary glass curtain wall, dedicated shooting floors, and client staging areas",
+              image: "/assets/facility-studio-1-exterior.jpg",
+              fallbackImage: "/assets/facility-studio-1-exterior.jpg"
+            })}
+          >
+            <img 
+              src="/assets/facility-studio-1-exterior.jpg" 
+              alt="Lenor Academy Studio-1 exterior architecture with LR LENOR signage and glass facade"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = '/assets/facility-studio-commercial-shoot.jpg';
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+              <Maximize2 className="w-4 h-4" />
+            </div>
+            <div className="absolute bottom-5 left-5 text-xs sm:text-sm font-bold uppercase tracking-wider text-white flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Studio-1 · Dedicated Commercial Production Facility
+            </div>
+          </div>
+
+          {/* Interior Studio Shoots Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-            {/* Studio Image 1: Live Commercial Shoot */}
+            {/* Studio Image 2: Live Commercial Shoot */}
             <div 
-              className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[280px] sm:h-[380px] shadow-lg group cursor-pointer"
+              className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[260px] sm:h-[360px] shadow-lg group cursor-pointer"
               onClick={() => setSelectedImage({
                 title: "Live Fashion & Commercial Shoot Session",
                 subtitle: "Practical Studio Lighting & Direction Under Mentors",
@@ -627,7 +660,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 alt="Lenor Academy students in uniform shooting live fashion model with Godox parabolic softbox and ceiling grid"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/Modern LR LENOR Storefront Facade.png';
+                  (e.target as HTMLImageElement).src = '/assets/facility-studio-1-exterior.jpg';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
@@ -639,9 +672,9 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               </div>
             </div>
 
-            {/* Studio Image 2: Lighting Setup & Camera Calibration */}
+            {/* Studio Image 3: Lighting Setup & Camera Calibration */}
             <div 
-              className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[280px] sm:h-[380px] shadow-lg group cursor-pointer"
+              className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[260px] sm:h-[360px] shadow-lg group cursor-pointer"
               onClick={() => setSelectedImage({
                 title: "Studio Lighting Calibration & Modifiers",
                 subtitle: "Mastering Key, Fill, and Rim Lighting Setups",
@@ -656,7 +689,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 alt="Students calibrating camera settings beside large Godox studio softbox modifier"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/Modern LR LENOR Storefront Facade.png';
+                  (e.target as HTMLImageElement).src = '/assets/facility-studio-1-exterior.jpg';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />

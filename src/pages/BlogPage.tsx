@@ -90,10 +90,10 @@ export const BlogPage: React.FC<BlogPageProps> = ({
 
               <button
                 onClick={() => setSelectedArticle(featured)}
-                className="btn !h-12 !px-8 text-xs font-extrabold tracking-wider bg-black text-white hover:bg-neutral-800"
+                className="btn btn-dark !h-12 !px-8 text-xs font-extrabold tracking-wider !bg-black !text-white hover:!bg-neutral-800 shadow-md"
               >
-                <span>Read Full Article</span>
-                <ArrowUpRight className="w-4 h-4 ml-1" />
+                <span className="!text-white">Read Full Article</span>
+                <ArrowUpRight className="w-4 h-4 ml-1 !text-white" />
               </button>
             </div>
           </div>

@@ -191,13 +191,13 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <button
               onClick={onOpenEnrol}
-              className="btn bg-black text-white hover:bg-neutral-800 !h-12 !px-8 text-xs font-extrabold tracking-wider whitespace-nowrap"
+              className="btn btn-dark !bg-black !text-white hover:!bg-neutral-800 !h-12 !px-8 text-xs font-extrabold tracking-wider whitespace-nowrap shadow-md"
             >
-              Apply For Admissions
+              <span className="!text-white">Apply For Admissions</span>
             </button>
             <button
               onClick={onOpenBrochure}
-              className="btn ghost !border-black !text-black hover:!bg-black/10 !h-12 !px-6 text-xs whitespace-nowrap"
+              className="btn ghost !border-black !text-black hover:!bg-black hover:!text-white !h-12 !px-6 text-xs whitespace-nowrap"
             >
               Download Prospectus
             </button>

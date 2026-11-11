@@ -148,9 +148,9 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
               </span>
               <button
                 onClick={() => onOpenEnrol('media-master')}
-                className="btn !h-9 !px-4 text-xs font-bold bg-black text-white hover:bg-neutral-800"
+                className="btn btn-dark !h-9 !px-4 text-xs font-bold !bg-black !text-white hover:!bg-neutral-800 shadow-sm"
               >
-                Learn More
+                <span className="!text-white">Learn More</span>
               </button>
             </div>
           </article>
@@ -175,9 +175,9 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
               </span>
               <button
                 onClick={() => onOpenEnrol('media-master')}
-                className="btn !h-9 !px-4 text-xs font-bold bg-black text-white hover:bg-neutral-800"
+                className="btn btn-dark !h-9 !px-4 text-xs font-bold !bg-black !text-white hover:!bg-neutral-800 shadow-sm"
               >
-                Learn More
+                <span className="!text-white">Learn More</span>
               </button>
             </div>
           </article>
@@ -202,9 +202,9 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
               </span>
               <button
                 onClick={() => onOpenEnrol('media-master')}
-                className="btn !h-9 !px-4 text-xs font-bold bg-black text-white hover:bg-neutral-800"
+                className="btn btn-dark !h-9 !px-4 text-xs font-bold !bg-black !text-white hover:!bg-neutral-800 shadow-sm"
               >
-                Learn More
+                <span className="!text-white">Learn More</span>
               </button>
             </div>
           </article>

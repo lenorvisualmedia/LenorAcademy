@@ -276,9 +276,9 @@ export const InvestmentSection: React.FC<InvestmentSectionProps> = ({
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
               <a
                 href={`tel:${ACADEMY_INFO.phone}`}
-                className="btn !h-10 text-xs px-5 bg-black text-white hover:bg-neutral-800 w-full sm:w-auto text-center"
+                className="btn btn-dark !h-10 text-xs px-5 !bg-black !text-white hover:!bg-neutral-800 w-full sm:w-auto text-center shadow-sm"
               >
-                Inquire Fees: {ACADEMY_INFO.phone}
+                <span className="!text-white">Inquire Fees: {ACADEMY_INFO.phone}</span>
               </a>
             </div>
           </div>

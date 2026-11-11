@@ -1361,9 +1361,9 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             </div>
             <button
               onClick={onOpenBrochure}
-              className="btn !h-10 text-xs tracking-wider bg-black text-white hover:bg-neutral-800 shrink-0 font-bold uppercase shadow-md"
+              className="btn btn-dark !h-10 text-xs tracking-wider !bg-black !text-white hover:!bg-neutral-800 shrink-0 font-bold uppercase shadow-md"
             >
-              View Full Gear Sheet
+              <span className="!text-white">View Full Gear Sheet</span>
             </button>
           </div>
         </div>
@@ -1389,10 +1389,10 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href="tel:+919188374232"
-              className="btn !h-12 !px-8 text-xs font-black uppercase tracking-wider bg-black text-white hover:bg-neutral-800 rounded-full shadow-lg flex items-center gap-2"
+              className="btn btn-dark !h-12 !px-8 text-xs font-black uppercase tracking-wider !bg-black !text-white hover:!bg-neutral-800 rounded-full shadow-lg flex items-center gap-2"
             >
-              <Phone className="w-4 h-4" />
-              <span>Call +91 91883 74232</span>
+              <Phone className="w-4 h-4 !text-white" />
+              <span className="!text-white">Call +91 91883 74232</span>
             </a>
 
             <button

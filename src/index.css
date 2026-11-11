@@ -132,42 +132,105 @@
   font-weight: 700;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 48px;
-  padding: 0 24px;
-  border-radius: 99px;
-  background: #fff;
-  color: #0d0d0d;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  text-decoration: none;
-}
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 99px;
+    background: #ffffff;
+    color: #0d0d0d;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+  }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
-  background: #f0f0f0;
-}
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+    background: #f0f0f0;
+  }
 
-.btn.ghost {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-}
+  /* When on dark background (explicit light button) */
+  .btn-light,
+  .btn.btn-light {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
 
-.btn.ghost:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border-color: #fff;
+  /* When on white/light background (dark button with crisp pure white text) */
+  .btn-dark,
+  .btn.btn-dark,
+  .btn.bg-black,
+  .btn.bg-neutral-900,
+  .btn.bg-neutral-800,
+  .btn[class*="bg-black"],
+  .btn[class*="bg-neutral-900"],
+  .btn[class*="bg-neutral-800"] {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  .btn-dark:hover,
+  .btn.btn-dark:hover,
+  .btn.bg-black:hover,
+  .btn.bg-neutral-900:hover,
+  .btn.bg-neutral-800:hover,
+  .btn[class*="bg-black"]:hover,
+  .btn[class*="bg-neutral-900"]:hover,
+  .btn[class*="bg-neutral-800"]:hover {
+    background-color: #1f1f1f !important;
+    color: #ffffff !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  /* Icons inside dark buttons */
+  .btn.bg-black svg,
+  .btn[class*="bg-black"] svg,
+  .btn[class*="bg-neutral-900"] svg,
+  .btn[class*="bg-neutral-800"] svg,
+  .btn-dark svg {
+    color: #ffffff !important;
+    stroke: currentColor;
+  }
+
+  /* Ghost button on dark surfaces */
+  .btn.ghost {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .btn.ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+
+  /* Ghost buttons on white surfaces */
+  .btn.ghost[class*="border-black"],
+  .btn.ghost[class*="text-black"],
+  .btn.ghost-dark {
+    background: transparent !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .btn.ghost[class*="border-black"]:hover,
+  .btn.ghost[class*="text-black"]:hover,
+  .btn.ghost-dark:hover {
+    background: rgba(0, 0, 0, 0.08) !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+  }
 }
 
 /* Smooth, cinematic Black & White to Full Color Transition */
@@ -509,5 +572,62 @@ html.lenis, html.lenis body {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
+
+/* =========================================================================
+   SILKY SMOOTH MODAL & DIALOG ANIMATIONS
+   ========================================================================= */
+@keyframes modalBackdropFadeIn {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+@keyframes modalContentSlideUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(22px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Modal Backdrop */
+[data-lenor-modal="true"],
+.animate-fade-in {
+  animation: modalBackdropFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, backdrop-filter;
+}
+
+/* Modal Inner Form / Card (Brochure, Enrol, Notify Me, Event Pass, Lightbox) */
+[data-lenor-modal="true"] > div:first-child {
+  animation: modalContentSlideUp 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+/* Modal Close (X) Button smooth micro-interaction */
+.modal-close-btn {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.modal-close-btn:hover {
+  transform: rotate(90deg) scale(1.08) !important;
+}
+
+.modal-close-btn:active {
+  transform: rotate(90deg) scale(0.92) !important;
+}
+
 
 

@@ -73,6 +73,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
     };
   }, [isHomePage, location.key]);
 
+  // Close mobile drawer on route navigation
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Close mobile drawer on Escape key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
@@ -168,19 +182,44 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
         {/* Mobile menu button — appears after hero scroll animation */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className={`lg:hidden p-2 text-white hover:text-neutral-300 transition-all duration-500 focus:outline-none ${
+          className={`lg:hidden p-2 text-white hover:text-neutral-300 transition-all duration-300 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer ${
             showNav ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
           aria-label="Toggle navigation menu"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <div className="relative w-6 h-6 flex items-center justify-center">
+            <Menu
+              className={`w-6 h-6 absolute transition-all duration-300 ease-out ${
+                mobileMenuOpen ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'
+              }`}
+            />
+            <X
+              className={`w-6 h-6 absolute transition-all duration-300 ease-out ${
+                mobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-75'
+              }`}
+            />
+          </div>
         </button>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#121212] border-b border-[#262626] px-6 py-6 transition-all duration-300">
-          <nav className="flex flex-col gap-4">
+      {/* Mobile Drawer Backdrop overlay for closing on tap outside */}
+      <div
+        className={`lg:hidden fixed inset-0 top-[60px] bg-black/60 backdrop-blur-sm -z-10 transition-opacity duration-300 ease-in-out ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setMobileMenuOpen(false)}
+      />
+
+      {/* Smooth Normal Mobile Drawer */}
+      <div
+        className={`lg:hidden grid transition-all duration-300 ease-in-out border-b border-[#262626] bg-[#0c0c0e]/95 backdrop-blur-xl ${
+          mobileMenuOpen
+            ? 'grid-rows-[1fr] opacity-100 visible'
+            : 'grid-rows-[0fr] opacity-0 invisible pointer-events-none'
+        }`}
+      >
+        <div className="overflow-hidden max-h-[calc(100vh-70px)] overflow-y-auto minimal-scrollbar">
+          <nav className="flex flex-col gap-3 px-6 py-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -223,7 +262,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
             </div>
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 };

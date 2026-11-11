@@ -22,6 +22,17 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
   const [needEMI, setNeedEMI] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  const handleClose = () => {
+    setSubmitted(false);
+    setName('');
+    setPhone('');
+    setEmail('');
+    setLocation('');
+    setNeedHostel(false);
+    setNeedEMI(false);
+    onClose();
+  };
+
   // Sync selectedProgram whenever defaultProgramId prop changes or modal opens
   useEffect(() => {
     if (defaultProgramId) {
@@ -42,19 +53,8 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
     }
   }, [defaultProgramId, isOpen]);
 
-  const handleReset = () => {
-    setSubmitted(false);
-    setName('');
-    setPhone('');
-    setEmail('');
-    setLocation('');
-    setNeedHostel(false);
-    setNeedEMI(false);
-    onClose();
-  };
-
   // Lock background scroll and pause Lenis while modal is open
-  useModalScrollLock(isOpen, handleReset);
+  useModalScrollLock(isOpen, handleClose);
 
   if (!isOpen) return null;
 
@@ -69,7 +69,7 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
     <div 
       data-lenor-modal="true"
       className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-fade-in"
-      onClick={handleReset}
+      onClick={handleClose}
       onWheel={(e) => e.stopPropagation()}
       onTouchMove={(e) => e.stopPropagation()}
     >
@@ -81,11 +81,11 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
       >
         {/* Close Button */}
         <button
-          onClick={handleReset}
-          className="absolute top-4 right-4 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-colors"
+          onClick={handleClose}
+          className="modal-close-btn absolute top-4 right-4 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-all cursor-pointer"
           aria-label="Close modal"
         >
-          <X className="w-4 h-4" />
+          <X className="w-4 h-4 transition-transform duration-200" />
         </button>
 
         {submitted ? (
@@ -108,10 +108,10 @@ export const EnrolModal: React.FC<EnrolModalProps> = ({ isOpen, onClose, default
               <div><strong>Admissions Desk:</strong> {ACADEMY_INFO.phone}</div>
             </div>
             <button
-              onClick={handleReset}
-              className="btn w-full !h-10 text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-neutral-800"
+              onClick={handleClose}
+              className="btn btn-dark w-full !h-10 text-xs font-bold uppercase tracking-wider !bg-black !text-white hover:!bg-neutral-800 cursor-pointer"
             >
-              Done &amp; Explore Academy
+              <span className="!text-white">Done &amp; Explore Academy</span>
             </button>
           </div>
         ) : (

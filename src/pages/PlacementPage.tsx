@@ -161,19 +161,21 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
               </div>
             </div>
 
-            {/* Box 2: Active WhatsApp Hiring Network */}
+            {/* Box 2: Direct Placement Across Film, Media & Commercial Sectors */}
             <div className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-4">
                   <Globe className="w-5 h-5" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">5–6 Daily Hiring Inquiries</h3>
+                <h3 className="text-lg font-bold text-white mb-2 leading-snug">
+                  Direct Placement Across Film, Media &amp; Commercial Sectors
+                </h3>
                 <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
-                  Our private Lenor Alumni WhatsApp Group receives 5 to 6 verified job vacancies every single day from ad agencies, wedding studios, and production houses across Kerala, Dubai, Saudi Arabia, and UAE.
+                  Our students receive 5 to 6 verified opportunities every single day — ranging from Assistant roles in Feature Films and Ad Agency projects to Commercial Media &amp; Wedding Studio productions across Kerala, Dubai, Saudi Arabia, and the UAE.
                 </p>
               </div>
               <div className="mt-4 pt-4 border-t border-neutral-800 text-[11px] font-mono text-blue-400">
-                ✓ Direct Employer Vacancies & CV Forwarding
+                ✓ Feature Films, Ad Agencies &amp; Commercial Studios
               </div>
             </div>
 

@@ -30,10 +30,10 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({ post, onClose }) => 
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-colors"
+          className="modal-close-btn absolute top-4 right-4 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-all cursor-pointer"
           aria-label="Close article"
         >
-          <X className="w-4 h-4" />
+          <X className="w-4 h-4 transition-transform duration-200" />
         </button>
 
         {/* Category & Meta */}
@@ -99,8 +99,8 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({ post, onClose }) => 
             <Share2 className="w-3.5 h-3.5" />
             Share Article
           </button>
-          <button onClick={onClose} className="btn !h-9 !px-5 text-xs bg-black text-white hover:bg-neutral-800">
-            Close Reader
+          <button onClick={onClose} className="btn btn-dark !h-9 !px-5 text-xs !bg-black !text-white hover:!bg-neutral-800 shadow-sm cursor-pointer">
+            <span className="!text-white">Close Reader</span>
           </button>
         </div>
       </div>

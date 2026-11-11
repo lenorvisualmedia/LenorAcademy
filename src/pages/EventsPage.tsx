@@ -17,7 +17,8 @@ export const EventsPage: React.FC<EventsPageProps> = ({
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
   const [activeCategory, setActiveCategory] = useState<'All' | 'Workshops' | 'Camps' | 'Ceremonies' | 'Open days'>('All');
 
-  const featuredEvent = EVENTS_DATA.find(e => e.id === 'ev-hoverboard') || EVENTS_DATA[0];
+  const featuredEvent = EVENTS_DATA.find(e => e.id === 'ev-sony-alpha') || EVENTS_DATA[0];
+  const brandWorkshops = EVENTS_DATA.filter(e => e.category === 'Workshops');
 
   const filteredUpcoming = EVENTS_DATA.filter(e => {
     if (activeCategory === 'All') return true;
@@ -96,10 +97,10 @@ export const EventsPage: React.FC<EventsPageProps> = ({
 
               <button
                 onClick={() => setSelectedEvent(featuredEvent)}
-                className="btn !h-12 !px-8 text-xs font-extrabold tracking-wider bg-black text-white hover:bg-neutral-800"
+                className="btn btn-dark !h-12 !px-8 text-xs font-extrabold tracking-wider !bg-black !text-white hover:!bg-neutral-800 shadow-md"
               >
-                <span>Register For Workshop</span>
-                <ArrowUpRight className="w-4 h-4 ml-1" />
+                <span>{featuredEvent.buttonText || (featuredEvent.date.toLowerCase().includes('coming soon') ? 'COMING SOON' : 'NOTIFY ME')}</span>
+                <ArrowUpRight className="w-4 h-4 ml-1 !text-white" />
               </button>
             </div>
           </div>
@@ -107,8 +108,8 @@ export const EventsPage: React.FC<EventsPageProps> = ({
             {/* Featured Image */}
             <div className="h-[340px] lg:h-auto relative overflow-hidden bg-[#1a1a1a]">
               <img
-                src={featuredEvent.image || "/assets/f9607b8e989abbaa401503b580e2dbe8.webp"}
-                alt="Camera operator on a self-balancing board"
+                src={featuredEvent.image || "/assets/facility-studio-lighting-setup.jpg"}
+                alt={featuredEvent.title}
                 className="cover gs hover:scale-105"
                 loading="lazy"
                 decoding="async"
@@ -142,6 +143,81 @@ export const EventsPage: React.FC<EventsPageProps> = ({
           </div>
         </div>
       </AnimatedContent>
+
+      {/* BRAND MASTERCLASS WORKSHOPS */}
+      <section className="px-4 sm:px-10 pt-4">
+        <AnimatedContent distance={40} duration={0.8} threshold={0.1}>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="text-[12px] font-extrabold tracking-[0.16em] uppercase text-neutral-400">
+                Official Brand Masterclasses
+              </div>
+              <h2 className="h1 text-4xl sm:text-6xl text-white mt-1">
+                Brand Workshops
+              </h2>
+            </div>
+            <p className="text-neutral-400 text-sm max-w-md font-light leading-relaxed">
+              Hands-on technical masterclasses with industry brand specialists hosted live on the Lenor studio floor.
+            </p>
+          </div>
+
+          {/* 4 Cards Responsive Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {brandWorkshops.map((workshop) => (
+              <div
+                key={workshop.id}
+                className="rounded-2xl bg-white text-black border border-neutral-200 p-6 sm:p-7 shadow-xl flex flex-col justify-between hover:shadow-2xl hover:border-neutral-400 transition-all duration-300 group"
+              >
+                <div>
+                  {/* Top Tag & Date */}
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <span className="px-3 py-1 rounded-full bg-neutral-100 text-black border border-neutral-300 text-[11px] font-black uppercase tracking-wider">
+                      {workshop.category}
+                    </span>
+                    <span className="text-xs font-bold text-neutral-600 font-mono">
+                      {workshop.date}
+                    </span>
+                  </div>
+
+                  {/* Brand Subtitle */}
+                  {workshop.brand && (
+                    <div className="text-[11px] font-extrabold uppercase tracking-widest text-neutral-500 mb-1.5">
+                      {workshop.brand}
+                    </div>
+                  )}
+
+                  {/* Title */}
+                  <h3 className="text-lg sm:text-xl font-black text-black leading-snug group-hover:text-neutral-700 transition-colors">
+                    {workshop.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mt-3 text-xs sm:text-sm text-neutral-700 font-light leading-relaxed">
+                    {workshop.description}
+                  </p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-neutral-100">
+                  {/* Location */}
+                  <div className="flex items-start gap-1.5 text-xs text-neutral-700 font-medium">
+                    <span className="shrink-0">📍</span>
+                    <span>{workshop.venue}</span>
+                  </div>
+
+                  {/* Action Button */}
+                  <button
+                    onClick={() => setSelectedEvent(workshop)}
+                    className="w-full mt-4 h-11 px-4 rounded-xl !bg-black !text-white hover:!bg-neutral-800 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-md"
+                  >
+                    <span className="!text-white">{workshop.buttonText || (workshop.date.toLowerCase().includes('coming soon') ? 'COMING SOON' : 'NOTIFY ME')}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 !text-white" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </AnimatedContent>
+      </section>
 
       {/* UPCOMING EVENTS SCHEDULE */}
       <section className="px-4 sm:px-10 pt-6">
@@ -215,7 +291,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
                   onClick={() => setSelectedEvent(item)}
                   className="btn ghost !h-9 !px-4 text-xs font-bold whitespace-nowrap"
                 >
-                  {item.registrationOpen ? 'Register Free' : 'Details'}
+                  {item.buttonText || (item.date.toLowerCase().includes('coming soon') ? 'COMING SOON' : 'NOTIFY ME')}
                 </button>
               </div>
             </div>

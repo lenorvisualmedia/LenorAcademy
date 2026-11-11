@@ -63,6 +63,7 @@ export interface PlacedStudent {
 
 export interface EventItem {
   id: string;
+  brand?: string;
   title: string;
   category: 'Workshops' | 'Camps' | 'Ceremonies' | 'Open days';
   date: string;
@@ -72,6 +73,7 @@ export interface EventItem {
   image?: string;
   status: 'Upcoming' | 'Past';
   registrationOpen: boolean;
+  buttonText?: string;
   spotsLeft?: number;
 }
 
@@ -1482,68 +1484,105 @@ export const HIRING_PARTNERS = [
 // --------------------------------------------------------------------
 export const EVENTS_DATA: EventItem[] = [
   {
-    id: "ev-hoverboard",
-    title: "Hoverboard Camera Movement Workshop",
+    id: "ev-sony-alpha",
+    brand: "Sony Brand Workshop",
+    title: "Sony Alpha Hands-On & Real-Time Tracking Masterclass",
     category: "Workshops",
-    date: "15 November 2026",
+    date: "December 3",
     time: "10:00 AM – 4:00 PM",
     venue: "Lenor Academy Studio Floor, Makkaraparamba",
-    description: "An intensive masterclass learning frictionless tracking shots, low-angle whip moves, and camera stabilization techniques using motorized self-balancing boards.",
-    image: "/assets/f9607b8e989abbaa401503b580e2dbe8.webp",
+    description: "Explore advanced AF tracking, low-light performance, and mirrorless workflow with Sony Alpha pro cameras.",
+    image: "/assets/facility-studio-lighting-setup.jpg",
     status: "Upcoming",
     registrationOpen: true,
-    spotsLeft: 8
+    buttonText: "NOTIFY ME",
+    spotsLeft: 10
+  },
+  {
+    id: "ev-fujifilm",
+    brand: "Fujifilm Brand Workshop",
+    title: "Fujifilm Color Science & Street Photography Day",
+    category: "Workshops",
+    date: "December 4",
+    time: "10:00 AM – 4:00 PM",
+    venue: "Lenor Academy Studio Floor, Makkaraparamba",
+    description: "Experience iconic film simulation recipes, retro ergonomics, and direct in-camera color processing.",
+    image: "/assets/d332320c1e882f01b6c1f0cab9e8fdd7.webp",
+    status: "Upcoming",
+    registrationOpen: true,
+    buttonText: "NOTIFY ME",
+    spotsLeft: 12
+  },
+  {
+    id: "ev-lumix-hybrid",
+    brand: "Panasonic Lumix Brand Workshop",
+    title: "Panasonic Lumix Hybrid Video & Anamorphic Masterclass",
+    category: "Workshops",
+    date: "January 5",
+    time: "10:00 AM – 4:00 PM",
+    venue: "Lenor Academy Studio Floor, Makkaraparamba",
+    description: "Learn handheld filmmaking, IBIS utilization, Open Gate video shooting, and pro log grading workflows.",
+    image: "/assets/d239a7ff1fed20dcbd601af8a22cc445.webp",
+    status: "Upcoming",
+    registrationOpen: true,
+    buttonText: "NOTIFY ME",
+    spotsLeft: 15
+  },
+  {
+    id: "ev-canon-cinema",
+    brand: "Canon Brand Workshop",
+    title: "Canon Cinema & Portrait Color Science Workshop",
+    category: "Workshops",
+    date: "Coming Soon",
+    time: "To be announced",
+    venue: "Lenor Academy Studio Floor, Makkaraparamba",
+    description: "Master natural skin tones, lighting setups, and cinema line capabilities with Canon system experts.",
+    image: "/assets/facility-studio-commercial-shoot.jpg",
+    status: "Upcoming",
+    registrationOpen: true,
+    buttonText: "COMING SOON",
+    spotsLeft: 15
+  },
+  {
+    id: "ev-convocation",
+    title: "Annual Convocation & Graduation Gala",
+    category: "Ceremonies",
+    date: "December last week",
+    time: "3:00 PM – 8:00 PM",
+    venue: "Lenor Academy Studio Floor, Makkaraparamba",
+    description: "Honoring our graduating Media Master and Visual Media Production batches with industry keynote speakers, student awards, and agency showcase.",
+    image: "/assets/179f0e839c946970e2d9cfc3d4064f35.webp",
+    status: "Upcoming",
+    registrationOpen: false,
+    buttonText: "NOTIFY ME"
   },
   {
     id: "ev-personality",
     title: "Personality Building & Client Pitch Camp",
     category: "Camps",
-    date: "28 November 2026",
+    date: "Coming Soon",
     time: "9:00 AM – 5:30 PM",
     venue: "Lenor Academy Auditorium, Makkaraparamba",
     description: "Two days of high-intensity communication, body language training, portfolio presentation simulations, and mock client negotiations.",
     image: "/assets/eeede332-45b6-4379-bf2c-7d17aaecd564.webp",
     status: "Upcoming",
     registrationOpen: true,
+    buttonText: "COMING SOON",
     spotsLeft: 12
-  },
-  {
-    id: "ev-drone-day",
-    title: "Aerial & Drone Cinematography Day",
-    category: "Workshops",
-    date: "12 December 2026",
-    time: "7:00 AM – 2:00 PM",
-    venue: "Scenic Ridge Outdoor Range, Malappuram",
-    description: "Practical outdoor flight day mastering parallax shots, reveal flights, safety regulations, weather calculations, and cinematic framing from the sky.",
-    image: "/assets/1fb7aa06fcb8e992f56088cc1a94cdd3.webp",
-    status: "Upcoming",
-    registrationOpen: true,
-    spotsLeft: 6
   },
   {
     id: "ev-open-studio",
     title: "Open Studio Day & Creative Experience",
     category: "Open days",
-    date: "20 December 2026",
+    date: "Coming Soon",
     time: "11:00 AM – 5:00 PM",
-    venue: "Lenor Academy, Makkaraparamba",
+    venue: "Lenor Academy Studio Floor, Makkaraparamba",
     description: "Meet faculty mentors, test drive mirrorless setups, explore the color grading suites, review student films, and receive immediate portfolio critique.",
     image: "/assets/430e290e-ef97-4964-a65b-a23923adad3f.webp",
     status: "Upcoming",
     registrationOpen: true,
+    buttonText: "COMING SOON",
     spotsLeft: 25
-  },
-  {
-    id: "ev-convocation",
-    title: "Annual Convocation & Graduation Gala",
-    category: "Ceremonies",
-    date: "10 January 2027",
-    time: "3:00 PM – 8:00 PM",
-    venue: "Grand Convention Center, Malappuram",
-    description: "Honoring our graduating Media Master and Visual Media Production batches with industry keynote speakers, student awards, and agency showcase.",
-    image: "/assets/179f0e839c946970e2d9cfc3d4064f35.webp",
-    status: "Upcoming",
-    registrationOpen: false
   }
 ];
 
@@ -1829,7 +1868,7 @@ export const FAQS: FAQItem[] = [
     id: "faq-placement-assistance",
     category: "Placement & Career",
     question: "What exactly is Placement Assistance?",
-    answer: "We run an active Lenor Alumni WhatsApp Group connecting past and current batches. We receive 5 to 6 verified hiring enquiries daily from production houses, ad agencies, and studios across Kerala, Bangalore, Dubai, and Saudi Arabia. We share hiring posters, vacancy requirements, and direct company contact details so students can send their CVs and portfolios directly to employers. For our 1-Year Media Master Programme (Plus Two holders), we provide 100% Placement Assurance within 6 months of graduation."
+    answer: "Our students receive 5 to 6 verified opportunities every single day — ranging from Assistant roles in Feature Films and Ad Agency projects to Commercial Media & Wedding Studio productions across Kerala, Dubai, Saudi Arabia, and the UAE. We share hiring posters, vacancy requirements, and direct company contact details so students can send their CVs and portfolios directly to employers. For our 1-Year Media Master Programme (Plus Two holders), we provide 100% Placement Assurance within 6 months of graduation."
   },
   {
     id: "faq-eligibility",

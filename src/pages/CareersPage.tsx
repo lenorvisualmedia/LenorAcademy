@@ -134,9 +134,9 @@ export const CareersPage: React.FC<CareersPageProps> = ({
                   </div>
 
                   <div className="pt-2">
-                    <button type="submit" className="btn w-full !h-10 text-xs font-bold bg-black text-white hover:bg-neutral-800">
-                      <Send className="w-3.5 h-3.5 mr-1" />
-                      Send Faculty Application
+                    <button type="submit" className="btn btn-dark w-full !h-10 text-xs font-bold !bg-black !text-white hover:!bg-neutral-800 shadow-sm">
+                      <Send className="w-3.5 h-3.5 mr-1 !text-white" />
+                      <span className="!text-white">Send Faculty Application</span>
                     </button>
                   </div>
                 </form>
@@ -340,10 +340,10 @@ export const CareersPage: React.FC<CareersPageProps> = ({
             </div>
             <a
               href={`mailto:${ACADEMY_INFO.careersEmail}`}
-              className="btn !h-10 !px-5 text-xs font-bold whitespace-nowrap flex items-center gap-1.5 bg-black text-white hover:bg-neutral-800"
+              className="btn btn-dark !h-10 !px-5 text-xs font-bold whitespace-nowrap flex items-center gap-1.5 !bg-black !text-white hover:!bg-neutral-800 shadow-sm"
             >
-              <Mail className="w-3.5 h-3.5" />
-              <span>Email Portfolio to Careers</span>
+              <Mail className="w-3.5 h-3.5 !text-white" />
+              <span className="!text-white">Email Portfolio to Careers</span>
             </a>
           </div>
         </AnimatedContent>

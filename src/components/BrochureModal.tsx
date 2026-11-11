@@ -38,10 +38,10 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-colors"
+          className="modal-close-btn absolute top-4 right-4 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 hover:text-black transition-all cursor-pointer"
           aria-label="Close brochure modal"
         >
-          <X className="w-4 h-4" />
+          <X className="w-4 h-4 transition-transform duration-200" />
         </button>
 
         <div className="flex items-center gap-3 mb-3 pr-6">
@@ -67,10 +67,10 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
           <a
             href={ACADEMY_INFO.brochurePath || "/Lenor_Academy_Brochure_2026.pdf"}
             download="Lenor_Academy_Brochure_2026.pdf"
-            className="btn !h-9 !px-4 text-xs font-bold bg-black text-white hover:bg-neutral-800 shrink-0 flex items-center gap-1.5"
+            className="btn btn-dark !h-9 !px-4 text-xs font-extrabold !bg-black !text-white hover:!bg-neutral-800 shrink-0 flex items-center gap-1.5 shadow-sm"
           >
-            <Download className="w-3.5 h-3.5" />
-            <span>Download</span>
+            <Download className="w-3.5 h-3.5 !text-white" />
+            <span className="!text-white">Download</span>
           </a>
         </div>
 
@@ -96,9 +96,9 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose })
               />
               <button
                 type="submit"
-                className="btn !h-9 !px-4 text-xs font-bold bg-neutral-900 text-white hover:bg-black shrink-0"
+                className="btn btn-dark !h-9 !px-4 text-xs font-extrabold !bg-black !text-white hover:!bg-neutral-800 shrink-0 shadow-sm"
               >
-                Send PDF
+                <span className="!text-white">Send PDF</span>
               </button>
             </form>
           )}

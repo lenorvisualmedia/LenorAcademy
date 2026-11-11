@@ -355,13 +355,13 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             </div>
           </div>
 
-          {/* Two Lab Images in Stack / Grid */}
+          {/* Authentic Lab Images Grid (4 Real Photos) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
             {/* Image 1: Authentic 180+ Editing Lab */}
             <div 
               className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[260px] sm:h-[360px] shadow-lg group cursor-pointer"
               onClick={() => setSelectedImage({
-                title: "180+ Workstations Editing Bay",
+                title: "180+ Workstations Central Editing Bay",
                 subtitle: "Dedicated High-Performance Editing & Grading Stations",
                 category: "Computer Lab",
                 caption: "Lenor Academy 180+ computer lab with dual-display setups, ergonomic seating, and central presentation display",
@@ -386,7 +386,65 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               </div>
             </div>
 
-            {/* Image 2: Authentic Multimedia Classroom & Design Lab */}
+            {/* Image 2: Wide Panoramic Editing Lab in Action */}
+            <div 
+              className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[260px] sm:h-[360px] shadow-lg group cursor-pointer"
+              onClick={() => setSelectedImage({
+                title: "180+ Workstations Panoramic Lab",
+                subtitle: "Dual-Display High-Speed Video Editing & Motion Graphics Stations",
+                category: "Active Lab Session",
+                caption: "Wide perspective of the 180+ editing lab showing active student workstations, collaborative center discussion desk, and climate control",
+                image: "/assets/facility-workstation-lab-panoramic.jpg",
+                fallbackImage: "/assets/facility-workstation-lab-panoramic.jpg"
+              })}
+            >
+              <img 
+                src="/assets/facility-workstation-lab-panoramic.jpg" 
+                alt="Panoramic view of 180+ workstations lab in action at Lenor Academy"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/assets/Modern Symmetrical Tech Workspace.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                <Maximize2 className="w-3.5 h-3.5" />
+              </div>
+              <div className="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-wider text-white">
+                Panoramic Lab · Active Student Workstations
+              </div>
+            </div>
+
+            {/* Image 3: Live Instructor Mentorship & Timeline Masterclass */}
+            <div 
+              className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[260px] sm:h-[360px] shadow-lg group cursor-pointer"
+              onClick={() => setSelectedImage({
+                title: "Live Instructor Mentorship Session",
+                subtitle: "Interactive Timeline & Color Grading Masterclass",
+                category: "Hands-on Mentorship",
+                caption: "Industry mentor conducting a live DaVinci Resolve & Premiere Pro timeline walkthrough with real-time student participation",
+                image: "/assets/facility-workstation-mentor-lecture.jpg",
+                fallbackImage: "/assets/facility-workstation-mentor-lecture.jpg"
+              })}
+            >
+              <img 
+                src="/assets/facility-workstation-mentor-lecture.jpg" 
+                alt="Live instructor mentorship session in the 180+ workstations editing lab"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/assets/Modern Media Editing Classroom.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                <Maximize2 className="w-3.5 h-3.5" />
+              </div>
+              <div className="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-wider text-white">
+                Live Mentorship · Timeline & Color Grading
+              </div>
+            </div>
+
+            {/* Image 4: Authentic Multimedia Classroom & Design Lab */}
             <div 
               className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 h-[260px] sm:h-[360px] shadow-lg group cursor-pointer"
               onClick={() => setSelectedImage({

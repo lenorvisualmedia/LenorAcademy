@@ -115,7 +115,7 @@ export const ScrollJourney: React.FC = () => {
       <AnimatedContent distance={40} duration={0.8} threshold={0.12}>
         <div id="journey" className="px-4 sm:px-10 pb-12">
           <div className="eye text-[#8a8a8a]">The journey</div>
-          <h2 className="h1 text-5xl sm:text-7xl lg:text-8xl text-white mt-4 max-w-4xl leading-[0.92]">
+          <h2 className="h1 text-4xl sm:text-7xl lg:text-8xl text-white mt-4 max-w-4xl leading-[0.92]">
             From first frame to first job
           </h2>
           <p className="text-sm sm:text-base text-neutral-400 font-light mt-4 max-w-2xl leading-relaxed">
@@ -130,21 +130,21 @@ export const ScrollJourney: React.FC = () => {
       </AnimatedContent>
 
       {/* TIMELINE CONTAINER */}
-      <div ref={containerRef} className="relative px-4 sm:px-10">
+      <div ref={containerRef} className="relative px-3 sm:px-10">
         {/* Static Background Rail (Subtle ghost path) */}
-        <div className="absolute left-[24px] lg:left-[150px] top-0 bottom-0 w-[1px] bg-white/10 pointer-events-none" />
+        <div className="absolute left-[20px] sm:left-[24px] lg:left-[150px] top-0 bottom-0 w-[1px] bg-white/10 pointer-events-none" />
 
         {/* Dynamic Animated Scroll Line (Starts blank, draws down on scroll down, disappears on scroll up) */}
         <div
           ref={trackLineRef}
-          className="absolute left-[24px] lg:left-[150px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-white/40 via-white to-white shadow-[0_0_12px_rgba(255,255,255,0.9),0_0_24px_rgba(255,255,255,0.5)] pointer-events-none z-10"
+          className="absolute left-[20px] sm:left-[24px] lg:left-[150px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-white/40 via-white to-white shadow-[0_0_12px_rgba(255,255,255,0.9),0_0_24px_rgba(255,255,255,0.5)] pointer-events-none z-10"
           style={{ willChange: 'transform' }}
         />
 
         {/* Leading Tip Glow Bead */}
         <div
           ref={glowHeadRef}
-          className="absolute left-[24px] lg:left-[150px] -translate-x-[3px] top-0 w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_14px_#fff,0_0_28px_rgba(255,255,255,0.8)] pointer-events-none z-20 opacity-0"
+          className="absolute left-[20px] sm:left-[24px] lg:left-[150px] -translate-x-[3px] top-0 w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_14px_#fff,0_0_28px_rgba(255,255,255,0.8)] pointer-events-none z-20 opacity-0"
           style={{ willChange: 'transform, opacity' }}
         />
 
@@ -154,13 +154,13 @@ export const ScrollJourney: React.FC = () => {
             <article
               key={stop.stopNumber}
               ref={(el) => (stopsRef.current[idx] = el)}
-              className="relative grid grid-cols-1 lg:grid-cols-[120px_minmax(0,1.1fr)_minmax(0,0.9fr)] gap-6 lg:gap-12 py-10 border-t border-[#222] items-center pl-10 lg:pl-0 group"
+              className="relative grid grid-cols-1 lg:grid-cols-[120px_minmax(0,1.1fr)_minmax(0,0.9fr)] gap-6 lg:gap-12 py-8 sm:py-10 border-t border-[#222] items-center pl-8 sm:pl-10 lg:pl-0 group"
               style={{ visibility: 'hidden' }}
             >
               {/* Interactive Chapter Dot */}
               <span
                 ref={(el) => (dotsRef.current[idx] = el)}
-                className="absolute left-[19px] lg:left-[145px] top-12 w-3 h-3 rounded-full border border-neutral-600 bg-neutral-900 transition-colors z-20"
+                className="absolute left-[15px] sm:left-[19px] lg:left-[145px] top-10 sm:top-12 w-3 h-3 rounded-full border border-neutral-600 bg-neutral-900 transition-colors z-20"
                 style={{ willChange: 'transform, background-color, box-shadow' }}
               />
 

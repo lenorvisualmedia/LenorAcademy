@@ -4,6 +4,7 @@ import { Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
 import { ACADEMY_INFO } from '../data/academyData';
 import { PillNav } from './PillNav';
 import { PillButton } from './PillButton';
+import { KineticMobileMenu } from './KineticMobileMenu';
 
 interface NavbarProps {
   onOpenEnrol: () => void;
@@ -103,7 +104,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out py-2.5 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out py-2.5 pt-[max(0.625rem,env(safe-area-inset-top))] ${
         !isNavVisible
           ? 'opacity-0 pointer-events-none -translate-y-full'
           : showNav
@@ -202,67 +203,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
         </button>
       </div>
 
-      {/* Mobile Drawer Backdrop overlay for closing on tap outside */}
-      <div
-        className={`lg:hidden fixed inset-0 top-[60px] bg-black/60 backdrop-blur-sm -z-10 transition-opacity duration-300 ease-in-out ${
-          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={() => setMobileMenuOpen(false)}
+      {/* Kinetic Full-Screen Animated Mobile Navigation Drawer */}
+      <KineticMobileMenu
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        navLinks={navLinks}
+        onOpenEnrol={onOpenEnrol}
+        onOpenBrochure={onOpenBrochure}
+        currentPath={location.pathname}
       />
-
-      {/* Smooth Normal Mobile Drawer */}
-      <div
-        className={`lg:hidden grid transition-all duration-300 ease-in-out border-b border-[#262626] bg-[#0c0c0e]/95 backdrop-blur-xl ${
-          mobileMenuOpen
-            ? 'grid-rows-[1fr] opacity-100 visible'
-            : 'grid-rows-[0fr] opacity-0 invisible pointer-events-none'
-        }`}
-      >
-        <div className="overflow-hidden max-h-[calc(100vh-70px)] overflow-y-auto minimal-scrollbar">
-          <nav className="flex flex-col gap-3 px-6 py-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`text-sm font-bold tracking-wider uppercase py-2 flex items-center justify-between transition-colors ${
-                  location.pathname === link.href ? 'text-white font-extrabold' : 'text-[#a9a9a9] hover:text-white'
-                }`}
-              >
-                <span>{link.label}</span>
-                <ArrowUpRight className="w-4 h-4 opacity-50" />
-              </Link>
-            ))}
-
-            <div className="pt-4 mt-2 border-t border-[#262626] flex flex-col gap-3">
-              <PillButton
-                variant="primary"
-                size="md"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenEnrol();
-                }}
-                className="w-full"
-              >
-                Enrol In Programme
-              </PillButton>
-              {onOpenBrochure && (
-                <PillButton
-                  variant="ghost"
-                  size="md"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenBrochure();
-                  }}
-                  className="w-full"
-                >
-                  Download Brochure
-                </PillButton>
-              )}
-            </div>
-          </nav>
-        </div>
-      </div>
     </header>
   );
 };

@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollExpand } from './ScrollExpand';
 import { CreativeMediaAcademySection } from './CreativeMediaAcademySection';
 
 export const EditorialStorySequence: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  });
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="relative w-full bg-black text-white selection:bg-white selection:text-black">
       {/* =========================================================================
@@ -28,9 +39,9 @@ export const EditorialStorySequence: React.FC = () => {
               </h2>
             </div>
           }
-          startWidth={44}
-          startHeight={56}
-          startRadius={24}
+          startWidth={isMobile ? 82 : 44}
+          startHeight={isMobile ? 50 : 56}
+          startRadius={isMobile ? 18 : 24}
           endRadius={0}
           mediaZoom={1.28}
           scrollDistance={1.3}

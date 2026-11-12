@@ -17,6 +17,10 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const blobUrlRef = useRef<string | null>(null);
 
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768 || (window.innerWidth < 1024 && window.innerHeight > window.innerWidth);
+  });
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
@@ -28,8 +32,19 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const touchStartYRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
 
-  // Full high-quality video provided by client
-  const videoSrc = '/Hero-scroll.mp4';
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768 || (window.innerWidth < 1024 && window.innerHeight > window.innerWidth);
+      setIsMobile((prev) => (prev !== mobile ? mobile : prev));
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Responsive video and poster sources: portrait 9:16 for mobile, landscape 16:9 for desktop
+  const videoSrc = isMobile ? '/hero-scroll-mobile.mp4' : '/Hero-scroll.mp4';
+  const posterSrc = isMobile ? '/assets/hero-poster-mobile.webp' : '/assets/hero-poster.webp';
 
   useEffect(() => {
     const video = videoRef.current;
@@ -367,7 +382,8 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       vid.pause();
       vid.playbackRate = 1.0;
       // Seek to the last frame of the video
-      const lastTime = Math.max(0, (vid.duration || 23.76) - 0.05);
+      const defaultDuration = isMobile ? 15.87 : 23.76;
+      const lastTime = Math.max(0, (vid.duration || defaultDuration) - 0.05);
       vid.currentTime = lastTime;
     }
 
@@ -408,7 +424,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       {/* Background Cinematic Video */}
       <video
         ref={videoRef}
-        poster="/assets/hero-poster.webp"
+        poster={posterSrc}
         preload="auto"
         muted
         playsInline
@@ -416,7 +432,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       />
 
       {/* Brand Logo in Top-Left — Exact design from screenshot, ALWAYS visible when video is active */}
-      <div className="absolute top-5 left-5 sm:top-6 sm:left-8 z-40 flex items-center gap-2.5 pointer-events-auto select-none">
+      <div className="absolute top-5 left-5 sm:top-6 sm:left-8 z-40 flex items-center gap-2.5 pointer-events-auto select-none pt-[env(safe-area-inset-top)]">
         <img
           src="/assets/58a07343-9b5e-42c1-a584-51e6caee9f7c.webp"
           alt="Lenor Academy"
@@ -435,7 +451,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         <button
           type="button"
           onClick={handleSkip}
-          className="absolute top-5 right-5 sm:top-6 sm:right-8 z-50 px-4 py-2 rounded-full bg-black/60 hover:bg-white text-neutral-200 hover:text-black border border-white/20 hover:border-white text-xs font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-md flex items-center gap-1.5 cursor-pointer shadow-2xl group"
+          className="absolute top-5 right-5 sm:top-6 sm:right-8 z-50 mt-[env(safe-area-inset-top)] px-4 py-2 rounded-full bg-black/60 hover:bg-white text-neutral-200 hover:text-black border border-white/20 hover:border-white text-xs font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-md flex items-center gap-1.5 cursor-pointer shadow-2xl group"
           aria-label="Skip video intro"
         >
           <span className="font-bold">Skip Intro</span>
@@ -492,8 +508,8 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
               text="LENOR ACADEMY"
               tag="h1"
               mediaType="image"
-              src="/assets/hero-poster.webp"
-              fillScale={1.3}
+              src={posterSrc}
+              fillScale={isMobile ? 1.15 : 1.3}
               parallax={30}
               reveal="rise"
               trigger="view"
@@ -517,7 +533,9 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
           <div className="mt-8 sm:mt-12 flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-neutral-400">
             <ArrowDown className="w-4 h-4 text-white animate-bounce" />
-            <span className="text-white font-bold tracking-widest">Scroll to Play Experience</span>
+            <span className="text-white font-bold tracking-widest">
+              {isMobile ? 'Swipe to Play Experience' : 'Scroll to Play Experience'}
+            </span>
           </div>
         </div>
       </div>
@@ -527,7 +545,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         <button
           type="button"
           onClick={handleReplay}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 px-6 py-2.5 rounded-full bg-black/60 hover:bg-white text-white hover:text-black border border-white/25 hover:border-white text-xs font-mono tracking-widest uppercase flex items-center gap-2 backdrop-blur-md transition-all duration-300 cursor-pointer shadow-2xl group"
+          className="absolute bottom-8 sm:bottom-8 bottom-[max(2rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-30 px-6 py-2.5 rounded-full bg-black/60 hover:bg-white text-white hover:text-black border border-white/25 hover:border-white text-xs font-mono tracking-widest uppercase flex items-center gap-2 backdrop-blur-md transition-all duration-300 cursor-pointer shadow-2xl group"
           aria-label="Replay hero video from start"
         >
           <RotateCcw className="w-3.5 h-3.5 transition-transform duration-500 group-hover:-rotate-180" />

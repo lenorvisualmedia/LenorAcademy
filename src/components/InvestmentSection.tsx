@@ -38,7 +38,7 @@ export const InvestmentSection: React.FC<InvestmentSectionProps> = ({
     <AnimatedContent distance={50} duration={0.8} threshold={0.1} className={className}>
       <section
         id="programmes"
-        className="mt-16 bg-white text-black rounded-[24px] p-6 sm:p-12 lg:p-16 border border-neutral-200 shadow-xl"
+        className="mt-16 bg-white text-black rounded-[24px] p-5 sm:p-12 lg:p-16 border border-neutral-200 shadow-xl"
       >
         {/* Header Block */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-10 border-b border-neutral-200">
@@ -46,7 +46,7 @@ export const InvestmentSection: React.FC<InvestmentSectionProps> = ({
             <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-600">
               Stop 09 · Enrol
             </div>
-            <h2 className="h1 text-5xl sm:text-7xl lg:text-8xl text-black mt-2">
+            <h2 className="h1 text-4xl sm:text-7xl lg:text-8xl text-black mt-2">
               The investment
             </h2>
           </div>
@@ -69,12 +69,12 @@ export const InvestmentSection: React.FC<InvestmentSectionProps> = ({
         </div>
 
         {/* Category Filter Pills */}
-        <div className="flex flex-wrap gap-2 mt-8">
+        <div className="flex items-center gap-2 mt-8 overflow-x-auto pb-2 sm:pb-0 sm:flex-wrap no-scrollbar">
           {filterTabs.map((tab) => (
             <button
               key={tab.value}
               onClick={() => setFilterCategory(tab.value)}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all shrink-0 ${
                 filterCategory === tab.value
                   ? 'bg-black text-white shadow-md'
                   : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 border border-neutral-200'
@@ -94,7 +94,7 @@ export const InvestmentSection: React.FC<InvestmentSectionProps> = ({
               <div
                 key={prog.id}
                 onClick={() => setSelectedId(prog.id)}
-                className={`cursor-pointer rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 relative select-none ${
+                className={`cursor-pointer rounded-3xl p-5 sm:p-10 flex flex-col justify-between transition-all duration-300 relative select-none ${
                   isSelected
                     ? 'bg-black text-white border-2 border-black shadow-2xl scale-[1.01] -translate-y-1'
                     : 'bg-white text-black border border-neutral-200 shadow-md hover:border-black/30 hover:-translate-y-0.5'
@@ -102,7 +102,7 @@ export const InvestmentSection: React.FC<InvestmentSectionProps> = ({
               >
                 {/* Active Selection Badge on Top Right */}
                 {isSelected && (
-                  <div className="absolute -top-3.5 right-8 px-3.5 py-1 rounded-full bg-black text-white text-[10px] font-mono tracking-widest uppercase border border-white/30 shadow-lg flex items-center gap-1.5">
+                  <div className="absolute -top-3.5 right-4 sm:right-8 px-3.5 py-1 rounded-full bg-black text-white text-[10px] font-mono tracking-widest uppercase border border-white/30 shadow-lg flex items-center gap-1.5">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                     <span>Selected Course</span>
                   </div>

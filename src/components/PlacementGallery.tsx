@@ -157,12 +157,12 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             {/* Filter Chips */}
             {showFilters && (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 sm:flex-wrap no-scrollbar">
                 {categories.map((cat) => (
                   <button
                     key={cat.key}
                     onClick={() => handleFilterChange(cat.key)}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shrink-0 ${
                       activeFilter === cat.key
                         ? 'bg-white text-black shadow-lg scale-105'
                         : 'bg-neutral-900 text-neutral-400 border border-neutral-800 hover:text-white hover:border-neutral-700'
@@ -325,7 +325,7 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
           onClick={() => setSelectedPoster(null)}
         >
           <div 
-            className="relative w-full max-w-4xl max-h-[92vh] bg-neutral-950 border border-neutral-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
+            className="relative w-full max-w-4xl max-h-[92vh] bg-neutral-950 border border-neutral-800 rounded-3xl overflow-y-auto md:overflow-hidden shadow-2xl flex flex-col md:flex-row minimal-scrollbar"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -338,11 +338,11 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
             </button>
 
             {/* Poster Image Area */}
-            <div className="relative md:w-3/5 bg-black flex items-center justify-center p-2 sm:p-4 min-h-[350px] md:min-h-[580px]">
+            <div className="relative md:w-3/5 bg-black flex items-center justify-center p-2 sm:p-4 min-h-[260px] sm:min-h-[350px] md:min-h-[580px] shrink-0">
               <img
                 src={selectedPoster.posterImage}
                 alt={`${selectedPoster.name} official placement offer`}
-                className="max-h-[82vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+                className="max-h-[50vh] md:max-h-[82vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
               />
 
               {/* Prev / Next controls */}
@@ -364,7 +364,7 @@ export const PlacementGallery: React.FC<PlacementGalleryProps> = ({
             </div>
 
             {/* Poster Details Sidebar */}
-            <div className="md:w-2/5 p-6 sm:p-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-neutral-800 bg-neutral-950 text-white">
+            <div className="md:w-2/5 p-5 sm:p-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-neutral-800 bg-neutral-950 text-white shrink-0">
               <div className="space-y-6">
                 <div>
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">

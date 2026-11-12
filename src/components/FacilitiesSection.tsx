@@ -227,12 +227,12 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
       <AnimatedContent distance={40} duration={0.8} threshold={0.1}>
         <div className="space-y-6">
           {/* Main White Display Card */}
-          <section className="relative overflow-hidden rounded-[24px] bg-white text-black p-8 sm:p-12 lg:p-16 shadow-2xl border border-neutral-100">
+          <section className="relative overflow-hidden rounded-[24px] bg-white text-black p-5 sm:p-12 lg:p-16 shadow-2xl border border-neutral-100">
             <div className="text-[12px] font-extrabold tracking-[0.16em] uppercase text-neutral-500">
               Campus &amp; Facilities · Makkaraparamba, Malappuram
             </div>
 
-            <h1 className="h1 text-4xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-black leading-[0.94] mt-4">
+            <h1 className="h1 text-3xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-black leading-[0.94] mt-4">
               Where learning<br />happens
             </h1>
 
@@ -821,7 +821,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 </div>
 
                 {/* Brand Filter Pills */}
-                <div className="flex flex-wrap gap-1.5 py-3 border-b border-neutral-200">
+                <div className="flex items-center gap-1.5 py-3 border-b border-neutral-200 overflow-x-auto sm:flex-wrap no-scrollbar">
                   {(['All', 'Sony', 'Nikon', 'Canon'] as const).map((brand) => {
                     const count = brand === 'All' ? 73 : brand === 'Sony' ? 40 : brand === 'Nikon' ? 30 : 3;
                     return (
@@ -829,7 +829,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                         key={brand}
                         type="button"
                         onClick={() => setCameraBrandFilter(brand)}
-                        className={`px-3 py-1.5 rounded-full text-xs font-mono transition-all ${
+                        className={`px-3 py-1.5 rounded-full text-xs font-mono transition-all shrink-0 ${
                           cameraBrandFilter === brand
                             ? 'bg-black text-white font-bold shadow-sm'
                             : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
@@ -904,7 +904,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 </div>
 
                 {/* Brand Filter Pills */}
-                <div className="flex flex-wrap gap-1.5 py-3 border-b border-neutral-200">
+                <div className="flex items-center gap-1.5 py-3 border-b border-neutral-200 overflow-x-auto sm:flex-wrap no-scrollbar">
                   {(['All', 'Nikkor Z', 'Sony & E-Mount'] as const).map((brand) => {
                     const count = brand === 'All' ? 78 : brand === 'Nikkor Z' ? 36 : 42;
                     return (
@@ -912,7 +912,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                         key={brand}
                         type="button"
                         onClick={() => setLensBrandFilter(brand)}
-                        className={`px-3 py-1.5 rounded-full text-xs font-mono transition-all ${
+                        className={`px-3 py-1.5 rounded-full text-xs font-mono transition-all shrink-0 ${
                           lensBrandFilter === brand
                             ? 'bg-black text-white font-bold shadow-sm'
                             : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'

@@ -49,12 +49,12 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
       <AnimatedContent distance={40} duration={0.8} threshold={0.1}>
         <div className="space-y-6">
           {/* Main Hero Card: White with Black Text */}
-          <section className="relative overflow-hidden rounded-[24px] bg-white text-black p-8 sm:p-12 lg:p-16 shadow-2xl border border-neutral-100">
+          <section className="relative overflow-hidden rounded-[24px] bg-white text-black p-5 sm:p-12 lg:p-16 shadow-2xl border border-neutral-100">
             <div className="text-[12px] font-extrabold tracking-[0.16em] uppercase text-neutral-500">
               About us · Established 2018
             </div>
 
-            <h1 className="h1 text-4xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-black leading-[0.94] mt-4">
+            <h1 className="h1 text-3xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-black leading-[0.94] mt-4">
               About<br />Lenor Academy
             </h1>
 
@@ -427,13 +427,13 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             {FACULTY_MENTORS.map((mentor) => (
               <article 
                 key={mentor.id}
-                className="rounded-[24px] bg-white text-black p-6 sm:p-10 shadow-2xl border border-neutral-100 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-300 space-y-6"
+                className="rounded-[24px] bg-white text-black p-5 sm:p-10 shadow-2xl border border-neutral-100 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-300 space-y-6"
               >
                 <div>
                   {/* Photo & Identity Header */}
                   <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center pb-6 border-b border-neutral-200">
                     <div 
-                      className="sm:col-span-5 relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[3/4] shadow-md group/img cursor-pointer border border-neutral-200"
+                      className="sm:col-span-5 relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[3/4] max-w-[260px] sm:max-w-none mx-auto sm:mx-0 w-full shadow-md group/img cursor-pointer border border-neutral-200"
                       onClick={() => setSelectedImage({
                         title: mentor.name,
                         subtitle: `${mentor.designation} · Lenor Academy`,

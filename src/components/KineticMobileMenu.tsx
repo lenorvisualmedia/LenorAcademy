@@ -77,10 +77,14 @@ export const KineticMobileMenu: React.FC<KineticMobileMenuProps> = ({
 
         item.addEventListener('mouseenter', onEnter);
         item.addEventListener('mouseleave', onLeave);
+        item.addEventListener('touchstart', onEnter, { passive: true });
+        item.addEventListener('touchend', onLeave, { passive: true });
 
         (item as any)._cleanup = () => {
           item.removeEventListener('mouseenter', onEnter);
           item.removeEventListener('mouseleave', onLeave);
+          item.removeEventListener('touchstart', onEnter);
+          item.removeEventListener('touchend', onLeave);
         };
       });
     }, containerRef);
@@ -246,7 +250,7 @@ export const KineticMobileMenu: React.FC<KineticMobileMenuProps> = ({
           </div>
 
           {/* Header row inside drawer */}
-          <div className="relative z-10 px-6 pt-6 pb-4 flex items-center justify-between border-b border-neutral-800">
+          <div className="relative z-10 px-6 pt-[max(1.5rem,env(safe-area-inset-top))] pb-4 flex items-center justify-between border-b border-neutral-800">
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold tracking-widest uppercase text-neutral-400">
                 Menu Navigation
@@ -262,7 +266,7 @@ export const KineticMobileMenu: React.FC<KineticMobileMenuProps> = ({
           </div>
 
           {/* Main Links Container */}
-          <div className="relative z-10 px-6 py-6 overflow-y-auto flex-1 flex flex-col justify-center">
+          <div className="relative z-10 px-6 py-4 overflow-y-auto flex-1 flex flex-col justify-start sm:justify-center my-auto min-h-0 touch-pan-y overscroll-contain minimal-scrollbar">
             <ul className="space-y-2 list-none p-0 m-0">
               {navLinks.map((link, idx) => {
                 const shapeIndex = (idx % 5) + 1;
@@ -306,7 +310,7 @@ export const KineticMobileMenu: React.FC<KineticMobileMenuProps> = ({
           </div>
 
           {/* Footer CTAs (Enrol & Brochure) */}
-          <div className="relative z-10 px-6 pb-8 pt-4 border-t border-neutral-800 space-y-3" data-menu-fade>
+          <div className="relative z-10 px-6 pb-[max(2rem,env(safe-area-inset-bottom))] pt-4 border-t border-neutral-800 space-y-3" data-menu-fade>
             <button
               onClick={() => {
                 onClose();

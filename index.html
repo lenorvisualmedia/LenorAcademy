@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/webp" href="/assets/58a07343-9b5e-42c1-a584-51e6caee9f7c.webp" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
     <title>LENOR ACADEMY® — Learn What You Love | Media &amp; Creative Arts</title>
     <link rel="canonical" href="https://www.lenoracademy.com/" />
@@ -222,7 +222,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
     <!-- Critical LCP Preloads -->
-    <link rel="preload" as="image" href="/assets/hero-poster.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/assets/hero-poster.webp" type="image/webp" media="(min-width: 768px)" />
+    <link rel="preload" as="image" href="/assets/hero-poster-mobile.webp" type="image/webp" media="(max-width: 767px)" />
     <link rel="preload" as="image" href="/assets/camera-equipments.webp" type="image/webp" />
     
     <!-- Non-blocking asynchronous font loading -->

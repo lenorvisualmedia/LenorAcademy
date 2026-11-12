@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { AnimatedContent } from './AnimatedContent';
 
@@ -33,6 +33,7 @@ const SLIDES: Slide[] = [
 
 export const CreativeMediaAcademySection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? SLIDES.length - 1 : prev - 1));
@@ -40,6 +41,20 @@ export const CreativeMediaAcademySection: React.FC = () => {
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === SLIDES.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+    }
+    touchStartX.current = null;
   };
 
   return (
@@ -70,7 +85,11 @@ export const CreativeMediaAcademySection: React.FC = () => {
         </div>
 
         {/* Featured Campus Image & Slides */}
-        <div className="relative mt-4 sm:mt-6 w-full rounded-[20px] sm:rounded-[28px] overflow-hidden aspect-[16/10] sm:aspect-[16/9] lg:aspect-[2/1] bg-neutral-900 border border-white/10 shadow-2xl group">
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="relative mt-4 sm:mt-6 w-full rounded-[20px] sm:rounded-[28px] overflow-hidden aspect-[16/10] sm:aspect-[16/9] lg:aspect-[2/1] bg-neutral-900 border border-white/10 shadow-2xl group touch-pan-y select-none"
+        >
           {SLIDES.map((slide, idx) => (
             <img
               key={slide.image}

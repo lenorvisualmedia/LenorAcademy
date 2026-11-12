@@ -35,7 +35,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenEnrol, className =
 
   return (
     <AnimatedContent distance={50} duration={0.8} threshold={0.1} className={className}>
-      <section id="faqs" className="mt-16 bg-white text-black rounded-[24px] p-6 sm:p-12 lg:p-16 border border-neutral-100 shadow-2xl">
+      <section id="faqs" className="mt-16 bg-white text-black rounded-[24px] p-5 sm:p-12 lg:p-16 border border-neutral-100 shadow-2xl">
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-neutral-200">
           <div>
@@ -43,7 +43,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenEnrol, className =
               <HelpCircle className="w-3.5 h-3.5 text-neutral-500" />
               <span>Official Guidance · FAQs</span>
             </div>
-            <h2 className="h1 text-4xl sm:text-6xl lg:text-7xl text-black mt-3 font-black tracking-tight leading-[1.02]">
+            <h2 className="h1 text-3xl sm:text-6xl lg:text-7xl text-black mt-3 font-black tracking-tight leading-[1.02]">
               Frequently Asked<br />Questions
             </h2>
           </div>
@@ -67,12 +67,12 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenEnrol, className =
         </div>
 
         {/* Filter Categories */}
-        <div className="flex flex-wrap gap-2 mt-8 pb-4">
+        <div className="flex items-center gap-2 mt-8 pb-3 overflow-x-auto sm:flex-wrap no-scrollbar">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all shrink-0 ${
                 activeCategory === cat
                   ? 'bg-black text-white shadow-md'
                   : 'bg-neutral-100 text-neutral-700 border border-neutral-200 hover:border-black hover:bg-neutral-200'

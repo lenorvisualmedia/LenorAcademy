@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Instagram, Globe, Mail, Briefcase } from 'lucide-react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { CheckmarkBadge01Icon, FingerPrintIcon } from '@hugeicons/core-free-icons';
@@ -11,6 +11,17 @@ interface StudentHoloCardProps {
 }
 
 export const StudentHoloCard: React.FC<StudentHoloCardProps> = ({ student, theme = 'dark' }) => {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 640;
+  });
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <ReflectiveCard
       theme={theme}
@@ -23,7 +34,7 @@ export const StudentHoloCard: React.FC<StudentHoloCardProps> = ({ student, theme
       tiltStrength={15}
       intro={false}
       width="100%"
-      height={500}
+      height={isMobile ? 440 : 500}
       radius={24}
       className="mx-auto w-full transition-transform duration-300"
     >

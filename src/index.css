@@ -9,6 +9,8 @@
     color: #ffffff;
     font-family: 'Urbanist', 'Helvetica Neue', Arial, sans-serif;
     overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   * {
@@ -23,6 +25,30 @@
   img {
     display: block;
   }
+}
+
+/* Mobile tap highlight elimination for instant, responsive app-like feel */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Horizontal pill scrollbar hiding for clean swipeable mobile tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Safe area utilities for devices with notches / dynamic islands */
+.pt-safe {
+  padding-top: max(1.25rem, env(safe-area-inset-top));
+}
+.pb-safe {
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
 }
 
 /* Design Tokens & Styles from Original Mockups */

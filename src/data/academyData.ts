@@ -360,6 +360,31 @@ export const ACADEMY_INFO = {
 // --------------------------------------------------------------------
 export const FACULTY_MENTORS: FacultyMentor[] = [
   {
+    id: "jibin-m",
+    name: "Jibin M",
+    designation: "Vice Principal",
+    experience: "6 Years Experience",
+    badge: "Vice Principal · 6 Yrs Exp",
+    specialisationText: "Jibin M is the Vice Principal of Lenor Academy and a video editor with a focus on visual storytelling and post-production. His work brings together creative editing, narrative flow, and technical precision. In his academic leadership role, he supports faculty coordination, student development, and practical learning that connects classroom training with professional media production.",
+    specialisations: [
+      "Video Editing and Post-Production",
+      "Visual Storytelling and Narrative Editing",
+      "Colour Correction and Colour Grading",
+      "Audio Editing and Sound Synchronisation",
+      "Titles, Transitions, and Video Effects",
+      "Video Formats, Export Settings, and Delivery",
+      "Academic Leadership and Faculty Coordination",
+      "Student Mentoring and Practical Assessment"
+    ],
+    tools: [
+      "Adobe Premiere Pro",
+      "DaVinci Resolve",
+      "Adobe Photoshop"
+    ],
+    quote: "Bringing together creative editing, narrative flow, and technical precision to connect classroom learning with professional media production.",
+    image: "/assets/mentor-jibin-m.jpg"
+  },
+  {
     id: "shahin-kr",
     name: "Shahin Kr",
     designation: "HOD - Photography, Videography & Cinematography",
@@ -430,6 +455,29 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     ],
     quote: "As an instructor, I focus on practical-based learning—helping students develop deep technical expertise, creative vision, and professional photography confidence across studio and real-world environments.",
     image: "/assets/mentor-navas-p.jpg"
+  },
+  {
+    id: "rabeesh-mr",
+    name: "Rabeesh MR",
+    designation: "Photography Instructor",
+    experience: "12 Years Experience",
+    badge: "Senior Instructor · 12 Yrs Exp",
+    specialisationText: "Veteran photography instructor with 12 years of industry mastery across professional studio lighting, commercial product shoots, fashion & modeling portfolio sessions, macro detail capture, character portraits, and wedding cinematography workflows.",
+    specialisations: [
+      "Studio Lighting & Flash Control",
+      "Product Photography",
+      "Fashion & Modeling Photography",
+      "Portraits Photography",
+      "Macro Photography",
+      "Wedding Photography",
+      "Creative Composition & Exposure"
+    ],
+    tools: [
+      "Adobe Photoshop",
+      "Adobe Lightroom"
+    ],
+    quote: "Photography is about mastering light and emotion to craft images that resonate with authenticity.",
+    image: "/assets/mentor-rabeesh-mr.jpg"
   },
   {
     id: "nisham-muhammed",
@@ -529,6 +577,32 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     image: "/assets/mentor-jidhin-raj-mk.jpg"
   },
   {
+    id: "pranav-pp",
+    name: "Pranav PP",
+    designation: "Photography Instructor",
+    experience: "5 Years Experience",
+    badge: "Instructor · 5 Yrs Exp",
+    specialisationText: "I believe photography is more than just capturing images; it is about observing the world, understanding light, and telling meaningful stories through visuals. As a Photography Instructor, my teaching approach focuses on building strong technical foundations while encouraging students to explore their creativity and develop their own unique photographic style. With a passion for wildlife and nature photography, I bring real-world experiences into the classroom, helping students understand photography beyond textbooks. I strive to make learning simple, engaging, and practical, bridging the gap between technical knowledge and creative expression. My goal is to inspire aspiring photographers to see the world differently, think creatively, and transform their vision into compelling photographs.",
+    specialisations: [
+      "Photography & Cinematography",
+      "Wildlife & Nature Photography",
+      "Photography Fundamentals & Advanced Camera Operations",
+      "Exposure Control & Camera Settings",
+      "Creative Composition & Visual Storytelling",
+      "Bird & Wildlife Photography Techniques",
+      "Natural Light & Available Light Photography",
+      "Practical Photography Training",
+      "Photography Education & Creative Development"
+    ],
+    tools: [
+      "Adobe Lightroom",
+      "Adobe Premiere Pro",
+      "Adobe Photoshop"
+    ],
+    quote: "I believe photography is more than just capturing images; it is about observing the world, understanding light, and telling meaningful stories through visuals.",
+    image: "/assets/mentor-pranav-pp.jpg"
+  },
+  {
     id: "sarandas-m",
     name: "Sarandas M",
     designation: "Senior Editing Instructor",
@@ -578,6 +652,60 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     ],
     quote: "Turning creativity into visuals and knowledge into skills",
     image: "/assets/mentor-nahlas-ek.jpg"
+  },
+  {
+    id: "sunil-kumar-c",
+    name: "Sunil Kumar C",
+    designation: "Senior Editing Instructor",
+    experience: "2 Years Experience",
+    badge: "Senior Instructor · 2 Yrs Exp",
+    specialisationText: "Specialized in high-impact video post-production across diverse genres, including emotive wedding films, dynamic photo editing showcases, and rhythm-driven slow-cut edits. Proficient in Adobe Premiere Pro and DaVinci Resolve, with expertise in precision color grading, sound design, and hands-on camera operation. His editing-first foundation ensures every shot captured on-location is purposeful, cut-ready, and built for seamless narrative flow.",
+    specialisations: [
+      "Video Editing & Videography",
+      "Photography & Visual Retouching",
+      "High-Impact Post-Production",
+      "Emotive Wedding Films",
+      "Dynamic Photo Editing Showcases",
+      "Rhythm-Driven Slow-Cut Edits",
+      "Precision Color Grading & Sound Design",
+      "Hands-On Camera Operation",
+      "Cut-Ready Narrative Flow"
+    ],
+    tools: [
+      "Premiere Pro",
+      "DaVinci Resolve",
+      "Photoshop",
+      "Lightroom"
+    ],
+    quote: "Trust the story only you can tell",
+    image: "/assets/mentor-sunil-kumar-c.jpg"
+  },
+  {
+    id: "shahan-backer-ck",
+    name: "Shahan Backer CK",
+    designation: "Soft Skill Faculty",
+    experience: "3 Years Experience",
+    badge: "Soft Skill Faculty · 3 Yrs Exp",
+    specialisationText: "Shahan Backer CK is a dedicated soft skill faculty at Lenor Academy, specializing in Communication Skills, Public Speaking, Personality Development, and Personal Branding. He focuses on empowering students and young creative professionals to become confident, capable, and professionally presentable individuals in high-stakes client and industry environments.",
+    specialisations: [
+      "Verbal & Non-Verbal Communication",
+      "Public Speaking & Presentation Skills",
+      "Personal Branding & Identity",
+      "Personality Development & Self-Awareness",
+      "Leadership & Team Building",
+      "Interview & Career Readiness",
+      "Professional Workplace Etiquette"
+    ],
+    tools: [
+      "LinkedIn",
+      "Meta Business Suite",
+      "Behance",
+      "Meta Ads Manager",
+      "Gamma AI",
+      "Meta AI"
+    ],
+    quote: "Specialising in communication, public speaking, and personal branding to help young creators become confident, capable and professionally presentable individuals.",
+    image: "/assets/mentor-shahan-backer-ck.jpg"
   }
 ];
 

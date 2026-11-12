@@ -460,8 +460,22 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                         <span className="px-3 py-1 rounded-full bg-amber-500/15 text-amber-900 text-[10px] font-mono font-extrabold uppercase border border-amber-500/30">
                           {mentor.experience}
                         </span>
-                        <span className="px-3 py-1 rounded-full bg-neutral-100 text-neutral-800 text-[10px] font-mono font-bold uppercase border border-neutral-200">
-                          {mentor.designation.includes('HOD') ? 'HOD' : mentor.designation.includes('Lecturer') ? 'Lecturer' : 'Senior Instructor'}
+                        <span
+                          className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase border ${
+                            mentor.designation.includes('Vice Principal')
+                              ? 'bg-neutral-900 text-white border-neutral-800'
+                              : 'bg-neutral-100 text-neutral-800 border-neutral-200'
+                          }`}
+                        >
+                          {mentor.designation.includes('Vice Principal')
+                            ? 'Vice Principal'
+                            : mentor.designation.includes('HOD')
+                              ? 'HOD'
+                              : mentor.designation.includes('Lecturer')
+                                ? 'Lecturer'
+                                : mentor.designation.toLowerCase().includes('soft skill')
+                                  ? 'Soft Skill Faculty'
+                                  : 'Senior Instructor'}
                         </span>
                       </div>
 

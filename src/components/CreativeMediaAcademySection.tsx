@@ -10,24 +10,24 @@ interface Slide {
 
 const SLIDES: Slide[] = [
   {
-    image: '/assets/430e290e-ef97-4964-a65b-a23923adad3f.webp',
-    alt: 'Lenor Academy building at Makkaraparamba, Malappuram',
-    caption: 'Makkaraparamba Main Branch · 3 Specialized Campuses'
+    image: '/assets/campus-build-1-north-campus.jpg',
+    alt: 'Lenor Academy North Campus - Dedicated labs for video editing and graphic design',
+    caption: 'North Campus · Video Editing & Graphic Design Suites'
   },
   {
-    image: '/assets/c01459e8-da36-4de6-bd3a-a062c8e3c669.webp',
-    alt: 'Lenor Academy Studio Campus with commercial lighting, dedicated Theatre and Drone Simulator Lab',
-    caption: 'Studio Campus · Product Lighting, Film Review Theatre & Drone Simulator Lab'
+    image: '/assets/campus-build-2-kattadippaadam.jpg',
+    alt: 'Lenor Academy Kattadippaadam Naranath - Outdoor property and field shooting location',
+    caption: 'Kattadippaadam Naranath · Outdoor Natural Light & Scenic Shooting Set'
   },
   {
-    image: '/assets/4b32a154-0d06-4137-bfbe-d8c580a9073f.webp',
-    alt: 'Lenor Academy cinematography rigs and gimbal training floor',
-    caption: 'Cinematography Floor · RED Epic, Sony & Nikon Cinema Rigs'
+    image: '/assets/campus-build-3-studio-1.jpg',
+    alt: 'Lenor Academy Studio-1 Floor & Commercial Production Stage',
+    caption: 'Studio Campus · Studio-1 Commercial Lighting Floor & Film Review Theatre'
   },
   {
-    image: '/assets/92829f40-f725-4982-bb4c-b75dfa06bac4.webp',
-    alt: 'Lenor Academy North & South post-production editing labs',
-    caption: 'North & South Post-Production Labs · Dedicated High-End PCs'
+    image: '/assets/campus-build-4-main-building.jpg',
+    alt: 'Lenor Academy Makkaraparamba Main Branch and South Campus',
+    caption: 'Makkaraparamba Main Branch · South Campus Classrooms & Practical Labs'
   }
 ];
 

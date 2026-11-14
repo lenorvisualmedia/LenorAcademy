@@ -267,11 +267,13 @@ const ReelModalSlide: React.FC<ReelModalSlideProps> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isBuffering, setIsBuffering] = useState(false);
   const [progress, setProgress] = useState(0);
   const [showHeartPop, setShowHeartPop] = useState(false);
 
   const isActive = index === activeIndex;
   const isAdjacent = Math.abs(index - activeIndex) <= 1;
+  const isNext = index === activeIndex + 1;
 
   // Manage playback based on active state
   useEffect(() => {
@@ -283,7 +285,10 @@ const ReelModalSlide: React.FC<ReelModalSlideProps> = ({
       video.muted = isMuted;
       video
         .play()
-        .then(() => setIsPlaying(true))
+        .then(() => {
+          setIsPlaying(true);
+          setIsBuffering(false);
+        })
         .catch(() => {
           // If browser blocked autoplay with sound, fall back to muted
           video.muted = true;
@@ -294,6 +299,7 @@ const ReelModalSlide: React.FC<ReelModalSlideProps> = ({
       video.currentTime = 0;
       setProgress(0);
       setIsPlaying(false);
+      setIsBuffering(false);
     }
   }, [isActive, isMuted]);
 
@@ -351,8 +357,11 @@ const ReelModalSlide: React.FC<ReelModalSlideProps> = ({
           poster={reel.poster}
           playsInline
           muted={isMuted}
-          preload={isActive ? 'auto' : 'metadata'}
+          preload={isActive || isNext ? 'auto' : 'metadata'}
           onTimeUpdate={handleTimeUpdate}
+          onWaiting={() => setIsBuffering(true)}
+          onPlaying={() => setIsBuffering(false)}
+          onCanPlay={() => setIsBuffering(false)}
           onEnded={onVideoEnded}
           onClick={handleTogglePlay}
           onDoubleClick={handleDoubleClick}
@@ -364,6 +373,13 @@ const ReelModalSlide: React.FC<ReelModalSlideProps> = ({
           alt={reel.title}
           className="absolute inset-0 w-full h-full object-cover"
         />
+      )}
+
+      {/* Buffering Spinner when video is loading or streaming chunks */}
+      {isActive && isBuffering && (
+        <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+          <div className="w-11 h-11 rounded-full border-2 border-white/20 border-t-white animate-spin drop-shadow-2xl" />
+        </div>
       )}
 
       {/* Play/Pause Watermark Overlay when paused */}
@@ -440,36 +456,38 @@ const ReelModalSlide: React.FC<ReelModalSlideProps> = ({
         </button>
       </div>
 
-      {/* Bottom Caption Overlay */}
-      <div className="absolute bottom-0 left-0 right-16 p-4 sm:p-5 z-20 bg-gradient-to-t from-black via-black/85 to-transparent pointer-events-auto">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-white text-xs sm:text-sm font-black tracking-tight">
-            @lenoracademy
-          </span>
-          <span className="px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-black uppercase tracking-wider text-white">
-            Model Shoot
-          </span>
-        </div>
+      {/* Bottom Caption Overlay (Full-width seamless gradient spanning edge-to-edge) */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 pb-6 sm:pb-7 z-20 bg-gradient-to-t from-black via-black/80 via-50% to-transparent pointer-events-auto">
+        <div className="pr-16 sm:pr-20">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-white text-xs sm:text-sm font-black tracking-tight">
+              @lenoracademy
+            </span>
+            <span className="px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-black uppercase tracking-wider text-white">
+              Model Shoot
+            </span>
+          </div>
 
-        <h3 className="text-white text-sm sm:text-base font-bold leading-snug drop-shadow">
-          {reel.title}
-        </h3>
-        <p className="text-neutral-200 text-xs font-light mt-1 line-clamp-3 leading-relaxed drop-shadow">
-          {reel.caption}
-        </p>
+          <h3 className="text-white text-sm sm:text-base font-bold leading-snug drop-shadow">
+            {reel.title}
+          </h3>
+          <p className="text-neutral-200 text-xs font-light mt-1 line-clamp-3 leading-relaxed drop-shadow">
+            {reel.caption}
+          </p>
 
-        <div className="flex items-center gap-1.5 flex-wrap text-[11px] font-mono font-semibold text-neutral-300 mt-2">
-          <span>#ModelPhotography</span>
-          <span>#GujarathiStreet</span>
-          <span>#LenorAcademy</span>
-        </div>
+          <div className="flex items-center gap-1.5 flex-wrap text-[11px] font-mono font-semibold text-neutral-300 mt-2">
+            <span>#ModelPhotography</span>
+            <span>#GujarathiStreet</span>
+            <span>#LenorAcademy</span>
+          </div>
 
-        <div className="flex items-center gap-2 text-[11px] font-mono text-neutral-300 mt-3 pt-2 border-t border-white/10">
-          <Music
-            className="w-3.5 h-3.5 text-neutral-300 shrink-0 animate-spin"
-            style={{ animationDuration: '4s' }}
-          />
-          <span className="truncate">Original Field Audio · Gujarathi Street Shoot</span>
+          <div className="flex items-center gap-2 text-[11px] font-mono text-neutral-300 mt-3 pt-2 border-t border-white/10">
+            <Music
+              className="w-3.5 h-3.5 text-neutral-300 shrink-0 animate-spin"
+              style={{ animationDuration: '4s' }}
+            />
+            <span className="truncate">Original Field Audio · Gujarathi Street Shoot</span>
+          </div>
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import {
   Play,
-  Pause,
   Volume2,
   VolumeX,
   Heart,
@@ -12,7 +11,6 @@ import {
   ChevronRight,
   ChevronUp,
   ChevronDown,
-  Sparkles,
   Music,
   Check,
   Film
@@ -239,20 +237,264 @@ const ReelCard: React.FC<ReelCardProps> = ({ reel, index, onOpen }) => {
   );
 };
 
+// -----------------------------------------------------------------------------
+// Individual Slide in the Vertical Instagram Feed
+// -----------------------------------------------------------------------------
+interface ReelModalSlideProps {
+  reel: ModelReelItem;
+  index: number;
+  activeIndex: number;
+  isMuted: boolean;
+  onVideoEnded: () => void;
+  onToggleMute: () => void;
+  onLike: (id: string) => void;
+  isLiked: boolean;
+  onShare: (reel: ModelReelItem) => void;
+  copied: boolean;
+}
+
+const ReelModalSlide: React.FC<ReelModalSlideProps> = ({
+  reel,
+  index,
+  activeIndex,
+  isMuted,
+  onVideoEnded,
+  onToggleMute,
+  onLike,
+  isLiked,
+  onShare,
+  copied
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [showHeartPop, setShowHeartPop] = useState(false);
+
+  const isActive = index === activeIndex;
+  const isAdjacent = Math.abs(index - activeIndex) <= 1;
+
+  // Manage playback based on active state
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isActive) {
+      video.currentTime = 0;
+      video.muted = isMuted;
+      video
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => {
+          // If browser blocked autoplay with sound, fall back to muted
+          video.muted = true;
+          video.play().catch(() => {});
+        });
+    } else {
+      video.pause();
+      video.currentTime = 0;
+      setProgress(0);
+      setIsPlaying(false);
+    }
+  }, [isActive, isMuted]);
+
+  // Sync mute state on active video
+  useEffect(() => {
+    if (videoRef.current && isActive) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted, isActive]);
+
+  const handleTimeUpdate = () => {
+    if (!isActive || !videoRef.current) return;
+    const { currentTime, duration } = videoRef.current;
+    if (duration > 0) {
+      setProgress((currentTime / duration) * 100);
+    }
+  };
+
+  const handleTogglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      video.play().catch(() => {});
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const handleDoubleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onLike(reel.id);
+    setShowHeartPop(true);
+    setTimeout(() => setShowHeartPop(false), 900);
+  };
+
+  return (
+    <div className="absolute inset-0 w-full h-full select-none overflow-hidden bg-black flex flex-col justify-between">
+      {/* Top Segmented / Continuous Progress Bar */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-white/20 z-30">
+        <div
+          className="h-full bg-white transition-all duration-100 ease-linear"
+          style={{ width: `${isActive ? progress : 0}%` }}
+        />
+      </div>
+
+      {/* Video or Poster element */}
+      {isAdjacent ? (
+        <video
+          ref={videoRef}
+          src={reel.videoUrl}
+          poster={reel.poster}
+          playsInline
+          muted={isMuted}
+          preload={isActive ? 'auto' : 'metadata'}
+          onTimeUpdate={handleTimeUpdate}
+          onEnded={onVideoEnded}
+          onClick={handleTogglePlay}
+          onDoubleClick={handleDoubleClick}
+          className="absolute inset-0 w-full h-full object-cover cursor-pointer"
+        />
+      ) : (
+        <img
+          src={reel.poster}
+          alt={reel.title}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
+
+      {/* Play/Pause Watermark Overlay when paused */}
+      {isActive && !isPlaying && (
+        <div
+          onClick={handleTogglePlay}
+          className="absolute inset-0 z-20 flex items-center justify-center bg-black/35 backdrop-blur-[2px] cursor-pointer"
+        >
+          <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-full bg-black/70 border border-white/30 text-white flex items-center justify-center shadow-2xl">
+            <Play className="w-9 h-9 sm:w-10 sm:h-10 fill-current ml-1" />
+          </div>
+        </div>
+      )}
+
+      {/* Double-tap Heart Animation */}
+      {showHeartPop && (
+        <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none animate-ping">
+          <Heart className="w-24 h-24 text-red-500 fill-red-500 drop-shadow-2xl" />
+        </div>
+      )}
+
+      {/* Floating Sound Toggle */}
+      <div className="absolute top-4 right-4 z-20">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleMute();
+          }}
+          className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-colors shadow-lg cursor-pointer"
+          aria-label={isMuted ? 'Unmute' : 'Mute'}
+        >
+          {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+        </button>
+      </div>
+
+      {/* Right Side Action Rails (Instagram Style) */}
+      <div className="absolute right-3 bottom-24 z-20 flex flex-col items-center gap-5">
+        {/* Like Button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onLike(reel.id);
+          }}
+          className="flex flex-col items-center gap-1 group cursor-pointer"
+        >
+          <div
+            className={`w-11 h-11 rounded-full flex items-center justify-center backdrop-blur-md transition-all ${
+              isLiked
+                ? 'bg-red-500 text-white shadow-red-500/50 shadow-lg'
+                : 'bg-black/60 border border-white/20 text-white group-hover:scale-110'
+            }`}
+          >
+            <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
+          </div>
+          <span className="text-[11px] font-mono font-bold text-white drop-shadow">
+            {isLiked ? 'Liked' : reel.likes}
+          </span>
+        </button>
+
+        {/* Share Button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onShare(reel);
+          }}
+          className="flex flex-col items-center gap-1 group cursor-pointer"
+        >
+          <div className="w-11 h-11 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center backdrop-blur-md group-hover:scale-110 transition-all">
+            {copied ? <Check className="w-5 h-5 text-green-400" /> : <Share2 className="w-5 h-5" />}
+          </div>
+          <span className="text-[11px] font-mono font-bold text-white drop-shadow">
+            {copied ? 'Copied' : 'Share'}
+          </span>
+        </button>
+      </div>
+
+      {/* Bottom Caption Overlay */}
+      <div className="absolute bottom-0 left-0 right-16 p-4 sm:p-5 z-20 bg-gradient-to-t from-black via-black/85 to-transparent pointer-events-auto">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-white text-xs sm:text-sm font-black tracking-tight">
+            @lenoracademy
+          </span>
+          <span className="px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-black uppercase tracking-wider text-white">
+            Model Shoot
+          </span>
+        </div>
+
+        <h3 className="text-white text-sm sm:text-base font-bold leading-snug drop-shadow">
+          {reel.title}
+        </h3>
+        <p className="text-neutral-200 text-xs font-light mt-1 line-clamp-3 leading-relaxed drop-shadow">
+          {reel.caption}
+        </p>
+
+        <div className="flex items-center gap-1.5 flex-wrap text-[11px] font-mono font-semibold text-neutral-300 mt-2">
+          <span>#ModelPhotography</span>
+          <span>#GujarathiStreet</span>
+          <span>#LenorAcademy</span>
+        </div>
+
+        <div className="flex items-center gap-2 text-[11px] font-mono text-neutral-300 mt-3 pt-2 border-t border-white/10">
+          <Music
+            className="w-3.5 h-3.5 text-neutral-300 shrink-0 animate-spin"
+            style={{ animationDuration: '4s' }}
+          />
+          <span className="truncate">Original Field Audio · Gujarathi Street Shoot</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// -----------------------------------------------------------------------------
+// Main Component: Reels Rail + Instagram-Style Smooth Vertical Feed
+// -----------------------------------------------------------------------------
 export const ModelPhotographyReels: React.FC = () => {
   const [activeReelIndex, setActiveReelIndex] = useState<number | null>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [likedReels, setLikedReels] = useState<Record<string, boolean>>({});
   const [copied, setCopied] = useState(false);
-  const [showHeartAnim, setShowHeartAnim] = useState(false);
+
+  // Drag physics state for smooth touch sliding
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const touchStartY = useRef<number>(0);
+  const wheelLockRef = useRef<boolean>(false);
 
   const railRef = useRef<HTMLDivElement>(null);
-  const modalVideoRef = useRef<HTMLVideoElement>(null);
 
   const isModalOpen = activeReelIndex !== null;
-  const activeReel = activeReelIndex !== null ? MODEL_REELS_DATA[activeReelIndex] : null;
+  const currentReel = activeReelIndex !== null ? MODEL_REELS_DATA[activeReelIndex] : null;
 
   useModalScrollLock(isModalOpen, () => setActiveReelIndex(null));
 
@@ -267,56 +509,31 @@ export const ModelPhotographyReels: React.FC = () => {
     if (activeReelIndex === null) return;
     const nextIdx = (activeReelIndex + 1) % MODEL_REELS_DATA.length;
     setActiveReelIndex(nextIdx);
-    setProgress(0);
-    setIsPlaying(true);
   }, [activeReelIndex]);
 
   const handlePrevReel = useCallback(() => {
     if (activeReelIndex === null) return;
     const prevIdx = (activeReelIndex - 1 + MODEL_REELS_DATA.length) % MODEL_REELS_DATA.length;
     setActiveReelIndex(prevIdx);
-    setProgress(0);
-    setIsPlaying(true);
   }, [activeReelIndex]);
 
-  const togglePlay = () => {
-    if (!modalVideoRef.current) return;
-    if (isPlaying) {
-      modalVideoRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      modalVideoRef.current.play().catch(() => {});
-      setIsPlaying(true);
-    }
-  };
-
   const toggleMute = () => {
-    if (!modalVideoRef.current) return;
-    const nextMuted = !isMuted;
-    modalVideoRef.current.muted = nextMuted;
-    setIsMuted(nextMuted);
+    setIsMuted(prev => !prev);
   };
 
   const toggleLike = (id: string) => {
     setLikedReels(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const handleDoubleClickVideo = () => {
-    if (activeReel) {
-      setLikedReels(prev => ({ ...prev, [activeReel.id]: true }));
-      setShowHeartAnim(true);
-      setTimeout(() => setShowHeartAnim(false), 900);
-    }
-  };
-
-  const handleShare = () => {
-    if (!activeReel) return;
+  const handleShare = (reel: ModelReelItem) => {
     if (navigator.share) {
-      navigator.share({
-        title: activeReel.title,
-        text: `${activeReel.title} — Lenor Academy Gujarathi Street Model Shoot Reel`,
-        url: window.location.href
-      }).catch(() => {});
+      navigator
+        .share({
+          title: reel.title,
+          text: `${reel.title} — Lenor Academy Gujarathi Street Model Shoot Reel`,
+          url: window.location.href
+        })
+        .catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
       setCopied(true);
@@ -324,7 +541,7 @@ export const ModelPhotographyReels: React.FC = () => {
     }
   };
 
-  // Keyboard controls in modal
+  // Keyboard navigation
   useEffect(() => {
     if (!isModalOpen) return;
 
@@ -335,9 +552,6 @@ export const ModelPhotographyReels: React.FC = () => {
       } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault();
         handlePrevReel();
-      } else if (e.key === ' ') {
-        e.preventDefault();
-        togglePlay();
       } else if (e.key === 'm' || e.key === 'M') {
         e.preventDefault();
         toggleMute();
@@ -346,16 +560,48 @@ export const ModelPhotographyReels: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen, handleNextReel, handlePrevReel, isPlaying, isMuted]);
+  }, [isModalOpen, handleNextReel, handlePrevReel]);
 
-  // Handle video progress updates
-  const handleTimeUpdate = () => {
-    if (modalVideoRef.current) {
-      const { currentTime, duration } = modalVideoRef.current;
-      if (duration > 0) {
-        setProgress((currentTime / duration) * 100);
+  // Desktop Mouse Wheel support (smooth slide like Instagram web)
+  const handleWheel = (e: React.WheelEvent) => {
+    if (wheelLockRef.current) return;
+    if (Math.abs(e.deltaY) > 28) {
+      wheelLockRef.current = true;
+      if (e.deltaY > 0) {
+        handleNextReel();
+      } else {
+        handlePrevReel();
       }
+      setTimeout(() => {
+        wheelLockRef.current = false;
+      }, 420);
     }
+  };
+
+  // Mobile / Touch Drag gestures
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+    setIsDragging(true);
+    setDragOffset(0);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const diff = e.touches[0].clientY - touchStartY.current;
+    setDragOffset(diff);
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+
+    // If dragged more than 50px up/down, advance reel
+    if (dragOffset < -50) {
+      handleNextReel();
+    } else if (dragOffset > 50) {
+      handlePrevReel();
+    }
+    setDragOffset(0);
   };
 
   return (
@@ -409,8 +655,7 @@ export const ModelPhotographyReels: React.FC = () => {
               index={idx}
               onOpen={(i) => {
                 setActiveReelIndex(i);
-                setProgress(0);
-                setIsPlaying(true);
+                setDragOffset(0);
               }}
             />
           </div>
@@ -423,22 +668,22 @@ export const ModelPhotographyReels: React.FC = () => {
           <Film className="w-4 h-4 text-white" />
           <span>Swipe or scroll sideways to explore all 9 field workshop reels</span>
         </div>
-        <span className="hidden sm:inline-block">Click any reel for fullscreen immersive player</span>
+        <span className="hidden sm:inline-block">Click any reel for vertical Instagram-style feed</span>
       </div>
 
-      {/* FULLSCREEN REELS VIEWER MODAL */}
-      {isModalOpen && activeReel && createPortal(
+      {/* FULLSCREEN VERTICAL INSTAGRAM REELS VIEWER MODAL */}
+      {isModalOpen && currentReel && activeReelIndex !== null && createPortal(
         <div
           data-lenor-modal="true"
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-2xl p-2 sm:p-6"
         >
-          {/* Close Backdrop click */}
+          {/* Backdrop Click */}
           <div
             className="absolute inset-0 z-0 cursor-pointer"
             onClick={() => setActiveReelIndex(null)}
           />
 
-          {/* Top Bar Controls */}
+          {/* Top Bar Header */}
           <div className="absolute top-4 sm:top-6 left-4 sm:left-8 right-4 sm:right-8 z-30 flex items-center justify-between pointer-events-none">
             <div className="flex items-center gap-3 pointer-events-auto">
               <div className="w-9 h-9 rounded-full bg-white text-black font-black text-xs flex items-center justify-center tracking-tighter">
@@ -453,7 +698,7 @@ export const ModelPhotographyReels: React.FC = () => {
                   </span>
                 </div>
                 <div className="text-[11px] text-neutral-400 font-light flex items-center gap-1.5">
-                  <span>📍 {activeReel.location}</span>
+                  <span>📍 {currentReel.location}</span>
                 </div>
               </div>
             </div>
@@ -468,7 +713,7 @@ export const ModelPhotographyReels: React.FC = () => {
             </button>
           </div>
 
-          {/* Prev / Next Buttons (Desktop Floaters) */}
+          {/* Prev / Next Floater Buttons (Desktop) */}
           <button
             onClick={handlePrevReel}
             className="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-neutral-900/90 hover:bg-white hover:text-black text-white border border-white/20 items-center justify-center transition-all cursor-pointer shadow-2xl"
@@ -484,136 +729,50 @@ export const ModelPhotographyReels: React.FC = () => {
             <ChevronDown className="w-6 h-6" />
           </button>
 
-          {/* MAIN VERTICAL PHONE FRAME */}
-          <div className="relative z-10 w-full max-w-[420px] aspect-[9/16] max-h-[85vh] sm:max-h-[88vh] rounded-2xl sm:rounded-3xl overflow-hidden bg-black border border-white/20 shadow-2xl flex flex-col justify-between">
-            {/* Real-time Progress Bar */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-white/20 z-30">
-              <div
-                className="h-full bg-white transition-all duration-100"
-                style={{ width: `${progress}%` }}
-              />
+          {/* MAIN VERTICAL INSTAGRAM PHONE FRAME */}
+          <div
+            onWheel={handleWheel}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            className="relative z-10 w-full max-w-[420px] aspect-[9/16] max-h-[85vh] sm:max-h-[88vh] rounded-2xl sm:rounded-3xl overflow-hidden bg-black border border-white/20 shadow-2xl select-none"
+          >
+            {/* CONTINUOUS VERTICAL SLIDING TRACK */}
+            <div className="relative w-full h-full">
+              {MODEL_REELS_DATA.map((reel, idx) => {
+                const offset = (idx - activeReelIndex) * 100;
+                // Only render slides within visible or adjacent range for top performance
+                const isRendered = Math.abs(idx - activeReelIndex) <= 2;
+                if (!isRendered) return null;
+
+                return (
+                  <div
+                    key={reel.id}
+                    className="absolute inset-0 w-full h-full"
+                    style={{
+                      transform: `translateY(calc(${offset}% + ${dragOffset}px))`,
+                      transition: isDragging ? 'none' : 'transform 0.42s cubic-bezier(0.22, 1, 0.36, 1)'
+                    }}
+                  >
+                    <ReelModalSlide
+                      reel={reel}
+                      index={idx}
+                      activeIndex={activeReelIndex}
+                      isMuted={isMuted}
+                      onVideoEnded={handleNextReel}
+                      onToggleMute={toggleMute}
+                      onLike={toggleLike}
+                      isLiked={!!likedReels[reel.id]}
+                      onShare={handleShare}
+                      copied={copied}
+                    />
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Video Element */}
-            <video
-              ref={modalVideoRef}
-              key={activeReel.id}
-              src={activeReel.videoUrl}
-              poster={activeReel.poster}
-              autoPlay
-              playsInline
-              loop
-              muted={isMuted}
-              onTimeUpdate={handleTimeUpdate}
-              onEnded={handleNextReel}
-              onClick={togglePlay}
-              onDoubleClick={handleDoubleClickVideo}
-              className="absolute inset-0 w-full h-full object-cover cursor-pointer select-none"
-            />
-
-            {/* Heart Pop Animation on Double Click */}
-            {showHeartAnim && (
-              <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none animate-ping">
-                <Heart className="w-24 h-24 text-red-500 fill-red-500 drop-shadow-2xl" />
-              </div>
-            )}
-
-            {/* Play/Pause Watermark Overlay when paused */}
-            {!isPlaying && (
-              <div
-                onClick={togglePlay}
-                className="absolute inset-0 z-20 flex items-center justify-center bg-black/30 backdrop-blur-[2px] cursor-pointer"
-              >
-                <div className="w-20 h-20 rounded-full bg-black/60 border border-white/30 text-white flex items-center justify-center shadow-2xl">
-                  <Play className="w-10 h-10 fill-current ml-1" />
-                </div>
-              </div>
-            )}
-
-            {/* Top Right Floating Sound Toggle */}
-            <div className="absolute top-4 right-4 z-20">
-              <button
-                onClick={toggleMute}
-                className="w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-colors"
-                aria-label={isMuted ? 'Unmute' : 'Mute'}
-              >
-                {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-              </button>
-            </div>
-
-            {/* Right Side Action Rails (Instagram Style) */}
-            <div className="absolute right-3 bottom-24 z-20 flex flex-col items-center gap-5">
-              {/* Like Button */}
-              <button
-                onClick={() => toggleLike(activeReel.id)}
-                className="flex flex-col items-center gap-1 group cursor-pointer"
-              >
-                <div
-                  className={`w-11 h-11 rounded-full flex items-center justify-center backdrop-blur-md transition-all ${
-                    likedReels[activeReel.id]
-                      ? 'bg-red-500 text-white shadow-red-500/50 shadow-lg'
-                      : 'bg-black/60 border border-white/20 text-white group-hover:scale-110'
-                  }`}
-                >
-                  <Heart
-                    className={`w-5 h-5 ${likedReels[activeReel.id] ? 'fill-current' : ''}`}
-                  />
-                </div>
-                <span className="text-[11px] font-mono font-bold text-white drop-shadow">
-                  {likedReels[activeReel.id] ? 'Liked' : activeReel.likes}
-                </span>
-              </button>
-
-              {/* Share Button */}
-              <button
-                onClick={handleShare}
-                className="flex flex-col items-center gap-1 group cursor-pointer"
-              >
-                <div className="w-11 h-11 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center backdrop-blur-md group-hover:scale-110 transition-all">
-                  {copied ? <Check className="w-5 h-5 text-green-400" /> : <Share2 className="w-5 h-5" />}
-                </div>
-                <span className="text-[11px] font-mono font-bold text-white drop-shadow">
-                  {copied ? 'Copied' : 'Share'}
-                </span>
-              </button>
-            </div>
-
-            {/* Bottom Caption Overlay */}
-            <div className="absolute bottom-0 left-0 right-16 p-4 sm:p-5 z-20 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-auto">
-              {/* Account handle & tag */}
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-white text-xs sm:text-sm font-black tracking-tight">
-                  @lenoracademy
-                </span>
-                <span className="px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-black uppercase tracking-wider text-white">
-                  Model Shoot
-                </span>
-              </div>
-
-              {/* Title & Caption */}
-              <h3 className="text-white text-sm sm:text-base font-bold leading-snug drop-shadow">
-                {activeReel.title}
-              </h3>
-              <p className="text-neutral-200 text-xs font-light mt-1 line-clamp-3 leading-relaxed drop-shadow">
-                {activeReel.caption}
-              </p>
-
-              {/* Hashtags */}
-              <div className="flex items-center gap-1.5 flex-wrap text-[11px] font-mono font-semibold text-neutral-300 mt-2">
-                <span>#ModelPhotography</span>
-                <span>#GujarathiStreet</span>
-                <span>#LenorAcademy</span>
-              </div>
-
-              {/* Audio Track Tag */}
-              <div className="flex items-center gap-2 text-[11px] font-mono text-neutral-300 mt-3 pt-2 border-t border-white/10">
-                <Music className="w-3.5 h-3.5 text-neutral-300 shrink-0 animate-spin" style={{ animationDuration: '4s' }} />
-                <span className="truncate">Original Field Audio · Gujarathi Street Shoot</span>
-              </div>
-            </div>
-
-            {/* Mobile Prev / Next Controls (Floating Bottom Pill) */}
-            <div className="md:hidden absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+            {/* Mobile Prev / Next Pill */}
+            <div className="md:hidden absolute top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
               <button
                 onClick={handlePrevReel}
                 className="text-white hover:text-neutral-300 p-1"
@@ -639,4 +798,3 @@ export const ModelPhotographyReels: React.FC = () => {
     </section>
   );
 };
-

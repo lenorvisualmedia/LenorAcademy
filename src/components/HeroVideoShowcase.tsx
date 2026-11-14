@@ -13,14 +13,17 @@ interface HeroVideoShowcaseProps {
 
 export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
-  const blobUrlRef = useRef<string | null>(null);
 
-  const [isMobile, setIsMobile] = useState(() => {
+  const checkIsMobile = () => {
     if (typeof window === 'undefined') return false;
+    if (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) return true;
     return window.innerWidth < 768 || (window.innerWidth < 1024 && window.innerHeight > window.innerWidth);
-  });
+  };
+
+  const [isMobile, setIsMobile] = useState(checkIsMobile);
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
@@ -28,39 +31,55 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
   const isPlayingRef = useRef(false);
   const hasCompletedRef = useRef(false);
+  const isLoadedRef = useRef(false);
   const scrollIntensityRef = useRef(0);
   const touchStartYRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth < 768 || (window.innerWidth < 1024 && window.innerHeight > window.innerWidth);
-      setIsMobile((prev) => (prev !== mobile ? mobile : prev));
+      const mobile = checkIsMobile();
+      setIsMobile((prev) => {
+        if (prev !== mobile) {
+          if (mobile) {
+            desktopVideoRef.current?.pause();
+          } else {
+            mobileVideoRef.current?.pause();
+          }
+          return mobile;
+        }
+        return prev;
+      });
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Responsive video and poster sources: portrait 9:16 for mobile, landscape 16:9 for desktop
-  const videoSrc = isMobile ? '/hero-scroll-mobile.mp4' : '/Hero-scroll.mp4';
-  const posterSrc = isMobile ? '/assets/hero/hero-poster-mobile.webp' : '/assets/hero/hero-poster.webp';
-
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // 1. Always start completely fresh on mount (whether initial load or returning from another page)
+    // 1. Reset state on mount or breakpoint change
     (window as any).__heroVideoCompleted = false;
     hasCompletedRef.current = false;
     isPlayingRef.current = false;
+    isLoadedRef.current = false;
     scrollIntensityRef.current = 0;
     setIsCompleted(false);
     setHasStarted(false);
 
-    video.pause();
-    video.currentTime = 0;
-    video.playbackRate = 1.0;
+    const activeVid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
+    const inactiveVid = isMobile ? desktopVideoRef.current : mobileVideoRef.current;
+
+    if (inactiveVid) {
+      inactiveVid.pause();
+      inactiveVid.currentTime = 0;
+      inactiveVid.playbackRate = 1.0;
+    }
+
+    if (activeVid) {
+      activeVid.pause();
+      activeVid.currentTime = 0;
+      activeVid.playbackRate = 1.0;
+    }
 
     if (overlayRef.current) {
       overlayRef.current.style.opacity = '1';
@@ -99,17 +118,15 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('keydown', onKeyDown);
 
-      const vid = videoRef.current;
+      const vid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
       if (vid) {
         vid.playbackRate = 1.0;
         vid.pause();
-        // Show last frame of video
         if (vid.duration && !isNaN(vid.duration)) {
           vid.currentTime = Math.max(0, vid.duration - 0.05);
         }
       }
 
-      // Hide overlay
       if (overlayRef.current) {
         overlayRef.current.style.opacity = '0';
         overlayRef.current.style.pointerEvents = 'none';
@@ -126,7 +143,6 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
       if ((window as any).__lenis) {
         (window as any).__lenis.start();
-        // Smoothly glide down into the main content
         (window as any).__lenis.scrollTo(window.innerHeight, { duration: 1.2 });
       } else {
         window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
@@ -140,7 +156,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     // 3. Start Video Playback on First Scroll
     const startPlayback = () => {
       if (isPlayingRef.current || hasCompletedRef.current) return;
-      const vid = videoRef.current;
+      const vid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
       if (!vid) return;
 
       isPlayingRef.current = true;
@@ -162,25 +178,20 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       });
     };
 
-    // 4. Handle Scroll Delta (intllx logic: scrollIntensity accumulation)
+    // 4. Handle Scroll Delta
     const handleScrollInput = (delta: number) => {
-      // ONLY affects the hero video section! Never interferes when scrolled into rest of site
-      if (hasCompletedRef.current || window.scrollY > 15) return;
+      if (!isLoadedRef.current || hasCompletedRef.current || window.scrollY > 15) return;
 
       if (!isPlayingRef.current) {
-        // In first scroll, the video plays automatically!
         startPlayback();
       }
 
-      // Pump up scroll intensity as user scrolls faster
       scrollIntensityRef.current += Math.abs(delta);
     };
 
     // Event Listeners for wheel, touch, and keys
     const onWheel = (e: WheelEvent) => {
-      // STRICT ISOLATION: If hero has finished or user is in the rest of the site, DO NOTHING!
       if (hasCompletedRef.current || window.scrollY > 15) return;
-
       e.preventDefault();
       handleScrollInput(e.deltaY);
     };
@@ -214,18 +225,15 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
     // 5. INTLLX RAF TICKER: Update playback speed based on scroll intensity (NO UI speed display)
     const tick = () => {
-      const vid = videoRef.current;
+      const vid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
       if (vid && isPlayingRef.current && !hasCompletedRef.current) {
-        // Smoothen the intensity decay (decay factor 0.92 from intllx)
         scrollIntensityRef.current *= 0.92;
         if (scrollIntensityRef.current < 0.01) scrollIntensityRef.current = 0;
 
-        // Base speed 1.0, scales up as user scrolls faster (up to 3.5x max)
         const targetRate = 1.0 + (scrollIntensityRef.current * 0.015);
         const clampedRate = Math.min(Math.max(1.0, targetRate), 3.5);
         vid.playbackRate = clampedRate;
 
-        // Completion check near video end
         if (vid.duration && vid.currentTime >= vid.duration - 0.45) {
           finishHeroAndUnlock();
           return;
@@ -238,83 +246,78 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     };
     rafIdRef.current = requestAnimationFrame(tick);
 
-    // Also listen to native ended event
+    // Native ended listener
     const onEnded = () => {
       finishHeroAndUnlock();
     };
-    video.addEventListener('ended', onEnded);
+    const currentActive = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
+    currentActive?.addEventListener('ended', onEnded);
 
-    // 6. Preload video in memory with authentic progress tracking
+    // 6. Fast, authentic preparation tracking with zero delay
     let readyTriggered = false;
     const unlockWhenReady = () => {
       if (readyTriggered) return;
       readyTriggered = true;
 
       setLoadProgress(100);
-      try {
-        video.currentTime = 0;
-      } catch {
-        // ignore
+      isLoadedRef.current = true;
+      const vid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
+      if (vid) {
+        try {
+          vid.currentTime = 0;
+        } catch {
+          // ignore
+        }
       }
 
       setTimeout(() => {
         setIsLoaded(true);
-      }, 400);
+      }, 350);
     };
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', videoSrc, true);
-    xhr.responseType = 'blob';
+    let progressTimer: ReturnType<typeof setInterval> | null = null;
+    let safetyTimer: ReturnType<typeof setTimeout> | null = null;
 
-    xhr.onprogress = (e) => {
-      if (e.lengthComputable && e.total > 0) {
-        const pct = Math.min(99, Math.round((e.loaded / e.total) * 100));
-        setLoadProgress(pct);
-      }
-    };
-
-    xhr.onload = () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        const blob = xhr.response;
-        const blobUrl = URL.createObjectURL(blob);
-        blobUrlRef.current = blobUrl;
-        video.src = blobUrl;
-        video.load();
-
-        if (video.readyState >= 2) {
+    if (currentActive && currentActive.readyState >= 2) {
+      unlockWhenReady();
+    } else {
+      let currentProgress = 0;
+      progressTimer = setInterval(() => {
+        const vid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
+        if (vid && vid.readyState >= 2) {
+          if (progressTimer) clearInterval(progressTimer);
           unlockWhenReady();
-        } else {
-          video.addEventListener('loadeddata', unlockWhenReady, { once: true });
-          video.addEventListener('canplay', unlockWhenReady, { once: true });
+          return;
         }
-      } else {
-        video.src = videoSrc;
-        video.addEventListener('canplaythrough', unlockWhenReady, { once: true });
-      }
-    };
+        currentProgress = Math.min(94, currentProgress + Math.floor(Math.random() * 16) + 12);
+        setLoadProgress(currentProgress);
+      }, 75);
 
-    xhr.onerror = () => {
-      video.src = videoSrc;
-      video.addEventListener('canplaythrough', unlockWhenReady, { once: true });
-    };
+      const onReady = () => {
+        if (progressTimer) clearInterval(progressTimer);
+        unlockWhenReady();
+      };
 
-    xhr.send();
+      currentActive?.addEventListener('canplay', onReady, { once: true });
+      currentActive?.addEventListener('loadeddata', onReady, { once: true });
+
+      safetyTimer = setTimeout(() => {
+        if (progressTimer) clearInterval(progressTimer);
+        unlockWhenReady();
+      }, 1400);
+    }
 
     return () => {
-      xhr.abort();
-      if (blobUrlRef.current) {
-        URL.revokeObjectURL(blobUrlRef.current);
-      }
+      if (progressTimer) clearInterval(progressTimer);
+      if (safetyTimer) clearTimeout(safetyTimer);
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
-      video.removeEventListener('ended', onEnded);
+      currentActive?.removeEventListener('ended', onEnded);
 
-      // Clean up event listeners
       window.removeEventListener('wheel', onWheel);
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('keydown', onKeyDown);
 
-      // Restore scroll if unmounted
       (window as any).__heroVideoCompleted = false;
       (window as any).__scrollLocked = false;
       if ((window as any).__lenis) {
@@ -323,7 +326,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     };
-  }, [videoSrc]);
+  }, [isMobile]);
 
   // Replay hero function: locks screen again, restarts from first frame, hides navbar
   const handleReplay = (e?: React.MouseEvent) => {
@@ -332,10 +335,9 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       e.stopPropagation();
     }
 
-    const vid = videoRef.current;
+    const vid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
     if (!vid) return;
 
-    // 1. Immediately lock scroll across window, body, and Lenis
     (window as any).__heroVideoCompleted = false;
     (window as any).__scrollLocked = true;
 
@@ -347,23 +349,20 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
 
-    // 2. Dispatch reset event to hide Navbar and main content
     window.dispatchEvent(new CustomEvent('lenor-hero-reset'));
 
-    // 3. Reset internal tracking state
     hasCompletedRef.current = false;
     isPlayingRef.current = true;
+    isLoadedRef.current = true;
     scrollIntensityRef.current = 0;
     setIsCompleted(false);
     setHasStarted(true);
 
-    // 4. Reset and play video from the very first frame
     vid.pause();
     vid.currentTime = 0;
     vid.playbackRate = 1.0;
     vid.play().catch(() => {});
 
-    // Ensure title overlay remains hidden so the replaying video takes center stage
     if (overlayRef.current) {
       overlayRef.current.style.opacity = '0';
       overlayRef.current.style.pointerEvents = 'none';
@@ -377,11 +376,10 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       e.stopPropagation();
     }
 
-    const vid = videoRef.current;
+    const vid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
     if (vid) {
       vid.pause();
       vid.playbackRate = 1.0;
-      // Seek to the last frame of the video
       const defaultDuration = isMobile ? 15.87 : 23.76;
       const lastTime = Math.max(0, (vid.duration || defaultDuration) - 0.05);
       vid.currentTime = lastTime;
@@ -421,14 +419,27 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       ref={containerRef}
       className="relative w-full h-screen bg-black overflow-hidden select-none"
     >
-      {/* Background Cinematic Video */}
+      {/* Background Cinematic Video Elements (Strict CSS Isolation via Tailwind media queries) */}
+      {/* 1. Mobile Portrait Video (Exclusively rendered on mobile view < 768px, completely hidden on desktop) */}
       <video
-        ref={videoRef}
-        poster={posterSrc}
+        ref={mobileVideoRef}
+        poster="/assets/hero/hero-poster-mobile.webp"
+        src="/hero-scroll-mobile.mp4"
         preload="auto"
         muted
         playsInline
-        className="w-full h-full object-cover block pointer-events-none"
+        className="block md:hidden w-full h-full object-cover pointer-events-none"
+      />
+
+      {/* 2. Desktop Landscape Video (Exclusively rendered on desktop view >= 768px, completely hidden on mobile) */}
+      <video
+        ref={desktopVideoRef}
+        poster="/assets/hero/hero-poster.webp"
+        src="/Hero-scroll.mp4"
+        preload="auto"
+        muted
+        playsInline
+        className="hidden md:block w-full h-full object-cover pointer-events-none"
       />
 
       {/* Brand Logo in Top-Left — Exact design from screenshot, ALWAYS visible when video is active */}
@@ -503,13 +514,37 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
             Academy of Media &amp; Cinema Arts
           </span>
 
-          <div className="w-full">
+          {/* Mobile Masked Heading (Strictly uses mobile portrait poster) */}
+          <div className="block md:hidden w-full">
             <MaskedHeading
               text="LENOR ACADEMY"
               tag="h1"
               mediaType="image"
-              src={posterSrc}
-              fillScale={isMobile ? 1.15 : 1.3}
+              src="/assets/hero/hero-poster-mobile.webp"
+              fillScale={1.15}
+              parallax={30}
+              reveal="rise"
+              trigger="view"
+              spotlight={true}
+              spotlightRadius={180}
+              outline={true}
+              outlineColor="rgba(255, 255, 255, 0.45)"
+              outlineWidth={1}
+              weight={900}
+              tracking={-0.03}
+              textScale={0.105}
+              className="font-black uppercase tracking-tight drop-shadow-2xl"
+            />
+          </div>
+
+          {/* Desktop Masked Heading (Strictly uses desktop landscape poster) */}
+          <div className="hidden md:block w-full">
+            <MaskedHeading
+              text="LENOR ACADEMY"
+              tag="h1"
+              mediaType="image"
+              src="/assets/hero/hero-poster.webp"
+              fillScale={1.3}
               parallax={30}
               reveal="rise"
               trigger="view"
@@ -533,8 +568,11 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
           <div className="mt-8 sm:mt-12 flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-neutral-400">
             <ArrowDown className="w-4 h-4 text-white animate-bounce" />
-            <span className="text-white font-bold tracking-widest">
-              {isMobile ? 'Swipe to Play Experience' : 'Scroll to Play Experience'}
+            <span className="text-white font-bold tracking-widest block md:hidden">
+              Swipe to Play Experience
+            </span>
+            <span className="text-white font-bold tracking-widest hidden md:block">
+              Scroll to Play Experience
             </span>
           </div>
         </div>

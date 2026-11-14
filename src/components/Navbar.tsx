@@ -107,8 +107,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out py-2.5 pt-[max(0.625rem,env(safe-area-inset-top))] ${
         !isNavVisible
           ? 'opacity-0 pointer-events-none -translate-y-full'
-          : showNav
-            ? 'opacity-100 translate-y-0 pointer-events-auto bg-black/90 backdrop-blur-md shadow-2xl'
+          : (showNav || mobileMenuOpen)
+            ? 'opacity-100 translate-y-0 pointer-events-auto bg-black/95 backdrop-blur-md shadow-2xl'
             : 'opacity-100 translate-y-0 pointer-events-auto bg-transparent shadow-none'
       }`}
     >
@@ -182,11 +182,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnrol, onOpenBrochure }) =
 
         {/* Mobile menu button — appears after hero scroll animation */}
         <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          type="button"
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
           className={`lg:hidden p-2 text-white hover:text-neutral-300 transition-all duration-300 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer ${
-            showNav ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+            showNav || mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
           aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
         >
           <div className="relative w-6 h-6 flex items-center justify-center">
             <Menu

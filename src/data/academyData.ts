@@ -460,7 +460,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Sony, Nikon & Canon Systems"
     ],
     quote: "As an instructor, I focus on practical-based learning—helping students develop deep technical expertise, creative vision, and professional photography confidence across studio and real-world environments.",
-    image: "/assets/mentor-navas-p.jpg"
+    image: "/assets/mentor-navas-p-v2.jpg"
   },
   {
     id: "rabeesh-mr",
@@ -632,7 +632,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Lightroom"
     ],
     quote: "Trust the story only you can tell",
-    image: "/assets/mentor-sarandas-m.jpg"
+    image: "/assets/mentor-sarandas-m-v2.jpg"
   },
   {
     id: "nahlas-e-k",

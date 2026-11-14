@@ -107,6 +107,8 @@ export interface SuccessStory {
   image: string;
   imageAlt: string;
   detailedStory?: string;
+  instagram?: string;
+  imagePosition?: string;
 }
 
 export interface JobOpening {
@@ -130,6 +132,7 @@ export interface FacultyMentor {
   tools: string[];
   quote: string;
   image: string;
+  imagePosition?: string;
 }
 
 // --------------------------------------------------------------------
@@ -184,7 +187,10 @@ export const ACADEMY_INFO = {
   instagram: "https://instagram.com/lenoracademy",
   youtube: "https://youtube.com/@lenoracademy",
   accreditations: [
-    "Media & Entertainment Skills Council (MESC) under NSDC",
+    "National Skill Development Corporation (NSDC)",
+    "Media & Entertainment Skills Council (MESC)",
+    "Skill India Mission",
+    "National Council for Vocational Education and Training (NCVET)",
     "HRDS under Skill India",
     "ISO 9001:2015 Qualified Media Academy"
   ],
@@ -679,6 +685,57 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
     ],
     quote: "Trust the story only you can tell",
     image: "/assets/mentor-sunil-kumar-c.jpg"
+  },
+  {
+    id: "muhsina",
+    name: "Muhsina",
+    designation: "Video Editing Instructor",
+    experience: "1 Year Experience",
+    badge: "Editing Instructor · 1 Yr Exp",
+    specialisationText: "Creative video editing instructor skilled in visual storytelling, video editing, photo editing, and post-production. Proficient in Adobe Premiere Pro, DaVinci Resolve, Photoshop, and Lightroom. Passionate about sharing knowledge, inspiring creativity, and helping students develop practical editing skills.",
+    specialisations: [
+      "Visual Storytelling",
+      "Creative Video Editing",
+      "Photo Editing & Retouching",
+      "Post-Production Workflows",
+      "Practical Editing Skills Training",
+      "Student Mentoring & Creative Development"
+    ],
+    tools: [
+      "Adobe Premiere Pro",
+      "DaVinci Resolve",
+      "Adobe Photoshop",
+      "Adobe Lightroom"
+    ],
+    quote: "Turning imagination into visuals and creativity into skills.",
+    image: "/assets/mentor-muhsina.jpg"
+  },
+  {
+    id: "adhil",
+    name: "Adhil",
+    designation: "Video Editing Instructor",
+    experience: "1 Year Experience",
+    badge: "Editing Instructor · 1 Yr Exp",
+    specialisationText: "Creative video editing instructor skilled in visual storytelling, video editing, photo editing, and post-production. Proficient in Adobe Premiere Pro, DaVinci Resolve, After Effects, Photoshop, and Lightroom. Passionate about sharing knowledge, inspiring creativity, and helping students develop practical editing skills.",
+    specialisations: [
+      "Visual Storytelling",
+      "Creative Video Editing",
+      "Photo Editing & Retouching",
+      "Motion Graphics & After Effects",
+      "Post-Production Workflows",
+      "Practical Editing Skills Training",
+      "Student Mentoring & Creative Development"
+    ],
+    tools: [
+      "Adobe Premiere Pro",
+      "DaVinci Resolve",
+      "Adobe Photoshop",
+      "Adobe Lightroom",
+      "Adobe After Effects"
+    ],
+    quote: "From imagination to inspiration.",
+    image: "/assets/mentor-adhil.jpg",
+    imagePosition: "center 15%"
   },
   {
     id: "shahan-backer-ck",
@@ -1824,6 +1881,78 @@ export const BLOG_POSTS: BlogPost[] = [
 // SUCCESS STORIES
 // --------------------------------------------------------------------
 export const SUCCESS_STORIES: SuccessStory[] = [
+  {
+    id: "story-sana-shabnam",
+    studentName: "Sana Shabnam",
+    category: "Photography",
+    course: "Photography & Videography (1 Year)",
+    batch: "Media Master Graduate",
+    quote: "Within just six months of the course, I gained enough confidence and practical experience to start taking up professional assignments independently.",
+    joinedYear: "Post-Degree",
+    learnedModule: "Photography Fundamentals, Studio Lighting, Wedding Sessions & Practical Field Training",
+    currentRole: "Commercial Photographer",
+    currentCompany: "Digital Marketing Company, Calicut",
+    location: "Calicut, Kerala",
+    image: "/assets/success-story-sana-shabnam.jpg",
+    imageAlt: "Sana Shabnam holding her camera with confidence",
+    imagePosition: "center 60%",
+    detailedStory: "After completing her degree, Sana joined the one-year Photography and Videography course at Lenor Academy. Within just six months of intensive hands-on training, she gained the skill and confidence to take on professional assignments. Even before finishing the one-year curriculum, she began handling independent wedding photography projects. Following graduation, she interviewed for and secured a Photographer position at a digital marketing company in Calicut, where she currently works creating commercial visual content.",
+    instagram: "https://www.instagram.com/sana_binth_manaf?exln=MWJmajMzc2hjem84Ng=="
+  },
+  {
+    id: "story-nidha",
+    studentName: "Nidha",
+    category: "Videography",
+    course: "Media Master Programme (MMP)",
+    batch: "Media Master Graduate",
+    quote: "Joining Lenor Academy was a turning point in my life. From a Plus Two student to a Freelance Videographer working across South India – this is just the beginning!",
+    joinedYear: "Post-Plus Two",
+    learnedModule: "Cinematography, Videography Controls, Creative Storytelling & On-Location Shoot Direction",
+    currentRole: "Freelance Videographer",
+    currentCompany: "Independent Productions across South India",
+    location: "South India",
+    image: "/assets/success-story-nidha.jpg",
+    imageAlt: "Nidha standing confidently outside a venue",
+    imagePosition: "center 30%",
+    detailedStory: "My journey started after completing my Plus Two education. Like many students, I was searching for an opportunity to turn my passion into a career. That's when I decided to join the MMP Course at Lenor Academy. Joining Lenor Academy was a turning point in my life. The course helped me develop my creative skills, gain practical knowledge, and build confidence in videography. With the guidance and support of my trainers, I learned to turn my passion into a profession. Today, I am proud to say that I am working as a Freelance Videographer across South India. What started as a learning experience has now become my career, allowing me to explore new places, meet different people, and bring stories to life through my camera. I am truly grateful to Lenor Academy for providing me with the right platform, knowledge, and confidence to achieve my dreams. From a Plus Two student to a Freelance Videographer – this is my journey, and this is just the beginning!",
+    instagram: "https://www.instagram.com/storiesofnidha?psln=eGtxZ2toMm5rNXNh&utm_source=qr"
+  },
+  {
+    id: "story-shajahan",
+    studentName: "Shajahan",
+    category: "Videography",
+    course: "Media Master Programme (MMP 106)",
+    batch: "MMP Batch 106",
+    quote: "I secured this position directly through Lenor Academy right after my studies. The academy provided exceptional hands-on experience and directly helped me transition into this career opportunity.",
+    joinedYear: "Batch 106",
+    learnedModule: "Camera Operations, Video Editing, Studio Lighting & Commercial Post-Production",
+    currentRole: "Photographer & Video Editor",
+    currentCompany: "Marza Group, Qatar",
+    location: "Doha, Qatar",
+    image: "/assets/success-story-shajahan.jpg",
+    imageAlt: "Shajahan smiling at Marza Group in Qatar",
+    imagePosition: "center 15%",
+    detailedStory: "I am currently working as a photographer and video editor at Marza Group Qatar. I secured this position directly through Lenor Academy, where I completed my professional training in the Media Master Programme. The academy provided exceptional hands-on experience and directly helped me transition into this career opportunity right after my studies.",
+    instagram: "https://www.instagram.com/shaajhan._?dlrf=MWU1Nzh3NDE2eXY0dQ=="
+  },
+  {
+    id: "story-muhammed-nabeeh",
+    studentName: "Muhammed Nabeeh",
+    category: "Video Editing",
+    course: "Media Master Programme (MMP)",
+    batch: "Media Master Graduate",
+    quote: "With a passion for media and creative production, Lenor Academy helped me transform my learning into a professional career as a Videographer cum Editor.",
+    joinedYear: "Post-Degree",
+    learnedModule: "Visual Media Production, Video Editing, Practical Camera Work & Content Creation",
+    currentRole: "Videographer cum Editor",
+    currentCompany: "Learnaxis Group of Institutions",
+    location: "Malappuram, Kerala",
+    image: "/assets/success-story-muhammed-nabeeh.jpg",
+    imageAlt: "Muhammed Nabeeh smiling outdoors",
+    imagePosition: "center 20%",
+    detailedStory: "Muhammed Nabeeh completed the Media Master Programme course at Lenor Academy, Malappuram, after completing his degree. With a passion for media and creative production, he successfully transformed his learning into a professional career. Currently, he is working at Learnaxis Group of Institutions, Malappuram, as a Videographer cum Editor, turning his creative skills into real-world professional experience. His journey is an inspiration for aspiring media professionals to follow their passion and build a successful career.",
+    instagram: "https://www.instagram.com/nabeeh_.m?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw=="
+  },
   {
     id: "story-editor",
     studentName: "Adil Shan",

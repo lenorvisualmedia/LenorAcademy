@@ -12,6 +12,7 @@ import { FAQSection } from '../components/FAQSection';
 import { PROGRAMMES, PLACED_STUDENTS } from '../data/academyData';
 import { PlacementGallery } from '../components/PlacementGallery';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { AccreditationBanner } from '../components/AccreditationBanner';
 
 interface HomePageProps {
   onOpenEnrol: (programId?: string) => void;
@@ -102,6 +103,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
           </div>
         </AnimatedContent>
       </section>
+
+      {/* NATIONAL ACCREDITATION & EMPANELMENT CREDIBILITY STRIP */}
+      <AnimatedContent distance={30} duration={0.6} threshold={0.1}>
+        <AccreditationBanner variant="card" showTitleBadge={true} />
+      </AnimatedContent>
 
       {/* SCROLL-DRIVEN JOURNEY TIMELINE WITH DYNAMIC DRAWING LINE & BIDIRECTIONAL REVEAL */}
       <ScrollJourney />

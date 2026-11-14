@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { AnimatedContent } from './AnimatedContent';
 import { PillButton } from './PillButton';
+import { AccreditationBanner } from './AccreditationBanner';
 import { useModalScrollLock } from '../utils/modalScrollLock';
 import { FACULTY_MENTORS } from '../data/academyData';
 
@@ -107,6 +108,13 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             </div>
           </div>
         </div>
+      </AnimatedContent>
+
+      {/* =========================================================================
+          1B. NATIONAL EMPANELMENT & ACCREDITATION BANNER (NSDC, MESC, SKILL INDIA, NCVET)
+          ========================================================================= */}
+      <AnimatedContent distance={30} duration={0.8} threshold={0.1}>
+        <AccreditationBanner showTitleBadge={true} />
       </AnimatedContent>
 
       {/* =========================================================================
@@ -377,25 +385,25 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             </p>
           </div>
 
-          {/* Box 2: Convocation Batch Photo Card */}
+          {/* Box 2: Faculty & Instructors Team Photo Card */}
           <div 
             className="relative rounded-[24px] overflow-hidden bg-neutral-900 border border-neutral-800 min-h-[340px] sm:min-h-[460px] shadow-2xl group cursor-pointer"
             onClick={() => setSelectedImage({
-              title: "Lenor Academy Graduating Batch",
-              subtitle: "Academic convocation & alumni guild",
-              image: "/assets/dd4a6257b20611c9381a2ec6e732b1ec.jpg",
+              title: "Lenor Academy Faculty & Mentors",
+              subtitle: "A multidisciplinary team of 50+ educators and industry professionals",
+              image: "/assets/lenor-faculties-team.jpg",
               category: "campus"
             })}
           >
             <img 
-              src="/assets/dd4a6257b20611c9381a2ec6e732b1ec.jpg" 
-              alt="Lenor Academy graduating batch in gowns" 
+              src="/assets/lenor-faculties-team.jpg" 
+              alt="Lenor Academy faculty and instructors team" 
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end justify-between p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <span className="text-xs font-mono text-neutral-300 uppercase tracking-widest">
-                Annual Convocation Batch
+                Faculty & Mentors Team
               </span>
               <span className="text-xs font-mono text-white flex items-center gap-1.5 bg-black/70 px-3.5 py-1.5 rounded-full border border-white/20">
                 <Maximize2 className="w-3.5 h-3.5" />
@@ -444,7 +452,8 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                       <img 
                         src={mentor.image} 
                         alt={mentor.name}
-                        className="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500"
+                        style={{ objectPosition: mentor.imagePosition || 'top center' }}
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center p-2">
@@ -475,7 +484,9 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                                 ? 'Lecturer'
                                 : mentor.designation.toLowerCase().includes('soft skill')
                                   ? 'Soft Skill Faculty'
-                                  : 'Senior Instructor'}
+                                  : mentor.designation.toLowerCase().includes('senior')
+                                    ? 'Senior Instructor'
+                                    : 'Instructor'}
                         </span>
                       </div>
 
@@ -557,10 +568,16 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               NSDC
             </span>
             <span className="px-5 py-2.5 rounded-full bg-black text-white text-xs sm:text-sm font-bold font-mono uppercase tracking-wider">
+              MESC
+            </span>
+            <span className="px-5 py-2.5 rounded-full bg-black text-white text-xs sm:text-sm font-bold font-mono uppercase tracking-wider">
               Skill India
             </span>
             <span className="px-5 py-2.5 rounded-full bg-black text-white text-xs sm:text-sm font-bold font-mono uppercase tracking-wider">
-              ISO Certification
+              NCVET
+            </span>
+            <span className="px-5 py-2.5 rounded-full bg-black text-white text-xs sm:text-sm font-bold font-mono uppercase tracking-wider">
+              ISO 9001:2015
             </span>
           </div>
 

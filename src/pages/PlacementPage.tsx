@@ -7,6 +7,7 @@ import { PillButton } from '../components/PillButton';
 import { InvestmentSection } from '../components/InvestmentSection';
 import { CertificateModal, CertificateData } from '../components/CertificateModal';
 import { PlacementGallery } from '../components/PlacementGallery';
+import { AccreditationBanner } from '../components/AccreditationBanner';
 
 const CERTIFICATES: CertificateData[] = [
   {
@@ -361,7 +362,7 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-neutral-400 font-light max-w-md leading-relaxed">
-              Lenor graduates receive nationally recognized qualifications accredited under MESC, NSDC, Skill India, and ISO 9001:2015 standards.
+              Lenor graduates receive nationally recognized qualifications accredited under NSDC, MESC, Skill India, NCVET, and ISO 9001:2015 standards.
             </p>
           </div>
 
@@ -405,6 +406,11 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* National Empanelment Banner */}
+          <div className="mt-8">
+            <AccreditationBanner variant="card" showTitleBadge={true} />
           </div>
         </section>
       </AnimatedContent>

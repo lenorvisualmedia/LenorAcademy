@@ -190,7 +190,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBrochure, onOpenEnrol }) =
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#707070]">
           <div>
-            © {new Date().getFullYear()} {ACADEMY_INFO.name}. All rights reserved. MESC (NSDC) & Skill India HRDS Affiliated · ISO Qualified.
+            © {new Date().getFullYear()} {ACADEMY_INFO.name}. All rights reserved. NSDC, MESC, Skill India & NCVET Empaneled · ISO Qualified.
           </div>
           <div className="flex items-center gap-6">
             <span className="text-[#999] tracking-wider uppercase font-semibold">

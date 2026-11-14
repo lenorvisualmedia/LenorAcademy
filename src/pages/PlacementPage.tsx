@@ -16,7 +16,7 @@ const CERTIFICATES: CertificateData[] = [
     issuer: 'Media & Entertainment Skills Council (MESC) · Skill India · NSDC',
     signatory: 'Dr. Shankar Mahadevan (Chairman, MESC)',
     badge: 'Government Accredited',
-    image: '/assets/mesc-nsdc-certificate.jpg'
+    image: '/assets/accreditation/mesc-nsdc-certificate.jpg'
   },
   {
     title: 'ISO 9001:2015 & HRDS Skill India Certificate',
@@ -24,7 +24,7 @@ const CERTIFICATES: CertificateData[] = [
     issuer: 'Lenor Academy · HRDS · Skill India',
     signatory: 'Sisir Ghosh P (Academic Director, Lenor Academy)',
     badge: 'ISO 9001:2015 Certified',
-    image: '/assets/iso-hrds-certificate.jpg'
+    image: '/assets/accreditation/iso-hrds-certificate.jpg'
   }
 ];
 
@@ -55,7 +55,7 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
           {/* Left Column: Clean Convocation Photograph */}
           <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] aspect-[4/3] sm:aspect-[16/11] bg-neutral-900 border border-white/10 shadow-2xl group">
             <img
-              src="/assets/179f0e839c946970e2d9cfc3d4064f35.webp"
+              src="/assets/events/fashion-photography-masterclass.webp"
               alt="Lenor Academy graduating convocation batch"
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
               loading="lazy"

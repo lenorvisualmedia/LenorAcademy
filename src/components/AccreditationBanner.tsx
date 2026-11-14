@@ -20,7 +20,7 @@ export const AccreditationBanner: React.FC<AccreditationBannerProps> = ({
       name: 'NSDC',
       fullName: 'National Skill Development Corporation',
       tagline: 'Transforming the skill landscape',
-      logo: '/assets/accreditation-nsdc.png',
+      logo: '/assets/accreditation/accreditation-nsdc.png',
       alt: 'National Skill Development Corporation (NSDC) official logo'
     },
     {
@@ -28,7 +28,7 @@ export const AccreditationBanner: React.FC<AccreditationBannerProps> = ({
       name: 'MESC',
       fullName: 'Media & Entertainment Skills Council',
       tagline: 'Empanelled Awarding Body',
-      logo: '/assets/accreditation-mesc.png',
+      logo: '/assets/accreditation/accreditation-mesc.png',
       alt: 'Media and Entertainment Skills Council (MESC) official logo'
     },
     {
@@ -36,7 +36,7 @@ export const AccreditationBanner: React.FC<AccreditationBannerProps> = ({
       name: 'Skill India',
       fullName: 'Skill India Mission',
       tagline: 'कौशल भारत - कुशल भारत',
-      logo: '/assets/accreditation-skill-india.png',
+      logo: '/assets/accreditation/accreditation-skill-india.png',
       alt: 'Skill India official logo'
     },
     {
@@ -44,7 +44,7 @@ export const AccreditationBanner: React.FC<AccreditationBannerProps> = ({
       name: 'NCVET',
       fullName: 'National Council for Vocational Education and Training',
       tagline: 'कौशल गुणवत्ता प्रगति',
-      logo: '/assets/accreditation-ncvet.png',
+      logo: '/assets/accreditation/accreditation-ncvet.png',
       alt: 'National Council for Vocational Education and Training (NCVET) official logo'
     }
   ];

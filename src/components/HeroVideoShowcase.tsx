@@ -44,7 +44,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
 
   // Responsive video and poster sources: portrait 9:16 for mobile, landscape 16:9 for desktop
   const videoSrc = isMobile ? '/hero-scroll-mobile.mp4' : '/Hero-scroll.mp4';
-  const posterSrc = isMobile ? '/assets/hero-poster-mobile.webp' : '/assets/hero-poster.webp';
+  const posterSrc = isMobile ? '/assets/hero/hero-poster-mobile.webp' : '/assets/hero/hero-poster.webp';
 
   useEffect(() => {
     const video = videoRef.current;
@@ -434,11 +434,11 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       {/* Brand Logo in Top-Left — Exact design from screenshot, ALWAYS visible when video is active */}
       <div className="absolute top-5 left-5 sm:top-6 sm:left-8 z-40 flex items-center gap-2.5 pointer-events-auto select-none pt-[env(safe-area-inset-top)]">
         <img
-          src="/assets/58a07343-9b5e-42c1-a584-51e6caee9f7c.webp"
+          src="/assets/brand/lenor-logo-mark.webp"
           alt="Lenor Academy"
           className="h-6 sm:h-7 w-auto object-contain brightness-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = '/assets/White_Lenor_OG_Logo_Master_File.webp';
+            (e.target as HTMLImageElement).src = '/assets/brand/White_Lenor_OG_Logo_Master_File.webp';
           }}
         />
         <span className="tracking-[0.06em] font-black uppercase text-sm sm:text-base text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
@@ -469,7 +469,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
           {/* Camera Equipments Row */}
           <div className="relative w-full max-w-[320px] sm:max-w-[420px] mb-2 flex items-center justify-center">
             <img
-              src="/assets/camera-equipments.webp"
+              src="/assets/hero/camera-equipments.webp"
               alt="Cinema Equipments"
               className="w-full h-auto object-contain filter drop-shadow-[0_0_24px_rgba(255,255,255,0.2)] brightness-110 contrast-105"
             />

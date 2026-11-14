@@ -40,7 +40,7 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
           {/* Left Column: Clean Makkaraparamba Campus Photo */}
           <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] aspect-[4/3] sm:aspect-[16/11] bg-neutral-900 border border-white/10 shadow-2xl group">
             <img
-              src="/assets/430e290e-ef97-4964-a65b-a23923adad3f.webp"
+              src="/assets/campaigns/graduation-exhibition.webp"
               alt="Lenor Academy Makkaraparamba campus building"
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
               loading="lazy"
@@ -229,7 +229,7 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
         >
           <div className="card h-[380px] group">
             <img
-              src="/assets/ef6d0936278b1afc004a9899a0d9df5e.webp"
+              src="/assets/campaigns/creative-showcase.webp"
               alt="Studio shoot"
               className="cover gs group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
@@ -242,7 +242,7 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
 
           <div className="card h-[380px] group">
             <img
-              src="/assets/af9e05d02e3d78a034a5eda12208dccf.webp"
+              src="/assets/success/rinshad-k.webp"
               alt="Camera operator"
               className="cover gs group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
@@ -255,7 +255,7 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
 
           <div className="card h-[380px] group">
             <img
-              src="/assets/231839bd06faeb6ea3c540e9c3440856.webp"
+              src="/assets/campaigns/billboard-kattadippaadam.webp"
               alt="Gimbal shoot"
               className="cover gs group-hover:scale-105 transition-transform duration-500"
               loading="lazy"

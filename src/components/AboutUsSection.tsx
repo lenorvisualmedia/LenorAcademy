@@ -128,12 +128,12 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             onClick={() => setSelectedImage({
               title: "Lenor Academy Campus",
               subtitle: "Makkaraparamba Main Branch · Malappuram, Kerala",
-              image: "/assets/7f6583831c0a3ad672c824faff60557a.jpg",
+              image: "/assets/campus/about-campus-architecture-1.jpg",
               category: "campus"
             })}
           >
             <img 
-              src="/assets/7f6583831c0a3ad672c824faff60557a.jpg" 
+              src="/assets/campus/about-campus-architecture-1.jpg" 
               alt="Lenor Academy building at Makkaraparamba" 
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               loading="lazy"
@@ -242,12 +242,12 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             onClick={() => setSelectedImage({
               title: "Commercial Photography & Lighting Studio",
               subtitle: "Makkaraparamba Studio Floor · Hands-on student drills",
-              image: "/assets/9721af4bdf4cbc55776654e88360b40a.jpg",
+              image: "/assets/campus/about-campus-architecture-2.jpg",
               category: "campus"
             })}
           >
             <img 
-              src="/assets/9721af4bdf4cbc55776654e88360b40a.jpg" 
+              src="/assets/campus/about-campus-architecture-2.jpg" 
               alt="Studio shoot with lights and a model" 
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               loading="lazy"
@@ -391,12 +391,12 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             onClick={() => setSelectedImage({
               title: "Lenor Academy Faculty & Mentors",
               subtitle: "A multidisciplinary team of 50+ educators and industry professionals",
-              image: "/assets/lenor-faculties-team.jpg",
+              image: "/assets/mentors/faculties-team-group.jpg",
               category: "campus"
             })}
           >
             <img 
-              src="/assets/lenor-faculties-team.jpg" 
+              src="/assets/mentors/faculties-team-group.jpg" 
               alt="Lenor Academy faculty and instructors team" 
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               loading="lazy"
@@ -587,14 +587,14 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               onClick={() => setSelectedImage({
                 title: "ISO 9001:2015 & HRDS Skill India Certificate",
                 subtitle: "Human Resources Development Society & ISO 9001:2015 Certified Institute",
-                image: "/assets/9092412f1e562172ffc6ff80c098cf43.jpg",
+                image: "/assets/campus/about-campus-building-1.jpg",
                 category: "certificate"
               })}
               className="rounded-[20px] bg-neutral-50 border border-neutral-200 p-4 sm:p-5 shadow-lg cursor-pointer group hover:border-black transition-all duration-300"
             >
               <div className="relative overflow-hidden rounded-xl bg-white flex items-center justify-center aspect-[1/1.38]">
                 <img 
-                  src="/assets/9092412f1e562172ffc6ff80c098cf43.jpg" 
+                  src="/assets/campus/about-campus-building-1.jpg" 
                   alt="Lenor Academy ISO certificate" 
                   className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
@@ -617,14 +617,14 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               onClick={() => setSelectedImage({
                 title: "MESC & NSDC Skill India Accredited Certificate",
                 subtitle: "Media & Entertainment Skills Council under National Skill Development Corporation",
-                image: "/assets/e3325af456a8223afae4551328ad48fa.jpg",
+                image: "/assets/campus/about-campus-building-2.jpg",
                 category: "certificate"
               })}
               className="rounded-[20px] bg-neutral-50 border border-neutral-200 p-4 sm:p-5 shadow-lg cursor-pointer group hover:border-black transition-all duration-300"
             >
               <div className="relative overflow-hidden rounded-xl bg-white flex items-center justify-center aspect-[1/1.38]">
                 <img 
-                  src="/assets/e3325af456a8223afae4551328ad48fa.jpg" 
+                  src="/assets/campus/about-campus-building-2.jpg" 
                   alt="Certificate issued with the Media and Entertainment Skills Council, Skill India and NSDC" 
                   className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
@@ -742,14 +742,14 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               onClick={() => setSelectedImage({
                 title: "Success Kerala — Youth Story Feature",
                 subtitle: "Lenor Academy headline profile and institutional milestone",
-                image: "/assets/727669df5799659827b14fae6ea587ef.jpg",
+                image: "/assets/campus/about-campus-hub-1.jpg",
                 category: "press"
               })}
               className="rounded-[24px] overflow-hidden bg-white p-3 shadow-2xl cursor-pointer group hover:scale-[1.01] transition-transform duration-300"
             >
               <div className="relative overflow-hidden aspect-[4/3] rounded-xl bg-neutral-100">
                 <img 
-                  src="/assets/727669df5799659827b14fae6ea587ef.jpg" 
+                  src="/assets/campus/about-campus-hub-1.jpg" 
                   alt="Success Kerala Youth Story page featuring Lenor Academy building and headline" 
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
@@ -768,14 +768,14 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               onClick={() => setSelectedImage({
                 title: "Success Kerala — Founders Feature",
                 subtitle: "Faisal Babu K. and Farshan K. interview on visual media education",
-                image: "/assets/5cbf2c78a73a7f75c8b7de91a033348a.jpg",
+                image: "/assets/campus/about-campus-hub-2.jpg",
                 category: "press"
               })}
               className="rounded-[24px] overflow-hidden bg-white p-3 shadow-2xl cursor-pointer group hover:scale-[1.01] transition-transform duration-300"
             >
               <div className="relative overflow-hidden aspect-[4/3] rounded-xl bg-neutral-100">
                 <img 
-                  src="/assets/5cbf2c78a73a7f75c8b7de91a033348a.jpg" 
+                  src="/assets/campus/about-campus-hub-2.jpg" 
                   alt="Success Kerala Youth Story page featuring founders Faisal Babu and Farshan" 
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"

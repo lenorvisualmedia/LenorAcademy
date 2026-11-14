@@ -24,7 +24,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-01.webp"
+    "posterImage": "/assets/careers/placements/placement-01.webp"
   },
   {
     "id": "pl-02",
@@ -35,7 +35,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-02.webp"
+    "posterImage": "/assets/careers/placements/placement-02.webp"
   },
   {
     "id": "pl-03",
@@ -46,7 +46,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-03.webp"
+    "posterImage": "/assets/careers/placements/placement-03.webp"
   },
   {
     "id": "pl-04",
@@ -57,7 +57,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-04.webp"
+    "posterImage": "/assets/careers/placements/placement-04.webp"
   },
   {
     "id": "pl-05",
@@ -68,7 +68,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-05.webp"
+    "posterImage": "/assets/careers/placements/placement-05.webp"
   },
   {
     "id": "pl-06",
@@ -79,7 +79,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Entrepreneur",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-06.webp"
+    "posterImage": "/assets/careers/placements/placement-06.webp"
   },
   {
     "id": "pl-07",
@@ -90,7 +90,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Entrepreneur",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-07.webp"
+    "posterImage": "/assets/careers/placements/placement-07.webp"
   },
   {
     "id": "pl-08",
@@ -101,7 +101,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Entrepreneur",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-08.webp"
+    "posterImage": "/assets/careers/placements/placement-08.webp"
   },
   {
     "id": "pl-09",
@@ -112,7 +112,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Entrepreneur",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-09.webp"
+    "posterImage": "/assets/careers/placements/placement-09.webp"
   },
   {
     "id": "pl-10",
@@ -123,7 +123,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Entrepreneur",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-10.webp"
+    "posterImage": "/assets/careers/placements/placement-10.webp"
   },
   {
     "id": "pl-11",
@@ -134,7 +134,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Entrepreneur",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-11.webp"
+    "posterImage": "/assets/careers/placements/placement-11.webp"
   },
   {
     "id": "pl-12",
@@ -145,7 +145,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-12.webp"
+    "posterImage": "/assets/careers/placements/placement-12.webp"
   },
   {
     "id": "pl-13",
@@ -156,7 +156,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-13.webp"
+    "posterImage": "/assets/careers/placements/placement-13.webp"
   },
   {
     "id": "pl-14",
@@ -167,7 +167,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-14.webp"
+    "posterImage": "/assets/careers/placements/placement-14.webp"
   },
   {
     "id": "pl-15",
@@ -178,7 +178,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Entrepreneur",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-15.webp"
+    "posterImage": "/assets/careers/placements/placement-15.webp"
   },
   {
     "id": "pl-16",
@@ -189,7 +189,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-16.webp"
+    "posterImage": "/assets/careers/placements/placement-16.webp"
   },
   {
     "id": "pl-17",
@@ -200,7 +200,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Entrepreneur",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-17.webp"
+    "posterImage": "/assets/careers/placements/placement-17.webp"
   },
   {
     "id": "pl-18",
@@ -211,7 +211,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-18.webp"
+    "posterImage": "/assets/careers/placements/placement-18.webp"
   },
   {
     "id": "pl-19",
@@ -222,7 +222,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-19.webp"
+    "posterImage": "/assets/careers/placements/placement-19.webp"
   },
   {
     "id": "pl-20",
@@ -233,7 +233,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-20.webp"
+    "posterImage": "/assets/careers/placements/placement-20.webp"
   },
   {
     "id": "pl-21",
@@ -244,7 +244,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-21.webp"
+    "posterImage": "/assets/careers/placements/placement-21.webp"
   },
   {
     "id": "pl-22",
@@ -255,7 +255,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-22.webp"
+    "posterImage": "/assets/careers/placements/placement-22.webp"
   },
   {
     "id": "pl-23",
@@ -266,7 +266,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-23.webp"
+    "posterImage": "/assets/careers/placements/placement-23.webp"
   },
   {
     "id": "pl-24",
@@ -277,7 +277,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-24.webp"
+    "posterImage": "/assets/careers/placements/placement-24.webp"
   },
   {
     "id": "pl-25",
@@ -288,7 +288,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-25.webp"
+    "posterImage": "/assets/careers/placements/placement-25.webp"
   },
   {
     "id": "pl-26",
@@ -299,7 +299,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-26.webp"
+    "posterImage": "/assets/careers/placements/placement-26.webp"
   },
   {
     "id": "pl-27",
@@ -310,7 +310,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-27.webp"
+    "posterImage": "/assets/careers/placements/placement-27.webp"
   },
   {
     "id": "pl-28",
@@ -321,7 +321,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-28.webp"
+    "posterImage": "/assets/careers/placements/placement-28.webp"
   },
   {
     "id": "pl-29",
@@ -332,7 +332,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-29.webp"
+    "posterImage": "/assets/careers/placements/placement-29.webp"
   },
   {
     "id": "pl-30",
@@ -343,7 +343,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-30.webp"
+    "posterImage": "/assets/careers/placements/placement-30.webp"
   },
   {
     "id": "pl-31",
@@ -354,7 +354,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-31.webp"
+    "posterImage": "/assets/careers/placements/placement-31.webp"
   },
   {
     "id": "pl-32",
@@ -365,7 +365,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Entrepreneur",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-32.webp"
+    "posterImage": "/assets/careers/placements/placement-32.webp"
   },
   {
     "id": "pl-33",
@@ -376,7 +376,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-33.webp"
+    "posterImage": "/assets/careers/placements/placement-33.webp"
   },
   {
     "id": "pl-34",
@@ -387,7 +387,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Faculty",
     "location": "Makkaraparamba Campus",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-34.webp"
+    "posterImage": "/assets/careers/placements/placement-34.webp"
   },
   {
     "id": "pl-35",
@@ -398,7 +398,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Faculty",
     "location": "Makkaraparamba Campus",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-35.webp"
+    "posterImage": "/assets/careers/placements/placement-35.webp"
   },
   {
     "id": "pl-36",
@@ -409,7 +409,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-36.webp"
+    "posterImage": "/assets/careers/placements/placement-36.webp"
   },
   {
     "id": "pl-37",
@@ -420,7 +420,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-37.webp"
+    "posterImage": "/assets/careers/placements/placement-37.webp"
   },
   {
     "id": "pl-38",
@@ -431,7 +431,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Oman (Gulf Placement)",
     "isGulf": true,
-    "posterImage": "/assets/placements/placement-38.webp"
+    "posterImage": "/assets/careers/placements/placement-38.webp"
   },
   {
     "id": "pl-39",
@@ -442,7 +442,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Faculty",
     "location": "Makkaraparamba Campus",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-39.webp"
+    "posterImage": "/assets/careers/placements/placement-39.webp"
   },
   {
     "id": "pl-40",
@@ -453,7 +453,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-40.webp"
+    "posterImage": "/assets/careers/placements/placement-40.webp"
   },
   {
     "id": "pl-41",
@@ -464,7 +464,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Faculty",
     "location": "Makkaraparamba Campus",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-41.webp"
+    "posterImage": "/assets/careers/placements/placement-41.webp"
   },
   {
     "id": "pl-42",
@@ -475,7 +475,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Qatar, Doha (Gulf Placement)",
     "isGulf": true,
-    "posterImage": "/assets/placements/placement-42.webp"
+    "posterImage": "/assets/careers/placements/placement-42.webp"
   },
   {
     "id": "pl-43",
@@ -486,7 +486,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-43.webp"
+    "posterImage": "/assets/careers/placements/placement-43.webp"
   },
   {
     "id": "pl-44",
@@ -497,7 +497,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Faculty",
     "location": "Makkaraparamba Campus",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-44.webp"
+    "posterImage": "/assets/careers/placements/placement-44.webp"
   },
   {
     "id": "pl-45",
@@ -508,7 +508,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Makkaraparamba, Malappuram",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-45.webp"
+    "posterImage": "/assets/careers/placements/placement-45.webp"
   },
   {
     "id": "pl-46",
@@ -519,7 +519,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-46.webp"
+    "posterImage": "/assets/careers/placements/placement-46.webp"
   },
   {
     "id": "pl-47",
@@ -530,7 +530,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-47.webp"
+    "posterImage": "/assets/careers/placements/placement-47.webp"
   },
   {
     "id": "pl-48",
@@ -541,7 +541,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-48.webp"
+    "posterImage": "/assets/careers/placements/placement-48.webp"
   },
   {
     "id": "pl-49",
@@ -552,7 +552,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-49.webp"
+    "posterImage": "/assets/careers/placements/placement-49.webp"
   },
   {
     "id": "pl-50",
@@ -563,7 +563,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-50.webp"
+    "posterImage": "/assets/careers/placements/placement-50.webp"
   },
   {
     "id": "pl-51",
@@ -574,7 +574,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-51.webp"
+    "posterImage": "/assets/careers/placements/placement-51.webp"
   },
   {
     "id": "pl-52",
@@ -585,7 +585,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-52.webp"
+    "posterImage": "/assets/careers/placements/placement-52.webp"
   },
   {
     "id": "pl-53",
@@ -596,7 +596,7 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Valanchery, Malappuram",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-53.webp"
+    "posterImage": "/assets/careers/placements/placement-53.webp"
   },
   {
     "id": "pl-54",
@@ -607,6 +607,6 @@ export const PLACEMENT_POSTERS: PlacementPoster[] = [
     "type": "Placed",
     "location": "Kerala, India",
     "isGulf": false,
-    "posterImage": "/assets/placements/placement-54.webp"
+    "posterImage": "/assets/careers/placements/placement-54.webp"
   }
 ];

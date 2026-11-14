@@ -10,22 +10,22 @@ interface Slide {
 
 const SLIDES: Slide[] = [
   {
-    image: '/assets/campus-build-1-north-campus.jpg',
+    image: '/assets/campus/campus-build-1-north-campus.jpg',
     alt: 'Lenor Academy North Campus - Dedicated labs for video editing and graphic design',
     caption: 'North Campus · Video Editing & Graphic Design Suites'
   },
   {
-    image: '/assets/campus-build-2-kattadippaadam.jpg',
+    image: '/assets/campus/campus-build-2-kattadippaadam.jpg',
     alt: 'Lenor Academy Kattadippaadam Naranath - Outdoor property and field shooting location',
     caption: 'Kattadippaadam Naranath · Outdoor Natural Light & Scenic Shooting Set'
   },
   {
-    image: '/assets/campus-build-3-studio-1.jpg',
+    image: '/assets/campus/campus-build-3-studio-1.jpg',
     alt: 'Lenor Academy Studio-1 Floor & Commercial Production Stage',
     caption: 'Studio Campus · Studio-1 Commercial Lighting Floor & Film Review Theatre'
   },
   {
-    image: '/assets/campus-build-4-main-building.jpg',
+    image: '/assets/campus/campus-build-4-main-building.jpg',
     alt: 'Lenor Academy Makkaraparamba Main Branch and South Campus',
     caption: 'Makkaraparamba Main Branch · South Campus Classrooms & Practical Labs'
   }

@@ -4,6 +4,7 @@ import { EVENTS_DATA, EventItem } from '../data/academyData';
 import { RegisterEventModal } from '../components/RegisterEventModal';
 import { AnimatedContent } from '../components/AnimatedContent';
 import { InvestmentSection } from '../components/InvestmentSection';
+import { ModelPhotographyReels } from '../components/ModelPhotographyReels';
 
 interface EventsPageProps {
   onOpenEnrol?: (programId?: string) => void;
@@ -108,7 +109,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
             {/* Featured Image */}
             <div className="h-[340px] lg:h-auto relative overflow-hidden bg-[#1a1a1a]">
               <img
-                src={featuredEvent.image || "/assets/facility-studio-lighting-setup.jpg"}
+                src={featuredEvent.image || "/assets/facilities/facility-studio-lighting-setup.jpg"}
                 alt={featuredEvent.title}
                 className="cover gs hover:scale-105"
                 loading="lazy"
@@ -219,6 +220,9 @@ export const EventsPage: React.FC<EventsPageProps> = ({
         </AnimatedContent>
       </section>
 
+      {/* MODEL PHOTOGRAPHY REELS (Gujarathi Street Live Workshop) */}
+      <ModelPhotographyReels />
+
       {/* UPCOMING EVENTS SCHEDULE */}
       <section className="px-4 sm:px-10 pt-6">
         <AnimatedContent
@@ -317,7 +321,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
         >
           <figure className="card h-[380px] group">
             <img
-              src="/assets/179f0e839c946970e2d9cfc3d4064f35.webp"
+              src="/assets/events/fashion-photography-masterclass.webp"
               alt="Graduation day group photo"
               className="cover gs group-hover:scale-105"
               loading="lazy"
@@ -330,7 +334,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
 
           <figure className="card h-[380px] group">
             <img
-              src="/assets/1fb7aa06fcb8e992f56088cc1a94cdd3.webp"
+              src="/assets/events/editing-color-grading-intensive.webp"
               alt="Drone flying over a snowy landscape"
               className="cover gs group-hover:scale-105"
               loading="lazy"
@@ -343,7 +347,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
 
           <figure className="card h-[380px] group">
             <img
-              src="/assets/610f9b6df212ed06c84a6f395b70946b.webp"
+              src="/assets/events/cinematography-bootcamp.webp"
               alt="Camera operator filming on stairs"
               className="cover gs group-hover:scale-105"
               loading="lazy"

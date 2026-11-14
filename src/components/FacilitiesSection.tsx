@@ -185,8 +185,8 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
       subtitle: 'CP Building, Makkaraparamba, Malappuram',
       category: 'Exterior Architecture',
       caption: 'Illuminated LR Lenor sign on the academy front facade',
-      image: '/assets/0ef2aab79facfc772f2abf0b48668909.jpg',
-      fallback: '/assets/facility-studio-1-exterior.jpg',
+      image: '/assets/facilities/studio-exterior-angled.jpg',
+      fallback: '/assets/facilities/facility-studio-1-exterior.jpg',
       span: 'lg:col-span-2'
     },
     {
@@ -194,8 +194,8 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
       subtitle: 'Student Community & Creative Breakout',
       category: 'Social Space',
       caption: 'Vibrant artistic mural pavilion where students collaborate & unwind',
-      image: '/assets/4cc613dfd77a45cb25a537c82f622d08.jpg',
-      fallback: '/assets/Modern Lenor Pavilion with Vibrant Mural.png',
+      image: '/assets/campus/campus-pavilion-outdoor.jpg',
+      fallback: '/assets/campus/Modern Lenor Pavilion with Vibrant Mural.png',
       span: 'lg:col-span-1'
     },
     {
@@ -203,8 +203,8 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
       subtitle: 'Portfolio Review & Dean Consultations',
       category: 'Academic Administration',
       caption: 'Executive office space featuring bespoke lion fine-art installation',
-      image: '/assets/7edc3827043ac24a159f64e95db21fa3.jpg',
-      fallback: '/assets/Modern Executive Office with Lion Artwork.png',
+      image: '/assets/campus/campus-executive-interior.jpg',
+      fallback: '/assets/campus/Modern Executive Office with Lion Artwork.png',
       span: 'lg:col-span-1'
     },
     {
@@ -212,8 +212,8 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
       subtitle: 'Welcome Desk, Campus Guides & Enrolment',
       category: 'Visitor Welcome',
       caption: 'Modern reception desk where prospective creators and parents consult',
-      image: '/assets/4673d9ef7c565dd1bc65fbc845d8006c.jpg',
-      fallback: '/assets/Modern Lenor Office Workspace.png',
+      image: '/assets/campus/campus-modern-workspace.jpg',
+      fallback: '/assets/facilities/Modern Lenor Office Workspace.png',
       span: 'lg:col-span-2'
     }
   ];
@@ -254,16 +254,16 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               subtitle: "Makkaraparamba, Malappuram, Kerala",
               category: "Campus Architecture",
               caption: "Lenor Academy campus set against lush tropical palm trees and clear skies",
-              image: "/assets/0789ef7328d8862a03968a1ea42b98ea.jpg",
-              fallbackImage: "/assets/Lenor Academy Modern Tropical Campus.png"
+              image: "/assets/campus/campus-tropical-aerial.jpg",
+              fallbackImage: "/assets/campus/Lenor Academy Modern Tropical Campus.png"
             })}
           >
             <img 
-              src="/assets/0789ef7328d8862a03968a1ea42b98ea.jpg" 
+              src="/assets/campus/campus-tropical-aerial.jpg" 
               alt="Lenor Academy campus with palm trees and blue sky" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = '/assets/Lenor Academy Modern Tropical Campus.png';
+                (e.target as HTMLImageElement).src = '/assets/campus/Lenor Academy Modern Tropical Campus.png';
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
@@ -365,16 +365,16 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 subtitle: "Dedicated High-Performance Editing & Grading Stations",
                 category: "Computer Lab",
                 caption: "Lenor Academy 180+ computer lab with dual-display setups, ergonomic seating, and central presentation display",
-                image: "/assets/facility-editing-workstation-lab.jpg",
-                fallbackImage: "/assets/facility-editing-workstation-lab.jpg"
+                image: "/assets/facilities/facility-editing-workstation-lab.jpg",
+                fallbackImage: "/assets/facilities/facility-editing-workstation-lab.jpg"
               })}
             >
               <img 
-                src="/assets/facility-editing-workstation-lab.jpg" 
+                src="/assets/facilities/facility-editing-workstation-lab.jpg" 
                 alt="180+ high performance workstations at Lenor Academy editing lab"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/Modern Symmetrical Tech Workspace.png';
+                  (e.target as HTMLImageElement).src = '/assets/facilities/Modern Symmetrical Tech Workspace.png';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
@@ -394,16 +394,16 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 subtitle: "Dual-Display High-Speed Video Editing & Motion Graphics Stations",
                 category: "Active Lab Session",
                 caption: "Wide perspective of the 180+ editing lab showing active student workstations, collaborative center discussion desk, and climate control",
-                image: "/assets/facility-workstation-lab-panoramic.jpg",
-                fallbackImage: "/assets/facility-workstation-lab-panoramic.jpg"
+                image: "/assets/facilities/facility-workstation-lab-panoramic.jpg",
+                fallbackImage: "/assets/facilities/facility-workstation-lab-panoramic.jpg"
               })}
             >
               <img 
-                src="/assets/facility-workstation-lab-panoramic.jpg" 
+                src="/assets/facilities/facility-workstation-lab-panoramic.jpg" 
                 alt="Panoramic view of 180+ workstations lab in action at Lenor Academy"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/Modern Symmetrical Tech Workspace.png';
+                  (e.target as HTMLImageElement).src = '/assets/facilities/Modern Symmetrical Tech Workspace.png';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
@@ -423,16 +423,16 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 subtitle: "Interactive Timeline & Color Grading Masterclass",
                 category: "Hands-on Mentorship",
                 caption: "Industry mentor conducting a live DaVinci Resolve & Premiere Pro timeline walkthrough with real-time student participation",
-                image: "/assets/facility-workstation-mentor-lecture.jpg",
-                fallbackImage: "/assets/facility-workstation-mentor-lecture.jpg"
+                image: "/assets/facilities/facility-workstation-mentor-lecture.jpg",
+                fallbackImage: "/assets/facilities/facility-workstation-mentor-lecture.jpg"
               })}
             >
               <img 
-                src="/assets/facility-workstation-mentor-lecture.jpg" 
+                src="/assets/facilities/facility-workstation-mentor-lecture.jpg" 
                 alt="Live instructor mentorship session in the 180+ workstations editing lab"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/Modern Media Editing Classroom.png';
+                  (e.target as HTMLImageElement).src = '/assets/facilities/Modern Media Editing Classroom.png';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
@@ -452,16 +452,16 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 subtitle: "Air-Conditioned Creative Lab with 'Learn What You Love' Mural",
                 category: "Interactive Teaching",
                 caption: "Panoramic view of the multimedia lab featuring motivational murals, air conditioning, and individual design suites",
-                image: "/assets/facility-multimedia-classroom-mural.jpg",
-                fallbackImage: "/assets/facility-multimedia-classroom-mural.jpg"
+                image: "/assets/facilities/facility-multimedia-classroom-mural.jpg",
+                fallbackImage: "/assets/facilities/facility-multimedia-classroom-mural.jpg"
               })}
             >
               <img 
-                src="/assets/facility-multimedia-classroom-mural.jpg" 
+                src="/assets/facilities/facility-multimedia-classroom-mural.jpg" 
                 alt="Lenor Academy multimedia classroom with wall mural and editing workstations"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/Modern Media Editing Classroom.png';
+                  (e.target as HTMLImageElement).src = '/assets/facilities/Modern Media Editing Classroom.png';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
@@ -490,16 +490,16 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               subtitle: "Interactive Digital Projection & Acoustic Audio",
               category: "Smart Classroom",
               caption: "Lenor Academy students engaged during an interactive visual lecture in the air-conditioned smart room",
-              image: "/assets/ad17389e15d746910cb972e2f5679ea9.jpg",
-              fallbackImage: "/assets/Modern Classroom Learning Session.png"
+              image: "/assets/facilities/multimedia-theory-hall.jpg",
+              fallbackImage: "/assets/facilities/Modern Classroom Learning Session.png"
             })}
           >
             <img 
-              src="/assets/ad17389e15d746910cb972e2f5679ea9.jpg" 
+              src="/assets/facilities/multimedia-theory-hall.jpg" 
               alt="Students attending a class in a smart classroom"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = '/assets/Modern Classroom Learning Session.png';
+                (e.target as HTMLImageElement).src = '/assets/facilities/Modern Classroom Learning Session.png';
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -619,16 +619,16 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
               subtitle: "Dedicated Commercial Photography & Film Production Stage",
               category: "Studio Facility",
               caption: "Modern architectural exterior of Lenor Academy Studio-1 featuring contemporary glass curtain wall, dedicated shooting floors, and client staging areas",
-              image: "/assets/facility-studio-1-exterior.jpg",
-              fallbackImage: "/assets/facility-studio-1-exterior.jpg"
+              image: "/assets/facilities/facility-studio-1-exterior.jpg",
+              fallbackImage: "/assets/facilities/facility-studio-1-exterior.jpg"
             })}
           >
             <img 
-              src="/assets/facility-studio-1-exterior.jpg" 
+              src="/assets/facilities/facility-studio-1-exterior.jpg" 
               alt="Lenor Academy Studio-1 exterior architecture with LR LENOR signage and glass facade"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = '/assets/facility-studio-commercial-shoot.jpg';
+                (e.target as HTMLImageElement).src = '/assets/facilities/facility-studio-commercial-shoot.jpg';
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
@@ -651,16 +651,16 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 subtitle: "Practical Studio Lighting & Direction Under Mentors",
                 category: "Studio Stage",
                 caption: "Lenor Academy students actively directing and capturing a live fashion model shoot with Godox parabolic softboxes and ceiling lighting grid",
-                image: "/assets/facility-studio-commercial-shoot.jpg",
-                fallbackImage: "/assets/facility-studio-commercial-shoot.jpg"
+                image: "/assets/facilities/facility-studio-commercial-shoot.jpg",
+                fallbackImage: "/assets/facilities/facility-studio-commercial-shoot.jpg"
               })}
             >
               <img 
-                src="/assets/facility-studio-commercial-shoot.jpg" 
+                src="/assets/facilities/facility-studio-commercial-shoot.jpg" 
                 alt="Lenor Academy students in uniform shooting live fashion model with Godox parabolic softbox and ceiling grid"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/facility-studio-1-exterior.jpg';
+                  (e.target as HTMLImageElement).src = '/assets/facilities/facility-studio-1-exterior.jpg';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
@@ -680,16 +680,16 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
                 subtitle: "Mastering Key, Fill, and Rim Lighting Setups",
                 category: "Studio Stage",
                 caption: "Students configuring camera exposure and light ratios with large Godox modifiers, strip boxes, and seamless black backdrop",
-                image: "/assets/facility-studio-lighting-setup.jpg",
-                fallbackImage: "/assets/facility-studio-lighting-setup.jpg"
+                image: "/assets/facilities/facility-studio-lighting-setup.jpg",
+                fallbackImage: "/assets/facilities/facility-studio-lighting-setup.jpg"
               })}
             >
               <img 
-                src="/assets/facility-studio-lighting-setup.jpg" 
+                src="/assets/facilities/facility-studio-lighting-setup.jpg" 
                 alt="Students calibrating camera settings beside large Godox studio softbox modifier"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/facility-studio-1-exterior.jpg';
+                  (e.target as HTMLImageElement).src = '/assets/facilities/facility-studio-1-exterior.jpg';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />

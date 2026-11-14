@@ -388,7 +388,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Adobe Photoshop"
     ],
     quote: "Bringing together creative editing, narrative flow, and technical precision to connect classroom learning with professional media production.",
-    image: "/assets/mentor-jibin-m.jpg"
+    image: "/assets/mentors/jibin-m.jpg"
   },
   {
     id: "shahin-kr",
@@ -412,7 +412,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Adobe Premiere Pro"
     ],
     quote: "I believe photography and cinematography are more than just operating a camera; they are about understanding light, perspective, and the art of visual storytelling. My teaching approach combines strong technical fundamentals with hands-on practical experience, encouraging students to explore their creativity and develop their own unique visual style. I strive to simplify complex concepts and bridge the gap between classroom learning and real-world industry practices. My goal is to inspire and guide aspiring photographers and filmmakers to build confidence, think creatively, and transform their vision into compelling visuals.",
-    image: "/assets/mentor-shahin-kr.jpg"
+    image: "/assets/mentors/shahin-kr.jpg"
   },
   {
     id: "abhinand-p-saji",
@@ -435,7 +435,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Adobe Lightroom"
     ],
     quote: "For me, video editing is more than just arranging clips and adding transitions. It's about finding the right rhythm, shaping emotions, and turning raw footage into meaningful stories. Every frame has a purpose, and every cut is an opportunity to make a story more powerful. Editing is not just about what you show, it's about how you make people feel through what they see.",
-    image: "/assets/mentor-abhinand-p-saji.jpg"
+    image: "/assets/mentors/abhinand-p-saji.jpg"
   },
   {
     id: "navas-p",
@@ -460,7 +460,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Sony, Nikon & Canon Systems"
     ],
     quote: "As an instructor, I focus on practical-based learning—helping students develop deep technical expertise, creative vision, and professional photography confidence across studio and real-world environments.",
-    image: "/assets/mentor-navas-p-v2.jpg"
+    image: "/assets/mentors/navas-p-v2.jpg"
   },
   {
     id: "rabeesh-mr",
@@ -483,7 +483,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Adobe Lightroom"
     ],
     quote: "Photography is about mastering light and emotion to craft images that resonate with authenticity.",
-    image: "/assets/mentor-rabeesh-mr.jpg"
+    image: "/assets/mentors/rabeesh-mr.jpg"
   },
   {
     id: "nisham-muhammed",
@@ -509,7 +509,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Helicam & Drone Tools"
     ],
     quote: "Transforming stories into visuals and creativity into cinematic experiences.",
-    image: "/assets/mentor-nisham-muhammed.jpg"
+    image: "/assets/mentors/nisham-muhammed.jpg"
   },
   {
     id: "shiva-shankar",
@@ -532,7 +532,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Adobe Photoshop"
     ],
     quote: "I love seeing the world a little better than I did the previous day. I believe the same applies to photography. It is a journey of constant observation, experimentation and learning. My goal is to become a better photographer every day, not by chasing better equipment, but through relentless practice, curiosity and a willingness to see things differently.",
-    image: "/assets/mentor-shiva-shankar.jpg"
+    image: "/assets/mentors/shiva-shankar.jpg"
   },
   {
     id: "muhammed-binshad",
@@ -555,7 +555,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Adobe Photoshop"
     ],
     quote: "A camera is merely a tool of translation; the true artistry lies in how you command light, frame emotion, and sculpt a perspective that makes the viewer feel alive. Teaching this craft isn't about rote button settings or mechanical perfection—it is about unlocking a student's inner eye, stripping away the intimidation of technical jargon, and grounding them in the raw, messy reality of real-world sets. When you bridge the gap between classroom theory and industry hustle, you don't just teach someone how to record a scene; you empower them to author a vision that demands to be seen.",
-    image: "/assets/mentor-muhammed-binshad.jpg"
+    image: "/assets/mentors/muhammed-binshad.jpg"
   },
   {
     id: "jidhin-raj-mk",
@@ -580,7 +580,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Adobe Premiere Pro"
     ],
     quote: "I am a creative Photographer and Graphic Designer with over 6 years of experience in commercial, corporate, and advertising projects. Passionate about visual storytelling, I believe every image has the power to communicate ideas, evoke emotions, and create lasting impressions. With expertise in photography, advanced lighting, graphic design, digital illustration, and Adobe Creative Suite, I combine technical precision with creative vision to produce meaningful visual experiences. I enjoy exploring new creative approaches, transforming ideas into compelling visuals, and bringing concepts to life through the art of visual communication.",
-    image: "/assets/mentor-jidhin-raj-mk.jpg"
+    image: "/assets/mentors/jidhin-raj-mk.jpg"
   },
   {
     id: "pranav-pp",
@@ -606,7 +606,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Adobe Photoshop"
     ],
     quote: "I believe photography is more than just capturing images; it is about observing the world, understanding light, and telling meaningful stories through visuals.",
-    image: "/assets/mentor-pranav-pp.jpg"
+    image: "/assets/mentors/pranav-pp.jpg"
   },
   {
     id: "sarandas-m",
@@ -632,7 +632,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Lightroom"
     ],
     quote: "Trust the story only you can tell",
-    image: "/assets/mentor-sarandas-m-v2.jpg"
+    image: "/assets/mentors/sarandas-m-v2.jpg"
   },
   {
     id: "nahlas-e-k",
@@ -657,7 +657,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Lightroom"
     ],
     quote: "Turning creativity into visuals and knowledge into skills",
-    image: "/assets/mentor-nahlas-ek.jpg"
+    image: "/assets/mentors/nahlas-ek.jpg"
   },
   {
     id: "sunil-kumar-c",
@@ -684,7 +684,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Lightroom"
     ],
     quote: "Trust the story only you can tell",
-    image: "/assets/mentor-sunil-kumar-c.jpg"
+    image: "/assets/mentors/sunil-kumar-c.jpg"
   },
   {
     id: "muhsina",
@@ -708,7 +708,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Adobe Lightroom"
     ],
     quote: "Turning imagination into visuals and creativity into skills.",
-    image: "/assets/mentor-muhsina.jpg"
+    image: "/assets/mentors/muhsina.jpg"
   },
   {
     id: "adhil",
@@ -734,8 +734,8 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Adobe After Effects"
     ],
     quote: "From imagination to inspiration.",
-    image: "/assets/mentor-adhil.jpg",
-    imagePosition: "center 15%"
+    image: "/assets/mentors/adhil.jpg",
+    imagePosition: "center 35%"
   },
   {
     id: "shahan-backer-ck",
@@ -762,7 +762,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
       "Meta AI"
     ],
     quote: "Specialising in communication, public speaking, and personal branding to help young creators become confident, capable and professionally presentable individuals.",
-    image: "/assets/mentor-shahan-backer-ck.jpg"
+    image: "/assets/mentors/shahan-backer-ck.jpg"
   }
 ];
 
@@ -775,7 +775,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 01 · Both programmes",
     title: "Photography",
     subtitle: "Pick up the camera.",
-    image: "/assets/aea971a7-2000-4f9c-b503-af69a67cc1cd.webp",
+    image: "/assets/journey/journey-camera-fundamentals.webp",
     imageAlt: "Photographer raising a camera",
     chips: [
       "Lighting in Photography",
@@ -800,7 +800,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 02 · Both programmes",
     title: "Videography",
     subtitle: "Learn to move.",
-    image: "/assets/92829f40-f725-4982-bb4c-b75dfa06bac4.webp",
+    image: "/assets/journey/journey-studio-lighting.webp",
     imageAlt: "Two people shooting with a gimbal",
     chips: [
       "Gimbal Balancing",
@@ -821,7 +821,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 03 · Both programmes",
     title: "Photo Editing",
     subtitle: "Find the look.",
-    image: "/assets/4b32a154-0d06-4137-bfbe-d8c580a9073f.webp",
+    image: "/assets/journey/journey-editing-suite.webp",
     imageAlt: "Photo prints beside an editing workstation",
     chips: [
       "Grading & Retouching",
@@ -840,7 +840,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 04 · Both programmes",
     title: "Video Editing",
     subtitle: "Cut the story.",
-    image: "/assets/4c0b7179-9592-44af-b728-d534e7d57e88.webp",
+    image: "/assets/journey/journey-motion-graphics.webp",
     imageAlt: "Editor at a colour grading desk",
     chips: [
       "Reels & Vertical Narrative",
@@ -861,7 +861,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 05 · Media Master only",
     title: "Graphic Design & Motion",
     subtitle: "Build the brand.",
-    image: "/assets/1ce9c5f9-bfab-442c-b731-56fcfd8ce758.webp",
+    image: "/assets/journey/journey-cinematography-set.webp",
     imageAlt: "Designer with colour swatches and tablet",
     chips: [
       "Photoshop Techniques",
@@ -880,7 +880,7 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     tag: "Stop 06 · Media Master only",
     title: "Soft Skills",
     subtitle: "Become the professional.",
-    image: "/assets/eeede332-45b6-4379-bf2c-7d17aaecd564.webp",
+    image: "/assets/journey/journey-portfolio-presentation.webp",
     imageAlt: "Three professionals in conversation",
     chips: [
       "Communication with High-End Clients",
@@ -1174,7 +1174,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1kwJegkBfjya1Numexrhm0jIHo3BbKt-S",
     driveLogoId: "1SnZowytlHVDmq8dgG93zFENb8_eg021J",
-    cardImage: "/assets/students/st-1.webp",
+    cardImage: "/assets/careers/students/st-1.webp",
     cardPreset: "bursts"
   },
   {
@@ -1191,7 +1191,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "1gejfaFPtCB-R9EMwqfGWlbUNH_QnBpUq",
     driveLogoId: "19-bHvVPicm5PYk40ufL2FWx-dZD8-Dq1",
-    cardImage: "/assets/students/st-2.webp",
+    cardImage: "/assets/careers/students/st-2.webp",
     cardPreset: "stars"
   },
   {
@@ -1208,7 +1208,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "email",
     drivePhotoId: "1olE_w5I-PSj3892EhFOjHVsNj5ENWnQG",
     driveLogoId: "1HLmkg-1zja4zydYzmXr35_CeZWJuluUp",
-    cardImage: "/assets/students/st-3.webp",
+    cardImage: "/assets/careers/students/st-3.webp",
     cardPreset: "shards"
   },
   {
@@ -1225,7 +1225,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "portfolio",
     drivePhotoId: "1xH718Q-17Tm0Oz-bKyGe6h19wETHCKps",
     driveLogoId: "1jveI0wAHPYe_fok8Y8VSXaWXiN6uPD3Q",
-    cardImage: "/assets/students/st-4.webp",
+    cardImage: "/assets/careers/students/st-4.webp",
     cardPreset: "cosmos"
   },
   {
@@ -1242,7 +1242,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "10Lm1JzPbRAvFBcRoaxRgv3EHrOb0FQOX",
     driveLogoId: "1-RXXi7usY7F4wXzl8O9uGaX2bVe1EwGM",
-    cardImage: "/assets/students/st-5.webp",
+    cardImage: "/assets/careers/students/st-5.webp",
     cardPreset: "rainbow"
   },
   {
@@ -1259,7 +1259,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "behance",
     drivePhotoId: "19M7oeP0WO6F39R5W7OZRkaK1Jy3nN2tU",
     driveLogoId: "1G1iZKzr8AyX4aP1cDGZINxkwTSYHCMA2",
-    cardImage: "/assets/students/st-6.webp",
+    cardImage: "/assets/careers/students/st-6.webp",
     cardPreset: "swirl"
   },
   {
@@ -1276,7 +1276,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1wEYPWJ96MQ9R7Pv3oddk6DrsQoBsc5xQ",
     driveLogoId: "15IaEJjVMJVRIRucF0_rtKZ0BACP3XuQv",
-    cardImage: "/assets/students/st-7.webp",
+    cardImage: "/assets/careers/students/st-7.webp",
     cardPreset: "glitter"
   },
   {
@@ -1293,7 +1293,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1aTpu4Jzgbpt2I-5yNHaflHow3NTBpxob",
     driveLogoId: "19GIq7Y4U38RxRueWlaEjni7GYk8xxiK1",
-    cardImage: "/assets/students/st-8.webp",
+    cardImage: "/assets/careers/students/st-8.webp",
     cardPreset: "gold"
   },
   {
@@ -1310,7 +1310,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1RXajM6IowgEkpVol-WpeePkmhdQP_m9Y",
     driveLogoId: "1S-IYr6DNjzs2hTwZS99A4gGfWlEW1M97",
-    cardImage: "/assets/students/st-9.webp",
+    cardImage: "/assets/careers/students/st-9.webp",
     cardPreset: "bursts"
   },
   {
@@ -1327,7 +1327,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1GpXw4fcOoig7DeyF5gHwUrom3tnygqwE",
     driveLogoId: "18ZT5TjGFhwunor7Q2Eu8XoNaIODpEdKF",
-    cardImage: "/assets/students/st-10.webp",
+    cardImage: "/assets/careers/students/st-10.webp",
     cardPreset: "stars"
   },
   {
@@ -1344,7 +1344,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "11EM8EDjX5-63R111wVhy_7jBlWShaRWP",
     driveLogoId: "1idmhxZqAP1CWQy8rB2vzZi91viArzmbk",
-    cardImage: "/assets/students/st-11.webp",
+    cardImage: "/assets/careers/students/st-11.webp",
     cardPreset: "shards"
   },
   {
@@ -1361,7 +1361,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1JDUrdyOHojXQ_zfxq9CIi_RmYTlRrBld",
     driveLogoId: "1Vwh-zzwl90EQysaaD-dDHyY0aRrnracj",
-    cardImage: "/assets/students/st-12.webp",
+    cardImage: "/assets/careers/students/st-12.webp",
     cardPreset: "cosmos"
   },
   {
@@ -1378,7 +1378,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1nLBN4hXORCGvXLGsHlkVACIrgC_tEkQ6",
     driveLogoId: "11FaSpIewnl60aY7ijyzkg8Bwi5cfj_Z6",
-    cardImage: "/assets/students/st-13.webp",
+    cardImage: "/assets/careers/students/st-13.webp",
     cardPreset: "rainbow"
   },
   {
@@ -1395,7 +1395,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1v1l0PenlwSgXxeL8X007IW4VSHSTNv31",
     driveLogoId: "1gmbb146_y1PSrLs_BwzDF-aq08CbbNbA",
-    cardImage: "/assets/students/st-14.webp",
+    cardImage: "/assets/careers/students/st-14.webp",
     cardPreset: "swirl"
   },
   {
@@ -1412,7 +1412,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1Mmi96jXPdzRqH0VWLN6U40BmLxXwfgBc",
     driveLogoId: "1gYFBz-rjIzok9OOOAb5lBAC9yBxYxzMH",
-    cardImage: "/assets/students/st-15.webp",
+    cardImage: "/assets/careers/students/st-15.webp",
     cardPreset: "glitter"
   },
   {
@@ -1429,7 +1429,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1FpMV_DuE3miUUt0705PevaiZqV2QtDic",
     driveLogoId: "1D-lSX5sBaBwu4UFuAwYOYk0_Fvcnk2WH",
-    cardImage: "/assets/students/st-16.webp",
+    cardImage: "/assets/careers/students/st-16.webp",
     cardPreset: "gold"
   },
   {
@@ -1446,7 +1446,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "1rhn2qkyNWKRh677zhMVp8wIdhndZTG1Z",
     driveLogoId: "14VeMgsE14uFrwLj_-exIopOCK6IFA_LM",
-    cardImage: "/assets/students/st-17.webp",
+    cardImage: "/assets/careers/students/st-17.webp",
     cardPreset: "bursts"
   },
   {
@@ -1463,7 +1463,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "1GGHtcb1LyrdrlZDmuQY-FW8J4LcRDCqr",
     driveLogoId: "1uPfE0dBD3Hlzn_kK7tu2t-Ojxxdl4uzy",
-    cardImage: "/assets/students/st-18.webp",
+    cardImage: "/assets/careers/students/st-18.webp",
     cardPreset: "stars"
   },
   {
@@ -1480,7 +1480,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "1bMxHKYsTnlW8wmTxNCAHxygNDlHXfrSe",
     driveLogoId: "1a3RcBV5Q4XPsQNFrZI4bXj4wgSx5SFvE",
-    cardImage: "/assets/students/st-19.webp",
+    cardImage: "/assets/careers/students/st-19.webp",
     cardPreset: "shards"
   },
   {
@@ -1497,7 +1497,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "11LLBMqjEaRnUmrf-3lzppy24eh1G7IN5",
     driveLogoId: "112G4kJMJJPsm8Db3AdmfYCplyqEJAqQe",
-    cardImage: "/assets/students/st-20.webp",
+    cardImage: "/assets/careers/students/st-20.webp",
     cardPreset: "cosmos"
   },
   {
@@ -1514,7 +1514,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1ed7B4pSOr2f6k6yabSVA9nrLsBAtmEQn",
     driveLogoId: "1gSH3cYAShGa3pqx_FOMboFzwwQkQzWe6",
-    cardImage: "/assets/students/st-21.webp",
+    cardImage: "/assets/careers/students/st-21.webp",
     cardPreset: "rainbow"
   },
   {
@@ -1531,7 +1531,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1n2DbCoUjtBJpAYn9nYypEdZ71TwAtV8V",
     driveLogoId: "1eXnjuAjk1bK1ypj-djCIJcR_xtOw1Vy6",
-    cardImage: "/assets/students/st-22.webp",
+    cardImage: "/assets/careers/students/st-22.webp",
     cardPreset: "swirl"
   },
   {
@@ -1548,7 +1548,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "11TBwRFf9_J9zi2CoHfRalQkuWYHw1SmU",
     driveLogoId: "1F0NSYc71ElKjP9jAY2iazVwmE-Y8XnLx",
-    cardImage: "/assets/students/st-23.webp",
+    cardImage: "/assets/careers/students/st-23.webp",
     cardPreset: "glitter"
   },
   {
@@ -1565,7 +1565,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1uzqbkcypSNyOZaDashd2oXiiYBW0oLbo",
     driveLogoId: "1BIHMbGFQbw8eNSAgqTaBDDKhCd66uDX2",
-    cardImage: "/assets/students/st-24.webp",
+    cardImage: "/assets/careers/students/st-24.webp",
     cardPreset: "gold"
   },
   {
@@ -1582,7 +1582,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "drive",
     drivePhotoId: "1Aolod-kZXb-NyQpYh2NXhXlLkTkSv5cf",
     driveLogoId: "1z3xt_zZHUBS5YPjPqPNNchoBkhd2c7nc",
-    cardImage: "/assets/students/st-25.webp",
+    cardImage: "/assets/careers/students/st-25.webp",
     cardPreset: "bursts"
   },
   {
@@ -1599,7 +1599,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1xNOq3oab_emdbvVwPtIbxZ0RBZe1TAoC",
     driveLogoId: "1_YBT6KYlRKCzVxEx62A3HDVTn-SZNUlW",
-    cardImage: "/assets/students/st-26.webp",
+    cardImage: "/assets/careers/students/st-26.webp",
     cardPreset: "stars"
   },
   {
@@ -1616,7 +1616,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1eEH6avR6PjcAngWHZ1pw96D85ymJEsc9",
     driveLogoId: "1xbOHy72R9dwUCyaIdsrisKEvmwWr7F2P",
-    cardImage: "/assets/students/st-27.webp",
+    cardImage: "/assets/careers/students/st-27.webp",
     cardPreset: "shards"
   },
   {
@@ -1633,7 +1633,7 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     portfolioType: "instagram",
     drivePhotoId: "1q51ISU5fN08vpSj1AHtQABFlM705Tl1Z",
     driveLogoId: "1a0wC6MYuSsWP-YwoLnMCoxbkqe7ph8RY",
-    cardImage: "/assets/students/st-28.webp",
+    cardImage: "/assets/careers/students/st-28.webp",
     cardPreset: "cosmos"
   },
 ];
@@ -1677,7 +1677,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "10:00 AM – 4:00 PM",
     venue: "Lenor Academy Studio Floor, Makkaraparamba",
     description: "Explore advanced AF tracking, low-light performance, and mirrorless workflow with Sony Alpha pro cameras.",
-    image: "/assets/facility-studio-lighting-setup.jpg",
+    image: "/assets/facilities/facility-studio-lighting-setup.jpg",
     status: "Upcoming",
     registrationOpen: true,
     buttonText: "NOTIFY ME",
@@ -1692,7 +1692,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "10:00 AM – 4:00 PM",
     venue: "Lenor Academy Studio Floor, Makkaraparamba",
     description: "Experience iconic film simulation recipes, retro ergonomics, and direct in-camera color processing.",
-    image: "/assets/d332320c1e882f01b6c1f0cab9e8fdd7.webp",
+    image: "/assets/blog/blog-davinci-color-science.webp",
     status: "Upcoming",
     registrationOpen: true,
     buttonText: "NOTIFY ME",
@@ -1707,7 +1707,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "10:00 AM – 4:00 PM",
     venue: "Lenor Academy Studio Floor, Makkaraparamba",
     description: "Learn handheld filmmaking, IBIS utilization, Open Gate video shooting, and pro log grading workflows.",
-    image: "/assets/d239a7ff1fed20dcbd601af8a22cc445.webp",
+    image: "/assets/blog/blog-wedding-cinematography.webp",
     status: "Upcoming",
     registrationOpen: true,
     buttonText: "NOTIFY ME",
@@ -1722,7 +1722,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "To be announced",
     venue: "Lenor Academy Studio Floor, Makkaraparamba",
     description: "Master natural skin tones, lighting setups, and cinema line capabilities with Canon system experts.",
-    image: "/assets/facility-studio-commercial-shoot.jpg",
+    image: "/assets/facilities/facility-studio-commercial-shoot.jpg",
     status: "Upcoming",
     registrationOpen: true,
     buttonText: "COMING SOON",
@@ -1736,7 +1736,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "3:00 PM – 8:00 PM",
     venue: "Lenor Academy Studio Floor, Makkaraparamba",
     description: "Honoring our graduating Media Master and Visual Media Production batches with industry keynote speakers, student awards, and agency showcase.",
-    image: "/assets/179f0e839c946970e2d9cfc3d4064f35.webp",
+    image: "/assets/events/fashion-photography-masterclass.webp",
     status: "Upcoming",
     registrationOpen: false,
     buttonText: "NOTIFY ME"
@@ -1749,7 +1749,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "9:00 AM – 5:30 PM",
     venue: "Lenor Academy Auditorium, Makkaraparamba",
     description: "Two days of high-intensity communication, body language training, portfolio presentation simulations, and mock client negotiations.",
-    image: "/assets/eeede332-45b6-4379-bf2c-7d17aaecd564.webp",
+    image: "/assets/journey/journey-portfolio-presentation.webp",
     status: "Upcoming",
     registrationOpen: true,
     buttonText: "COMING SOON",
@@ -1763,7 +1763,7 @@ export const EVENTS_DATA: EventItem[] = [
     time: "11:00 AM – 5:00 PM",
     venue: "Lenor Academy Studio Floor, Makkaraparamba",
     description: "Meet faculty mentors, test drive mirrorless setups, explore the color grading suites, review student films, and receive immediate portfolio critique.",
-    image: "/assets/430e290e-ef97-4964-a65b-a23923adad3f.webp",
+    image: "/assets/campaigns/graduation-exhibition.webp",
     status: "Upcoming",
     registrationOpen: true,
     buttonText: "COMING SOON",
@@ -1783,7 +1783,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "24 October 2026",
     author: "Lenor Faculty Guild",
     authorRole: "Studio Mentors",
-    image: "/assets/28b8b129bd95e6d83b42819751b4ad6b.webp",
+    image: "/assets/blog/blog-cinematic-lighting.webp",
     imageAlt: "Mirrorless camera seen from above",
     featured: true,
     summary: "The greatest technical skills with a camera won't save a business that doesn't understand client management, pricing floors, usage rights, and contracts. Here is what creative schools rarely tell you.",
@@ -1801,7 +1801,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "18 October 2026",
     author: "Shahan K.",
     authorRole: "Lead Photography Instructor",
-    image: "/assets/d332320c1e882f01b6c1f0cab9e8fdd7.webp",
+    image: "/assets/blog/blog-davinci-color-science.webp",
     imageAlt: "Vintage camera with a strap",
     summary: "Hard light vs soft light, modifiers, parabolic umbrellas, and how to read the shadows on your subject's cheekbones.",
     content: [
@@ -1818,7 +1818,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "12 October 2026",
     author: "Nikhil Raj",
     authorRole: "Cinematography Faculty",
-    image: "/assets/d239a7ff1fed20dcbd601af8a22cc445.webp",
+    image: "/assets/blog/blog-wedding-cinematography.webp",
     imageAlt: "Gimbal on a tabletop tripod",
     summary: "Never burn out a motor again. The 4-axis calibration ritual every professional camera operator performs before hitting Record.",
     content: [
@@ -1835,7 +1835,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "05 October 2026",
     author: "Arun Paul",
     authorRole: "Post-Production Supervisor",
-    image: "/assets/8ce65b342d3f8d32510b479fdae70e64.webp",
+    image: "/assets/blog/blog-camera-gear-guide.webp",
     imageAlt: "Video editing timeline",
     summary: "Constructing a clean, non-destructive node tree from camera color space transform to exposure balance and creative look curves.",
     content: [
@@ -1851,7 +1851,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "28 September 2026",
     author: "Fatima Noor",
     authorRole: "Design & Brand Faculty",
-    image: "/assets/40c26ca8e28d1ad43b398e249b22603d.webp",
+    image: "/assets/blog/blog-audio-capture-guide.webp",
     imageAlt: "Designer working with colour swatches",
     summary: "Visual hierarchy, negative space, and font pairing: how understanding typography makes you a radically better video editor.",
     content: [
@@ -1867,7 +1867,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "19 September 2026",
     author: "Suhail V.P.",
     authorRole: "Aerial Specialist",
-    image: "/assets/0cd570dbfecb6b5862083a6e2a300467.webp",
+    image: "/assets/blog/blog-commercial-retouching.webp",
     imageAlt: "White drone against a pale sky",
     summary: "From real estate inspections to wedding aerials and automotive reveals: how to monetize your certified pilot hours.",
     content: [
@@ -1893,9 +1893,9 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Commercial Photographer",
     currentCompany: "Digital Marketing Company, Calicut",
     location: "Calicut, Kerala",
-    image: "/assets/success-story-sana-shabnam.jpg",
+    image: "/assets/success/sana-shabnam.jpg",
     imageAlt: "Sana Shabnam holding her camera with confidence",
-    imagePosition: "center 60%",
+    imagePosition: "center 65%",
     detailedStory: "After completing her degree, Sana joined the one-year Photography and Videography course at Lenor Academy. Within just six months of intensive hands-on training, she gained the skill and confidence to take on professional assignments. Even before finishing the one-year curriculum, she began handling independent wedding photography projects. Following graduation, she interviewed for and secured a Photographer position at a digital marketing company in Calicut, where she currently works creating commercial visual content.",
     instagram: "https://www.instagram.com/sana_binth_manaf?exln=MWJmajMzc2hjem84Ng=="
   },
@@ -1911,7 +1911,7 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Freelance Videographer",
     currentCompany: "Independent Productions across South India",
     location: "South India",
-    image: "/assets/success-story-nidha.jpg",
+    image: "/assets/success/nidha.jpg",
     imageAlt: "Nidha standing confidently outside a venue",
     imagePosition: "center 30%",
     detailedStory: "My journey started after completing my Plus Two education. Like many students, I was searching for an opportunity to turn my passion into a career. That's when I decided to join the MMP Course at Lenor Academy. Joining Lenor Academy was a turning point in my life. The course helped me develop my creative skills, gain practical knowledge, and build confidence in videography. With the guidance and support of my trainers, I learned to turn my passion into a profession. Today, I am proud to say that I am working as a Freelance Videographer across South India. What started as a learning experience has now become my career, allowing me to explore new places, meet different people, and bring stories to life through my camera. I am truly grateful to Lenor Academy for providing me with the right platform, knowledge, and confidence to achieve my dreams. From a Plus Two student to a Freelance Videographer – this is my journey, and this is just the beginning!",
@@ -1929,9 +1929,9 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Photographer & Video Editor",
     currentCompany: "Marza Group, Qatar",
     location: "Doha, Qatar",
-    image: "/assets/success-story-shajahan.jpg",
+    image: "/assets/success/shajahan.jpg",
     imageAlt: "Shajahan smiling at Marza Group in Qatar",
-    imagePosition: "center 15%",
+    imagePosition: "center 25%",
     detailedStory: "I am currently working as a photographer and video editor at Marza Group Qatar. I secured this position directly through Lenor Academy, where I completed my professional training in the Media Master Programme. The academy provided exceptional hands-on experience and directly helped me transition into this career opportunity right after my studies.",
     instagram: "https://www.instagram.com/shaajhan._?dlrf=MWU1Nzh3NDE2eXY0dQ=="
   },
@@ -1947,7 +1947,7 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Videographer cum Editor",
     currentCompany: "Learnaxis Group of Institutions",
     location: "Malappuram, Kerala",
-    image: "/assets/success-story-muhammed-nabeeh.jpg",
+    image: "/assets/success/muhammed-nabeeh.jpg",
     imageAlt: "Muhammed Nabeeh smiling outdoors",
     imagePosition: "center 20%",
     detailedStory: "Muhammed Nabeeh completed the Media Master Programme course at Lenor Academy, Malappuram, after completing his degree. With a passion for media and creative production, he successfully transformed his learning into a professional career. Currently, he is working at Learnaxis Group of Institutions, Malappuram, as a Videographer cum Editor, turning his creative skills into real-world professional experience. His journey is an inspiration for aspiring media professionals to follow their passion and build a successful career.",
@@ -1965,8 +1965,9 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Lead Colorist & Editor",
     currentCompany: "Horizon Visuals, Kochi",
     location: "Kochi, Kerala",
-    image: "/assets/266814ca686b58ce6fb30ca1ba66a3d5.webp",
+    image: "/assets/success/adil-shan.webp",
     imageAlt: "Editor working at a grading desk",
+    imagePosition: "center 20%",
     detailedStory: "Adil joined with a deep interest in cinema but zero formal training. During his 12 months in the Media Master programme, he spent hundreds of hours in Lenor's dedicated edit lab, completing 35 practical project assignments."
   },
   {
@@ -1981,7 +1982,7 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Chief Cinematographer",
     currentCompany: "Monochrome Weddings & Films",
     location: "Calicut, Kerala",
-    image: "/assets/af9e05d02e3d78a034a5eda12208dccf.webp",
+    image: "/assets/success/rinshad-k.webp",
     imageAlt: "Camera operator in silhouette",
     detailedStory: "Rinshad wanted a fast, hyper-focused accelerator. Enrolling in the 6-month Visual Media Production course, he honed his physical movement and lighting instincts, quickly establishing himself as one of Malappuram's top wedding cinematographers."
   },
@@ -1997,7 +1998,7 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Founder & Creative Director",
     currentCompany: "Lumina Studios",
     location: "Malappuram, Kerala",
-    image: "/assets/8ba53ea25eca22da1f3017b76d4e1868.webp",
+    image: "/assets/careers/careers-hero.webp",
     imageAlt: "Film camera on a tripod",
     detailedStory: "Starting with a modest beginner DSLR, Fathima mastered three-point studio strobes, product composition, and high-end beauty retouching. Today, her studio books commercial lookbooks and editorial portraits months in advance."
   }

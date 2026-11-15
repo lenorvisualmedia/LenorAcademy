@@ -66,9 +66,9 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
             </p>
           </div>
 
-          {/* Side-by-side Featured Story Layout (Auto-looping spotlight) */}
+          {/* Side-by-side Featured Story Layout (Auto-looping spotlight with locked vertical space) */}
           <div 
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
             onTouchStart={() => setIsPaused(true)}
@@ -76,7 +76,7 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
           >
             {/* Left Column: Clean Photograph (No text overlaid) */}
             <div 
-              className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] aspect-[4/3] sm:aspect-[16/11] bg-neutral-900 border border-white/10 shadow-2xl group cursor-pointer"
+              className="relative overflow-hidden rounded-[20px] sm:rounded-[28px] aspect-[4/3] sm:aspect-[16/11] lg:h-[350px] lg:aspect-auto w-full bg-neutral-900 border border-white/10 shadow-2xl group cursor-pointer"
               onClick={() => setActiveStory(featuredStory)}
             >
               <AnimatePresence mode="wait">
@@ -85,7 +85,7 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute inset-0 w-full h-full"
                 >
                   <img
@@ -97,7 +97,7 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
                     decoding="async"
                   />
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-sm text-[11px] font-black uppercase tracking-widest text-white border border-white/20">
+                    <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-sm text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-white border border-white/20">
                       Featured · {featuredStory.category}
                     </span>
                   </div>
@@ -105,12 +105,12 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
               </AnimatePresence>
             </div>
 
-            {/* Right Column: Featured Story Details with auto-loop controls */}
-            <div className="flex flex-col items-start justify-center py-2 sm:py-6 min-h-[300px]">
-              <div className="flex items-center justify-between w-full mb-4">
+            {/* Right Column: Featured Story Details with fixed height to eliminate page shifts */}
+            <div className="flex flex-col justify-between h-[320px] sm:h-[340px] lg:h-[350px] py-1 sm:py-2">
+              <div className="flex items-center justify-between w-full">
                 <div className="inline-flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                  <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-amber-300">
+                  <span className="text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-amber-300">
                     Featured Graduate Spotlight
                   </span>
                 </div>
@@ -143,62 +143,68 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
                 </div>
               </div>
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={featuredStory.id}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-full"
-                >
-                  <blockquote className="text-2xl sm:text-3xl lg:text-4xl text-white font-bold tracking-tight leading-tight mb-5">
-                    “{featuredStory.quote}”
-                  </blockquote>
+              {/* Fixed height quote container so transitions never cause layout jumps */}
+              <div className="relative h-[155px] sm:h-[165px] w-full overflow-hidden my-auto">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={featuredStory.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0 flex flex-col justify-center"
+                  >
+                    <blockquote className="text-base sm:text-lg lg:text-xl text-white font-medium leading-relaxed tracking-normal line-clamp-3 sm:line-clamp-4 mb-2.5">
+                      “{featuredStory.quote}”
+                    </blockquote>
 
-                  <div className="text-xs sm:text-sm font-mono font-bold tracking-wider text-neutral-300 uppercase mb-8">
-                    {featuredStory.studentName} · {featuredStory.course} · {featuredStory.currentRole} at {featuredStory.currentCompany}
-                  </div>
+                    <div className="text-xs font-mono font-semibold tracking-wider text-neutral-400 uppercase line-clamp-1">
+                      {featuredStory.studentName} · {featuredStory.course} · {featuredStory.currentRole} at {featuredStory.currentCompany}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <PillButton
-                      variant="primary"
-                      size="md"
-                      onClick={() => setActiveStory(featuredStory)}
+              {/* Bottom buttons & indicator dots */}
+              <div className="space-y-3.5">
+                <div className="flex items-center gap-3 flex-wrap h-10">
+                  <PillButton
+                    variant="primary"
+                    size="sm"
+                    onClick={() => setActiveStory(featuredStory)}
+                  >
+                    Read The Full Story
+                  </PillButton>
+                  {featuredStory.instagram && (
+                    <a
+                      href={featuredStory.instagram}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-neutral-700 text-xs font-semibold text-neutral-300 hover:border-white hover:text-white hover:bg-white/10 transition-all shadow-sm"
                     >
-                      Read The Full Story
-                    </PillButton>
-                    {featuredStory.instagram && (
-                      <a
-                        href={featuredStory.instagram}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-700 text-xs font-bold text-neutral-200 hover:border-white hover:text-white hover:bg-white/10 transition-all shadow-sm"
-                      >
-                        <Instagram className="w-3.5 h-3.5 text-pink-400" />
-                        <span>Instagram Profile</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
-                      </a>
-                    )}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+                      <Instagram className="w-3.5 h-3.5 text-pink-400" />
+                      <span>Instagram Profile</span>
+                      <ArrowUpRight className="w-3 h-3 opacity-60" />
+                    </a>
+                  )}
+                </div>
 
-              {/* Progress indicator pills */}
-              <div className="flex items-center gap-1.5 mt-8 w-full flex-wrap">
-                {SUCCESS_STORIES.map((story, i) => (
-                  <button
-                    key={story.id}
-                    type="button"
-                    onClick={() => setFeaturedIndex(i)}
-                    aria-label={`Show ${story.studentName}'s story`}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      i === featuredIndex
-                        ? 'w-7 sm:w-8 bg-amber-400'
-                        : 'w-2 bg-white/20 hover:bg-white/40'
-                    }`}
-                  />
-                ))}
+                {/* Progress indicator pills */}
+                <div className="flex items-center gap-1.5 w-full flex-wrap pt-0.5">
+                  {SUCCESS_STORIES.map((story, i) => (
+                    <button
+                      key={story.id}
+                      type="button"
+                      onClick={() => setFeaturedIndex(i)}
+                      aria-label={`Show ${story.studentName}'s story`}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        i === featuredIndex
+                          ? 'w-7 sm:w-8 bg-amber-400'
+                          : 'w-2 bg-white/20 hover:bg-white/40'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

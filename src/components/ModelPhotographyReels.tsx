@@ -27,20 +27,18 @@ export interface ModelReelItem {
   duration: string;
   tag: string;
   likes: string;
-  location: string;
 }
 
 export const MODEL_REELS_DATA: ModelReelItem[] = [
   {
     id: 'reel-3988',
-    title: 'Gujarathi Street Launch & Set Walk',
+    title: 'Opening Set Launch & Walk',
     caption: 'Students setting up prime lens camera rigs, checking exposure on heritage architecture, and framing the opening street look.',
     videoUrl: '/assets/events/model-photography/IMG_3988.MP4',
     poster: '/assets/events/model-photography/IMG_3988-thumb.webp',
     duration: '0:22',
-    tag: 'Set Walk · Gujarathi St',
-    likes: '1.8K',
-    location: 'Gujarathi Street, Calicut'
+    tag: 'Set Walk · Live Shoot',
+    likes: '1.8K'
   },
   {
     id: 'reel-3989',
@@ -50,8 +48,7 @@ export const MODEL_REELS_DATA: ModelReelItem[] = [
     poster: '/assets/events/model-photography/IMG_3989-thumb.webp',
     duration: '0:12',
     tag: 'Portrait Framing',
-    likes: '2.1K',
-    location: 'Gujarathi Street, Calicut'
+    likes: '2.1K'
   },
   {
     id: 'reel-3990',
@@ -61,8 +58,7 @@ export const MODEL_REELS_DATA: ModelReelItem[] = [
     poster: '/assets/events/model-photography/IMG_3990-thumb.webp',
     duration: '0:27',
     tag: 'Gimbal Tracking',
-    likes: '3.4K',
-    location: 'Gujarathi Street, Calicut'
+    likes: '3.4K'
   },
   {
     id: 'reel-3991',
@@ -72,8 +68,7 @@ export const MODEL_REELS_DATA: ModelReelItem[] = [
     poster: '/assets/events/model-photography/IMG_3991-thumb.webp',
     duration: '0:21',
     tag: 'Lighting Drills',
-    likes: '1.5K',
-    location: 'Gujarathi Street, Calicut'
+    likes: '1.5K'
   },
   {
     id: 'reel-3992',
@@ -83,8 +78,7 @@ export const MODEL_REELS_DATA: ModelReelItem[] = [
     poster: '/assets/events/model-photography/IMG_3992-thumb.webp',
     duration: '0:20',
     tag: 'Street Fashion',
-    likes: '2.7K',
-    location: 'Gujarathi Street, Calicut'
+    likes: '2.7K'
   },
   {
     id: 'reel-3993',
@@ -94,8 +88,7 @@ export const MODEL_REELS_DATA: ModelReelItem[] = [
     poster: '/assets/events/model-photography/IMG_3993-thumb.webp',
     duration: '0:22',
     tag: 'Mentor Guidance',
-    likes: '2.9K',
-    location: 'Gujarathi Street, Calicut'
+    likes: '2.9K'
   },
   {
     id: 'reel-3994',
@@ -105,8 +98,7 @@ export const MODEL_REELS_DATA: ModelReelItem[] = [
     poster: '/assets/events/model-photography/IMG_3994-thumb.webp',
     duration: '0:14',
     tag: 'Low-Angle Shots',
-    likes: '1.9K',
-    location: 'Gujarathi Street, Calicut'
+    likes: '1.9K'
   },
   {
     id: 'reel-3995',
@@ -116,8 +108,7 @@ export const MODEL_REELS_DATA: ModelReelItem[] = [
     poster: '/assets/events/model-photography/IMG_3995-thumb.webp',
     duration: '0:15',
     tag: 'Close-Up Beauty',
-    likes: '2.3K',
-    location: 'Gujarathi Street, Calicut'
+    likes: '2.3K'
   },
   {
     id: 'reel-3996',
@@ -127,8 +118,7 @@ export const MODEL_REELS_DATA: ModelReelItem[] = [
     poster: '/assets/events/model-photography/IMG_3996-thumb.webp',
     duration: '0:24',
     tag: 'Production Wrap',
-    likes: '4.1K',
-    location: 'Gujarathi Street, Calicut'
+    likes: '4.1K'
   }
 ];
 
@@ -477,7 +467,7 @@ const ReelModalSlide: React.FC<ReelModalSlideProps> = ({
 
           <div className="flex items-center gap-1.5 flex-wrap text-[11px] font-mono font-semibold text-neutral-300 mt-2">
             <span>#ModelPhotography</span>
-            <span>#GujarathiStreet</span>
+            <span>#CreativeMedia</span>
             <span>#LenorAcademy</span>
           </div>
 
@@ -486,7 +476,7 @@ const ReelModalSlide: React.FC<ReelModalSlideProps> = ({
               className="w-3.5 h-3.5 text-neutral-300 shrink-0 animate-spin"
               style={{ animationDuration: '4s' }}
             />
-            <span className="truncate">Original Field Audio · Gujarathi Street Shoot</span>
+            <span className="truncate">Original Field Audio · Model Shoot Workshop</span>
           </div>
         </div>
       </div>
@@ -548,7 +538,7 @@ export const ModelPhotographyReels: React.FC = () => {
       navigator
         .share({
           title: reel.title,
-          text: `${reel.title} — Lenor Academy Gujarathi Street Model Shoot Reel`,
+          text: `${reel.title} — Lenor Academy Model Shoot Reel`,
           url: window.location.href
         })
         .catch(() => {});
@@ -636,7 +626,7 @@ export const ModelPhotographyReels: React.FC = () => {
               MODEL PHOTOGRAPHY
             </h2>
             <p className="text-neutral-400 text-sm sm:text-base max-w-2xl font-light mt-3 leading-relaxed">
-              Gujarathi Street On-Location Shoot — Real-world studio lighting, multi-camera gimbal drills, and model direction filmed live by Lenor Academy students.
+              On-Location Model Shoot — Real-world studio lighting, multi-camera gimbal drills, and model direction filmed live by Lenor Academy students.
             </p>
           </div>
 
@@ -716,7 +706,7 @@ export const ModelPhotographyReels: React.FC = () => {
                   </span>
                 </div>
                 <div className="text-[11px] text-neutral-400 font-light flex items-center gap-1.5">
-                  <span>📍 {currentReel.location}</span>
+                  <span>Model Photography Workshop</span>
                 </div>
               </div>
             </div>

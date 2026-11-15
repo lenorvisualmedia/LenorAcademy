@@ -189,11 +189,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
             </h2>
 
             <blockquote className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed mb-3">
-              “Lenor took my hobby and gave it precision, speed, and real commercial value.”
+              “Lenor Academy was an important chapter in my story. I joined with a passion, learned with purpose, and stepped out with a bigger vision.”
             </blockquote>
 
             <div className="text-xs sm:text-sm font-bold text-white tracking-wide mb-8">
-              Adil Shan · Batch 2024
+              Farhan T · Founder, 3 SIXTY FILMS
             </div>
 
             <PillButton

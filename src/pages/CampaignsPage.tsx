@@ -242,9 +242,10 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
 
           <div className="card h-[380px] group">
             <img
-              src="/assets/success/rinshad-k.webp"
-              alt="Camera operator"
+              src="/assets/success/rinsha.webp"
+              alt="Camera operator with gimbal"
               className="cover gs group-hover:scale-105 transition-transform duration-500"
+              style={{ objectPosition: 'center 25%' }}
               loading="lazy"
               decoding="async"
             />

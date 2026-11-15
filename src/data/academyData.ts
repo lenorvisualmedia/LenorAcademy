@@ -2023,55 +2023,6 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     imagePosition: "center 20%",
     detailedStory: "Muhammed Nabeeh completed the Media Master Programme course at Lenor Academy, Malappuram, after completing his degree. With a passion for media and creative production, he successfully transformed his learning into a professional career. Currently, he is working at Learnaxis Group of Institutions, Malappuram, as a Videographer cum Editor, turning his creative skills into real-world professional experience. His journey is an inspiration for aspiring media professionals to follow their passion and build a successful career.",
     instagram: "https://www.instagram.com/nabeeh_.m?obrf=MThpMTdqdGgxbXJybA=="
-  },
-  {
-    id: "story-editor",
-    studentName: "Adil Shan",
-    category: "Video Editing",
-    course: "Media Master Programme",
-    batch: "Batch 2024",
-    quote: "I came to Lenor knowing just how to splice clips on my phone. One year later, I was color grading music videos and cutting commercial ads for major brands.",
-    joinedYear: "2023",
-    learnedModule: "Premiere Pro, DaVinci Resolve Studio & After Effects",
-    currentRole: "Lead Colorist & Editor",
-    currentCompany: "Horizon Visuals, Kochi",
-    location: "Kochi, Kerala",
-    image: "/assets/success/adil-shan.webp",
-    imageAlt: "Editor working at a grading desk",
-    imagePosition: "center 20%",
-    detailedStory: "Adil joined with a deep interest in cinema but zero formal training. During his 12 months in the Media Master programme, he spent hundreds of hours in Lenor's dedicated edit lab, completing 35 practical project assignments."
-  },
-  {
-    id: "story-videographer",
-    studentName: "Rinshad K.",
-    category: "Videography",
-    course: "Visual Media Production",
-    batch: "Batch 2024",
-    quote: "The gimbal drills, lighting setups, and hoverboard balance training prepared me for real set pressure. On my very first commercial shoot, the director thought I had five years of industry experience.",
-    joinedYear: "2024",
-    learnedModule: "Cinematography, Gimbal Balancing & Aerial Drone",
-    currentRole: "Chief Cinematographer",
-    currentCompany: "Monochrome Weddings & Films",
-    location: "Calicut, Kerala",
-    image: "/assets/success/rinshad-k.webp",
-    imageAlt: "Camera operator in silhouette",
-    detailedStory: "Rinshad wanted a fast, hyper-focused accelerator. Enrolling in the 6-month Visual Media Production course, he honed his physical movement and lighting instincts, quickly establishing himself as one of Malappuram's top wedding cinematographers."
-  },
-  {
-    id: "story-photographer",
-    studentName: "Fathima Hameed",
-    category: "Photography",
-    course: "Media Master Programme",
-    batch: "Batch 2023",
-    quote: "Lenor didn't just teach me how to hold a camera; it gave me the confidence to build my own portrait studio and pitch to fashion retailers.",
-    joinedYear: "2023",
-    learnedModule: "Studio Lighting, Portraiture & Retouching",
-    currentRole: "Founder & Creative Director",
-    currentCompany: "Lumina Studios",
-    location: "Malappuram, Kerala",
-    image: "/assets/careers/careers-hero.webp",
-    imageAlt: "Film camera on a tripod",
-    detailedStory: "Starting with a modest beginner DSLR, Fathima mastered three-point studio strobes, product composition, and high-end beauty retouching. Today, her studio books commercial lookbooks and editorial portraits months in advance."
   }
 ];
 

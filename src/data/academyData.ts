@@ -1988,6 +1988,23 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     instagram: "https://www.instagram.com/shaajhan._?dlrf=MWU1Nzh3NDE2eXY0dQ=="
   },
   {
+    id: "story-nihla-fathima",
+    studentName: "Nihla Fathima",
+    category: "Video Editing",
+    course: "Media Master Programme (MMP)",
+    batch: "Media Master Graduate",
+    quote: "I am currently working in Dubai as a Video Editor, Photographer, and Videographer. I am grateful to Lenor Academy for the knowledge, training, and support that helped me build my career and pursue my passion in the media field.",
+    joinedYear: "Media Master Alumna",
+    learnedModule: "Video Editing, Professional Photography, Videography & Media Production",
+    currentRole: "Video Editor, Photographer & Videographer",
+    currentCompany: "Media Production, Dubai",
+    location: "Dubai, UAE",
+    image: "/assets/success/nihla-fathima.webp",
+    imageAlt: "Nihla Fathima standing outdoors smiling, professional media creator based in Dubai",
+    imagePosition: "center 28%",
+    detailedStory: "I am Nihla Fathima, currently working in Dubai as a Video Editor, Photographer, and Videographer. I am actively involved in video editing, photography, and videography, gaining professional experience in the media industry. I am grateful to Lenor Academy for the knowledge, training, and support that helped me build my career and pursue my passion in the media field."
+  },
+  {
     id: "story-muhammed-nabeeh",
     studentName: "Muhammed Nabeeh",
     category: "Video Editing",

@@ -1953,6 +1953,23 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     instagram: "https://www.instagram.com/f4rann/"
   },
   {
+    id: "story-muhammed-ashhazfiroz",
+    studentName: "Muhammed Ashhazfiroz",
+    category: "Photography",
+    course: "Media Master Programme (MMP)",
+    batch: "Media Master Graduate",
+    quote: "Driven by passion, creativity, and dedication, he continues to build his presence in the digital world, connecting with an audience of over 19,000 followers on Instagram - capturing compelling automotive stories through the lens.",
+    joinedYear: "Media Master Alumnus",
+    learnedModule: "Automotive Photography, Videography, Video Editing, Cinematic Visuals & Content Creation",
+    currentRole: "Automotive Media Specialist & Creator",
+    currentCompany: "Independent Creator (19K+ Community)",
+    location: "Kerala, India",
+    image: "/assets/success/muhammed-ashhazfiroz.webp",
+    imageAlt: "Muhammed Ashhazfiroz in pinstripe blazer and sunglasses leaning against white car",
+    imagePosition: "center 38%",
+    detailedStory: "A passionate photographer, videographer, and content creator with a strong creative vision and a deep love for visual storytelling. With a particular interest in automotive photography and videography, he specializes in creating engaging automotive content, cinematic visuals, promotional videos, and creative digital media. Driven by passion, creativity, and dedication, he continues to build his presence in the digital world, connecting with an audience of over 19,000 followers on Instagram. His journey reflects his commitment to turning creativity into a profession and his passion for capturing stories through the lens. From photography to filmmaking and automotive content creation, he continues to explore new creative opportunities and grow as a professional content creator."
+  },
+  {
     id: "story-shajahan",
     studentName: "Shajahan",
     category: "Videography",

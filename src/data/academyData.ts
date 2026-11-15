@@ -2018,9 +2018,9 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     currentRole: "Videographer cum Editor",
     currentCompany: "Learnaxis Group of Institutions",
     location: "Malappuram, Kerala",
-    image: "/assets/success/muhammed-nabeeh.jpg",
+    image: "/assets/success/muhammed-nabeeh.webp",
     imageAlt: "Muhammed Nabeeh smiling outdoors",
-    imagePosition: "center 20%",
+    imagePosition: "center 50%",
     detailedStory: "Muhammed Nabeeh completed the Media Master Programme course at Lenor Academy, Malappuram, after completing his degree. With a passion for media and creative production, he successfully transformed his learning into a professional career. Currently, he is working at Learnaxis Group of Institutions, Malappuram, as a Videographer cum Editor, turning his creative skills into real-world professional experience. His journey is an inspiration for aspiring media professionals to follow their passion and build a successful career.",
     instagram: "https://www.instagram.com/nabeeh_.m?obrf=MThpMTdqdGgxbXJybA=="
   }

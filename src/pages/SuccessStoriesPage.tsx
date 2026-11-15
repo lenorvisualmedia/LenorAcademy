@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Instagram, ArrowUpRight } from 'lucide-react';
+import { X, Instagram, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { SUCCESS_STORIES, SuccessStory } from '../data/academyData';
 import { AnimatedContent } from '../components/AnimatedContent';
 import { PillButton } from '../components/PillButton';
@@ -14,7 +15,34 @@ interface SuccessStoriesPageProps {
 
 export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEnrol, onOpenBrochure }) => {
   const [activeStory, setActiveStory] = useState<SuccessStory | null>(null);
-  const featuredStory = SUCCESS_STORIES[0];
+  const [featuredIndex, setFeaturedIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const featuredStory = SUCCESS_STORIES[featuredIndex] || SUCCESS_STORIES[0];
+
+  const handleNext = useCallback(() => {
+    setFeaturedIndex((prev) => (prev + 1) % SUCCESS_STORIES.length);
+  }, []);
+
+  const handlePrev = useCallback(() => {
+    setFeaturedIndex((prev) => (prev - 1 + SUCCESS_STORIES.length) % SUCCESS_STORIES.length);
+  }, []);
+
+  // Auto-advance loop every 5.5 seconds, pause if hovered or modal open
+  useEffect(() => {
+    if (isPaused || activeStory !== null) return;
+    const interval = setInterval(() => {
+      handleNext();
+    }, 5500);
+    return () => clearInterval(interval);
+  }, [isPaused, activeStory, handleNext]);
+
+  // Preload next image in loop for seamless transitions
+  useEffect(() => {
+    const nextIdx = (featuredIndex + 1) % SUCCESS_STORIES.length;
+    const nextImg = new Image();
+    nextImg.src = SUCCESS_STORIES[nextIdx].image;
+  }, [featuredIndex]);
 
   useModalScrollLock(!!activeStory, () => setActiveStory(null));
 
@@ -38,62 +66,139 @@ export const SuccessStoriesPage: React.FC<SuccessStoriesPageProps> = ({ onOpenEn
             </p>
           </div>
 
-          {/* Side-by-side Featured Story Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+          {/* Side-by-side Featured Story Layout (Auto-looping spotlight) */}
+          <div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
+          >
             {/* Left Column: Clean Photograph (No text overlaid) */}
             <div 
               className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] aspect-[4/3] sm:aspect-[16/11] bg-neutral-900 border border-white/10 shadow-2xl group cursor-pointer"
               onClick={() => setActiveStory(featuredStory)}
             >
-              <img
-                src={featuredStory.image}
-                alt={featuredStory.imageAlt}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                style={{ objectPosition: featuredStory.imagePosition || 'center 60%' }}
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="absolute top-4 left-4">
-                <span className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-sm text-[11px] font-black uppercase tracking-widest text-white border border-white/20">
-                  Featured · {featuredStory.category}
-                </span>
-              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={featuredStory.id}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.02 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <img
+                    src={featuredStory.image}
+                    alt={featuredStory.imageAlt}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    style={{ objectPosition: featuredStory.imagePosition || 'center 60%' }}
+                    loading="eager"
+                    decoding="async"
+                  />
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-sm text-[11px] font-black uppercase tracking-widest text-white border border-white/20">
+                      Featured · {featuredStory.category}
+                    </span>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
-            {/* Right Column: Featured Story Details */}
-            <div className="flex flex-col items-start justify-center py-2 sm:py-6">
-              <div className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-amber-300 mb-4">
-                Featured Graduate Spotlight
-              </div>
-
-              <blockquote className="text-2xl sm:text-3xl lg:text-4xl text-white font-bold tracking-tight leading-tight mb-5">
-                “{featuredStory.quote}”
-              </blockquote>
-
-              <div className="text-xs sm:text-sm font-mono font-bold tracking-wider text-neutral-300 uppercase mb-8">
-                {featuredStory.studentName} · {featuredStory.course} · {featuredStory.currentRole} at {featuredStory.currentCompany}
-              </div>
-
-              <div className="flex items-center gap-3 flex-wrap">
-                <PillButton
-                  variant="primary"
-                  size="md"
-                  onClick={() => setActiveStory(featuredStory)}
-                >
-                  Read The Full Story
-                </PillButton>
-                {featuredStory.instagram && (
-                  <a
-                    href={featuredStory.instagram}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-700 text-xs font-bold text-neutral-200 hover:border-white hover:text-white hover:bg-white/10 transition-all shadow-sm"
+            {/* Right Column: Featured Story Details with auto-loop controls */}
+            <div className="flex flex-col items-start justify-center py-2 sm:py-6 min-h-[300px]">
+              <div className="flex items-center justify-between w-full mb-4">
+                <div className="inline-flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                  <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-amber-300">
+                    Featured Graduate Spotlight
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-mono font-bold text-neutral-400 mr-1.5">
+                    {String(featuredIndex + 1).padStart(2, '0')} / {String(SUCCESS_STORIES.length).padStart(2, '0')}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePrev();
+                    }}
+                    aria-label="Previous featured story"
+                    className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white flex items-center justify-center transition-all border border-white/10"
                   >
-                    <Instagram className="w-3.5 h-3.5 text-pink-400" />
-                    <span>Instagram Profile</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
-                  </a>
-                )}
+                    <ChevronLeft className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleNext();
+                    }}
+                    aria-label="Next featured story"
+                    className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white flex items-center justify-center transition-all border border-white/10"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={featuredStory.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-full"
+                >
+                  <blockquote className="text-2xl sm:text-3xl lg:text-4xl text-white font-bold tracking-tight leading-tight mb-5">
+                    “{featuredStory.quote}”
+                  </blockquote>
+
+                  <div className="text-xs sm:text-sm font-mono font-bold tracking-wider text-neutral-300 uppercase mb-8">
+                    {featuredStory.studentName} · {featuredStory.course} · {featuredStory.currentRole} at {featuredStory.currentCompany}
+                  </div>
+
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <PillButton
+                      variant="primary"
+                      size="md"
+                      onClick={() => setActiveStory(featuredStory)}
+                    >
+                      Read The Full Story
+                    </PillButton>
+                    {featuredStory.instagram && (
+                      <a
+                        href={featuredStory.instagram}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-700 text-xs font-bold text-neutral-200 hover:border-white hover:text-white hover:bg-white/10 transition-all shadow-sm"
+                      >
+                        <Instagram className="w-3.5 h-3.5 text-pink-400" />
+                        <span>Instagram Profile</span>
+                        <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Progress indicator pills */}
+              <div className="flex items-center gap-1.5 mt-8 w-full flex-wrap">
+                {SUCCESS_STORIES.map((story, i) => (
+                  <button
+                    key={story.id}
+                    type="button"
+                    onClick={() => setFeaturedIndex(i)}
+                    aria-label={`Show ${story.studentName}'s story`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === featuredIndex
+                        ? 'w-7 sm:w-8 bg-amber-400'
+                        : 'w-2 bg-white/20 hover:bg-white/40'
+                    }`}
+                  />
+                ))}
               </div>
             </div>
           </div>

@@ -1887,7 +1887,7 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     category: "Photography",
     course: "Photography & Videography (1 Year)",
     batch: "Media Master Graduate",
-    quote: "Within just six months of the course, I gained enough confidence and practical experience to start taking up professional assignments independently.",
+    quote: "After completing her degree, Sana joined the one-year Photography and Videography course at Lenor Academy.",
     joinedYear: "Post-Degree",
     learnedModule: "Photography Fundamentals, Studio Lighting, Wedding Sessions & Practical Field Training",
     currentRole: "Commercial Photographer",
@@ -1987,6 +1987,24 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     imagePosition: "center 25%",
     detailedStory: "I am currently working as a photographer and video editor at Marza Group Qatar. I secured this position directly through Lenor Academy, where I completed my professional training in the Media Master Programme. The academy provided exceptional hands-on experience and directly helped me transition into this career opportunity right after my studies.",
     instagram: "https://www.instagram.com/shaajhan._?dlrf=MWU1Nzh3NDE2eXY0dQ=="
+  },
+  {
+    id: "story-nihla-fathima",
+    studentName: "Nihla Fathima",
+    category: "Video Editing",
+    course: "Media Master Programme (MMP)",
+    batch: "Media Master Graduate",
+    quote: "I am currently working in Dubai as a Video Editor, Photographer, and Videographer. I am grateful to Lenor Academy for the knowledge, training, and support that helped me build my career and pursue my passion in the media field.",
+    joinedYear: "Media Master Alumna",
+    learnedModule: "Video Editing, Professional Photography, Videography & Media Production",
+    currentRole: "Video Editor, Photographer & Videographer",
+    currentCompany: "Media Production, Dubai",
+    location: "Dubai, UAE",
+    image: "/assets/success/nihla-fathima.webp",
+    imageAlt: "Nihla Fathima standing outdoors smiling, professional media creator based in Dubai",
+    imagePosition: "center 28%",
+    detailedStory: "I am Nihla Fathima, currently working in Dubai as a Video Editor, Photographer, and Videographer. I am actively involved in video editing, photography, and videography, gaining professional experience in the media industry. I am grateful to Lenor Academy for the knowledge, training, and support that helped me build my career and pursue my passion in the media field.",
+    instagram: "https://www.instagram.com/nihla__nizar?cplk=Y2E0NzJyaDQwZHI5"
   },
   {
     id: "story-nihla-fathima",

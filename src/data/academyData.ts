@@ -1950,7 +1950,7 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     imageAlt: "Farhan T walking outdoors wearing green striped shirt and sunglasses",
     imagePosition: "center 38%",
     detailedStory: "My name is Farhan T. After completing my Plus Two education, I decided to follow my passion and take a different step towards building my future. I joined Lenor Academy to pursue the Multimedia programme (MMP). I always had a strong interest in photography, videography, video editing, and content creation. What started as an interest gradually became a dream of building something of my own. Joining Lenor Academy was an important turning point in my journey. It gave me an opportunity to explore the creative industry, develop my technical skills, gain practical knowledge, and understand how to turn creative ideas into professional work. Today, I am proud to be the founder of 3 SIXTY FILMS, a creative production brand specialising in wedding photography, videography, and iPhone reels. Alongside my business, I have also built my personal creator identity through Instagram, where my page @f4rann has grown to 15,000+ followers. Through my content, I share my creative work, editing techniques, videography experiences, and connect with a growing community of creators. My journey from being a Plus Two student to becoming a business founder and content creator has taught me that education, passion, consistency, and practical experience can open doors to amazing opportunities. I am truly grateful to Lenor Academy, my mentors, and everyone who supported me throughout this journey. Lenor Academy was an important chapter in my story. I joined with a passion, learned with purpose, and stepped out with a bigger vision. And this is only the beginning!",
-    instagram: "https://www.instagram.com/f4rann/"
+    instagram: "https://www.instagram.com/f4rann?srtk=Znc4YTZ6eG9ocnlu"
   },
   {
     id: "story-muhammed-ashhazfiroz",
@@ -1967,7 +1967,8 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     image: "/assets/success/muhammed-ashhazfiroz.webp",
     imageAlt: "Muhammed Ashhazfiroz in pinstripe blazer and sunglasses leaning against white car",
     imagePosition: "center 38%",
-    detailedStory: "A passionate photographer, videographer, and content creator with a strong creative vision and a deep love for visual storytelling. With a particular interest in automotive photography and videography, he specializes in creating engaging automotive content, cinematic visuals, promotional videos, and creative digital media. Driven by passion, creativity, and dedication, he continues to build his presence in the digital world, connecting with an audience of over 19,000 followers on Instagram. His journey reflects his commitment to turning creativity into a profession and his passion for capturing stories through the lens. From photography to filmmaking and automotive content creation, he continues to explore new creative opportunities and grow as a professional content creator."
+    detailedStory: "A passionate photographer, videographer, and content creator with a strong creative vision and a deep love for visual storytelling. With a particular interest in automotive photography and videography, he specializes in creating engaging automotive content, cinematic visuals, promotional videos, and creative digital media. Driven by passion, creativity, and dedication, he continues to build his presence in the digital world, connecting with an audience of over 19,000 followers on Instagram. His journey reflects his commitment to turning creativity into a profession and his passion for capturing stories through the lens. From photography to filmmaking and automotive content creation, he continues to explore new creative opportunities and grow as a professional content creator.",
+    instagram: "https://www.instagram.com/ashhazautolog?srtk=aG12cmtlMnBxdnVx"
   },
   {
     id: "story-shajahan",
@@ -2002,7 +2003,8 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     image: "/assets/success/nihla-fathima.webp",
     imageAlt: "Nihla Fathima standing outdoors smiling, professional media creator based in Dubai",
     imagePosition: "center 28%",
-    detailedStory: "I am Nihla Fathima, currently working in Dubai as a Video Editor, Photographer, and Videographer. I am actively involved in video editing, photography, and videography, gaining professional experience in the media industry. I am grateful to Lenor Academy for the knowledge, training, and support that helped me build my career and pursue my passion in the media field."
+    detailedStory: "I am Nihla Fathima, currently working in Dubai as a Video Editor, Photographer, and Videographer. I am actively involved in video editing, photography, and videography, gaining professional experience in the media industry. I am grateful to Lenor Academy for the knowledge, training, and support that helped me build my career and pursue my passion in the media field.",
+    instagram: "https://www.instagram.com/nihla__nizar?cplk=Y2E0NzJyaDQwZHI5"
   },
   {
     id: "story-muhammed-nabeeh",
@@ -2020,7 +2022,7 @@ export const SUCCESS_STORIES: SuccessStory[] = [
     imageAlt: "Muhammed Nabeeh smiling outdoors",
     imagePosition: "center 20%",
     detailedStory: "Muhammed Nabeeh completed the Media Master Programme course at Lenor Academy, Malappuram, after completing his degree. With a passion for media and creative production, he successfully transformed his learning into a professional career. Currently, he is working at Learnaxis Group of Institutions, Malappuram, as a Videographer cum Editor, turning his creative skills into real-world professional experience. His journey is an inspiration for aspiring media professionals to follow their passion and build a successful career.",
-    instagram: "https://www.instagram.com/nabeeh_.m?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw=="
+    instagram: "https://www.instagram.com/nabeeh_.m?obrf=MThpMTdqdGgxbXJybA=="
   },
   {
     id: "story-editor",

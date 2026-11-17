@@ -55,8 +55,8 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
           {/* Left Column: Clean Convocation Photograph */}
           <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] aspect-[4/3] sm:aspect-[16/11] bg-neutral-900 border border-white/10 shadow-2xl group">
             <img
-              src="/assets/events/fashion-photography-masterclass.webp"
-              alt="Lenor Academy graduating convocation batch"
+              src="/assets/placements/placement-convocation-hero.webp"
+              alt="Lenor Academy graduating convocation batch celebrating graduation"
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
               loading="lazy"
               decoding="async"

@@ -30,6 +30,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
   const [isCompleted, setIsCompleted] = useState(false);
 
   const isPlayingRef = useRef(false);
+  const isStartingRef = useRef(false);
   const hasCompletedRef = useRef(false);
   const isLoadedRef = useRef(false);
   const scrollIntensityRef = useRef(0);
@@ -61,6 +62,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     (window as any).__heroVideoCompleted = false;
     hasCompletedRef.current = false;
     isPlayingRef.current = false;
+    isStartingRef.current = false;
     isLoadedRef.current = false;
     scrollIntensityRef.current = 0;
     setIsCompleted(false);
@@ -82,6 +84,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     }
 
     if (overlayRef.current) {
+      overlayRef.current.style.display = 'flex';
       overlayRef.current.style.opacity = '1';
       overlayRef.current.style.pointerEvents = 'auto';
       overlayRef.current.style.transform = 'none';
@@ -104,6 +107,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       if (hasCompletedRef.current) return;
       hasCompletedRef.current = true;
       isPlayingRef.current = false;
+      isStartingRef.current = false;
       setIsCompleted(true);
 
       // Stop RAF ticker immediately to free CPU/GPU cycles
@@ -128,6 +132,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       }
 
       if (overlayRef.current) {
+        overlayRef.current.style.display = 'none';
         overlayRef.current.style.opacity = '0';
         overlayRef.current.style.pointerEvents = 'none';
       }
@@ -153,40 +158,66 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       }, 300);
     };
 
-    // 3. Start Video Playback on First Scroll
+    // 3. Start Video Playback on First Scroll (Instantly as black overlay clears, zero delay)
     const startPlayback = () => {
-      if (isPlayingRef.current || hasCompletedRef.current) return;
+      if (isPlayingRef.current || isStartingRef.current || hasCompletedRef.current) return;
       const vid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
       if (!vid) return;
 
-      isPlayingRef.current = true;
-      setHasStarted(true);
-
-      // Smoothly hide initial text overlay so video is front and center
-      if (overlayRef.current) {
-        gsap.to(overlayRef.current, {
-          opacity: 0,
-          y: -40,
-          duration: 0.5,
-          ease: 'power2.out',
-          pointerEvents: 'none'
-        });
+      isStartingRef.current = true;
+      if (vid.currentTime > 0.05) {
+        vid.currentTime = 0;
       }
 
-      vid.play().catch(() => {
-        // Fallback for autoplay policy
-      });
+      const triggerPlay = () => {
+        if (hasCompletedRef.current || isPlayingRef.current) return;
+        isPlayingRef.current = true;
+        isStartingRef.current = false;
+        setHasStarted(true);
+        const currentVid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
+        if (currentVid) {
+          currentVid.play().catch(() => {
+            // Fallback for autoplay policy
+          });
+        }
+      };
+
+      // Smoothly hide initial text and black overlay so video is front and center
+      if (overlayRef.current) {
+        gsap.killTweensOf(overlayRef.current);
+        const tl = gsap.timeline();
+        tl.to(overlayRef.current, {
+          opacity: 0,
+          y: -15,
+          duration: 0.25,
+          ease: 'power1.inOut',
+          pointerEvents: 'none',
+          onComplete: () => {
+            if (overlayRef.current) {
+              overlayRef.current.style.display = 'none';
+            }
+            triggerPlay();
+          }
+        });
+        // Pre-warm playback right as opacity is clearing so the video is moving the exact instant the black screen clears
+        tl.call(triggerPlay, [], 0.16);
+      } else {
+        triggerPlay();
+      }
     };
 
     // 4. Handle Scroll Delta
     const handleScrollInput = (delta: number) => {
       if (!isLoadedRef.current || hasCompletedRef.current || window.scrollY > 15) return;
 
-      if (!isPlayingRef.current) {
+      if (!isPlayingRef.current && !isStartingRef.current) {
         startPlayback();
+        return;
       }
 
-      scrollIntensityRef.current += Math.abs(delta);
+      if (isPlayingRef.current) {
+        scrollIntensityRef.current += Math.abs(delta);
+      }
     };
 
     // Event Listeners for wheel, touch, and keys
@@ -364,6 +395,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     vid.play().catch(() => {});
 
     if (overlayRef.current) {
+      overlayRef.current.style.display = 'none';
       overlayRef.current.style.opacity = '0';
       overlayRef.current.style.pointerEvents = 'none';
     }
@@ -386,6 +418,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     }
 
     if (overlayRef.current) {
+      overlayRef.current.style.display = 'none';
       overlayRef.current.style.opacity = '0';
       overlayRef.current.style.pointerEvents = 'none';
     }
@@ -505,7 +538,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       {/* First Frame MaskedHeading Overlay (Fades out smoothly on first scroll) */}
       <div
         ref={overlayRef}
-        className={`absolute inset-0 z-20 flex flex-col items-center justify-center px-4 sm:px-8 select-none bg-black will-change-[opacity,transform] transition-opacity duration-700 ${
+        className={`absolute inset-0 z-20 flex flex-col items-center justify-center px-4 sm:px-8 select-none bg-black will-change-[opacity,transform] ${
           isLoaded && !hasStarted ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >

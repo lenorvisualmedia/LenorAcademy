@@ -68,10 +68,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
             : 'opacity-0 pointer-events-none h-0 overflow-hidden'
         }`}
       >
-      {/* IMMERSIVE SCROLL-DRIVEN STORYTELLING & ACADEMY SHOWCASE
-          1. Center Image Reveal (React Bits ScrollExpand Component) with "LET PASSION DRIVE YOUR PROFESSION"
-          2. A Creative Media Academy (Makkaraparamba Campus architecture, interactive slider, Mission & Visit Us)
-      */}
+      {/* A Creative Media Academy (Makkaraparamba Campus architecture, interactive slider, Mission & Visit Us) */}
       <EditorialStorySequence />
 
       {/* DISCIPLINES CRAFTS BAR */}

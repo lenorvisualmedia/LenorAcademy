@@ -242,14 +242,15 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             onClick={() => setSelectedImage({
               title: "Commercial Photography & Lighting Studio",
               subtitle: "Makkaraparamba Studio Floor · Hands-on student drills",
-              image: "/assets/campus/about-campus-architecture-2.jpg",
+              image: "/assets/campus/about-studio-lighting-stage.webp",
               category: "campus"
             })}
           >
             <img 
-              src="/assets/campus/about-campus-architecture-2.jpg" 
-              alt="Studio shoot with lights and a model" 
-              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+              src="/assets/campus/about-studio-lighting-stage.webp" 
+              alt="Professional commercial photography and lighting studio production stage" 
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              style={{ objectPosition: 'center 55%' }}
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end justify-between p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

@@ -229,9 +229,10 @@ export const CampaignsPage: React.FC<CampaignsPageProps> = ({ onOpenEnrol, onOpe
         >
           <div className="card h-[380px] group">
             <img
-              src="/assets/campaigns/creative-showcase.webp"
-              alt="Studio shoot"
+              src="/assets/campaigns/studio-lighting-blitz.webp"
+              alt="Studio Lighting Blitz shoot with camera operator and model"
               className="cover gs group-hover:scale-105 transition-transform duration-500"
+              style={{ objectPosition: 'center 50%' }}
               loading="lazy"
               decoding="async"
             />

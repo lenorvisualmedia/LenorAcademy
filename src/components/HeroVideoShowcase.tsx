@@ -456,8 +456,8 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       {/* 1. Mobile Portrait Video (Exclusively rendered on mobile view < 768px, completely hidden on desktop) */}
       <video
         ref={mobileVideoRef}
-        poster="/assets/hero/hero-poster-mobile.webp"
-        src="/hero-scroll-mobile.mp4"
+        poster="/assets/hero/hero-poster-mobile-v2.webp"
+        src="/hero-scroll-mobile.mp4?v=2"
         preload="auto"
         muted
         playsInline
@@ -467,8 +467,8 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       {/* 2. Desktop Landscape Video (Exclusively rendered on desktop view >= 768px, completely hidden on mobile) */}
       <video
         ref={desktopVideoRef}
-        poster="/assets/hero/hero-poster.webp"
-        src="/Hero-scroll.mp4"
+        poster="/assets/hero/hero-poster-v2.webp"
+        src="/Hero-scroll.mp4?v=2"
         preload="auto"
         muted
         playsInline
@@ -553,7 +553,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
               text="LENOR ACADEMY"
               tag="h1"
               mediaType="image"
-              src="/assets/hero/hero-poster-mobile.webp"
+              src="/assets/hero/hero-poster-mobile-v2.webp"
               fillScale={1.15}
               parallax={30}
               reveal="rise"
@@ -576,7 +576,7 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
               text="LENOR ACADEMY"
               tag="h1"
               mediaType="image"
-              src="/assets/hero/hero-poster.webp"
+              src="/assets/hero/hero-poster-v2.webp"
               fillScale={1.3}
               parallax={30}
               reveal="rise"

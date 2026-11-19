@@ -77,6 +77,17 @@ export interface EventItem {
   spotsLeft?: number;
 }
 
+export interface PastEventGalleryItem {
+  id: string;
+  title: string;
+  category: 'Onam Celebration' | 'Sports League' | 'Cultural Fest';
+  categoryLabel: string;
+  image: string;
+  caption: string;
+  dateBadge: string;
+  aspect?: 'landscape' | 'portrait' | 'wide';
+}
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -1790,6 +1801,277 @@ export const EVENTS_DATA: EventItem[] = [
     registrationOpen: true,
     buttonText: "COMING SOON",
     spotsLeft: 25
+  }
+];
+
+// --------------------------------------------------------------------
+// PAST EVENTS & CAMPUS LIFE GALLERY (26 Authentic Photos)
+// --------------------------------------------------------------------
+export const PAST_EVENTS_GALLERY: PastEventGalleryItem[] = [
+  // --- LENOR ONAM CELEBRATION (11 photos) ---
+  {
+    id: "past-onam-07",
+    title: "Lenor Onam · Official Batch Portrait",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-batch-celebration-banner-07.webp",
+    caption: "The complete student batch and faculty gathering under the official Lenor Onam celebration banner.",
+    dateBadge: "Annual Celebration",
+    aspect: "wide"
+  },
+  {
+    id: "past-onam-08",
+    title: "Grand Campus Gathering · Faculty & Students",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-community-gathering-08.webp",
+    caption: "The entire Lenor community assembled in traditional Kerala attire celebrating unity and festive joy.",
+    dateBadge: "Annual Celebration",
+    aspect: "landscape"
+  },
+  {
+    id: "past-onam-02",
+    title: "Floral Athapookkalam · Traditional Mundu",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-pookkalam-mundu-boys-02.webp",
+    caption: "Students posing proudly beside the vibrant multi-layered floral pookkalam designed in the academy courtyard.",
+    dateBadge: "Campus Traditions",
+    aspect: "portrait"
+  },
+  {
+    id: "past-onam-03",
+    title: "Kasavu Saree Ensembles · Pookkalam Honors",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-pookkalam-saree-girls-03.webp",
+    caption: "Students adorned in golden Kasavu sarees framing the traditional floral masterpiece.",
+    dateBadge: "Campus Traditions",
+    aspect: "portrait"
+  },
+  {
+    id: "past-onam-09",
+    title: "Chenda Melam Rhythm · Festive Rally",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-chenda-melam-rally-09.webp",
+    caption: "Rhythmic Kerala Chenda Melam beats echoing through campus during the high-energy festive rally.",
+    dateBadge: "Cultural Heritage",
+    aspect: "portrait"
+  },
+  {
+    id: "past-onam-05",
+    title: "Campus Procession · Grand Festive March",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-campus-procession-05.webp",
+    caption: "Students and mentors parading in traditional dhoti attire with celebratory energy across campus.",
+    dateBadge: "Festive Rally",
+    aspect: "landscape"
+  },
+  {
+    id: "past-onam-06",
+    title: "Festive Smiles & Campus Bonding",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-festive-smiles-06.webp",
+    caption: "Capturing authentic laughter, traditional sweets, and festive camaraderie between classmates.",
+    dateBadge: "Student Life",
+    aspect: "landscape"
+  },
+  {
+    id: "past-onam-10",
+    title: "Thiruvathira Folk Grace & Dance",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-thiruvathira-celebration-10.webp",
+    caption: "Traditional folk movements and lyrical rhythms celebrating the festive heritage of Kerala.",
+    dateBadge: "Folk Arts",
+    aspect: "portrait"
+  },
+  {
+    id: "past-onam-01",
+    title: "Harvest Rhythms · Traditional Choreography",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-traditional-dance-01.webp",
+    caption: "Celebratory dance performance bringing festive spirit and smiles to the open courtyard.",
+    dateBadge: "Cultural Arts",
+    aspect: "portrait"
+  },
+  {
+    id: "past-onam-04",
+    title: "Young Festive Spirit · Mascot Moment",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-festive-spirit-04.webp",
+    caption: "Pure festive joy and infectious smiles during the campus Onam carnival celebrations.",
+    dateBadge: "Festive Joy",
+    aspect: "portrait"
+  },
+  {
+    id: "past-onam-11",
+    title: "Traditional Heritage Portrait",
+    category: "Onam Celebration",
+    categoryLabel: "Onam Festival",
+    image: "/assets/events/past/onam-traditional-portrait-11.webp",
+    caption: "Timeless portrait reflecting the warmth, pride, and elegance of traditional festival culture.",
+    dateBadge: "Portraiture",
+    aspect: "portrait"
+  },
+
+  // --- TURF FOOTBALL LEAGUE / SPORTS CHAMPIONSHIP (6 photos) ---
+  {
+    id: "past-sports-06",
+    title: "Lenor Turf Championship · All Squads Lineup",
+    category: "Sports League",
+    categoryLabel: "Turf Football League",
+    image: "/assets/events/past/sports-turf-football-squad-photo-06.webp",
+    caption: "The complete tournament lineup: all participating student teams, jerseys, and faculty referees assembled on the turf.",
+    dateBadge: "Championship",
+    aspect: "wide"
+  },
+  {
+    id: "past-sports-01",
+    title: "Turf Matchday Action · High-Paced Duel",
+    category: "Sports League",
+    categoryLabel: "Turf Football League",
+    image: "/assets/events/past/sports-turf-football-action-01.webp",
+    caption: "Intense five-a-side football action under the floodlights at the annual campus turf tournament.",
+    dateBadge: "Matchday",
+    aspect: "portrait"
+  },
+  {
+    id: "past-sports-02",
+    title: "Goalmouth Drama · Decisive Save",
+    category: "Sports League",
+    categoryLabel: "Turf Football League",
+    image: "/assets/events/past/sports-turf-football-goal-save-02.webp",
+    caption: "Spectacular defensive block and goalkeeper reflex save during the tournament knockout rounds.",
+    dateBadge: "Knockout Round",
+    aspect: "portrait"
+  },
+  {
+    id: "past-sports-04",
+    title: "Wing Sprint & Tactical Dribble",
+    category: "Sports League",
+    categoryLabel: "Turf Football League",
+    image: "/assets/events/past/sports-turf-football-dribble-04.webp",
+    caption: "Attacking midfielder cutting through the opposition defensive line with swift footwork.",
+    dateBadge: "Quarter-Finals",
+    aspect: "portrait"
+  },
+  {
+    id: "past-sports-05",
+    title: "Counter-Attack Breakaway",
+    category: "Sports League",
+    categoryLabel: "Turf Football League",
+    image: "/assets/events/past/sports-turf-football-attack-05.webp",
+    caption: "Dynamic forward sprinting forward on a fast-break counter-attack on the green artificial turf.",
+    dateBadge: "Match Action",
+    aspect: "portrait"
+  },
+  {
+    id: "past-sports-03",
+    title: "Midfield Battle & Ground Possession",
+    category: "Sports League",
+    categoryLabel: "Turf Football League",
+    image: "/assets/events/past/sports-turf-football-midfield-03.webp",
+    caption: "High-intensity physical contest for ball possession in the center of the pitch.",
+    dateBadge: "Group Stage",
+    aspect: "portrait"
+  },
+
+  // --- CULTURAL FEST & MUSIC NIGHT (9 photos) ---
+  {
+    id: "past-culture-08",
+    title: "Annual Arts Fest · Main Stage Concert",
+    category: "Cultural Fest",
+    categoryLabel: "Cultural Fest & Concert",
+    image: "/assets/events/past/cultural-fest-auditorium-concert-08.webp",
+    caption: "Live band and vocalists commanding the grand auditorium stage with dramatic concert lighting.",
+    dateBadge: "Concert Night",
+    aspect: "portrait"
+  },
+  {
+    id: "past-culture-05",
+    title: "Concert Crowd Energy & Beats",
+    category: "Cultural Fest",
+    categoryLabel: "Cultural Fest & Concert",
+    image: "/assets/events/past/cultural-fest-student-crowd-05.webp",
+    caption: "Students grooving in the front row to high-tempo campus DJ and live stage music sets.",
+    dateBadge: "Student Energy",
+    aspect: "portrait"
+  },
+  {
+    id: "past-culture-07",
+    title: "Hip-Hop Choreography Showcase",
+    category: "Cultural Fest",
+    categoryLabel: "Cultural Fest & Concert",
+    image: "/assets/events/past/cultural-fest-hiphop-stage-07.webp",
+    caption: "High-octane urban hip-hop stage performance with synchronized choreography and stage backdrops.",
+    dateBadge: "Dance Showcase",
+    aspect: "portrait"
+  },
+  {
+    id: "past-culture-06",
+    title: "Unplugged Acoustic Guitar Session",
+    category: "Cultural Fest",
+    categoryLabel: "Cultural Fest & Concert",
+    image: "/assets/events/past/cultural-fest-acoustic-session-06.webp",
+    caption: "Soulful acoustic melodies performed under warm fairy lights on the creative arts stage.",
+    dateBadge: "Live Unplugged",
+    aspect: "portrait"
+  },
+  {
+    id: "past-culture-09",
+    title: "Spotlight Solo Vocalist",
+    category: "Cultural Fest",
+    categoryLabel: "Cultural Fest & Concert",
+    image: "/assets/events/past/cultural-fest-spotlight-singer-09.webp",
+    caption: "Student soloist captivating the audience under intense stage rim lighting.",
+    dateBadge: "Live Vocals",
+    aspect: "portrait"
+  },
+  {
+    id: "past-culture-02",
+    title: "Stage Sync & Cinematic Performance",
+    category: "Cultural Fest",
+    categoryLabel: "Cultural Fest & Concert",
+    image: "/assets/events/past/cultural-fest-group-dance-02.webp",
+    caption: "Energetic student choreography delivering vibrant rhythm and colorful costume expression.",
+    dateBadge: "Stage Performance",
+    aspect: "landscape"
+  },
+  {
+    id: "past-culture-01",
+    title: "Rhythm & Joy · Cultural Fusion",
+    category: "Cultural Fest",
+    categoryLabel: "Cultural Fest & Concert",
+    image: "/assets/events/past/cultural-fest-stage-dance-01.webp",
+    caption: "Capturing dynamic motion and celebratory smiles during the campus arts night.",
+    dateBadge: "Stage Dance",
+    aspect: "landscape"
+  },
+  {
+    id: "past-culture-03",
+    title: "Theatrical Expression & Motion",
+    category: "Cultural Fest",
+    categoryLabel: "Cultural Fest & Concert",
+    image: "/assets/events/past/cultural-fest-solo-performance-03.webp",
+    caption: "Dramatic individual performance fusing storytelling, acting, and musical accompaniment.",
+    dateBadge: "Performing Arts",
+    aspect: "landscape"
+  },
+  {
+    id: "past-culture-04",
+    title: "Campus Music Revelry & Celebration",
+    category: "Cultural Fest",
+    categoryLabel: "Cultural Fest & Concert",
+    image: "/assets/events/past/cultural-fest-dance-celebration-04.webp",
+    caption: "An unforgettable evening where creative media students step away from screens to celebrate together.",
+    dateBadge: "Music Night",
+    aspect: "landscape"
   }
 ];
 

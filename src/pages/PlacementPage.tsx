@@ -66,7 +66,7 @@ export const PlacementPage: React.FC<PlacementPageProps> = ({ onOpenEnrol, onOpe
           {/* Right Column: Editorial Placement Details & Outline Pill CTA */}
           <div className="flex flex-col items-start justify-center py-2 sm:py-6">
             <div className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#a39c94]">
-              Stop 07 · Get Placed
+              Stop 08 · Get Placed
             </div>
 
             <h1 className="h1 text-6xl sm:text-7xl lg:text-8xl text-white font-black tracking-tight uppercase leading-[0.95] mt-4 mb-4">

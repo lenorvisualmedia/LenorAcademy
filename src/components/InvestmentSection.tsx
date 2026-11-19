@@ -44,7 +44,7 @@ export const InvestmentSection: React.FC<InvestmentSectionProps> = ({
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-10 border-b border-neutral-200">
           <div>
             <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-neutral-600">
-              Stop 09 · Enrol
+              Stop 10 · Enrol
             </div>
             <h2 className="h1 text-4xl sm:text-7xl lg:text-8xl text-black mt-2">
               The investment

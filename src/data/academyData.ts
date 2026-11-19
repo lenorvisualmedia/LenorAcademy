@@ -767,7 +767,7 @@ export const FACULTY_MENTORS: FacultyMentor[] = [
 ];
 
 // --------------------------------------------------------------------
-// 9 STOPS JOURNEY
+// 10 STOPS JOURNEY
 // --------------------------------------------------------------------
 export const JOURNEY_STOPS: JourneyStop[] = [
   {
@@ -798,6 +798,27 @@ export const JOURNEY_STOPS: JourneyStop[] = [
   {
     stopNumber: "02",
     tag: "Stop 02 · Both programmes",
+    title: "Cinematography",
+    subtitle: "Master visual storytelling.",
+    image: "/assets/journey/journey-cinematography.webp",
+    imageAlt: "Cinematographer directing camera and lighting rig on film set",
+    chips: [
+      "RED Epic Cinema Workflows",
+      "Anamorphic & Prime Lenses",
+      "Three-Point Dramatic Lighting",
+      "Scene Blocking & Staging",
+      "Director of Photography (DOP) Craft",
+      "Depth of Field & Focus Pulling",
+      "Visual Narrative & Shot Framing",
+      "Log Profiles & Dynamic Range",
+      "Aspect Ratios & Lens Flares",
+      "Short Film Cinematography"
+    ],
+    description: "Bridge the craft between still optics and motion cinema. Master cinema camera sensor mechanics, prime lenses, three-point dramatic lighting setups, scene blocking, and visual storytelling."
+  },
+  {
+    stopNumber: "03",
+    tag: "Stop 03 · Both programmes",
     title: "Videography",
     subtitle: "Learn to move.",
     image: "/assets/journey/journey-studio-lighting.webp",
@@ -806,19 +827,19 @@ export const JOURNEY_STOPS: JourneyStop[] = [
       "Gimbal Balancing",
       "Gimbal Movements",
       "Aerial Videography (Drone)",
-      "Cinematography",
       "Shortfilm Making",
-      "Portrait",
-      "Indoor",
-      "Automotive",
+      "Portrait & Commercial",
+      "Automotive Shoots",
       "Candid Lighting",
-      "Hoverboard Camera Movement"
+      "Hoverboard Camera Movement",
+      "Multi-Camera Production",
+      "Action Tracking"
     ],
     description: "Move from static frames to dynamic cinematic storytelling. Train with high-payload gimbals, follow-focus rigs, aerial quadcopters, and precision fluid heads."
   },
   {
-    stopNumber: "03",
-    tag: "Stop 03 · Both programmes",
+    stopNumber: "04",
+    tag: "Stop 04 · Both programmes",
     title: "Photo Editing",
     subtitle: "Find the look.",
     image: "/assets/journey/journey-editing-suite.webp",
@@ -836,8 +857,8 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     description: "Develop your signature color science and master editorial grade skin retouching, color grading, tone mapping, and batch workflow optimization."
   },
   {
-    stopNumber: "04",
-    tag: "Stop 04 · Both programmes",
+    stopNumber: "05",
+    tag: "Stop 05 · Both programmes",
     title: "Video Editing",
     subtitle: "Cut the story.",
     image: "/assets/journey/journey-motion-graphics.webp",
@@ -857,8 +878,8 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     description: "Master the timeline, rhythm, sound design, multi-cam assembly, color grading nodes in DaVinci Resolve, and modern AI assistive tools."
   },
   {
-    stopNumber: "05",
-    tag: "Stop 05 · Media Master only",
+    stopNumber: "06",
+    tag: "Stop 06 · Media Master only",
     title: "Graphic Design & Motion",
     subtitle: "Build the brand.",
     image: "/assets/journey/journey-cinematography-set.webp",
@@ -876,8 +897,8 @@ export const JOURNEY_STOPS: JourneyStop[] = [
     description: "Translate visual ideas into commercial brand campaigns, title sequences, posters, dynamic kinetic graphics, and cohesive marketing collaterals."
   },
   {
-    stopNumber: "06",
-    tag: "Stop 06 · Media Master only",
+    stopNumber: "07",
+    tag: "Stop 07 · Media Master only",
     title: "Soft Skills",
     subtitle: "Become the professional.",
     image: "/assets/journey/journey-portfolio-presentation.webp",
@@ -906,7 +927,7 @@ export const PROGRAMMES: Program[] = [
     name: "Media Master Programme (MMP)",
     duration: "1 Year",
     badge: "Flagship Comprehensive · 100% Placement Assurance",
-    modulesCount: "8+ Softwares · 6 Core Modules",
+    modulesCount: "8+ Softwares · 7 Core Modules",
     description: "Our signature professional diploma designed to build complete media directors capable of shooting cinema, cutting commercials, designing brands, and leading productions.",
     featured: true,
     price: "₹ 1,49,825/-",
@@ -919,11 +940,12 @@ export const PROGRAMMES: Program[] = [
     softwareCount: "8+ Softwares: Premiere Pro, DaVinci Resolve, After Effects, Photoshop, Lightroom, Illustrator, InDesign, Canva",
     modules: [
       "Module 01: Advanced Photography (Lighting, Studio, Product, Portrait, Candid, Automotive, Street, Wildlife, Food)",
-      "Module 02: Cinematic Videography (RED Epic cinema handling, Gimbals, Hoverboard balancing, Lighting, Shot planning)",
-      "Module 03: Photo Editing & Color Science (Photoshop Camera Raw, High Pass, Masking, Lightroom batch grading)",
-      "Module 04: Video Post-Production (Premiere Pro, DaVinci Resolve log color grading, After Effects motion graphics)",
-      "Module 05: Graphic Design & Brand Identity (Illustrator, InDesign, Canva, Vector illustration, Social media systems)",
-      "Module 06: Soft Skills, Personality Camp & AI (4-5 Day Off-Grid camp, Client pitching, AI generative workflows)"
+      "Module 02: Cinematography & Film Direction (RED Epic cinema handling, Anamorphic & Prime lenses, Dramatic lighting, Scene blocking)",
+      "Module 03: Cinematic Videography (Gimbals, Hoverboard balancing, Drone piloting, Multi-camera live production)",
+      "Module 04: Photo Editing & Color Science (Photoshop Camera Raw, High Pass, Masking, Lightroom batch grading)",
+      "Module 05: Video Post-Production (Premiere Pro, DaVinci Resolve log color grading, After Effects motion graphics)",
+      "Module 06: Graphic Design & Brand Identity (Illustrator, InDesign, Canva, Vector illustration, Social media systems)",
+      "Module 07: Soft Skills, Personality Camp & AI (4-5 Day Off-Grid camp, Client pitching, AI generative workflows)"
     ],
     highlights: [
       "100% Placement Assurance within 6 months (for Plus Two graduates)",

@@ -109,14 +109,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
       {/* SCROLL-DRIVEN JOURNEY TIMELINE WITH DYNAMIC DRAWING LINE & BIDIRECTIONAL REVEAL */}
       <ScrollJourney />
 
-      {/* STOP 07: PLACEMENT SHOWCASE TEASER WITH PLACED STUDENTS POSTERS & HOLOGRAPHIC CARDS */}
+      {/* STOP 08: PLACEMENT SHOWCASE TEASER WITH PLACED STUDENTS POSTERS & HOLOGRAPHIC CARDS */}
       <AnimatedContent distance={50} duration={0.8} threshold={0.1}>
         <section className="space-y-10 mt-16">
           {/* Main White Bento Overview Card */}
           <div className="card p-6 sm:p-12 !bg-white !text-black border border-neutral-200 shadow-xl">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-neutral-200">
               <div>
-                <div className="eye text-neutral-600">Stop 07 · Get placed</div>
+                <div className="eye text-neutral-600">Stop 08 · Get placed</div>
                 <h2 className="h1 text-4xl sm:text-6xl text-black mt-2">
                   Where our<br />students work
                 </h2>
@@ -155,7 +155,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
         </section>
       </AnimatedContent>
 
-      {/* STOP 08: SUCCESS STORIES */}
+      {/* STOP 09: SUCCESS STORIES */}
       <AnimatedContent
         distance={50}
         duration={0.8}
@@ -178,7 +178,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
           {/* Right Column: Editorial Details & Read Success Stories Pill Button */}
           <div className="flex flex-col items-start justify-center py-2 sm:py-6">
             <div className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#a39c94]">
-              Stop 08 · Success Stories
+              Stop 09 · Success Stories
             </div>
 
             <h2 className="h1 text-4xl sm:text-5xl lg:text-6xl text-white font-black tracking-tight leading-[1.05] mt-4 mb-6">
@@ -204,7 +204,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnrol, onOpenBrochure 
         </section>
       </AnimatedContent>
 
-      {/* STOP 09: THE INVESTMENT & ENROLMENT SECTION */}
+      {/* STOP 10: THE INVESTMENT & ENROLMENT SECTION */}
       <InvestmentSection
         onOpenEnrol={onOpenEnrol}
         onOpenBrochure={onOpenBrochure}

@@ -119,7 +119,7 @@ export const ScrollJourney: React.FC = () => {
             From first frame to first job
           </h2>
           <p className="text-sm sm:text-base text-neutral-400 font-light mt-4 max-w-2xl leading-relaxed">
-            Our curriculum is structured as an unrelenting six-stage progression from raw optics to international post-production standards.
+            Our curriculum is structured as an unrelenting seven-stage progression from raw optics to international post-production standards.
           </p>
 
           <div className="mt-6 flex items-center gap-2 text-xs font-mono text-neutral-500 uppercase tracking-widest">
@@ -148,7 +148,7 @@ export const ScrollJourney: React.FC = () => {
           style={{ willChange: 'transform, opacity' }}
         />
 
-        {/* The 6 Chapters */}
+        {/* The 7 Chapters */}
         <div className="space-y-6 sm:space-y-12">
           {JOURNEY_STOPS.map((stop, idx) => (
             <article

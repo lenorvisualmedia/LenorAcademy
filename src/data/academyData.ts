@@ -1783,8 +1783,8 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "24 October 2026",
     author: "Lenor Faculty Guild",
     authorRole: "Studio Mentors",
-    image: "/assets/blog/blog-cinematic-lighting.webp",
-    imageAlt: "Mirrorless camera seen from above",
+    image: "/assets/blog/blog-photographer-business-class.webp",
+    imageAlt: "Photographer workspace with film roll and prints under warm cinematic sunlight",
     featured: true,
     summary: "The greatest technical skills with a camera won't save a business that doesn't understand client management, pricing floors, usage rights, and contracts. Here is what creative schools rarely tell you.",
     content: [

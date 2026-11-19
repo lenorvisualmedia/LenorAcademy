@@ -122,14 +122,17 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('keydown', onKeyDown);
 
-      const vid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
-      if (vid) {
+      [mobileVideoRef.current, desktopVideoRef.current].forEach((vid) => {
+        if (!vid) return;
         vid.playbackRate = 1.0;
         vid.pause();
-        if (vid.duration && !isNaN(vid.duration)) {
-          vid.currentTime = Math.max(0, vid.duration - 0.05);
+        const dur = (vid.duration && !isNaN(vid.duration) && vid.duration > 0) ? vid.duration : 10.0;
+        try {
+          vid.currentTime = Math.max(0, dur - 0.15);
+        } catch {
+          // ignore
         }
-      }
+      });
 
       if (overlayRef.current) {
         overlayRef.current.style.display = 'none';
@@ -408,19 +411,37 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
       e.stopPropagation();
     }
 
-    const vid = isMobile ? mobileVideoRef.current : desktopVideoRef.current;
-    if (vid) {
+    // Directly jump video playback to the clean final logo frame
+    [mobileVideoRef.current, desktopVideoRef.current].forEach((vid) => {
+      if (!vid) return;
       vid.pause();
       vid.playbackRate = 1.0;
-      const defaultDuration = isMobile ? 15.87 : 23.76;
-      const lastTime = Math.max(0, (vid.duration || defaultDuration) - 0.05);
-      vid.currentTime = lastTime;
-    }
+      const applyLastFrame = () => {
+        const dur = (vid.duration && !isNaN(vid.duration) && vid.duration > 0) ? vid.duration : 10.0;
+        const lastTime = Math.max(0, dur - 0.15);
+        try {
+          vid.currentTime = lastTime;
+        } catch {
+          // ignore
+        }
+      };
+
+      if (vid.readyState >= 1) {
+        applyLastFrame();
+      } else {
+        vid.addEventListener('loadedmetadata', applyLastFrame, { once: true });
+        vid.addEventListener('canplay', applyLastFrame, { once: true });
+      }
+    });
 
     if (overlayRef.current) {
       overlayRef.current.style.display = 'none';
       overlayRef.current.style.opacity = '0';
       overlayRef.current.style.pointerEvents = 'none';
+    }
+
+    if (rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
     }
 
     hasCompletedRef.current = true;
@@ -430,16 +451,16 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
     (window as any).__heroVideoCompleted = true;
     window.dispatchEvent(new CustomEvent('lenor-hero-completed'));
 
+    // Unlock scrolling across window, body, and Lenis — STAY at top showing the last frame
     (window as any).__scrollLocked = false;
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
 
     if ((window as any).__lenis) {
       (window as any).__lenis.start();
-      (window as any).__lenis.scrollTo(window.innerHeight, { duration: 0.9 });
-    } else {
-      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      (window as any).__lenis.scrollTo(0, { immediate: true });
     }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
     setTimeout(() => {
       ScrollTrigger.refresh();
@@ -475,20 +496,22 @@ export const HeroVideoShowcase: React.FC<HeroVideoShowcaseProps> = () => {
         className="hidden md:block w-full h-full object-cover pointer-events-none"
       />
 
-      {/* Brand Logo in Top-Left — Exact design from screenshot, ALWAYS visible when video is active */}
-      <div className="absolute top-5 left-5 sm:top-6 sm:left-8 z-40 flex items-center gap-2.5 pointer-events-auto select-none pt-[env(safe-area-inset-top)]">
-        <img
-          src="/assets/brand/lenor-logo-mark.webp"
-          alt="Lenor Academy"
-          className="h-6 sm:h-7 w-auto object-contain brightness-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = '/assets/brand/White_Lenor_OG_Logo_Master_File.webp';
-          }}
-        />
-        <span className="tracking-[0.06em] font-black uppercase text-sm sm:text-base text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-          LENOR ACADEMY®
-        </span>
-      </div>
+      {/* Brand Logo in Top-Left — Visible while video is active; hands over to main Navbar on completion */}
+      {!isCompleted && (
+        <div className="absolute top-5 left-5 sm:top-6 sm:left-8 z-40 flex items-center gap-2.5 pointer-events-auto select-none pt-[env(safe-area-inset-top)]">
+          <img
+            src="/assets/brand/lenor-logo-mark.webp"
+            alt="Lenor Academy"
+            className="h-6 sm:h-7 w-auto object-contain brightness-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/assets/brand/White_Lenor_OG_Logo_Master_File.webp';
+            }}
+          />
+          <span className="tracking-[0.06em] font-black uppercase text-sm sm:text-base text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+            LENOR ACADEMY®
+          </span>
+        </div>
+      )}
 
       {/* Skip Intro Button (Top-Right) — Shows last frame and unlocks website immediately */}
       {isLoaded && !isCompleted && (

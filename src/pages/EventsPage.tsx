@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { ArrowUpRight, Sparkles, X, ChevronLeft, ChevronRight, Maximize2, Trophy, Music, Calendar } from 'lucide-react';
 import { EVENTS_DATA, EventItem, PAST_EVENTS_GALLERY, PastEventGalleryItem } from '../data/academyData';
 import { RegisterEventModal } from '../components/RegisterEventModal';
 import { AnimatedContent } from '../components/AnimatedContent';
 import { InvestmentSection } from '../components/InvestmentSection';
 import { ModelPhotographyReels } from '../components/ModelPhotographyReels';
+import { useModalScrollLock } from '../utils/modalScrollLock';
 
 interface EventsPageProps {
   onOpenEnrol?: (programId?: string) => void;
@@ -33,11 +35,13 @@ export const EventsPage: React.FC<EventsPageProps> = ({
     return item.category === galleryCategory;
   });
 
-  // Handle keyboard navigation for full-screen photo lightbox
+  // Lock scrolling when lightbox is open and handle Escape to close
+  useModalScrollLock(lightboxIndex !== null, () => setLightboxIndex(null));
+
+  // Handle left/right arrow keys for lightbox photo navigation
   useEffect(() => {
     if (lightboxIndex === null) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setLightboxIndex(null);
       if (e.key === 'ArrowLeft') {
         setLightboxIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : filteredGallery.length - 1));
       }
@@ -46,10 +50,8 @@ export const EventsPage: React.FC<EventsPageProps> = ({
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
     };
   }, [lightboxIndex, filteredGallery.length]);
 
@@ -388,136 +390,148 @@ export const EventsPage: React.FC<EventsPageProps> = ({
             <article
               key={item.id}
               onClick={() => setLightboxIndex(idx)}
-              className={`group relative overflow-hidden rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-neutral-500 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-2xl ${
+              className={`group relative overflow-hidden rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-neutral-500 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-2xl h-[380px] sm:h-[440px] ${
                 item.aspect === 'wide' ? 'sm:col-span-2 lg:col-span-2' : ''
               }`}
             >
-              <div
-                className={`relative w-full overflow-hidden ${
-                  item.aspect === 'wide'
-                    ? 'aspect-[16/9] sm:aspect-[21/10]'
-                    : item.aspect === 'landscape'
-                      ? 'aspect-[4/3] sm:aspect-[16/11]'
-                      : 'aspect-[3/4] sm:aspect-[4/5]'
-                }`}
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                  loading="lazy"
-                  decoding="async"
-                />
-                {/* Deep cinematic gradient for contrast and readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/20 group-hover:via-black/25 transition-colors pointer-events-none" />
+              {/* Full-bleed Photo with zero whitespace underneath */}
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                loading="lazy"
+                decoding="async"
+              />
 
-                {/* Top Badges */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 pointer-events-none z-10">
-                  <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-white border border-white/20">
-                    {item.categoryLabel}
-                  </span>
-                  <span className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-neutral-300 border border-white/10">
-                    {item.dateBadge}
-                  </span>
-                </div>
+              {/* Deep cinematic gradient for contrast and readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-black/20 group-hover:via-black/25 transition-colors pointer-events-none" />
 
-                {/* Hover Maximize Pill */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
-                  <div className="w-12 h-12 rounded-full bg-black/75 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                    <Maximize2 className="w-5 h-5 text-white" />
-                  </div>
-                </div>
+              {/* Top Badges */}
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 pointer-events-none z-10">
+                <span className="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-white border border-white/20">
+                  {item.categoryLabel}
+                </span>
+                <span className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-neutral-300 border border-white/10">
+                  {item.dateBadge}
+                </span>
+              </div>
 
-                {/* Bottom Caption & Title */}
-                <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 text-white pointer-events-none z-10">
-                  <h3 className="text-base sm:text-lg font-black tracking-tight text-white leading-snug group-hover:text-neutral-200 transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-neutral-300 font-light mt-1.5 line-clamp-2 leading-relaxed">
-                    {item.caption}
-                  </p>
+              {/* Hover Maximize Pill */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
+                <div className="w-12 h-12 rounded-full bg-black/75 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                  <Maximize2 className="w-5 h-5 text-white" />
                 </div>
+              </div>
+
+              {/* Bottom Caption & Title */}
+              <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 text-white pointer-events-none z-10">
+                <h3 className="text-base sm:text-lg font-black tracking-tight text-white leading-snug group-hover:text-neutral-200 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-xs text-neutral-300 font-light mt-1.5 line-clamp-2 leading-relaxed">
+                  {item.caption}
+                </p>
               </div>
             </article>
           ))}
         </AnimatedContent>
       </section>
 
-      {/* LIGHTBOX MODAL */}
-      {lightboxIndex !== null && filteredGallery[lightboxIndex] && (
+      {/* FULLSCREEN LIGHTBOX MODAL (PORTALED DIRECTLY TO DOCUMENT.BODY) */}
+      {lightboxIndex !== null && filteredGallery[lightboxIndex] && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-2xl p-4 sm:p-8 select-none"
+          data-lenor-modal="true"
+          className="fixed inset-0 z-[99999] flex flex-col items-center justify-between bg-black/95 backdrop-blur-2xl p-4 sm:p-6 select-none animate-fade-in"
           onClick={() => setLightboxIndex(null)}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
         >
-          {/* Close button */}
-          <button
-            onClick={() => setLightboxIndex(null)}
-            className="absolute top-5 right-5 sm:top-7 sm:right-8 z-50 p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white transition-all duration-200 cursor-pointer shadow-2xl"
-            aria-label="Close image preview"
-          >
-            <X className="w-6 h-6" />
-          </button>
-
-          {/* Previous Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setLightboxIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : filteredGallery.length - 1));
-            }}
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-50 p-3 sm:p-4 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white transition-all duration-200 cursor-pointer shadow-2xl"
-            aria-label="Previous photo"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          {/* Next Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setLightboxIndex((prev) => (prev !== null && prev < filteredGallery.length - 1 ? prev + 1 : 0));
-            }}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-50 p-3 sm:p-4 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white transition-all duration-200 cursor-pointer shadow-2xl"
-            aria-label="Next photo"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          {/* Modal Container */}
+          {/* Top Header Bar */}
           <div
-            className="relative max-w-5xl max-h-[90vh] w-full flex flex-col items-center justify-center"
+            className="w-full max-w-6xl flex items-center justify-between gap-4 z-50 shrink-0 pt-2 pb-2"
             onClick={(e) => e.stopPropagation()}
           >
+            <div className="flex items-center gap-3">
+              <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-white">
+                {filteredGallery[lightboxIndex].categoryLabel}
+              </span>
+              <span className="text-xs font-mono text-neutral-400">
+                {lightboxIndex + 1} / {filteredGallery.length}
+              </span>
+            </div>
+
+            <button
+              onClick={() => setLightboxIndex(null)}
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white transition-all duration-200 cursor-pointer flex items-center justify-center shadow-2xl"
+              aria-label="Close fullscreen view"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+          </div>
+
+          {/* Center Stage: Image + Prev/Next Controls */}
+          <div
+            className="relative flex-1 w-full max-w-6xl flex items-center justify-center my-2 min-h-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Previous Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : filteredGallery.length - 1));
+              }}
+              className="absolute left-1 sm:left-4 z-40 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-black/70 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white transition-all duration-200 cursor-pointer flex items-center justify-center shadow-2xl"
+              aria-label="Previous photo"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Main Full-Res Image: Perfectly centered, fills up to 78vh / 90vw */}
             <img
+              key={filteredGallery[lightboxIndex].id}
               src={filteredGallery[lightboxIndex].image}
               alt={filteredGallery[lightboxIndex].title}
-              className="max-h-[72vh] max-w-full object-contain rounded-xl shadow-2xl border border-white/10"
+              className="max-h-[75vh] sm:max-h-[78vh] max-w-[88vw] w-auto h-auto object-contain rounded-xl shadow-2xl border border-white/10 animate-fade-in"
             />
 
-            {/* Meta Bar */}
-            <div className="w-full mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-white px-2">
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="px-2.5 py-0.5 rounded-full bg-white/15 text-xs font-mono font-bold uppercase tracking-wider text-white border border-white/20">
-                    {filteredGallery[lightboxIndex].categoryLabel}
-                  </span>
-                  <span className="text-xs text-neutral-400 font-mono">
-                    {filteredGallery[lightboxIndex].dateBadge}
-                  </span>
-                </div>
-                <h4 className="text-lg sm:text-xl font-black text-white">
-                  {filteredGallery[lightboxIndex].title}
-                </h4>
-                <p className="text-xs sm:text-sm text-neutral-300 font-light mt-0.5 max-w-2xl">
-                  {filteredGallery[lightboxIndex].caption}
-                </p>
-              </div>
+            {/* Next Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxIndex((prev) => (prev !== null && prev < filteredGallery.length - 1 ? prev + 1 : 0));
+              }}
+              className="absolute right-1 sm:right-4 z-40 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-black/70 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white transition-all duration-200 cursor-pointer flex items-center justify-center shadow-2xl"
+              aria-label="Next photo"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
 
-              <div className="shrink-0 text-xs font-mono text-neutral-400">
-                {lightboxIndex + 1} / {filteredGallery.length}
+          {/* Bottom Info Bar */}
+          <div
+            className="w-full max-w-4xl bg-neutral-900/90 border border-white/10 rounded-2xl p-4 sm:px-6 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xl z-50 shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div>
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="text-xs font-mono font-bold text-amber-300">
+                  {filteredGallery[lightboxIndex].dateBadge}
+                </span>
               </div>
+              <h4 className="text-base sm:text-lg font-black text-white">
+                {filteredGallery[lightboxIndex].title}
+              </h4>
+              <p className="text-xs text-neutral-300 font-light mt-0.5 max-w-2xl leading-relaxed">
+                {filteredGallery[lightboxIndex].caption}
+              </p>
+            </div>
+
+            <div className="shrink-0 text-[11px] font-mono text-neutral-400 hidden sm:block">
+              Use ← → to navigate · Esc to close
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* THE INVESTMENT & PROGRAMMES SECTION */}

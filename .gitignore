@@ -45,3 +45,10 @@ Lenor Academy Website*.html
 extracted_doc_text.txt
 /Lenor_Academy_Brochure_2026.pdf
 scratch/
+EVENTs/
+audit_*.py
+check_*.py
+verify_*.py
+execute_*.py
+*.txt
+

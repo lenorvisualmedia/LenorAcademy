@@ -1466,23 +1466,6 @@ export const PLACED_STUDENTS: PlacedStudent[] = [
     cardPreset: "gold"
   },
   {
-    id: "st-17",
-    name: "Shyam. C",
-    role: "Editor",
-    company: "Dotcase",
-    category: "Editing",
-    location: "Kerala, India",
-    batch: "VMP 607",
-    careerStatus: "Working Professional",
-    instagram: "portfolio.drive",
-    portfolioUrl: "https://drive.google.com/drive/folders/1f31HKwqK8kOBAqf3j9sPAxJGrrcxN5ZT",
-    portfolioType: "drive",
-    drivePhotoId: "1rhn2qkyNWKRh677zhMVp8wIdhndZTG1Z",
-    driveLogoId: "14VeMgsE14uFrwLj_-exIopOCK6IFA_LM",
-    cardImage: "/assets/careers/students/st-17.webp",
-    cardPreset: "bursts"
-  },
-  {
     id: "st-18",
     name: "Mohammed Uvais K",
     role: "Photographer,videographer And Editor",
